@@ -103,8 +103,6 @@ public class BaseHexGrid : MonoBehaviour
         {
             save.hexes.Add(new HexEntry
             {
-                Q = kv.Key.Q,
-                R = kv.Key.R,
                 Hex = kv.Value
             });
         }
@@ -138,7 +136,7 @@ public class BaseHexGrid : MonoBehaviour
         _hexGrid = new Dictionary<AxialCoordinate, BaseHex>(save.hexes.Count);
         foreach (var e in save.hexes)
         {
-            var coord = new AxialCoordinate(e.Q, e.R);
+            var coord = new AxialCoordinate(e.Hex.Coord.Q, e.Hex.Coord.R);
             var hex =e.Hex;
             _hexGrid[coord] = hex;
         }
@@ -152,8 +150,6 @@ public class BaseHexGrid : MonoBehaviour
 [System.Serializable]
 public class HexEntry
 {
-    public int Q;
-    public int R;
     public BaseHex Hex;
 }
 

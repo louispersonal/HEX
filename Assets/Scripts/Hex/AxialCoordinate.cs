@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public readonly struct AxialCoordinate : System.IEquatable<AxialCoordinate>
+public struct AxialCoordinate : System.IEquatable<AxialCoordinate>
 {
-    [SerializeField] private readonly int q;
-    [SerializeField] private readonly int r;
+    [SerializeField] private int q;
+    [SerializeField] private int r;
 
-    public int Q => q;
-    public int R => r;
-    public int S => -q - r;
+    public int Q { get { return q; } }
+    public int R { get { return r; } }
+    public int S { get { return -q - r; } }
 
     public AxialCoordinate(int q, int r)
     {

@@ -9,11 +9,12 @@ public class BaseHex
     public static float SceneSize = 1f; //1 unit in unity world space
     public static float InGameSize = 20f; //20km
 
-    public AxialCoordinate Coord { get; }
+    [SerializeField] private AxialCoordinate _coord;
+    public AxialCoordinate Coord {  get { return _coord; } }
 
     public BaseHex(int q, int r)
     {
-        Coord = new AxialCoordinate(q, r);
+        _coord = new AxialCoordinate(q, r);
     }
 
     public List<BaseHex> GetNeighbors()
