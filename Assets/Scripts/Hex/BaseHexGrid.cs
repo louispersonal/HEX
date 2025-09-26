@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using UnityEngine;
 
@@ -43,8 +42,7 @@ public class BaseHexGrid : MonoBehaviour
 
     public float DistanceBetweenHexes(BaseHex a, BaseHex b)
     {
-        AxialCoordinate diff = a.Coord - b.Coord;
-        return (Mathf.Abs(diff.Q) + Mathf.Abs(diff.R) + Mathf.Abs(diff.Q + diff.R)) / 2;
+        return AxialCoordinate.DistanceBetweenCoords(a.Coord, b.Coord);
     }
 
     public List<BaseHex> HexesWithinRadiusOfHex(BaseHex a, int radius)
@@ -68,15 +66,15 @@ public class BaseHexGrid : MonoBehaviour
 
     public Vector2 AxialToSceneConversion(AxialCoordinate a)
     {
-        float x = BaseHex.SceneSize * Mathf.Sqrt(3) * (a.Q + (a.R / 2));
-        float y = BaseHex.SceneSize * (3 / 2) * a.R;
+        float x = BaseHex.SceneSize * Mathf.Sqrt(3f) * (a.Q + (a.R / 2f));
+        float y = BaseHex.SceneSize * (1.5f) * a.R;
         return new Vector2(x, y);
     }
 
     public AxialCoordinate SceneToAxialConversion(Vector2 p)
     {
-        float r = p.y * (2 / (3 * BaseHex.SceneSize));
-        float q = (p.x / (Mathf.Sqrt(3) * BaseHex.SceneSize)) - (p.y / (3 * BaseHex.SceneSize));
+        float r = p.y * (2f / (3f * BaseHex.SceneSize));
+        float q = (p.x / (Mathf.Sqrt(3f) * BaseHex.SceneSize)) - (p.y / (3f * BaseHex.SceneSize));
 
         return new AxialCoordinate((int)Mathf.Round(q), (int)Mathf.Round(r));
     }
