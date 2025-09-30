@@ -70,8 +70,7 @@ public struct AxialCoordinate : System.IEquatable<AxialCoordinate>
 		// axial directions (pointy-top)
 		AxialCoordinate[] dirs = AxialDirections.Directions;
 
-		// start at (center + dir5 * radius)
-		AxialCoordinate coord = a + new AxialCoordinate(0,1) * radius;
+		AxialCoordinate coord = a + (dirs[4] * radius);
 		for (int i = 0; i < 6; i++)
 		{
 			for (int step = 0; step < radius; step++)

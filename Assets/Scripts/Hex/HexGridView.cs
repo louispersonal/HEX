@@ -8,11 +8,11 @@ public class HexGridView : MonoBehaviour
 {
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;
+	HashSet<AxialCoordinate> _targetCoords;
 	HashSet<AxialCoordinate> _liveCoords;
 	Dictionary<AxialCoordinate, HexView> _liveHexes;
 	ObjectPool<HexView> _hexPool;
 	Dictionary<AxialCoordinate, float> _graceUntil;
-	HashSet<AxialCoordinate> _target;
 	List<AxialCoordinate> _spawnList;
     List<AxialCoordinate> _despawnNow;
     int _bufferSize = 2;
@@ -26,10 +26,10 @@ public class HexGridView : MonoBehaviour
 	{
 		_needNow = new HashSet<AxialCoordinate>();
 		_bufferBand = new HashSet<AxialCoordinate>();
+		_targetCoords = new HashSet<AxialCoordinate>();
 		_liveCoords = new HashSet<AxialCoordinate>();
 		_liveHexes = new Dictionary<AxialCoordinate, HexView>();
 		_graceUntil = new Dictionary<AxialCoordinate, float>();
-		_target     = new HashSet<AxialCoordinate>();
 		_spawnList  = new List<AxialCoordinate>();
 		_despawnNow = new List<AxialCoordinate>();
 
@@ -66,92 +66,52 @@ public class HexGridView : MonoBehaviour
 		(float q, float r) newCenter = SceneToFractionalAxialConversion(ProjectViewportToPlane(cam, new Vector2(0.5f, 0.5f), planeZ));
 		int newRadius = ComputeRadiusFractionalAxial(newCenter);
 		
-		if (DistanceBetweenFractionalAxialCoords(newCenter, _cameraCenter) < 0.1 && newRadius == _radius)
-		{
-			_cameraCenter = newCenter;
-			_radius = newRadius;
-			return;
-		}
-		
 		_cameraCenter = newCenter;
 		_radius = newRadius;
-		
+
 		// Proceed with updating sets
-		UpdateNeedNowSet();
-		UpdateBufferBandSet();
+		AxialCoordinate cameraCoord = new AxialCoordinate(Mathf.RoundToInt(_cameraCenter.q), Mathf.RoundToInt(_cameraCenter.r));
+		UpdateNeedNowSet(cameraCoord);
+		UpdateBufferBandSet(cameraCoord);
 
 		SyncPoolWithTarget();
 	}
 	
-	public void UpdateNeedNowSet()
+	public void UpdateNeedNowSet(AxialCoordinate cameraCoord)
 	{
-		AxialCoordinate cameraCoord = new AxialCoordinate(Mathf.RoundToInt(_cameraCenter.q), Mathf.RoundToInt(_cameraCenter.r));
 		_needNow = AxialCoordinate.CoordsWithinRadiusOfCoord(cameraCoord, _radius).ToHashSet();
 	}
 	
-	public void UpdateBufferBandSet()
+	public void UpdateBufferBandSet(AxialCoordinate cameraCoord)
 	{
-		AxialCoordinate cameraCoord = new AxialCoordinate(Mathf.RoundToInt(_cameraCenter.q), Mathf.RoundToInt(_cameraCenter.r));
 		_bufferBand = AxialCoordinate.CoordsInRingsOfRadii(cameraCoord, _radius + 1, _radius + _bufferSize).ToHashSet();
-	}
-	
-	void BuildTarget()
-	{
-		_target.Clear();
-		_target.UnionWith(_needNow);
-		_target.UnionWith(_bufferBand);
 	}
 	
 	void SyncPoolWithTarget()
 	{
-		BuildTarget();
-
 		_spawnList.Clear();
 		_despawnNow.Clear();
+		_targetCoords.Clear();
+		_targetCoords.UnionWith(_needNow);
+		_targetCoords.UnionWith(_bufferBand);
 
-		foreach (var c in _target)
+
+		foreach(var need in _targetCoords)
 		{
-            if (!_liveCoords.Contains(c))
+			if (!_liveCoords.Contains(need))
 			{
-                _spawnList.Add(c);
+                _spawnList.Add(need);
             }
-        }
+		}
 
-		float now = Time.time;
-		foreach (var c in _liveCoords)
+		foreach(var live in _liveCoords)
 		{
-			if (_target.Contains(c))
+			if (!_targetCoords.Contains(live))
 			{
-				if (_graceUntil.ContainsKey(c))
-				{
-                    _graceUntil.Remove(c);
-                }
-			}
-			else
-			{
-				if (!_graceUntil.TryGetValue(c, out float until))
-				{
-                    _graceUntil[c] = now + _despawnGraceSeconds;
-                }
+				_despawnNow.Add(live);
 			}
 		}
 
-		foreach (var kv in _graceUntil)
-		{
-            if (kv.Value <= now && !_target.Contains(kv.Key))
-			{
-                _despawnNow.Add(kv.Key);
-            }
-        }
-
-        AxialCoordinate cameraCoord = new AxialCoordinate(Mathf.RoundToInt(_cameraCenter.q), Mathf.RoundToInt(_cameraCenter.r));
-
-        _spawnList.Sort((a,b) =>
-		{
-			int da = Mathf.RoundToInt(AxialCoordinate.DistanceBetweenCoords(a, cameraCoord));
-			int db = Mathf.RoundToInt(AxialCoordinate.DistanceBetweenCoords(b, cameraCoord));
-			return da.CompareTo(db);
-		});
 		foreach (var c in _spawnList)
 		{
             SpawnCoord(c);
