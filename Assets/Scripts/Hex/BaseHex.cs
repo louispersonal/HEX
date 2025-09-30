@@ -12,6 +12,11 @@ public class BaseHex
     [SerializeField] private AxialCoordinate _coord;
     public AxialCoordinate Coord {  get { return _coord; } }
 
+    public BaseHex(AxialCoordinate a)
+    {
+        _coord = a;
+    }
+
     public BaseHex(int q, int r)
     {
         _coord = new AxialCoordinate(q, r);

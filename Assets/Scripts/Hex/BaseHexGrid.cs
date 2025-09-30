@@ -24,7 +24,7 @@ public class BaseHexGrid : MonoBehaviour
     public bool TryGetHex(AxialCoordinate coord, out BaseHex hex)
     => _hexGrid.TryGetValue(coord, out hex);
 
-    public void GenerateGrid(int N)
+    public void GenerateHexShapedGrid(int N)
     {
         int hexCount = 1 + 3 * N * (N + 1);
 
@@ -35,6 +35,18 @@ public class BaseHexGrid : MonoBehaviour
             for (int r = Mathf.Max(-N, -q - N); r <= Mathf.Min(N, -q + N); r++)
             {
                 BaseHex currentHex = new BaseHex(q, r);
+                _hexGrid.Add(currentHex.Coord, currentHex);
+            }
+        }
+    }
+
+    public void GenerateRectangularGrid(int columns, int rows)
+    {
+        for (int c = 0; c < columns; c++)
+        {
+            for (int r = 0; r < rows; r++)
+            {
+                BaseHex currentHex = new BaseHex(AxialCoordinate.OddRToAxial((r, c)));
                 _hexGrid.Add(currentHex.Coord, currentHex);
             }
         }

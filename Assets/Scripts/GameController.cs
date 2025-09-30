@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BaseHexGrid.Instance.GenerateGrid(100);
+        BaseHexGrid.Instance.GenerateRectangularGrid(100, 50);
     }
 
     // Update is called once per frame

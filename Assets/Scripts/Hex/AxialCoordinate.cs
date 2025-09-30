@@ -23,6 +23,20 @@ public struct AxialCoordinate : System.IEquatable<AxialCoordinate>
     public override int GetHashCode() => System.HashCode.Combine(q, r);
     public override string ToString() => $"({Q}, {R}, {S})";
 
+    public (int row, int col) ConvertToOddR()
+    {
+        int parity = R & 1;
+        int col = Q + (R - parity) / 2;
+        return (R, col);
+    }
+
+    public static AxialCoordinate OddRToAxial((int row, int col) o)
+    {
+        int parity = o.row & 1;
+        int q = o.col - (o.row - parity) / 2;
+        return new AxialCoordinate(q, o.row);
+    }
+
     public static AxialCoordinate operator + (AxialCoordinate a, AxialCoordinate b)
     {
         return new AxialCoordinate(a.Q + b.Q, a.R + b.R);
