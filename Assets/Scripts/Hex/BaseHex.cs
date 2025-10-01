@@ -21,35 +21,4 @@ public class BaseHex
     {
         _coord = new AxialCoordinate(q, r);
     }
-
-    public List<BaseHex> GetNeighbors()
-    {
-        List<BaseHex> neighbors = new List<BaseHex>();
-
-        foreach (AxialCoordinate dir in AxialDirections.Directions)
-        {
-            AxialCoordinate neighborCoord = Coord + dir;
-            if (BaseHexGrid.Instance.TryGetHex(neighborCoord, out BaseHex neighborHex))
-            {
-                neighbors.Add(neighborHex);
-            }
-        }
-
-        return neighbors;
-    }
-
-    public float DistanceToHex(BaseHex target)
-    {
-        return BaseHexGrid.Instance.DistanceBetweenHexes(this, target);
-    }
-
-    public List<BaseHex> HexesWithinRadius(int radius)
-    {
-        return BaseHexGrid.Instance.HexesWithinRadiusOfHex(this, radius);
-    }
-
-    public Vector2 GetScenePosition()
-    {
-        return BaseHexGrid.Instance.AxialToSceneConversion(Coord);
-    }
 }

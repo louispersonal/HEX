@@ -126,7 +126,7 @@ public class HexGridView : MonoBehaviour
 
 	void SpawnCoord(AxialCoordinate c)
 	{
-		if (_liveCoords.Contains(c) || !BaseHexGrid.Instance.TryGetHex(c, out BaseHex data)) return;
+		if (_liveCoords.Contains(c) || !BaseHexGrid.Instance.TryGetHex(c, out Hex data)) return;
 
 		HexView view = _hexPool.Get();
 		view.Initialize(data);
