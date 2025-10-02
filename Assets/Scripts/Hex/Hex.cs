@@ -22,6 +22,8 @@ public class Hex : BaseHex
     [SerializeField] byte _precipitation;
     public float Precipitation { get { return _precipitation * ByteToFloat; } }
 
+    public bool IsSea { get { return _elevation == 0; } }
+
     public Hex(AxialCoordinate a) : base(a)
     {
 
@@ -30,11 +32,6 @@ public class Hex : BaseHex
     public Hex(int q, int r) : base(q, r)
     {
         
-    }
-
-    public void PopulateData()
-    {
-
     }
 
     public override string ToString()
@@ -68,8 +65,51 @@ public class Hex : BaseHex
         return BaseHexGrid.Instance.HexesWithinRadiusOfHex(this, radius);
     }
 
+    public List<Hex> HexesInRingOfRadius(int radius)
+    {
+        return BaseHexGrid.Instance.HexesInRingOfRadiusOfHex(this, radius);
+    }
+
     public Vector2 GetScenePosition()
     {
         return BaseHexGrid.Instance.AxialToSceneConversion(Coord);
+    }
+
+    public void SetElevation(float elevation)
+    {
+        _elevation = (byte)(elevation * 255f);
+    }
+
+    public void SetTemperature(float temperature)
+    {
+        _temperature = (byte)(temperature * 255f);
+    }
+
+    public void SetPrecipitation(float precipitation)
+    {
+        _precipitation = (byte)(precipitation * 255f);
+    }
+
+    public void CalculateVegetations()
+    {
+        if (IsSea) return;
+
+        WorldGenController w = WorldGenController.Instance;
+
+        float lowVegetation = SmoothThresholdFunction(Temperature, 0.1f, 0.9f)
+            * SmoothThresholdFunction(Precipitation, 0.1f, 0.9f)
+            * (1 - SmoothThresholdFunction(Elevation, 0.9f, 1f));
+
+        float highVegetation = SmoothThresholdFunction(Temperature, 0.4f, 0.9f)
+            * SmoothThresholdFunction(Precipitation, 0.4f, 0.9f)
+            * (1 - SmoothThresholdFunction(Elevation, 0.7f, 1f));
+
+        _lowVegetation = (byte)(lowVegetation * 255f);
+        _highVegetation = (byte)(highVegetation * 255f);
+    }
+
+    public float SmoothThresholdFunction(float value, float floor, float ceiling)
+    {
+        return Mathf.Clamp((value - floor) / (ceiling - floor), 0, 1);
     }
 }

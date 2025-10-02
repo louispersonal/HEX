@@ -7,7 +7,10 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BaseHexGrid.Instance.GenerateRectangularGrid(100, 50);
+        BaseHexGrid.Instance.GenerateRectangularGrid(WorldGenController.Instance.Columns, WorldGenController.Instance.Rows);
+        WorldGenController.Instance.SetElevations(BaseHexGrid.Instance);
+        WorldGenController.Instance.SetTemperatures(BaseHexGrid.Instance);
+        WorldGenController.Instance.SetPrecipitationVegetation(BaseHexGrid.Instance);
     }
 
     // Update is called once per frame

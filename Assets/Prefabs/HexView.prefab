@@ -132,8 +132,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc76be887c75084dbc7ba4c287926cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 3412653114672340424}
   _lowVegetationParticles: {fileID: 2733037648368458089}
+  _maxLowVegetationParticles: 30
   _highVegetationParticles: {fileID: 6327497776847421325}
+  _maxHighVegetationParticles: 10
+  _terrainSprites:
+  - {fileID: 21300000, guid: 7dc09d9b7ddbdbf4abc75258dca6540b, type: 3}
+  - {fileID: 21300000, guid: e931c47b5c3d63a4b889e9ed437710ee, type: 3}
+  - {fileID: 21300000, guid: 0e4923874ad58654f88178099e8a42d3, type: 3}
+  _terrainColors:
+  - {r: 0.6792453, g: 0.6012075, b: 0.2627269, a: 1}
+  - {r: 0.50980395, g: 0.59607846, b: 0.28627452, a: 1}
+  - {r: 0.1942683, g: 0.509434, b: 0.14578132, a: 1}
+  _seaColor: {r: 0, g: 0.06531011, b: 0.7106918, a: 1}
 --- !u!1 &6264063752501350655
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +346,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9999
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5164,7 +5176,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9999
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

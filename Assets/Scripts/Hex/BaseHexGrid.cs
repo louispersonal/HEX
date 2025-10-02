@@ -7,7 +7,7 @@ public class BaseHexGrid : MonoBehaviour
 {
     public static BaseHexGrid Instance { get; private set; }
 
-    private Dictionary<AxialCoordinate, Hex> _hexGrid;
+    public Dictionary<AxialCoordinate, Hex> Grid { get; private set; }
 
     private void Awake()
     {
@@ -18,24 +18,24 @@ public class BaseHexGrid : MonoBehaviour
         }
 
         Instance = this;
-        _hexGrid = new Dictionary<AxialCoordinate, Hex>();
+        Grid = new Dictionary<AxialCoordinate, Hex>();
     }
 
     public bool TryGetHex(AxialCoordinate coord, out Hex hex)
-    => _hexGrid.TryGetValue(coord, out hex);
+    => Grid.TryGetValue(coord, out hex);
 
     public void GenerateHexShapedGrid(int N)
     {
         int hexCount = 1 + 3 * N * (N + 1);
 
-        _hexGrid = new Dictionary<AxialCoordinate, Hex>(hexCount);
+        Grid = new Dictionary<AxialCoordinate, Hex>(hexCount);
 
         for (int q = -N; q <= N; q++)
         {
             for (int r = Mathf.Max(-N, -q - N); r <= Mathf.Min(N, -q + N); r++)
             {
                 Hex currentHex = new Hex(q, r);
-                _hexGrid.Add(currentHex.Coord, currentHex);
+                Grid.Add(currentHex.Coord, currentHex);
             }
         }
     }
@@ -47,7 +47,7 @@ public class BaseHexGrid : MonoBehaviour
             for (int r = 0; r < rows; r++)
             {
                 Hex currentHex = new Hex(AxialCoordinate.OddRToAxial((r, c)));
-                _hexGrid.Add(currentHex.Coord, currentHex);
+                Grid.Add(currentHex.Coord, currentHex);
             }
         }
     }
@@ -61,15 +61,30 @@ public class BaseHexGrid : MonoBehaviour
     {
         List<Hex> hexesInRange = new List<Hex>();
 
-        for (int q = -radius; q <= radius; q++)
+        List<AxialCoordinate> axials = AxialCoordinate.CoordsWithinRadiusOfCoord(a.Coord, radius);
+
+        foreach (AxialCoordinate axial in axials)
         {
-            for (int r = Mathf.Max(-radius, -q - radius); r <= Mathf.Min(radius, -q + radius); r++)
+            if (Instance.TryGetHex(axial, out Hex neighborHex))
             {
-                AxialCoordinate hexCoord = a.Coord + new AxialCoordinate(q, r);
-                if (Instance.TryGetHex(hexCoord, out Hex neighborHex))
-                {
-                    hexesInRange.Add(neighborHex);
-                }
+                hexesInRange.Add(neighborHex);
+            }
+        }
+
+        return hexesInRange;
+    }
+
+    public List<Hex> HexesInRingOfRadiusOfHex(Hex a, int radius)
+    {
+        List<Hex> hexesInRange = new List<Hex>();
+
+        List<AxialCoordinate> axials = AxialCoordinate.CoordsInRingOfRadius(a.Coord, radius);
+
+        foreach (AxialCoordinate axial in axials)
+        {
+            if (Instance.TryGetHex(axial, out Hex neighborHex))
+            {
+                hexesInRange.Add(neighborHex);
             }
         }
 
@@ -106,10 +121,10 @@ public class BaseHexGrid : MonoBehaviour
         var save = new HexGridSave
         {
             version = 1,
-            hexes = new List<HexEntry>(_hexGrid.Count)
+            hexes = new List<HexEntry>(Grid.Count)
         };
 
-        foreach (var kv in _hexGrid)
+        foreach (var kv in Grid)
         {
             save.hexes.Add(new HexEntry
             {
@@ -143,12 +158,12 @@ public class BaseHexGrid : MonoBehaviour
             return false;
         }
 
-        _hexGrid = new Dictionary<AxialCoordinate, Hex>(save.hexes.Count);
+        Grid = new Dictionary<AxialCoordinate, Hex>(save.hexes.Count);
         foreach (var e in save.hexes)
         {
             var coord = new AxialCoordinate(e.Hex.Coord.Q, e.Hex.Coord.R);
             var hex =e.Hex;
-            _hexGrid[coord] = hex;
+            Grid[coord] = hex;
         }
 
         Debug.Log($"Loaded hex grid ({save.hexes.Count} tiles) from {path}");
