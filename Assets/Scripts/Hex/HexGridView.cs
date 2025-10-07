@@ -6,6 +6,8 @@ using UnityEngine.Pool;
 
 public class HexGridView : MonoBehaviour
 {
+	public static HexGridView Instance { get; private set; }
+
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;
 	HashSet<AxialCoordinate> _targetCoords;
@@ -24,7 +26,15 @@ public class HexGridView : MonoBehaviour
 	
 	private void Awake()
 	{
-		_needNow = new HashSet<AxialCoordinate>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        _needNow = new HashSet<AxialCoordinate>();
 		_bufferBand = new HashSet<AxialCoordinate>();
 		_targetCoords = new HashSet<AxialCoordinate>();
 		_liveCoords = new HashSet<AxialCoordinate>();
@@ -176,6 +186,15 @@ public class HexGridView : MonoBehaviour
     {
         var plane = new Plane(Vector3.forward, new Vector3(0f, 0f, PlaneZ));
         Ray ray = cam.ViewportPointToRay(new Vector3(viewport01.x, viewport01.y, 0f));
+        if (plane.Raycast(ray, out float enter))
+            return ray.GetPoint(enter);
+        return cam.transform.position + ray.direction * 1000f;
+    }
+
+    public static Vector3 MouseToPlane(Camera cam, float PlaneZ)
+    {
+        var plane = new Plane(Vector3.forward, new Vector3(0f, 0f, PlaneZ));
+		Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         if (plane.Raycast(ray, out float enter))
             return ray.GetPoint(enter);
         return cam.transform.position + ray.direction * 1000f;

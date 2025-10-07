@@ -11,6 +11,8 @@ public class DebugView : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _fpsText;
 
+    [SerializeField] TextMeshProUGUI _hexDebugText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,12 @@ public class DebugView : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        UpdateFPSText();
+        UpdateHexDebugText();
+    }
+
+    void UpdateFPSText()
     {
         if (_timeInWindow < _windowLength)
         {
@@ -32,6 +40,15 @@ public class DebugView : MonoBehaviour
             _fpsText.text = format;
             _timeInWindow = 0f;
             _framesInWindow = 0;
+        }
+    }
+
+    void UpdateHexDebugText()
+    {
+        AxialCoordinate mouseAxial = BaseHexGrid.Instance.SceneToAxialConversion(HexGridView.MouseToPlane(Camera.main, 0f));
+        if (BaseHexGrid.Instance.TryGetHex(mouseAxial, out Hex mouseHex))
+        {
+            _hexDebugText.text = mouseHex.ToString();
         }
     }
 }

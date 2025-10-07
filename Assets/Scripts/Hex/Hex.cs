@@ -24,6 +24,8 @@ public class Hex : BaseHex
 
     public bool IsSea { get { return _elevation == 0; } }
 
+    public Biome Biome { get { return Biomes.GetBiome(Temperature, Precipitation); } }
+
     public Hex(AxialCoordinate a) : base(a)
     {
 
@@ -36,7 +38,12 @@ public class Hex : BaseHex
 
     public override string ToString()
     {
-        return $"LV: {LowVegetation}, HV: {HighVegetation}, T: {Temperature}, E: {Elevation}, P: {Precipitation}";
+        return $"Grass and shrubs: {LowVegetation},\n" +
+            $"Trees: {HighVegetation},\n" +
+            $"Temperature: {Temperature * 150 - 90},\n" +
+            $"Elevation: {Elevation * 9000}m,\n" +
+            $"Precipitation: {Precipitation}\n" +
+            $"Biome: {Biome}";
     }
 
     public List<Hex> GetNeighbors()
