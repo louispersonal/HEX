@@ -10,7 +10,8 @@ public enum Biome
     Tropical,
     Savanna,
     Temperate,
-    Steppe
+    Steppe,
+    Sea
 }
 
 public class Biomes
@@ -33,8 +34,9 @@ public class Biomes
         return 2;
     }
 
-    public static Biome GetBiome(float temperature, float precipitation)
+    public static Biome GetBiome(bool isSea, float temperature, float precipitation)
     {
+        if (isSea) return Biome.Sea;
         int tempIndex = GetIndex(temperature, TemperatureThresholds);
         int precipIndex = GetIndex(precipitation, PrecipitationThresholds);
         return BiomeTable[precipIndex, tempIndex];

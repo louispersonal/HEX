@@ -24,7 +24,7 @@ public class Hex : BaseHex
 
     public bool IsSea { get { return _elevation == 0; } }
 
-    public Biome Biome { get { return Biomes.GetBiome(Temperature, Precipitation); } }
+    public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
 
     public Hex(AxialCoordinate a) : base(a)
     {
