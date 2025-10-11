@@ -9,11 +9,13 @@ public class FractalBrownianMotion : MonoBehaviour
     [Range(3, 10)] [SerializeField] int _octaves;
     [Range(1f, 2f)] [SerializeField] float _lacunarity;
     [Range(0f, 0.999f)] [SerializeField] float _gain;
-    [Range(3, 10)] [SerializeField] float _seed;
+    [SerializeField] float _seed;
     [Range(0, 1)] [SerializeField] float _seaLevel;
     [SerializeField] int _worldWidth;
     [SerializeField] int _worldHeight;
     [Range(2f, 8f)] [SerializeField] float _archipelagoness;
+
+    [SerializeField] FBMParams _fbmParams;
 
     private const float SEED_Y_OFFSET = 1.37f;
 
@@ -55,8 +57,7 @@ public class FractalBrownianMotion : MonoBehaviour
         {
             for (float x = 0.0F; x < noiseTex.width; x++)
             {
-                float sample = FBM(new Vector2Int((int)x, (int)y), baseAmplitude, baseFrequency, _octaves, _lacunarity, _gain, _seed);
-                if (sample < _seaLevel) sample = 0f;
+                float sample = FBM(new Vector2(x, y), baseAmplitude, baseFrequency, _octaves, _lacunarity, _gain, _seed, true);
                 pix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
             }
         }
@@ -66,7 +67,7 @@ public class FractalBrownianMotion : MonoBehaviour
         noiseTex.Apply();
     }
 
-    public float FBM(Vector2 samplePoint, float baseAmplitude, float baseFrequency, int octaves, float lacunarity, float gain, float seed)
+    public float FBM(Vector2 samplePoint, float baseAmplitude, float baseFrequency, int octaves, float lacunarity, float gain, float seed, bool binarySnap)
     {
         float fbm = 0f;
         samplePoint += new Vector2(seed, seed * SEED_Y_OFFSET);
@@ -78,6 +79,32 @@ public class FractalBrownianMotion : MonoBehaviour
             baseAmplitude *= gain;
         }
 
+        // if binarySnap is on, we set everything below sea to 0 and everything else to 0.01
+        if (binarySnap)
+        {
+            if (fbm < _seaLevel)
+            {
+                return 0f;
+            }
+            else
+            {
+                return 1f;
+            }
+        }
+
         return fbm;
     }
+}
+
+[System.Serializable]
+public class FBMParams
+{
+    public int _octaves;
+    public float _lacunarity;
+    public float _gain;
+    public float _seed;
+    public float _seaLevel;
+    public int _worldWidth;
+    public int _worldHeight;
+    public float _archipelagoness;
 }

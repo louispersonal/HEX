@@ -522,13 +522,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _octaves: 5
-  _lacunarity: 1.1
+  _lacunarity: 1.5
   _gain: 0.89
-  _seed: 10
+  _seed: 1231
   _seaLevel: 0.5
   _worldWidth: 200
   _worldHeight: 100
   _archipelagoness: 3
+  _fbmParams:
+    _octaves: 5
+    _lacunarity: 1.5
+    _gain: 0.89
+    _seed: 1231
+    _seaLevel: 0.5
+    _worldWidth: 200
+    _worldHeight: 100
+    _archipelagoness: 3
 --- !u!1 &1167763977
 GameObject:
   m_ObjectHideFlags: 0
