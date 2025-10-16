@@ -40,4 +40,15 @@ public class GameController : MonoBehaviour
 
         _currentScene = sceneName;
     }
+
+    public void GoToScene(string sceneName)
+    {
+        StartCoroutine(GoToSceneAsync(sceneName));
+    }
+}
+
+public static class SceneNames
+{
+    public static string WorldGenerationMenu = "WorldGenerationMenu";
+    public static string MainMenu = "MainMenu";
 }

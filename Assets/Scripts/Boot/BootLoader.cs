@@ -9,8 +9,7 @@ public class BootLoader : MonoBehaviour
         yield return SceneManager.LoadSceneAsync("GameController", LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("GameController"));
 
-        yield return SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Additive);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainMenu"));
+        GameController.Instance.GoToScene(SceneNames.MainMenu);
 
         yield return SceneManager.UnloadSceneAsync(gameObject.scene);
     }
