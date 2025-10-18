@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class WorldGenerationMenuController : MonoBehaviour
 {
+    [SerializeField] MenuView _worldGenerationMenuView;
+
     [SerializeField] UnityEngine.UI.RawImage _previewImage;
     [SerializeField] FractalBrownianMotion _fractalBrownianMotion;
 
-    private FBMParams _fbmParams = new FBMParams();
+    public FBMParams FBMParams { get { return WorldManager.Instance.MapDefinition.FBMParams; } }
 
     // UI Elements
     [Header("UI Elements")]
@@ -33,76 +35,92 @@ public class WorldGenerationMenuController : MonoBehaviour
         
     }
 
+    public void EnableMenu()
+    {
+        _worldGenerationMenuView.gameObject.SetActive(true);
+    }
+
+    public void DisableMenu()
+    {
+        _worldGenerationMenuView.gameObject.SetActive(false);
+    }
+
     public void SetRecommendedParams()
     {
-        _fbmParams._octaves = 5;
-        _octavesSlider.value = _fbmParams._octaves;
+        FBMParams.Octaves = 5;
+        _octavesSlider.value = FBMParams.Octaves;
 
-        _fbmParams._lacunarity = 1.5f;
-        _lacunaritySlider.value = _fbmParams._lacunarity;
+        FBMParams.Lacunarity = 1.5f;
+        _lacunaritySlider.value = FBMParams.Lacunarity;
 
-        _fbmParams._gain = 0.8f;
-        _gainSlider.value = _fbmParams._gain;
+        FBMParams.Gain = 0.8f;
+        _gainSlider.value = FBMParams.Gain;
 
-        _fbmParams._seed = 123;
-        _seedField.text = _fbmParams._seed.ToString();
+        FBMParams.Seed = 123;
+        _seedField.text = FBMParams.Seed.ToString();
 
-        _fbmParams._seaLevel = 0.5f;
-        _seaLevelSlider.value = _fbmParams._seaLevel;
+        FBMParams.SeaLevel = 0.5f;
+        _seaLevelSlider.value = FBMParams.SeaLevel;
 
-        _fbmParams._worldWidth = 200;
-        _widthField.text = _fbmParams._worldWidth.ToString();
+        FBMParams.WorldWidth = 200;
+        _widthField.text = FBMParams.WorldWidth.ToString();
 
-        _fbmParams._worldHeight = _fbmParams._worldWidth / 2;
+        FBMParams.WorldHeight = FBMParams.WorldWidth / 2;
 
-        _fbmParams._archipelagoness = 3;
-        _archipelagonessSlider.value = _fbmParams._archipelagoness;
+        FBMParams.Archipelagoness = 3;
+        _archipelagonessSlider.value = FBMParams.Archipelagoness;
     }
 
     public void UpdateSeed(string value)
     {
-        _fbmParams._seed = int.Parse(value);
+        FBMParams.Seed = int.Parse(value);
     }
 
     public void UpdateWorldWidth(string value)
     {
-        _fbmParams._worldWidth = int.Parse(value);
-        _fbmParams._worldHeight = _fbmParams._worldWidth / 2;
+        FBMParams.WorldWidth = int.Parse(value);
+        FBMParams.WorldHeight = FBMParams.WorldWidth / 2;
     }
 
     public void UpdateOctaves(float value)
     {
-        _fbmParams._octaves = (int)value;
+        FBMParams.Octaves = (int)value;
     }
 
     public void UpdateLacunarity(float value)
     {
-        _fbmParams._lacunarity = value;
+        FBMParams.Lacunarity = value;
     }
 
     public void UpdateGain(float value)
     {
-        _fbmParams._gain = value;
+        FBMParams.Gain = value;
     }
 
     public void UpdateSeaLevel(float value)
     {
-        _fbmParams._seaLevel = value;
+        FBMParams.SeaLevel = value;
     }
 
     public void UpdateArchipelagoness(float value)
     {
-        _fbmParams._archipelagoness = value;
+        FBMParams.Archipelagoness = value;
     }
 
     public void Generate()
     {
-        Texture2D previewTexture = _fractalBrownianMotion.GenerateContinentsPreview(_fbmParams);
+        Texture2D previewTexture = _fractalBrownianMotion.GenerateContinentsPreview(FBMParams);
         _previewImage.texture = previewTexture;
+    }
+
+    public void SetWorldName(string name)
+    {
+        WorldManager.Instance.MapDefinition.Name = name;
     }
 
     public void ReturnToMainMenu()
     {
-        GameController.Instance.GoToScene(SceneNames.MainMenu);
+        DisableMenu();
+        MainMenuController.Instance.EnableMenu();
     }
 }

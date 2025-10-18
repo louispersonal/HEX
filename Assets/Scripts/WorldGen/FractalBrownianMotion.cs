@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 
 public class FractalBrownianMotion : MonoBehaviour
 {
-    [SerializeField] FBMParams _fbmParams;
-
     private const float SEED_Y_OFFSET = 1.37f;
 
     // Start is called before the first frame update
@@ -24,11 +22,11 @@ public class FractalBrownianMotion : MonoBehaviour
 
     public Texture2D GenerateContinentsPreview(FBMParams fbmParams)
     {
-        float baseAmplitude = (1 - fbmParams._gain) / (1 - Mathf.Pow(fbmParams._gain, fbmParams._octaves));
-        float baseFrequency = fbmParams._archipelagoness / fbmParams._worldWidth;
+        float baseAmplitude = (1 - fbmParams.Gain) / (1 - Mathf.Pow(fbmParams.Gain, fbmParams.Octaves));
+        float baseFrequency = fbmParams.Archipelagoness / fbmParams.WorldWidth;
 
         // Set up the texture and a Color array to hold pixels during processing.
-        Texture2D noiseTex = new Texture2D(fbmParams._worldWidth, fbmParams._worldHeight);
+        Texture2D noiseTex = new Texture2D(fbmParams.WorldWidth, fbmParams.WorldHeight);
         Color[] pix = new Color[noiseTex.width * noiseTex.height];
 
         // For each pixel in the texture...
@@ -36,7 +34,7 @@ public class FractalBrownianMotion : MonoBehaviour
         {
             for (float x = 0.0F; x < noiseTex.width; x++)
             {
-                float sample = FBM(new Vector2(x, y), baseAmplitude, baseFrequency, fbmParams._octaves, fbmParams._lacunarity, fbmParams._gain, fbmParams._seed, true, fbmParams._seaLevel);
+                float sample = FBM(new Vector2(x, y), baseAmplitude, baseFrequency, fbmParams.Octaves, fbmParams.Lacunarity, fbmParams.Gain, fbmParams.Seed, true, fbmParams.SeaLevel);
                 pix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
             }
         }
@@ -75,17 +73,4 @@ public class FractalBrownianMotion : MonoBehaviour
 
         return fbm;
     }
-}
-
-[System.Serializable]
-public class FBMParams
-{
-    public int _octaves;
-    public float _lacunarity;
-    public float _gain;
-    public float _seed;
-    public float _seaLevel;
-    public int _worldWidth;
-    public int _worldHeight;
-    public float _archipelagoness;
 }
