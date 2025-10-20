@@ -8,6 +8,8 @@ public class WorldManager : MonoBehaviour
 
     public MapDefinition MapDefinition { get; private set; }
 
+    public BaseHexGrid HexGrid { get; private set; }
+
     private void Awake()
     {
         // Singleton Block
@@ -34,6 +36,17 @@ public class WorldManager : MonoBehaviour
     {
         
     }
+
+    public void LoadHexGrid()
+    {
+        HexGrid = new BaseHexGrid();
+    }
+
+    public void NewHexGrid()
+    {
+        HexGrid = new BaseHexGrid();
+        HexGrid.GenerateRectangularGrid(MapDefinition.FBMParams.WorldHeight, MapDefinition.FBMParams.WorldWidth);
+    }
 }
 
 [System.Serializable]
@@ -41,6 +54,12 @@ public class MapDefinition
 {
     public string Name;
     public FBMParams FBMParams;
+
+    public MapDefinition()
+    {
+        Name = "No name";
+        FBMParams = new FBMParams();
+    }
 }
 
 

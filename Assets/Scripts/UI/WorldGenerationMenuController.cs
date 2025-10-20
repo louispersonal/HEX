@@ -123,4 +123,10 @@ public class WorldGenerationMenuController : MonoBehaviour
         DisableMenu();
         MainMenuController.Instance.EnableMenu();
     }
+
+    public void GenerateHeightMapGoToSeedMenu()
+    {
+        WorldManager.Instance.NewHexGrid();
+        MainMenuController.Instance.GoToSeedMenu();
+    }
 }

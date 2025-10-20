@@ -3,26 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class BaseHexGrid : MonoBehaviour
+public class BaseHexGrid
 {
-    public static BaseHexGrid Instance { get; private set; }
-
     public Dictionary<AxialCoordinate, Hex> Grid { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        Grid = new Dictionary<AxialCoordinate, Hex>();
-    }
 
     public bool TryGetHex(AxialCoordinate coord, out Hex hex)
     => Grid.TryGetValue(coord, out hex);
+
+    public BaseHexGrid()
+    {
+        Grid = new Dictionary<AxialCoordinate, Hex>();
+    }
 
     public void GenerateHexShapedGrid(int N)
     {
@@ -65,7 +56,7 @@ public class BaseHexGrid : MonoBehaviour
 
         foreach (AxialCoordinate axial in axials)
         {
-            if (Instance.TryGetHex(axial, out Hex neighborHex))
+            if (TryGetHex(axial, out Hex neighborHex))
             {
                 hexesInRange.Add(neighborHex);
             }
@@ -82,7 +73,7 @@ public class BaseHexGrid : MonoBehaviour
 
         foreach (AxialCoordinate axial in axials)
         {
-            if (Instance.TryGetHex(axial, out Hex neighborHex))
+            if (TryGetHex(axial, out Hex neighborHex))
             {
                 hexesInRange.Add(neighborHex);
             }
@@ -108,7 +99,7 @@ public class BaseHexGrid : MonoBehaviour
 
     public Hex GetHexAtScenePoint(Vector2 p)
     {
-        if (Instance.TryGetHex(SceneToAxialConversion(p), out Hex hex))
+        if (TryGetHex(SceneToAxialConversion(p), out Hex hex))
         {
             return hex;
         }

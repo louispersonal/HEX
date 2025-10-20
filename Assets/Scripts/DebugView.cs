@@ -13,6 +13,8 @@ public class DebugView : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _hexDebugText;
 
+    public BaseHexGrid HexGrid { get { return WorldManager.Instance.HexGrid; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +47,8 @@ public class DebugView : MonoBehaviour
 
     void UpdateHexDebugText()
     {
-        AxialCoordinate mouseAxial = BaseHexGrid.Instance.SceneToAxialConversion(HexGridView.MouseToPlane(Camera.main, 0f));
-        if (BaseHexGrid.Instance.TryGetHex(mouseAxial, out Hex mouseHex))
+        AxialCoordinate mouseAxial = HexGrid.SceneToAxialConversion(HexGridView.MouseToPlane(Camera.main, 0f));
+        if (HexGrid.TryGetHex(mouseAxial, out Hex mouseHex))
         {
             _hexDebugText.text = mouseHex.ToString();
         }

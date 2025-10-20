@@ -6,6 +6,8 @@ public class HexView : MonoBehaviour
 {
 	public Hex Data { get; private set; }
 
+    public BaseHexGrid HexGrid { get { return WorldManager.Instance.HexGrid; } }
+
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
 	[SerializeField] ParticleSystem _lowVegetationParticles;
@@ -28,7 +30,7 @@ public class HexView : MonoBehaviour
 	public void Initialize(Hex data)
 	{
 		Data = data;
-		gameObject.transform.position = BaseHexGrid.Instance.AxialToSceneConversion(Data.Coord);
+		gameObject.transform.position = HexGrid.AxialToSceneConversion(Data.Coord);
 		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.LowVegetation * _maxLowVegetationParticles)));
 		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.HighVegetation * _maxHighVegetationParticles)));
         _elevationOverlayRenderer.sprite = _elevationOverlays[Mathf.RoundToInt(Data.Elevation * (_elevationOverlays.Count - 1))];

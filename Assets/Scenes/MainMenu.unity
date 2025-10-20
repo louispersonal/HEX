@@ -770,9 +770,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1055012230}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: GoToSeedMenu
+      - m_Target: {fileID: 1625053426}
+        m_TargetAssemblyTypeName: WorldGenerationMenuController, Assembly-CSharp
+        m_MethodName: GenerateHeightMapGoToSeedMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4229,7 +4229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mainMenuView: {fileID: 589848427}
   _worldGenerationMenuController: {fileID: 1625053426}
-  _worldSeedingMenuController: {fileID: 0}
+  _worldSeedingMenuController: {fileID: 1173486861}
 --- !u!1 &1072760304
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,7 +5281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1381965476
 Transform:
   m_ObjectHideFlags: 0
@@ -7088,15 +7088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f74d52d54f701b4590c162ceee72c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fbmParams:
-    _octaves: 0
-    _lacunarity: 0
-    _gain: 0
-    _seed: 0
-    _seaLevel: 0
-    _worldWidth: 0
-    _worldHeight: 0
-    _archipelagoness: 0
 --- !u!1 &1776563803
 GameObject:
   m_ObjectHideFlags: 0

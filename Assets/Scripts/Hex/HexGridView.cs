@@ -7,6 +7,7 @@ using UnityEngine.Pool;
 public class HexGridView : MonoBehaviour
 {
 	public static HexGridView Instance { get; private set; }
+	public BaseHexGrid HexGrid { get { return WorldManager.Instance.HexGrid; } }
 
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;
@@ -136,7 +137,7 @@ public class HexGridView : MonoBehaviour
 
 	void SpawnCoord(AxialCoordinate c)
 	{
-		if (_liveCoords.Contains(c) || !BaseHexGrid.Instance.TryGetHex(c, out Hex data)) return;
+		if (_liveCoords.Contains(c) || !HexGrid.TryGetHex(c, out Hex data)) return;
 
 		HexView view = _hexPool.Get();
 		view.Initialize(data);

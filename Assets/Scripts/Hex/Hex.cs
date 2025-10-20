@@ -26,6 +26,8 @@ public class Hex : BaseHex
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
 
+    public BaseHexGrid HexGrid { get { return WorldManager.Instance.HexGrid; } }
+
     public Hex(AxialCoordinate a) : base(a)
     {
 
@@ -53,7 +55,7 @@ public class Hex : BaseHex
         foreach (AxialCoordinate dir in AxialDirections.Directions)
         {
             AxialCoordinate neighborCoord = Coord + dir;
-            if (BaseHexGrid.Instance.TryGetHex(neighborCoord, out Hex neighborHex))
+            if (HexGrid.TryGetHex(neighborCoord, out Hex neighborHex))
             {
                 neighbors.Add(neighborHex);
             }
@@ -64,22 +66,22 @@ public class Hex : BaseHex
 
     public float DistanceToHex(Hex target)
     {
-        return BaseHexGrid.Instance.DistanceBetweenHexes(this, target);
+        return HexGrid.DistanceBetweenHexes(this, target);
     }
 
     public List<Hex> HexesWithinRadius(int radius)
     {
-        return BaseHexGrid.Instance.HexesWithinRadiusOfHex(this, radius);
+        return HexGrid.HexesWithinRadiusOfHex(this, radius);
     }
 
     public List<Hex> HexesInRingOfRadius(int radius)
     {
-        return BaseHexGrid.Instance.HexesInRingOfRadiusOfHex(this, radius);
+        return HexGrid.HexesInRingOfRadiusOfHex(this, radius);
     }
 
     public Vector2 GetScenePosition()
     {
-        return BaseHexGrid.Instance.AxialToSceneConversion(Coord);
+        return HexGrid.AxialToSceneConversion(Coord);
     }
 
     public void SetElevation(float elevation)
