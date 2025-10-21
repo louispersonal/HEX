@@ -99,26 +99,9 @@ public class Hex : BaseHex
         _precipitation = (byte)(precipitation * 255f);
     }
 
-    public void CalculateVegetations()
+    public void SetVegetations(float lowVegetation, float highVegetation)
     {
-        if (IsSea) return;
-
-        WorldGenController w = WorldGenController.Instance;
-
-        float lowVegetation = SmoothThresholdFunction(Temperature, 0.1f, 0.9f)
-            * SmoothThresholdFunction(Precipitation, 0.1f, 0.9f)
-            * (1 - SmoothThresholdFunction(Elevation, 0.9f, 1f));
-
-        float highVegetation = SmoothThresholdFunction(Temperature, 0.4f, 0.9f)
-            * SmoothThresholdFunction(Precipitation, 0.4f, 0.9f)
-            * (1 - SmoothThresholdFunction(Elevation, 0.7f, 1f));
-
         _lowVegetation = (byte)(lowVegetation * 255f);
         _highVegetation = (byte)(highVegetation * 255f);
-    }
-
-    public float SmoothThresholdFunction(float value, float floor, float ceiling)
-    {
-        return Mathf.Clamp((value - floor) / (ceiling - floor), 0, 1);
     }
 }

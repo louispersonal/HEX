@@ -46,6 +46,7 @@ public class WorldManager : MonoBehaviour
     {
         HexGrid = new BaseHexGrid();
         HexGrid.GenerateRectangularGrid(MapDefinition.FBMParams.WorldHeight, MapDefinition.FBMParams.WorldWidth);
+        FractalBrownianMotion.ApplyContinentHeightmap(MapDefinition.FBMParams, HexGrid);
     }
 }
 

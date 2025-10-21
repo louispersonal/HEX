@@ -109,7 +109,7 @@ public class WorldGenerationMenuController : MonoBehaviour
 
     public void Generate()
     {
-        Texture2D previewTexture = _fractalBrownianMotion.GenerateContinentsPreview(FBMParams);
+        Texture2D previewTexture = FractalBrownianMotion.GenerateContinentsPreview(FBMParams);
         _previewImage.texture = previewTexture;
     }
 

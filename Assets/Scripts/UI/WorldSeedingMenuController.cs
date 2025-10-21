@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorldSeedingMenuController : MonoBehaviour
 {
     [SerializeField] MenuView _worldSeedingMenuView;
+    [SerializeField] UnityEngine.UI.RawImage _previewImage;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,11 @@ public class WorldSeedingMenuController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SeedWorld()
+    {
+        WorldSeedingController.SeedWorld(WorldManager.Instance.HexGrid, WorldManager.Instance.MapDefinition);
     }
 
     public void EnableMenu()
