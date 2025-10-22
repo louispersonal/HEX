@@ -10,13 +10,14 @@ public class FractalBrownianMotion
 
     public static BaseHexGrid ApplyContinentHeightmap(FBMParams fbmParams, BaseHexGrid hexGrid)
     {
+        float sampleSpacing = 0.6f; // this dictates the estimated hex size to allow sampling of the perlin noise to be spaced appropriately
         float baseAmplitude = (1 - fbmParams.Gain) / (1 - Mathf.Pow(fbmParams.Gain, fbmParams.Octaves));
         float baseFrequency = fbmParams.Archipelagoness / fbmParams.WorldWidth;
 
         foreach (Hex hex in hexGrid.Grid.Values)
         {
-            (int x, int y) oCoord = hex.Coord.ConvertToOddR();
-            float value = FBM(new Vector2(oCoord.x, oCoord.y), baseAmplitude, baseFrequency, fbmParams.Octaves, fbmParams.Lacunarity, fbmParams.Gain, fbmParams.Seed, true, fbmParams.SeaLevel);
+            Vector2 coord = AxialConverter.AxialToCartesianConversion(hex.Coord, sampleSpacing);
+            float value = FBM(coord, baseAmplitude, baseFrequency, fbmParams.Octaves, fbmParams.Lacunarity, fbmParams.Gain, fbmParams.Seed, true, fbmParams.SeaLevel);
             hex.SetElevation(value);
         }
 
@@ -50,9 +51,7 @@ public class FractalBrownianMotion
                     fbmParams.SeaLevel
                 );
 
-                // Invert Y, in axial we consider top left to be 0,0 but texture is bottom left
-                int flippedY = height - 1 - y;
-                pix[flippedY * width + x] = new Color(sample, sample, sample);
+                pix[y * width + x] = new Color(sample, sample, sample);
             }
         }
 
