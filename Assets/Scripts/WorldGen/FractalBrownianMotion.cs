@@ -27,21 +27,35 @@ public class FractalBrownianMotion
         float baseAmplitude = (1 - fbmParams.Gain) / (1 - Mathf.Pow(fbmParams.Gain, fbmParams.Octaves));
         float baseFrequency = fbmParams.Archipelagoness / fbmParams.WorldWidth;
 
-        // Set up the texture and a Color array to hold pixels during processing.
-        Texture2D noiseTex = new Texture2D(fbmParams.WorldWidth, fbmParams.WorldHeight);
-        Color[] pix = new Color[noiseTex.width * noiseTex.height];
+        int width = fbmParams.WorldWidth;
+        int height = fbmParams.WorldHeight;
 
-        // For each pixel in the texture...
-        for (float y = 0.0F; y < noiseTex.height; y++)
+        Texture2D noiseTex = new Texture2D(width, height);
+        Color[] pix = new Color[width * height];
+
+        for (int y = 0; y < height; y++)
         {
-            for (float x = 0.0F; x < noiseTex.width; x++)
+            for (int x = 0; x < width; x++)
             {
-                float sample = FBM(new Vector2(x, y), baseAmplitude, baseFrequency, fbmParams.Octaves, fbmParams.Lacunarity, fbmParams.Gain, fbmParams.Seed, true, fbmParams.SeaLevel);
-                pix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
+                // FBM sample stays the same
+                float sample = FBM(
+                    new Vector2(x, y),
+                    baseAmplitude,
+                    baseFrequency,
+                    fbmParams.Octaves,
+                    fbmParams.Lacunarity,
+                    fbmParams.Gain,
+                    fbmParams.Seed,
+                    true,
+                    fbmParams.SeaLevel
+                );
+
+                // Invert Y, in axial we consider top left to be 0,0 but texture is bottom left
+                int flippedY = height - 1 - y;
+                pix[flippedY * width + x] = new Color(sample, sample, sample);
             }
         }
 
-        // Copy the pixel data to the texture and load it into the GPU.
         noiseTex.SetPixels(pix);
         noiseTex.Apply();
 
