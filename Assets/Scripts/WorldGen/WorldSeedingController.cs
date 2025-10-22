@@ -77,26 +77,11 @@ public class WorldSeedingController
         return (v - floor) / (ceiling - floor);
     }
 
-    public static Texture2D GenerateHexGridPreview(BaseHexGrid hexGrid, (int width, int height) resolution)
+    public static float ClampedOptimumCurve(float tightness, float optimum, float val)
     {
-        // Set up the texture and a Color array to hold pixels during processing.
-        Texture2D noiseTex = new Texture2D(resolution.width, resolution.height);
-        Color[] pix = new Color[noiseTex.width * noiseTex.height];
+        if (tightness < 0 || tightness > 1) Debug.LogError("tightness out of bounds (0, 1)");
+        if (optimum < 0 || optimum > 1) Debug.LogError("optimum out of bounds (0, 1)");
 
-        // For each pixel in the texture...
-        for (float y = 0.0F; y < noiseTex.height; y++)
-        {
-            for (float x = 0.0F; x < noiseTex.width; x++)
-            {
-                float sample = 0f;
-                pix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
-            }
-        }
-
-        // Copy the pixel data to the texture and load it into the GPU.
-        noiseTex.SetPixels(pix);
-        noiseTex.Apply();
-
-        return noiseTex;
+        return Mathf.Max(0f, 1 - (tightness * 100) * Mathf.Pow(val - optimum, 2));
     }
 }

@@ -56,6 +56,11 @@ public class WorldSeedingMenuController : MonoBehaviour
         _previewImage.texture = tex;
     }
 
+    public void Play()
+    {
+        GameController.Instance.GoToScene(SceneNames.Game);
+    }
+
     Texture2D BuildPreviewTexture(int texW, int texH, int margin)
     {
         // 0) Collect Odd-R cells (or convert from axial once)

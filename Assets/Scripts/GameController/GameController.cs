@@ -50,4 +50,5 @@ public class GameController : MonoBehaviour
 public static class SceneNames
 {
     public static string MainMenu = "MainMenu";
+    public static string Game = "GameScene";
 }
