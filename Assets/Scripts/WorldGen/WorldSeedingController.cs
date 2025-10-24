@@ -55,6 +55,8 @@ public class WorldSeedingController
     {
         foreach (Hex hex in hexGrid.Grid.Values)
         {
+            if (hex.IsSea) continue;
+
             float lowVegetation = SmoothThresholdFunction(hex.Temperature, 0.1f, 0.9f)
                 * SmoothThresholdFunction(hex.Precipitation, 0.1f, 0.9f)
                 * (1 - SmoothThresholdFunction(hex.Elevation, 0.9f, 1f));
