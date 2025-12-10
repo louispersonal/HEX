@@ -21,7 +21,6 @@ public class HexGridView : MonoBehaviour
     int _bufferSize = 2;
 	int _radius;
 	(float q, float r) _cameraCenter;
-	float _despawnGraceSeconds = 5f;
 
 	[SerializeField] HexView _hexViewPrefab;
 	
