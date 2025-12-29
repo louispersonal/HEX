@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HexView : MonoBehaviour
 {
-	public Hex Data { get; private set; }
+	public HexData Data { get; private set; }
 
-    public BaseHexGrid HexGrid { get { return WorldManager.Instance.HexGrid; } }
+    public HexGrid HexGrid { get { return GameController.Instance.SessionManager.SessionData.WorldData.Grid; } }
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -27,16 +27,18 @@ public class HexView : MonoBehaviour
 	[SerializeField] Sprite _steppeSprite;
 	[SerializeField] Sprite _savannaSprite;
 
-	public void Initialize(Hex data)
+    public static float SceneSize = 1.15f; //1 unit in unity world space
+
+    public void Initialize(HexData data)
 	{
 		Data = data;
-		gameObject.transform.position = HexGrid.AxialToSceneConversion(Data.Coord);
-		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.LowVegetation * _maxLowVegetationParticles)));
-		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.HighVegetation * _maxHighVegetationParticles)));
-        _elevationOverlayRenderer.sprite = _elevationOverlays[Mathf.RoundToInt(Data.Elevation * (_elevationOverlays.Count - 1))];
+		gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Coord);
+		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.ExtraData.LowVegetation * _maxLowVegetationParticles)));
+		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.ExtraData.HighVegetation * _maxHighVegetationParticles)));
+        _elevationOverlayRenderer.sprite = _elevationOverlays[Mathf.RoundToInt(Data.ExtraData.Elevation * (_elevationOverlays.Count - 1))];
 		SetSprite();
 
-		if (Data.IsSea)
+		if (Data.ExtraData.IsSea)
 		{
             _spriteRenderer.color = _seaColor;
         }
@@ -61,7 +63,7 @@ public class HexView : MonoBehaviour
 
 	private void SetSprite()
 	{
-		switch (Data.Biome)
+		switch (Data.ExtraData.Biome)
 		{
 			case Biome.Desert:
                 _spriteRenderer.sprite = _desertSprite;

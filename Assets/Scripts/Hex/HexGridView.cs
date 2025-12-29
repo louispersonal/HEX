@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class HexGridView : MonoBehaviour
 {
 	public static HexGridView Instance { get; private set; }
-	public BaseHexGrid HexGrid { get { return WorldManager.Instance.HexGrid; } }
+	public HexGrid HexGrid { get { return GameController.Instance.SessionManager.SessionData.WorldData.Grid; } }
 
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;
@@ -73,7 +73,7 @@ public class HexGridView : MonoBehaviour
 		Camera cam = Camera.main;
 		float planeZ = 0f;
 		
-		(float q, float r) newCenter = SceneToFractionalAxialConversion(ProjectViewportToPlane(cam, new Vector2(0.5f, 0.5f), planeZ));
+		(float q, float r) newCenter = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0.5f, 0.5f), planeZ));
 		int newRadius = ComputeRadiusFractionalAxial(newCenter);
 		
 		_cameraCenter = newCenter;
@@ -89,12 +89,12 @@ public class HexGridView : MonoBehaviour
 	
 	public void UpdateNeedNowSet(AxialCoordinate cameraCoord)
 	{
-		_needNow = AxialCoordinate.CoordsWithinRadiusOfCoord(cameraCoord, _radius).ToHashSet();
+		_needNow = AxialGeometry.CoordsWithinRadiusOfCoord(cameraCoord, _radius).ToHashSet();
 	}
 	
 	public void UpdateBufferBandSet(AxialCoordinate cameraCoord)
 	{
-		_bufferBand = AxialCoordinate.CoordsInRingsOfRadii(cameraCoord, _radius + 1, _radius + _bufferSize).ToHashSet();
+		_bufferBand = AxialGeometry.CoordsInRingsOfRadii(cameraCoord, _radius + 1, _radius + _bufferSize).ToHashSet();
 	}
 	
 	void SyncPoolWithTarget()
@@ -136,7 +136,7 @@ public class HexGridView : MonoBehaviour
 
 	void SpawnCoord(AxialCoordinate c)
 	{
-		if (_liveCoords.Contains(c) || !HexGrid.TryGetHex(c, out Hex data)) return;
+		if (_liveCoords.Contains(c) || !HexGrid.TryGetHex(c, out HexData data)) return;
 
 		HexView view = _hexPool.Get();
 		view.Initialize(data);
@@ -160,21 +160,13 @@ public class HexGridView : MonoBehaviour
 		Camera cam = Camera.main;
 		float planeZ = 0f;
 		
-		(float q, float r) bl = SceneToFractionalAxialConversion(ProjectViewportToPlane(cam, new Vector2(0f, 0f), planeZ));
-		(float q, float r) br = SceneToFractionalAxialConversion(ProjectViewportToPlane(cam, new Vector2(1f, 0f), planeZ));
-		(float q, float r) tl = SceneToFractionalAxialConversion(ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ));
-		(float q, float r) tr = SceneToFractionalAxialConversion(ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ));
+		(float q, float r) bl = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0f, 0f), planeZ));
+		(float q, float r) br = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 0f), planeZ));
+		(float q, float r) tl = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ));
+		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ));
 		
 		return Mathf.CeilToInt(Mathf.Max(DistanceBetweenFractionalAxialCoords(bl,center), DistanceBetweenFractionalAxialCoords(br,center), DistanceBetweenFractionalAxialCoords(tl,center), DistanceBetweenFractionalAxialCoords(tr,center)));
 	}
-	
-	public static (float q, float r) SceneToFractionalAxialConversion(Vector3 p)
-    {
-        float r = p.y * (2f / (3f * BaseHex.SceneSize));
-        float q = (p.x / (Mathf.Sqrt(3f) * BaseHex.SceneSize)) - (p.y / (3f * BaseHex.SceneSize));
-
-        return (q, r);
-    }
 	
 	public static float DistanceBetweenFractionalAxialCoords((float q, float r) a, (float q, float r) b)
 	{

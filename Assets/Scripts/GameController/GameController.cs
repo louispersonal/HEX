@@ -7,6 +7,11 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
+    [SerializeField]
+    SessionManager _sessionManager;
+
+    public SessionManager SessionManager { get { return _sessionManager; } }
+
     string _currentScene;
 
     void Awake()
@@ -49,6 +54,6 @@ public class GameController : MonoBehaviour
 
 public static class SceneNames
 {
-    public static string MainMenu = "MainMenu";
+    public static string MainMenu = "MainMenuScene";
     public static string Game = "GameScene";
 }
