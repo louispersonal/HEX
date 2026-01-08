@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class HexGridView : MonoBehaviour
 {
 	public static HexGridView Instance { get; private set; }
-	public HexGrid HexGrid { get { return GameController.Instance.SessionManager.SessionData.WorldData.Grid; } }
+	public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;

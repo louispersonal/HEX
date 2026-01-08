@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class AxialGeometry
 {
+    public static (int row, int col) AxialToOddR(AxialCoordinate coord)
+    {
+        int parity = coord.R & 1;
+        int col = coord.Q + (coord.R - parity) / 2;
+        return (coord.R, col);
+    }
+
     public static (int row, int col) AxialToOddR(int q, int r)
     {
         int parity = r & 1;
@@ -16,6 +23,14 @@ public class AxialGeometry
         int parity = o.row & 1;
         int q = o.col - (o.row - parity) / 2;
         return new AxialCoordinate(q, o.row);
+    }
+
+    public static Vector2 AxialToRelativeCartesian(AxialCoordinate coord, Vector2 origin, float axialSize)
+    {
+        float x = axialSize * Mathf.Sqrt(3f) * (coord.Q + coord.R * 0.5f);
+        float y = -axialSize * 1.5f * coord.R;
+
+        return origin + new Vector2(x, y);
     }
 
     public static float DistanceBetweenCoords(AxialCoordinate a, AxialCoordinate b)

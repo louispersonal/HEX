@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class Test : MonoBehaviour
+{
+    public const float WIDTH_HEIGHT_RATIO = 1.5f;
+    public const int FRACTAL_WIDTH_SPAN = 200;
+
+    [SerializeField] private Vector2 _originPoint;
+    [SerializeField] private UnityEngine.UI.RawImage _rawImage;
+
+    [SerializeField] FractalBrownianMotionParameters _params;
+    [SerializeField] private float _resolution;
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            int _hPoints = Mathf.RoundToInt(FRACTAL_WIDTH_SPAN * _resolution);
+            int _vPoints = Mathf.RoundToInt((FRACTAL_WIDTH_SPAN / WIDTH_HEIGHT_RATIO) * _resolution);
+
+            Vector2 _boundPoint = _originPoint + new Vector2(FRACTAL_WIDTH_SPAN, FRACTAL_WIDTH_SPAN / WIDTH_HEIGHT_RATIO);
+            float[] points = FractalBrownianMotion.FBMSampleArea(_originPoint, _boundPoint, _hPoints, _vPoints, _params);
+            _rawImage.texture = TextureUtilities.GetTexture(TextureUtilities.GetHeightmapPixelArray(points), _hPoints, _vPoints);
+
+            HexGrid grid = new HexGrid(HexGridGeometry.GenerateRectangularGrid(10, 10));
+            foreach (HexData data in grid.Grid.Values)
+            {
+                Debug.Log(AxialGeometry.AxialToOddR(data.Coord));
+            }
+        }
+    }
+
+}

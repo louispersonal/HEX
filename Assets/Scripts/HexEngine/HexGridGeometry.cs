@@ -27,7 +27,7 @@ public class HexGridGeometry
         return (q, r);
     }
 
-    public HexData GetHexAtScenePoint(HexGrid grid, Vector2 p)
+    public static HexData GetHexAtScenePoint(HexGrid grid, Vector2 p)
     {
         if (grid.TryGetHex(SceneToAxial(p), out HexData hex))
         {
@@ -37,7 +37,7 @@ public class HexGridGeometry
         return null;
     }
 
-    public HexGrid GenerateHexShapedGrid(int N)
+    public static List<HexData> GenerateHexShapedGrid(int N)
     {
         int hexCount = 1 + 3 * N * (N + 1);
 
@@ -52,10 +52,10 @@ public class HexGridGeometry
             }
         }
 
-        return new HexGrid(hexDataList);
+        return hexDataList;
     }
 
-    public HexGrid GenerateRectangularGrid(int columns, int rows)
+    public static List<HexData> GenerateRectangularGrid(int columns, int rows)
     {
         List<HexData> hexDataList = new List<HexData>(columns * rows);
 
@@ -68,15 +68,15 @@ public class HexGridGeometry
             }
         }
 
-        return new HexGrid(hexDataList);
+        return hexDataList;
     }
 
-    public float DistanceBetweenHexes(HexData a, HexData b)
+    public static float DistanceBetweenHexes(HexData a, HexData b)
     {
         return AxialGeometry.DistanceBetweenCoords(a.Coord, b.Coord);
     }
 
-    public List<HexData> HexesWithinRadiusOfHex(HexGrid grid, HexData a, int radius)
+    public static List<HexData> HexesWithinRadiusOfHex(HexGrid grid, HexData a, int radius)
     {
         List<HexData> hexesInRange = new List<HexData>();
 
@@ -93,7 +93,7 @@ public class HexGridGeometry
         return hexesInRange;
     }
 
-    public List<HexData> HexesInRingOfRadiusOfHex(HexGrid grid, HexData a, int radius)
+    public static List<HexData> HexesInRingOfRadiusOfHex(HexGrid grid, HexData a, int radius)
     {
         List<HexData> hexesInRange = new List<HexData>();
 

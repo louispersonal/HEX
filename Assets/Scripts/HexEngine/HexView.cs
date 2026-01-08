@@ -6,7 +6,7 @@ public class HexView : MonoBehaviour
 {
 	public HexData Data { get; private set; }
 
-    public HexGrid HexGrid { get { return GameController.Instance.SessionManager.SessionData.WorldData.Grid; } }
+    public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
 

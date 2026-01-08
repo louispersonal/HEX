@@ -13,7 +13,7 @@ public class DebugView : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _hexDebugText;
 
-    public HexGrid HexGrid { get { return GameController.Instance.SessionManager.SessionData.WorldData.Grid; } }
+    public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
     // Start is called before the first frame update
     void Start()

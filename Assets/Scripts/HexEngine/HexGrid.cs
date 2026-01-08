@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class HexGrid
@@ -18,5 +19,10 @@ public class HexGrid
         {
             Grid.Add(hexData.Coord, hexData);
         }
+    }
+
+    public List<HexData> GetHexData()
+    {
+        return Grid.Values.ToList();
     }
 }

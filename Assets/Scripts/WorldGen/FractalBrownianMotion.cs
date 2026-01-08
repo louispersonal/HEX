@@ -6,33 +6,58 @@ using UnityEngine.UIElements;
 
 public class FractalBrownianMotion
 {
-    private const float SEED_Y_OFFSET = 1.37f;
-
-    public static float FBM(Vector2 samplePoint, float baseAmplitude, float baseFrequency, int octaves, float lacunarity, float gain, float seed, bool binarySnap, float seaLevel)
+    private static float FBM(Vector2 samplePoint, FractalBrownianMotionParameters FBMParams)
     {
         float fbm = 0f;
-        samplePoint += new Vector2(seed, seed * SEED_Y_OFFSET);
 
-        for (int i = 0; i < octaves; i++)
-        {
-            fbm += Mathf.PerlinNoise(samplePoint.x * baseFrequency, samplePoint.y * baseFrequency) * baseAmplitude;
-            baseFrequency *= lacunarity;
-            baseAmplitude *= gain;
-        }
+        float frequency = FBMParams.BaseFrequency;
+        float amplitude = (1 - FBMParams.Gain) / (1 - Mathf.Pow(FBMParams.Gain, FBMParams.Octaves));
 
-        // if binarySnap is on, we set everything below sea to 0 and everything else to 0.01
-        if (binarySnap)
+        for (int i = 0; i < FBMParams.Octaves; i++)
         {
-            if (fbm < seaLevel)
-            {
-                return 0f;
-            }
-            else
-            {
-                return 1f;
-            }
+            fbm += Mathf.PerlinNoise(samplePoint.x * frequency, samplePoint.y * frequency) * amplitude;
+            frequency *= FBMParams.Lacunarity;
+            amplitude *= FBMParams.Gain;
         }
 
         return fbm;
+    }
+
+    public static float[] FBMSampleArea(Vector2 originPoint, Vector2 boundPoint, int numHorizontalSamplePoints, int numVerticalSamplePoints, FractalBrownianMotionParameters FBMParams)
+    {
+        float[] samplePoints = new float[numHorizontalSamplePoints * numVerticalSamplePoints];
+
+        float horizontalSampleInterval = (boundPoint.x - originPoint.x) / (numHorizontalSamplePoints - 1);
+        float verticalSampleInterval = (boundPoint.y - originPoint.y) / (numVerticalSamplePoints - 1);
+
+        // the origin point (bottom left) and bound point (top right) form a rectangle bounding the sample space
+        for (int j = 0; j < numVerticalSamplePoints; j++)
+        {
+            for (int i = 0; i < numHorizontalSamplePoints; i++)
+            {
+                Vector2 currentSample = new Vector2(originPoint.x + i * horizontalSampleInterval, originPoint.y + j * verticalSampleInterval);
+                float sampleValue = FBM(currentSample, FBMParams);
+                samplePoints[numHorizontalSamplePoints * j + i] = sampleValue;
+            }
+        }
+
+        return samplePoints;
+    }
+}
+
+[System.Serializable]
+public class FractalBrownianMotionParameters
+{
+    public float BaseFrequency;
+    public int Octaves;
+    public float Lacunarity;
+    public float Gain;
+
+    public FractalBrownianMotionParameters(int seed)
+    {
+        BaseFrequency = 0.015f;
+        Octaves = 5;
+        Lacunarity = 1.5f;
+        Gain = 0.8f;
     }
 }
