@@ -17,6 +17,14 @@ public class Test : MonoBehaviour
     void Start()
     {
 
+        string debug = "Converstion test\n";
+        AxialCoordinate axial = new AxialCoordinate(1, -1);
+        debug += "axial: " + axial.ToString() + "\n";
+        (int row, int col) oddR = AxialGeometry.AxialToOddR(axial);
+        debug += "oddR: " + oddR.ToString() + "\n";
+        Vector2 cartesian = AxialGeometry.AxialToRelativeCartesian(axial, Vector2.zero, 1);
+        debug += "cartesian: " + cartesian.ToString() + "\n";
+        Debug.Log(debug);
     }
 
     // Update is called once per frame
@@ -30,12 +38,6 @@ public class Test : MonoBehaviour
             Vector2 _boundPoint = _originPoint + new Vector2(FRACTAL_WIDTH_SPAN, FRACTAL_WIDTH_SPAN / WIDTH_HEIGHT_RATIO);
             float[] points = FractalBrownianMotion.FBMSampleArea(_originPoint, _boundPoint, _hPoints, _vPoints, _params);
             _rawImage.texture = TextureUtilities.GetTexture(TextureUtilities.GetHeightmapPixelArray(points), _hPoints, _vPoints);
-
-            HexGrid grid = new HexGrid(HexGridGeometry.GenerateRectangularGrid(10, 10));
-            foreach (HexData data in grid.Grid.Values)
-            {
-                Debug.Log(AxialGeometry.AxialToOddR(data.Coord));
-            }
         }
     }
 

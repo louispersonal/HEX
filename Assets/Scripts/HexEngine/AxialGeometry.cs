@@ -33,6 +33,24 @@ public class AxialGeometry
         return origin + new Vector2(x, y);
     }
 
+    public static (float q, float r) RelativeCartesianToFractionalAxial(Vector2 point, Vector2 origin, float axialSize)
+    {
+        float r = -point.y * (2f / (3f * HexView.SceneSize));
+        float q = (point.x / (Mathf.Sqrt(3f) * HexView.SceneSize)) + (point.y / (3f * HexView.SceneSize));
+
+        return (q, r);
+    }
+
+    public static AxialCoordinate FractionalAxialToAxial((float q, float r) fractionalAxial)
+    {
+        return new AxialCoordinate((int)Mathf.Round(fractionalAxial.q), (int)Mathf.Round(fractionalAxial.r));
+    }
+
+    public static AxialCoordinate RelativeCartesianToAxial(Vector2 point, Vector2 origin, float axialSize)
+    {
+        return FractionalAxialToAxial(RelativeCartesianToFractionalAxial(point, origin, axialSize));
+    }
+
     public static float DistanceBetweenCoords(AxialCoordinate a, AxialCoordinate b)
     {
         AxialCoordinate diff = a - b;
