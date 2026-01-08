@@ -6,25 +6,17 @@ public class HexGridGeometry
 {
     public static Vector2 AxialToScene(AxialCoordinate a)
     {
-        float x = HexView.SceneSize * Mathf.Sqrt(3f) * (a.Q + (a.R / 2f));
-        float y = HexView.SceneSize * (1.5f) * a.R;
-        return new Vector2(x, y);
+        return AxialGeometry.AxialToRelativeCartesian(a, Vector2.zero, HexView.SceneSize);
     }
 
     public static AxialCoordinate SceneToAxial(Vector2 p)
     {
-        float r = p.y * (2f / (3f * HexView.SceneSize));
-        float q = (p.x / (Mathf.Sqrt(3f) * HexView.SceneSize)) - (p.y / (3f * HexView.SceneSize));
-
-        return new AxialCoordinate((int)Mathf.Round(q), (int)Mathf.Round(r));
+        return AxialGeometry.RelativeCartesianToAxial(p, Vector2.zero, HexView.SceneSize);
     }
 
     public static (float q, float r) SceneToFractionalAxial(Vector3 p)
     {
-        float r = p.y * (2f / (3f * HexView.SceneSize));
-        float q = (p.x / (Mathf.Sqrt(3f) * HexView.SceneSize)) - (p.y / (3f * HexView.SceneSize));
-
-        return (q, r);
+        return AxialGeometry.RelativeCartesianToFractionalAxial(p, Vector2.zero, HexView.SceneSize);
     }
 
     public static HexData GetHexAtScenePoint(HexGrid grid, Vector2 p)
