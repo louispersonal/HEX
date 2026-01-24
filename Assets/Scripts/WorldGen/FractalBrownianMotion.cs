@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class FractalBrownianMotion
 {
-    private static float FBM(Vector2 samplePoint, FractalBrownianMotionParameters FBMParams)
+    public static float FBM(Vector2 samplePoint, FractalBrownianMotionParameters FBMParams)
     {
         float fbm = 0f;
 

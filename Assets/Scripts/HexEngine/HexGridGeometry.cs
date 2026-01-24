@@ -6,17 +6,17 @@ public class HexGridGeometry
 {
     public static Vector2 AxialToScene(AxialCoordinate a)
     {
-        return AxialGeometry.AxialToRelativeCartesian(a, Vector2.zero, HexView.SceneSize);
+        return AxialGeometry.AxialToCartesian(a, HexView.SceneSize);
     }
 
     public static AxialCoordinate SceneToAxial(Vector2 p)
     {
-        return AxialGeometry.RelativeCartesianToAxial(p, Vector2.zero, HexView.SceneSize);
+        return AxialGeometry.CartesianToAxial(p, HexView.SceneSize);
     }
 
     public static (float q, float r) SceneToFractionalAxial(Vector3 p)
     {
-        return AxialGeometry.RelativeCartesianToFractionalAxial(p, Vector2.zero, HexView.SceneSize);
+        return AxialGeometry.CartesianToFractionalAxial(p, HexView.SceneSize);
     }
 
     public static HexData GetHexAtScenePoint(HexGrid grid, Vector2 p)

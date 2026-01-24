@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AxialGeometry
 {
+    public const float SQRT3 = 1.732050f;
+
     public static (int row, int col) AxialToOddR(AxialCoordinate coord)
     {
         int parity = coord.R & 1;
@@ -25,18 +27,18 @@ public class AxialGeometry
         return new AxialCoordinate(q, o.row);
     }
 
-    public static Vector2 AxialToRelativeCartesian(AxialCoordinate coord, Vector2 origin, float axialSize)
+    public static Vector2 AxialToCartesian(AxialCoordinate coord, float axialSize)
     {
         float x = axialSize * Mathf.Sqrt(3f) * (coord.Q + coord.R * 0.5f);
         float y = -axialSize * 1.5f * coord.R;
 
-        return origin + new Vector2(x, y);
+        return new Vector2(x, y);
     }
 
-    public static (float q, float r) RelativeCartesianToFractionalAxial(Vector2 point, Vector2 origin, float axialSize)
+    public static (float q, float r) CartesianToFractionalAxial(Vector2 point, float axialSize)
     {
-        float r = -point.y * (2f / (3f * HexView.SceneSize));
-        float q = (point.x / (Mathf.Sqrt(3f) * HexView.SceneSize)) + (point.y / (3f * HexView.SceneSize));
+        float r = -point.y * (2f / (3f * axialSize));
+        float q = (point.x / (Mathf.Sqrt(3f) * axialSize)) + (point.y / (3f * axialSize));
 
         return (q, r);
     }
@@ -46,9 +48,9 @@ public class AxialGeometry
         return new AxialCoordinate((int)Mathf.Round(fractionalAxial.q), (int)Mathf.Round(fractionalAxial.r));
     }
 
-    public static AxialCoordinate RelativeCartesianToAxial(Vector2 point, Vector2 origin, float axialSize)
+    public static AxialCoordinate CartesianToAxial(Vector2 point, float axialSize)
     {
-        return FractionalAxialToAxial(RelativeCartesianToFractionalAxial(point, origin, axialSize));
+        return FractionalAxialToAxial(CartesianToFractionalAxial(point, axialSize));
     }
 
     public static float DistanceBetweenCoords(AxialCoordinate a, AxialCoordinate b)
@@ -106,5 +108,78 @@ public class AxialGeometry
         }
 
         return outList;
+    }
+
+    public static Dictionary<AxialCoordinate, Vector2> ConvertAxialSetToBoundedCartesian(List<AxialCoordinate> axialCoords, Vector2 bottomLeftBound, Vector2 topRightBound, out float adjustedHexSize)
+    {
+        if (axialCoords == null || axialCoords.Count == 0)
+        {
+            adjustedHexSize = 0f;
+            return new Dictionary<AxialCoordinate, Vector2>();
+        }
+
+        // Find odd-r bounds
+        var first = AxialToOddR(axialCoords[0]);
+        int minRow = first.row, maxRow = first.row;
+        int minCol = first.col, maxCol = first.col;
+
+        foreach (AxialCoordinate coord in axialCoords)
+        {
+            var o = AxialToOddR(coord);
+            if (o.row < minRow) minRow = o.row;
+            if (o.row > maxRow) maxRow = o.row;
+            if (o.col < minCol) minCol = o.col;
+            if (o.col > maxCol) maxCol = o.col;
+        }
+
+        // Unit-space (hexSize=1) corner centers in cartesian
+        Vector2 CornerCenter_Unit(int col, int row)
+        {
+            // pointy-top odd-r -> cartesian (size=1), consistent with AxialToCartesian's orientation
+            // IMPORTANT: match your AxialToCartesian sign conventions.
+            float x = Mathf.Sqrt(3f) * (col + ((row & 1) == 1 ? 0.5f : 0f));
+            float y = -1.5f * row; // negative so increasing row goes "down" like your axial uses negative y
+            return new Vector2(x, y);
+        }
+
+        Vector2 c00 = CornerCenter_Unit(minCol, minRow);
+        Vector2 c01 = CornerCenter_Unit(minCol, maxRow);
+        Vector2 c10 = CornerCenter_Unit(maxCol, minRow);
+        Vector2 c11 = CornerCenter_Unit(maxCol, maxRow);
+
+        float minX = Mathf.Min(c00.x, c01.x, c10.x, c11.x);
+        float maxX = Mathf.Max(c00.x, c01.x, c10.x, c11.x);
+        float minY = Mathf.Min(c00.y, c01.y, c10.y, c11.y);
+        float maxY = Mathf.Max(c00.y, c01.y, c10.y, c11.y);
+
+        float dxCenters = maxX - minX;
+        float dyCenters = maxY - minY;
+
+        // Add hex extents (size=1): width=?3, height=2
+        float totalHorizontalSpan = dxCenters + Mathf.Sqrt(3f);
+        float totalVerticalSpan = dyCenters + 2f;
+
+        float availableW = topRightBound.x - bottomLeftBound.x;
+        float availableH = topRightBound.y - bottomLeftBound.y;
+
+        float sizeFromHorizontal = availableW / totalHorizontalSpan;
+        float sizeFromVertical = availableH / totalVerticalSpan;
+
+        adjustedHexSize = Mathf.Min(sizeFromHorizontal, sizeFromVertical);
+
+        // Now compute offset so the grid's min tile-edge maps to bottomLeftBound
+        float halfW = Mathf.Sqrt(3f) * 0.5f * adjustedHexSize;
+        float halfH = 1f * adjustedHexSize;
+
+        Vector2 minCenterWorld = new Vector2(minX * adjustedHexSize, minY * adjustedHexSize);
+        Vector2 minTileEdgeWorld = new Vector2(minCenterWorld.x - halfW, minCenterWorld.y - halfH);
+
+        Vector2 offset = bottomLeftBound - minTileEdgeWorld;
+
+        var result = new Dictionary<AxialCoordinate, Vector2>(axialCoords.Count);
+        foreach (AxialCoordinate aC in axialCoords)
+            result[aC] = AxialToCartesian(aC, adjustedHexSize) + offset;
+
+        return result;
     }
 }

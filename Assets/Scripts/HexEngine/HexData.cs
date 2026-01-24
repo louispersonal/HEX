@@ -10,12 +10,12 @@ public class HexData : BaseHexData
 
     public HexData(AxialCoordinate a) : base(a)
     {
-
+        _extraData = new HexExtraData();
     }
 
     public HexData(int q, int r) : base(q, r)
     {
-        
+        _extraData = new HexExtraData();
     }
 
     public override string ToString()
@@ -51,6 +51,15 @@ public class HexExtraData
     public bool IsSea { get { return _elevation == 0; } }
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
+
+    public HexExtraData()
+    {
+        _lowVegetation = 0;
+        _highVegetation = 0;
+        _temperature = 0;
+        _elevation = 0;
+        _precipitation = 0;
+    } 
 
     public void SetElevation(float elevation)
     {
