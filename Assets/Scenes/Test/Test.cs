@@ -39,29 +39,15 @@ public class Test : MonoBehaviour
             foreach (HexData data in grid.Grid.Values)
             {
                 float elevation = FractalBrownianMotion.FBM(coords[data.Coord], _params);
+                elevation = elevation > 0.5 ? elevation - 0.5f : 0f;
                 data.ExtraData.SetElevation(elevation);
+
+                float latitude = Mathf.Abs(data.Coord.R - 50f) / 50f;
+                float temperature = (1 - Mathf.Pow(latitude, 3)) - ((elevation/0.1111f) * 0.01428f);
+                data.ExtraData.SetTemperature(temperature);
             }
 
-            _rawImageHexPreview.texture = TextureUtilities.GetTexture(GetPixelsFromHexGrid(grid, _hPoints * 3, _vPoints * 3), _hPoints * 3, _vPoints * 3);
+            _rawImageHexPreview.texture = TextureUtilities.GetTexture(TextureUtilities.GetPixelsFromHexGrid(grid, _hPoints * 3, _vPoints * 3), _hPoints * 3, _vPoints * 3);
         }
-    }
-
-    private Color[] GetPixelsFromHexGrid(HexGrid grid, int horizontalPixels, int verticalPixels)
-    {
-        Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
-
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.Grid.Keys.ToList(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
-
-        foreach (AxialCoordinate axial in coords.Keys)
-        {
-            if (grid.TryGetHex(axial, out HexData data))
-            {
-                float elevation = data.ExtraData.Elevation;
-                Vector2 pixelCoord = coords[axial];
-                if (elevation > 0.5f) TextureUtilities.DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, Color.white);
-            }
-        }
-
-        return pixelArray;
     }
 }

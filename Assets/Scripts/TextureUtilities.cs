@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TextureUtilities
@@ -53,5 +54,32 @@ public class TextureUtilities
                 pix[y * horizontalPixels + x] = color;
             }
         }
+    }
+
+    public static Color[] GetPixelsFromHexGrid(HexGrid grid, int horizontalPixels, int verticalPixels)
+    {
+        Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
+
+        for (int p = 0; p < horizontalPixels * verticalPixels; p++)
+        {
+            pixelArray[p] = Color.blue;
+        }
+
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.Grid.Keys.ToList(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+
+        foreach (AxialCoordinate axial in coords.Keys)
+        {
+            if (grid.TryGetHex(axial, out HexData data))
+            {
+                //float elevation = data.ExtraData.Elevation;
+                //Vector2 pixelCoord = coords[axial];
+                //if (elevation > 0f) DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, Color.green);
+                Vector2 pixelCoord = coords[axial];
+                float temperature = data.ExtraData.Temperature;
+                DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(temperature, 0, 0));
+            }
+        }
+
+        return pixelArray;
     }
 }

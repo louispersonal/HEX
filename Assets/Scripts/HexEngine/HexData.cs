@@ -81,4 +81,14 @@ public class HexExtraData
         _lowVegetation = (byte)(lowVegetation * 255f);
         _highVegetation = (byte)(highVegetation * 255f);
     }
+
+    public int GetElevationInMeters()
+    {
+        return (int)(Elevation * 9000f);
+    }
+
+    public float GetTemperatureInDegrees()
+    {
+        return (Temperature * 70f) - 35f;
+    }
 }
