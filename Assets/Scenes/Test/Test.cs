@@ -58,7 +58,7 @@ public class Test : MonoBehaviour
             {
                 float elevation = data.ExtraData.Elevation;
                 Vector2 pixelCoord = coords[axial];
-                if (elevation > 0.5f) pixelArray[horizontalPixels * Mathf.RoundToInt(pixelCoord.y) + Mathf.RoundToInt(pixelCoord.x)] = Color.white;
+                if (elevation > 0.5f) TextureUtilities.DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, Color.white);
             }
         }
 
