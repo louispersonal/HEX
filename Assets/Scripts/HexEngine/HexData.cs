@@ -17,16 +17,6 @@ public class HexData : BaseHexData
     {
         _extraData = new HexExtraData();
     }
-
-    public override string ToString()
-    {
-        return $"Grass and shrubs: {_extraData.LowVegetation},\n" +
-            $"Trees: {_extraData.HighVegetation},\n" +
-            $"Temperature: {_extraData.Temperature * 150 - 90},\n" +
-            $"Elevation: {_extraData.Elevation * 9000}m,\n" +
-            $"Precipitation: {_extraData.Precipitation}\n" +
-            $"Biome: {_extraData.Biome}";
-    }
 }
 
 public class HexExtraData

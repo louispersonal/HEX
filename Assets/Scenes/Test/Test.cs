@@ -24,7 +24,7 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Jump"))
         {
             int _hPoints = Mathf.RoundToInt(FRACTAL_WIDTH_SPAN * _resolution);
             int _vPoints = Mathf.RoundToInt((FRACTAL_WIDTH_SPAN / WIDTH_HEIGHT_RATIO) * _resolution);
@@ -43,11 +43,32 @@ public class Test : MonoBehaviour
                 data.ExtraData.SetElevation(elevation);
 
                 float latitude = Mathf.Abs(data.Coord.R - 50f) / 50f;
-                float temperature = (1 - Mathf.Pow(latitude, 3)) - ((elevation/0.1111f) * 0.01428f);
+                float temperature = (1 - Mathf.Pow(latitude, 2)) - ((elevation/0.1111f) * 0.01428f);
                 data.ExtraData.SetTemperature(temperature);
+            }
+
+            foreach (HexData data in grid.Grid.Values)
+            {
+                float precipitation = (10f - (float)NumHexesFromSea(data, grid)) / 10f;
+                data.ExtraData.SetPrecipitation(precipitation);
             }
 
             _rawImageHexPreview.texture = TextureUtilities.GetTexture(TextureUtilities.GetPixelsFromHexGrid(grid, _hPoints * 3, _vPoints * 3), _hPoints * 3, _vPoints * 3);
         }
+    }
+
+    public int NumHexesFromSea(HexData data, HexGrid grid)
+    {
+        if (data.ExtraData.IsSea) return 0;
+        int maxNumber = 10;
+        for (int n = 1; n < maxNumber; n++)
+        {
+            List<HexData> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(grid, data, n);
+            foreach (HexData hex in hexes)
+            {
+                if (hex.ExtraData.IsSea) return n;
+            }
+        }
+        return maxNumber;
     }
 }

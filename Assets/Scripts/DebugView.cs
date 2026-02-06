@@ -47,10 +47,6 @@ public class DebugView : MonoBehaviour
 
     void UpdateHexDebugText()
     {
-        AxialCoordinate mouseAxial = HexGridGeometry.SceneToAxial(HexGridView.MouseToPlane(Camera.main, 0f));
-        if (HexGrid.TryGetHex(mouseAxial, out HexData mouseHex))
-        {
-            _hexDebugText.text = mouseHex.ToString();
-        }
+
     }
 }

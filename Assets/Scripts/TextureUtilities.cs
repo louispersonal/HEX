@@ -71,15 +71,37 @@ public class TextureUtilities
         {
             if (grid.TryGetHex(axial, out HexData data))
             {
-                //float elevation = data.ExtraData.Elevation;
-                //Vector2 pixelCoord = coords[axial];
-                //if (elevation > 0f) DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, Color.green);
                 Vector2 pixelCoord = coords[axial];
-                float temperature = data.ExtraData.Temperature;
-                DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(temperature, 0, 0));
+                //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, GetBiomeColor(data));
+                //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(0f, 0f, data.ExtraData.Precipitation));
+                DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(data.ExtraData.Temperature, 0f, 0f));
             }
         }
 
         return pixelArray;
+    }
+
+    public static Color GetBiomeColor(HexData data)
+    {
+        switch (data.ExtraData.Biome)
+        {
+            case Biome.Taiga:
+                return new Color(0.8f, 1f, 1f);
+            case Biome.Temperate:
+                return new Color(0.4f, 1f, 0.5f);
+            case Biome.Desert:
+                return new Color(1f, 1f, 0.6f);
+            case Biome.Tropical:
+                return new Color(0f, 0.6f, 0f);
+            case Biome.Steppe:
+                return new Color(0.9f, 1f, 0.8f);
+            case Biome.Savanna:
+                return new Color(1f, 0.4f, 0.2f);
+            case Biome.Tundra:
+                return Color.white;
+            case Biome.Sea:
+                return Color.blue;
+        }
+        return Color.blue;
     }
 }
