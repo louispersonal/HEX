@@ -42,14 +42,14 @@ public class Test : MonoBehaviour
                 elevation = elevation > 0.5 ? elevation - 0.5f : 0f;
                 data.ExtraData.SetElevation(elevation);
 
-                float latitude = Mathf.Abs(data.Coord.R - 50f) / 50f;
+                float latitude = Mathf.Abs((float)(data.Coord.R - grid.MiddleRow) / (grid.RowBounds.max - grid.RowBounds.min));
                 float temperature = (1 - Mathf.Pow(latitude, 2)) - ((elevation/0.1111f) * 0.01428f);
                 data.ExtraData.SetTemperature(temperature);
             }
 
             foreach (HexData data in grid.Grid.Values)
             {
-                float precipitation = (10f - (float)NumHexesFromSea(data, grid)) / 10f;
+                float precipitation = (10f - NumHexesFromSea(data, grid)) / 10f;
                 data.ExtraData.SetPrecipitation(precipitation);
             }
 
