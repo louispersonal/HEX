@@ -42,7 +42,7 @@ public class Test : MonoBehaviour
                 elevation = elevation > 0.5 ? elevation - 0.5f : 0f;
                 data.ExtraData.SetElevation(elevation);
 
-                float latitude = Mathf.Abs((float)(data.Coord.R - grid.MiddleRow) / (grid.RowBounds.max - grid.RowBounds.min));
+                float latitude = grid.GetLatitude(data.Coord);
                 float temperature = (1 - Mathf.Pow(latitude, 2)) - ((elevation/0.1111f) * 0.01428f);
                 data.ExtraData.SetTemperature(temperature);
             }

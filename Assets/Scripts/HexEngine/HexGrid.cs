@@ -51,4 +51,9 @@ public class HexGrid
             if (o.col > ColBounds.max) ColBounds.max = o.col;
         }
     }
+
+    public float GetLatitude(AxialCoordinate coord)
+    {
+        return Mathf.Abs((float)(coord.R - MiddleRow) / (RowBounds.max - RowBounds.min));
+    }
 }
