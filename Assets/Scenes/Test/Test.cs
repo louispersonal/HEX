@@ -47,7 +47,7 @@ public class Test : MonoBehaviour
 
             foreach (HexData data in grid.Grid.Values)
             {
-                float precipitation = (10f - NumHexesFromSea(data, grid)) / 10f;
+                float precipitation = (10f - NumHexesFromSea(data, grid, out HexData seaHex)) / 10f;
                 data.ExtraData.SetPrecipitation(precipitation);
             }
 
@@ -55,16 +55,21 @@ public class Test : MonoBehaviour
         }
     }
 
-    public int NumHexesFromSea(HexData data, HexGrid grid)
+    public int NumHexesFromSea(HexData data, HexGrid grid, out HexData seaHex)
     {
+        seaHex = null;
         if (data.ExtraData.IsSea) return 0;
-        int maxNumber = 10;
+        int maxNumber = 8;
         for (int n = 1; n < maxNumber; n++)
         {
             List<HexData> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(grid, data, n);
             foreach (HexData hex in hexes)
             {
-                if (hex.ExtraData.IsSea) return n;
+                if (hex.ExtraData.IsSea)
+                {
+                    seaHex = hex;
+                    return n;
+                }
             }
         }
         return maxNumber;
@@ -77,36 +82,56 @@ public class Test : MonoBehaviour
         foreach (HexData data in grid.Grid.Values)
         {
             float latitude = grid.GetLatitude(data.Coord);
-            baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation);
+            baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation, data.Coord);
         }
 
         foreach (HexData data in grid.Grid.Values)
         {
-            float windDirection = grid.GetWindDirection(data.Coord);
-            AxialCoordinate neighborCoord = windDirection > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
-            if(grid.TryGetHex(neighborCoord, out HexData neighborHex))
+            float coastalDistance = NumHexesFromSea(data, grid, out HexData seaHex);
+            if (coastalDistance > 0 && seaHex != null)
             {
-                float neighborTemp = baseTemps[neighborCoord];
-                float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection));
-                windAdjustedTemps[data.Coord] = newTemp;
+                float coastalFactor = 1f / (1f + (coastalDistance / 8f));
+                baseTemps[data.Coord] = Mathf.Lerp(baseTemps[data.Coord], baseTemps[seaHex.Coord], coastalFactor * 0.6f);
+            }
+        }
+
+        for (int windPasses = 0; windPasses < 10; windPasses++)
+        {
+            foreach (HexData data in grid.Grid.Values)
+            {
+                float windDirection = grid.GetWindDirection(data.Coord);
+                AxialCoordinate neighborCoord = windDirection > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
+                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
+                {
+                    float neighborTemp = baseTemps[neighborCoord];
+                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection));
+                    windAdjustedTemps[data.Coord] = newTemp;
+                }
+            }
+
+            foreach (HexData data in grid.Grid.Values)
+            {
+                if (windAdjustedTemps.TryGetValue(data.Coord, out float windAdjustedTemp))
+                {
+                    baseTemps[data.Coord] = windAdjustedTemp;
+                }
             }
         }
 
         foreach (HexData data in grid.Grid.Values)
         {
-            if (windAdjustedTemps.TryGetValue(data.Coord, out float value))
-            {
-                data.ExtraData.SetTemperature(value);
-            }
-            else
-            {
-                data.ExtraData.SetTemperature(baseTemps[data.Coord]);
-            }
+            data.ExtraData.SetTemperature(baseTemps[data.Coord]);
         }
     }
 
-    public float ComputeBaseTemperature(float latitude, float elevation)
+    public float ComputeBaseTemperature(float latitude, float elevation, AxialCoordinate coord)
     {
-        return (1 - Mathf.Pow(latitude, 2)) - ((elevation / 0.1111f) * 0.01428f);
+        float baseTemp = (1 - Mathf.Pow(latitude, 2)) - (elevation * 0.128532f);
+        float noiseSize = 0.3f;
+        float noiseSampleRate = 0.02f;
+        Vector2 noiseSamplePoint = AxialGeometry.AxialToCartesian(coord, noiseSampleRate);
+        float noise = Mathf.PerlinNoise(noiseSamplePoint.x, noiseSamplePoint.y);
+        noise = (noise * 2f) - 1f;
+        return Mathf.Clamp01(baseTemp + (noiseSize * noise));
     }
 }
