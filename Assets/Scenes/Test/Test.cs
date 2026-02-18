@@ -45,11 +45,7 @@ public class Test : MonoBehaviour
 
             ComputeTemperatures(grid);
 
-            foreach (HexData data in grid.Grid.Values)
-            {
-                float precipitation = (10f - NumHexesFromSea(data, grid, out HexData seaHex)) / 10f;
-                data.ExtraData.SetPrecipitation(precipitation);
-            }
+            ComputePrecipitations(grid);
 
             _rawImageHexPreview.texture = TextureUtilities.GetTexture(TextureUtilities.GetPixelsFromHexGrid(grid, _hPoints * 3, _vPoints * 3), _hPoints * 3, _vPoints * 3);
         }
@@ -101,11 +97,13 @@ public class Test : MonoBehaviour
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
                 AxialCoordinate horizontalNeighborCoord = windDirection.x > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
+                float newHorTemp = 0f;
+                float newVerTemp = 0f;
                 if (grid.TryGetHex(horizontalNeighborCoord, out HexData horizontalNeighborHex))
                 {
                     float neighborTemp = baseTemps[horizontalNeighborCoord];
                     float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.x));
-                    windAdjustedTemps[data.Coord] = newTemp;
+                    newHorTemp = newTemp;
                 }
 
                 AxialCoordinate verticalNeighborCoord = windDirection.y > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.NE] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.SW];
@@ -113,9 +111,10 @@ public class Test : MonoBehaviour
                 {
                     float neighborTemp = baseTemps[verticalNeighborCoord];
                     float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.y));
-                    windAdjustedTemps[data.Coord] = newTemp;
+                    newVerTemp = newTemp;
                 }
 
+                windAdjustedTemps[data.Coord] = 0.5f * newHorTemp + 0.5f * newVerTemp;
             }
 
             foreach (HexData data in grid.Grid.Values)
@@ -142,5 +141,66 @@ public class Test : MonoBehaviour
         float noise = Mathf.PerlinNoise(noiseSamplePoint.x, noiseSamplePoint.y);
         noise = (noise * 2f) - 1f;
         return Mathf.Clamp01(baseTemp + (noiseSize * noise));
+    }
+
+    public void ComputePrecipitations(HexGrid grid)
+    {
+        Dictionary<AxialCoordinate, float> baseHums = new Dictionary<AxialCoordinate, float>();
+        Dictionary<AxialCoordinate, float> windAdjustedHums = new Dictionary<AxialCoordinate, float>();
+
+        foreach (HexData data in grid.Grid.Values)
+        {
+            baseHums[data.Coord] = 0f;
+        }
+
+        for (int windPasses = 0; windPasses < 4; windPasses++)
+        {
+            foreach (HexData data in grid.Grid.Values)
+            {
+                Vector2 windDirection = grid.GetWindDirection(data.Coord);
+                AxialCoordinate horizontalNeighborCoord = windDirection.x > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
+                float newHorHum = 0f;
+                float newVertHum = 0f;
+                
+                if (grid.TryGetHex(horizontalNeighborCoord, out HexData horizontalNeighborHex))
+                {
+                    float neighborHum = baseHums[horizontalNeighborCoord];
+                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.x));
+                    newHorHum = newHum;
+                }
+
+                AxialCoordinate verticalNeighborCoord = windDirection.y > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.NE] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.SW];
+                if (grid.TryGetHex(verticalNeighborCoord, out HexData verticalNeighborHex))
+                {
+                    float neighborHum = baseHums[verticalNeighborCoord];
+                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.y));
+                    newHorHum = newHum;
+                }
+
+                windAdjustedHums[data.Coord] = 0.5f * newHorHum + 0.5f * newVertHum;
+
+                if (data.ExtraData.IsSea)
+                {
+                    windAdjustedHums[data.Coord] = Mathf.Lerp(windAdjustedHums[data.Coord], 1f, 0.18f);
+                }
+                else
+                {
+                    windAdjustedHums[data.Coord] *= (1f - 0.04f);
+                }
+            }
+
+            foreach (HexData data in grid.Grid.Values)
+            {
+                if (windAdjustedHums.TryGetValue(data.Coord, out float windAdjustedHum))
+                {
+                    baseHums[data.Coord] = windAdjustedHum;
+                }
+            }
+        }
+
+        foreach (HexData data in grid.Grid.Values)
+        {
+            data.ExtraData.SetPrecipitation(baseHums[data.Coord]);
+        }
     }
 }
