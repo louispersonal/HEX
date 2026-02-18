@@ -54,6 +54,11 @@ public class HexGrid
 
     public float GetLatitude(AxialCoordinate coord)
     {
-        return Mathf.Abs((float)(coord.R - MiddleRow) / (RowBounds.max - RowBounds.min));
+        return 2f * Mathf.Abs((float)(coord.R - MiddleRow) / (RowBounds.max - RowBounds.min));
+    }
+
+    public float GetWindDirection(AxialCoordinate coord)
+    {
+        return Mathf.Cos(2 * Mathf.PI * GetLatitude(coord));
     }
 }

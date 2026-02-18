@@ -39,7 +39,7 @@ public class Test : MonoBehaviour
             foreach (HexData data in grid.Grid.Values)
             {
                 float elevation = FractalBrownianMotion.FBM(coords[data.Coord], _params);
-                elevation = elevation > 0.5 ? elevation - 0.5f : 0f;
+                elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
                 data.ExtraData.SetElevation(elevation);
 
                 float latitude = grid.GetLatitude(data.Coord);
