@@ -95,18 +95,27 @@ public class Test : MonoBehaviour
             }
         }
 
-        for (int windPasses = 0; windPasses < 10; windPasses++)
+        for (int windPasses = 0; windPasses < 4; windPasses++)
         {
             foreach (HexData data in grid.Grid.Values)
             {
-                float windDirection = grid.GetWindDirection(data.Coord);
-                AxialCoordinate neighborCoord = windDirection > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
-                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
+                Vector2 windDirection = grid.GetWindDirection(data.Coord);
+                AxialCoordinate horizontalNeighborCoord = windDirection.x > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
+                if (grid.TryGetHex(horizontalNeighborCoord, out HexData horizontalNeighborHex))
                 {
-                    float neighborTemp = baseTemps[neighborCoord];
-                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection));
+                    float neighborTemp = baseTemps[horizontalNeighborCoord];
+                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.x));
                     windAdjustedTemps[data.Coord] = newTemp;
                 }
+
+                AxialCoordinate verticalNeighborCoord = windDirection.y > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.NE] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.SW];
+                if (grid.TryGetHex(verticalNeighborCoord, out HexData verticalNeighborHex))
+                {
+                    float neighborTemp = baseTemps[verticalNeighborCoord];
+                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.y));
+                    windAdjustedTemps[data.Coord] = newTemp;
+                }
+
             }
 
             foreach (HexData data in grid.Grid.Values)
