@@ -41,11 +41,9 @@ public class Test : MonoBehaviour
                 float elevation = FractalBrownianMotion.FBM(coords[data.Coord], _params);
                 elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
                 data.ExtraData.SetElevation(elevation);
-
-                float latitude = grid.GetLatitude(data.Coord);
-                float temperature = (1 - Mathf.Pow(latitude, 2)) - ((elevation/0.1111f) * 0.01428f);
-                data.ExtraData.SetTemperature(temperature);
             }
+
+            ComputeTemperatures(grid);
 
             foreach (HexData data in grid.Grid.Values)
             {
@@ -70,5 +68,45 @@ public class Test : MonoBehaviour
             }
         }
         return maxNumber;
+    }
+
+    public void ComputeTemperatures(HexGrid grid)
+    {
+        Dictionary<AxialCoordinate, float> baseTemps = new Dictionary<AxialCoordinate, float>();
+        Dictionary<AxialCoordinate, float> windAdjustedTemps = new Dictionary<AxialCoordinate, float>();
+        foreach (HexData data in grid.Grid.Values)
+        {
+            float latitude = grid.GetLatitude(data.Coord);
+            baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation);
+        }
+
+        foreach (HexData data in grid.Grid.Values)
+        {
+            float windDirection = grid.GetWindDirection(data.Coord);
+            AxialCoordinate neighborCoord = windDirection > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
+            if(grid.TryGetHex(neighborCoord, out HexData neighborHex))
+            {
+                float neighborTemp = baseTemps[neighborCoord];
+                float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection));
+                windAdjustedTemps[data.Coord] = newTemp;
+            }
+        }
+
+        foreach (HexData data in grid.Grid.Values)
+        {
+            if (windAdjustedTemps.TryGetValue(data.Coord, out float value))
+            {
+                data.ExtraData.SetTemperature(value);
+            }
+            else
+            {
+                data.ExtraData.SetTemperature(baseTemps[data.Coord]);
+            }
+        }
+    }
+
+    public float ComputeBaseTemperature(float latitude, float elevation)
+    {
+        return (1 - Mathf.Pow(latitude, 2)) - ((elevation / 0.1111f) * 0.01428f);
     }
 }

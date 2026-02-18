@@ -85,7 +85,7 @@ public class AxialGeometry
         // axial directions (pointy-top)
         AxialCoordinate[] dirs = AxialDirections.Directions;
 
-        AxialCoordinate coord = a + (dirs[4] * radius);
+        AxialCoordinate coord = a + (dirs[(int)AxialCardinalDirections.NW] * radius);
         for (int i = 0; i < 6; i++)
         {
             for (int step = 0; step < radius; step++)

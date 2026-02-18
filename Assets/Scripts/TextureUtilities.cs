@@ -74,12 +74,15 @@ public class TextureUtilities
                 Vector2 pixelCoord = coords[axial];
                 //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, GetBiomeColor(data));
                 //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(0f, 0f, data.ExtraData.Precipitation));
-                //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(data.ExtraData.Temperature, 0f, 0f));
+                DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(data.ExtraData.Temperature, 0f, 0f));
+
+                /*
                 float windDirection = grid.GetWindDirection(data.Coord);
                 Color color;
                 if (windDirection < 0) color = new Color(0f, 0f, grid.GetWindDirection(data.Coord) * -1);
                 else color = new Color(grid.GetWindDirection(data.Coord), 0f, 0f);
                 DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, color);
+                */
             }
         }
 
