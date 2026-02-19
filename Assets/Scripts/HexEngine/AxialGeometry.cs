@@ -6,6 +6,16 @@ public class AxialGeometry
 {
     public const float SQRT3 = 1.732050f;
 
+    static readonly Vector2[] HexDirWorld =
+    {
+        new Vector2( 1f, 0f),                         // E
+        new Vector2( 0.5f, -Mathf.Sqrt(3f)/2f),       // SE
+        new Vector2(-0.5f, -Mathf.Sqrt(3f)/2f),       // SW
+        new Vector2(-1f, 0f),                         // W
+        new Vector2(-0.5f,  Mathf.Sqrt(3f)/2f),       // NW
+        new Vector2( 0.5f,  Mathf.Sqrt(3f)/2f),       // NE
+    };
+
     public static (int row, int col) AxialToOddR(AxialCoordinate coord)
     {
         int parity = coord.R & 1;
@@ -34,6 +44,30 @@ public class AxialGeometry
 
         return new Vector2(x, y);
     }
+
+    public static AxialCoordinate ConvertVectorToAxialDirection(Vector2 vector)
+    {
+        if (vector.sqrMagnitude < 0.0001f)
+            return AxialDirections.Directions[0];
+
+        Vector2 dir = vector.normalized;
+
+        int bestIndex = 0;
+        float bestDot = float.NegativeInfinity;
+
+        for (int i = 0; i < 6; i++)
+        {
+            float d = Vector2.Dot(dir, HexDirWorld[i]);
+            if (d > bestDot)
+            {
+                bestDot = d;
+                bestIndex = i;
+            }
+        }
+
+        return AxialDirections.Directions[bestIndex];
+    }
+
 
     public static (float q, float r) CartesianToFractionalAxial(Vector2 point, float axialSize)
     {
