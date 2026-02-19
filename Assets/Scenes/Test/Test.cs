@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -96,25 +97,14 @@ public class Test : MonoBehaviour
             foreach (HexData data in grid.Grid.Values)
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
-                AxialCoordinate horizontalNeighborCoord = windDirection.x > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
-                float newHorTemp = 0f;
-                float newVerTemp = 0f;
-                if (grid.TryGetHex(horizontalNeighborCoord, out HexData horizontalNeighborHex))
+                Vector2 upWindDirection = -windDirection;
+                AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
+                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
                 {
-                    float neighborTemp = baseTemps[horizontalNeighborCoord];
+                    float neighborTemp = baseTemps[neighborCoord];
                     float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.x));
-                    newHorTemp = newTemp;
+                    windAdjustedTemps[data.Coord] = newTemp;
                 }
-
-                AxialCoordinate verticalNeighborCoord = windDirection.y > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.NE] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.SW];
-                if (grid.TryGetHex(verticalNeighborCoord, out HexData verticalNeighborHex))
-                {
-                    float neighborTemp = baseTemps[verticalNeighborCoord];
-                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.y));
-                    newVerTemp = newTemp;
-                }
-
-                windAdjustedTemps[data.Coord] = 0.5f * newHorTemp + 0.5f * newVerTemp;
             }
 
             foreach (HexData data in grid.Grid.Values)
@@ -153,39 +143,20 @@ public class Test : MonoBehaviour
             baseHums[data.Coord] = 0f;
         }
 
-        for (int windPasses = 0; windPasses < 4; windPasses++)
+        for (int windPasses = 0; windPasses < 8; windPasses++)
         {
             foreach (HexData data in grid.Grid.Values)
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
-                AxialCoordinate horizontalNeighborCoord = windDirection.x > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.W] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.E];
-                float newHorHum = 0f;
-                float newVertHum = 0f;
-                
-                if (grid.TryGetHex(horizontalNeighborCoord, out HexData horizontalNeighborHex))
+                Vector2 upWindDirection = -windDirection;
+                AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
+                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
                 {
-                    float neighborHum = baseHums[horizontalNeighborCoord];
-                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.x));
-                    newHorHum = newHum;
-                }
-
-                AxialCoordinate verticalNeighborCoord = windDirection.y > 0 ? data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.NE] : data.Coord + AxialDirections.Directions[(int)AxialCardinalDirections.SW];
-                if (grid.TryGetHex(verticalNeighborCoord, out HexData verticalNeighborHex))
-                {
-                    float neighborHum = baseHums[verticalNeighborCoord];
-                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.y));
-                    newHorHum = newHum;
-                }
-
-                windAdjustedHums[data.Coord] = 0.5f * newHorHum + 0.5f * newVertHum;
-
-                if (data.ExtraData.IsSea)
-                {
-                    windAdjustedHums[data.Coord] = Mathf.Lerp(windAdjustedHums[data.Coord], 1f, 0.18f);
-                }
-                else
-                {
-                    windAdjustedHums[data.Coord] *= (1f - 0.04f);
+                    float neighborTemp = baseHums[neighborCoord];
+                    float newTemp = Mathf.Lerp(baseHums[data.Coord], neighborTemp, Mathf.Abs(windDirection.x));
+                    windAdjustedHums[data.Coord] = newTemp;
+                    if (data.ExtraData.IsSea) windAdjustedHums[data.Coord] = Mathf.Lerp(windAdjustedHums[data.Coord], 1f, 0.28f);
+                    else windAdjustedHums[data.Coord] *= (1f - 0.001f);
                 }
             }
 
