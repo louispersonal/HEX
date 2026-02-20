@@ -127,7 +127,7 @@ public class Test : MonoBehaviour
 
     public float ComputeBaseTemperature(float latitude, float elevation, AxialCoordinate coord)
     {
-        float baseTemp = (1 - Mathf.Pow(latitude, 2)) - (elevation * 0.128532f);
+        float baseTemp = (1 - latitude) - (elevation * 0.128532f);
         float noiseSize = 0.3f;
         float noiseSampleRate = 0.02f;
         Vector2 noiseSamplePoint = AxialGeometry.AxialToCartesian(coord, noiseSampleRate);
