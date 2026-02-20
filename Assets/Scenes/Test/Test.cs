@@ -19,8 +19,7 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField] private float _rainPasses;
-    [SerializeField] private float _rainFactor;
-    [SerializeField] private float _advectionFactor;
+    [SerializeField] private float _baseRain;
     void Start()
     {
 
@@ -82,7 +81,7 @@ public class Test : MonoBehaviour
         Dictionary<AxialCoordinate, float> windAdjustedTemps = new Dictionary<AxialCoordinate, float>();
         foreach (HexData data in grid.Grid.Values)
         {
-            float latitude = grid.GetLatitude(data.Coord);
+            float latitude = grid.GetLatitude01(data.Coord);
             baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation, data.Coord);
         }
 
@@ -159,7 +158,7 @@ public class Test : MonoBehaviour
                 if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
                 {
                     float neighborHum = baseHums[neighborCoord];
-                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, _advectionFactor * Mathf.Abs(windDirection.magnitude));
+                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.magnitude));
 
                     if (data.ExtraData.IsSea) // evaporate
                     {
@@ -172,7 +171,7 @@ public class Test : MonoBehaviour
                         float uplift = Mathf.Max(0f, dh);
                         float upliftFactor = 0.01f;
 
-                        float rainThisStep = newHum * _rainFactor;
+                        float rainThisStep = newHum > _baseRain? _baseRain : 0f;
 
                         accumulatedPrecs[data.Coord] += rainThisStep;
                         newHum -= rainThisStep;

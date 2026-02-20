@@ -312,9 +312,8 @@ MonoBehaviour:
     Lacunarity: 1.9
     Gain: 0.8
   _resolution: 1
-  _rainPasses: 20
-  _rainFactor: 0.01
-  _advectionFactor: 3
+  _rainPasses: 14
+  _baseRain: 0.08
 --- !u!1 &806078982
 GameObject:
   m_ObjectHideFlags: 0
