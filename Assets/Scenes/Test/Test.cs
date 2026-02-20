@@ -17,6 +17,10 @@ public class Test : MonoBehaviour
     [SerializeField] FractalBrownianMotionParameters _params;
     [SerializeField] private float _resolution;
     // Start is called before the first frame update
+
+    [SerializeField] private float _rainPasses;
+    [SerializeField] private float _rainFactor;
+    [SerializeField] private float _advectionFactor;
     void Start()
     {
 
@@ -102,7 +106,7 @@ public class Test : MonoBehaviour
                 if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
                 {
                     float neighborTemp = baseTemps[neighborCoord];
-                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.x));
+                    float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.magnitude));
                     windAdjustedTemps[data.Coord] = newTemp;
                 }
             }
@@ -137,13 +141,15 @@ public class Test : MonoBehaviour
     {
         Dictionary<AxialCoordinate, float> baseHums = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> windAdjustedHums = new Dictionary<AxialCoordinate, float>();
+        Dictionary<AxialCoordinate, float> accumulatedPrecs = new Dictionary<AxialCoordinate, float>();
 
         foreach (HexData data in grid.Grid.Values)
         {
             baseHums[data.Coord] = 0f;
+            accumulatedPrecs[data.Coord] = 0f;
         }
 
-        for (int windPasses = 0; windPasses < 8; windPasses++)
+        for (int windPasses = 0; windPasses < _rainPasses; windPasses++)
         {
             foreach (HexData data in grid.Grid.Values)
             {
@@ -152,11 +158,27 @@ public class Test : MonoBehaviour
                 AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
                 if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
                 {
-                    float neighborTemp = baseHums[neighborCoord];
-                    float newTemp = Mathf.Lerp(baseHums[data.Coord], neighborTemp, Mathf.Abs(windDirection.x));
-                    windAdjustedHums[data.Coord] = newTemp;
-                    if (data.ExtraData.IsSea) windAdjustedHums[data.Coord] = Mathf.Lerp(windAdjustedHums[data.Coord], 1f, 0.28f);
-                    else windAdjustedHums[data.Coord] *= (1f - 0.001f);
+                    float neighborHum = baseHums[neighborCoord];
+                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, _advectionFactor * Mathf.Abs(windDirection.magnitude));
+
+                    if (data.ExtraData.IsSea) // evaporate
+                    {
+                        newHum = Mathf.Lerp(newHum, 1f, data.ExtraData.Temperature);
+                    }
+
+                    else // precipitate
+                    {
+                        float dh = data.ExtraData.Elevation - neighborHex.ExtraData.Elevation;
+                        float uplift = Mathf.Max(0f, dh);
+                        float upliftFactor = 0.01f;
+
+                        float rainThisStep = newHum * _rainFactor;
+
+                        accumulatedPrecs[data.Coord] += rainThisStep;
+                        newHum -= rainThisStep;
+                    }
+
+                    windAdjustedHums[data.Coord] = newHum;
                 }
             }
 
@@ -169,9 +191,22 @@ public class Test : MonoBehaviour
             }
         }
 
+        float maxPrec = 0f;
+
         foreach (HexData data in grid.Grid.Values)
         {
-            data.ExtraData.SetPrecipitation(baseHums[data.Coord]);
+            float currentPrec = accumulatedPrecs[data.Coord];
+            if (currentPrec > maxPrec) maxPrec = currentPrec;
+        }
+
+        foreach (HexData data in grid.Grid.Values)
+        {
+            accumulatedPrecs[data.Coord] /= maxPrec;
+        }
+
+        foreach (HexData data in grid.Grid.Values)
+        {
+            data.ExtraData.SetPrecipitation(accumulatedPrecs[data.Coord]);
         }
     }
 }
