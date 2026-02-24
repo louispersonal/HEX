@@ -311,7 +311,7 @@ MonoBehaviour:
     Octaves: 6
     Lacunarity: 1.9
     Gain: 0.8
-  _resolution: 1
+  _resolution: 3
   _rainPasses: 14
   _baseRain: 0.08
 --- !u!1 &806078982
@@ -467,7 +467,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -460, y: 290}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_SizeDelta: {x: 750, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918119566
 MonoBehaviour:
@@ -539,7 +539,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 460, y: -290}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_SizeDelta: {x: 750, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931977305
 MonoBehaviour:

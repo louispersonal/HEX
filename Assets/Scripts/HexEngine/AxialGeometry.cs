@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AxialGeometry
 {
+    // NOTE axialSize is always considered as the outer radius of the hex (center to corner)
     public const float SQRT3 = 1.732050f;
 
     static readonly Vector2[] HexDirWorld =

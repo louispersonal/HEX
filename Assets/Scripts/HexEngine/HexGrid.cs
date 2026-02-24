@@ -76,10 +76,9 @@ public class HexGrid
         float lon = GetLongitude01(coord);
 
         float phaseAmp = 0.35f;
-        float phaseFreq = 2f;
+        float phaseFreq = 1f;
 
-        float theta = 2f * Mathf.PI * lat
-                    + phaseAmp * Mathf.Sin(2f * Mathf.PI * phaseFreq * lon);
+        float theta = 2f * Mathf.PI * lat + phaseAmp * Mathf.Sin(2f * Mathf.PI * phaseFreq * lon);
 
         return new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
     }

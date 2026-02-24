@@ -26,33 +26,49 @@ public class TextureUtilities
         return pix;
     }
 
-    // Draw a filled hex of radius `size` at pixel center `c`, into `pix` buffer
-    public static void DrawFilledHex(Color[] pix, int horizontalPixels, int verticalPixels, Vector2 c, float size, Color color)
+    public static void DrawFilledHex(Color[] pix, int horizontalPixels, Vector2 c, int outerRadius, Color color)
     {
-        float apothem = 0.5f * AxialGeometry.SQRT3 * size;  // horizontal half-extent
-        int minX = Mathf.Max(0, Mathf.FloorToInt(c.x - apothem));
-        int maxX = Mathf.Min(horizontalPixels - 1, Mathf.CeilToInt(c.x + apothem));
-        int minY = Mathf.Max(0, Mathf.FloorToInt(c.y - size));
-        int maxY = Mathf.Min(verticalPixels - 1, Mathf.CeilToInt(c.y + size));
+        int innerRadius = Mathf.RoundToInt((AxialGeometry.SQRT3 * 0.5f) * outerRadius);
 
-        // scan the tight AABB
+        int minY = (int)c.y - outerRadius;
+        int maxY = (int)c.y + outerRadius;
+
         for (int y = minY; y <= maxY; y++)
         {
-            float py = (y + 0.5f) - c.y;  // sample pixel center
-            float ay = Mathf.Abs(py);
-            if (ay > size) continue; // outside top/bottom
-
-            for (int x = minX; x <= maxX; x++)
+            int distanceToCenter = Mathf.Abs(y - (int)c.y);
+            if (distanceToCenter < outerRadius / 2)
             {
-                float px = (x + 0.5f) - c.x;
-                float ax = Mathf.Abs(px);
-
-                // fast hex-inside test (pointy-top)
-                if (ax > apothem) continue;                // outside verticals
-                if (AxialGeometry.SQRT3 * ax + ay > 2f * size) continue; // outside slants
-
-                pix[y * horizontalPixels + x] = color;
+                int minX = (int)c.x - innerRadius;
+                int maxX = (int)c.x + innerRadius;
+                for (int x = minX; x < maxX; x++)
+                {
+                    pix[y * horizontalPixels + x] = color;
+                }
             }
+            else
+            {
+                float orientation = y > c.y? 1 : -1;
+                Vector2 P_0 = new Vector2(c.x, c.y + (orientation * outerRadius) / 2);
+                Vector2 P_1 = new Vector2(P_0.x + innerRadius, P_0.y);
+                Vector2 P_2 = new Vector2(P_0.x, P_0.y + (orientation * outerRadius) / 2);
+                Vector2 P_3 = new Vector2(P_0.x - innerRadius, P_0.y);
+                int minX = Mathf.RoundToInt(P_3.x + ((P_0.x - P_3.x) * ((y - P_0.y) / (P_2.y - P_0.y))));
+                int maxX = Mathf.RoundToInt(P_1.x + ((P_0.x - P_1.x) * ((y - P_0.y) / (P_2.y - P_0.y))));
+                for (int x = minX; x < maxX; x++)
+                {
+                    pix[y * horizontalPixels + x] = color;
+                }
+            }
+        }
+    }
+
+    public static void DrawLine(Color[] pix, int horizontalPixels, Vector2 lineStart, Vector2 lineEnd, Color color)
+    {
+        List<Vector2Int> points = CartesianGeometry.BresenhamsLine(new Vector2Int (Mathf.RoundToInt(lineStart.x), Mathf.RoundToInt(lineStart.y)), new Vector2Int(Mathf.RoundToInt(lineEnd.x), Mathf.RoundToInt(lineEnd.y)));
+
+        foreach (Vector2Int point in points)
+        {
+            pix[point.y * horizontalPixels + point.x] = color;
         }
     }
 
@@ -72,19 +88,29 @@ public class TextureUtilities
             if (grid.TryGetHex(axial, out HexData data))
             {
                 Vector2 pixelCoord = coords[axial];
-                DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, GetBiomeColor(data));
+                DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), GetBiomeColor(data));
+
                 //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(0f, 0f, data.ExtraData.Precipitation));
                 //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(data.ExtraData.Temperature, 0f, 0f));
-
-                /*
-                float windDirection = grid.GetWindDirection(data.Coord);
-                Color color;
-                if (windDirection < 0) color = new Color(0f, 0f, grid.GetWindDirection(data.Coord) * -1);
-                else color = new Color(grid.GetWindDirection(data.Coord), 0f, 0f);
-                DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, color);
-                */
             }
         }
+
+        foreach (AxialCoordinate axial in coords.Keys)
+        {
+            if (grid.TryGetHex(axial, out HexData data))
+            {
+                Vector2 pixelCoord = coords[axial];
+                Vector2 windDirection = grid.GetWindDirection(data.Coord);
+                Vector2 upWindDirection = -windDirection;
+                AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
+
+                if (!neighborCoord.Equals(axial) && coords.TryGetValue(neighborCoord, out Vector2 neighborPixelCoord))
+                {
+                    DrawLine(pixelArray, horizontalPixels, pixelCoord, neighborPixelCoord, Color.red);
+                }
+            }
+        }
+
 
         return pixelArray;
     }
