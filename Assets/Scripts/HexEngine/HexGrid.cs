@@ -16,6 +16,8 @@ public class HexGrid
 
     public int MiddleRow { get { return (RowBounds.max - RowBounds.min) / 2; } }
 
+    public int MiddleCol { get { return (ColBounds.max - ColBounds.min / 2); } }
+
     public HexGrid(List<HexData> hexDataList)
     {
         Grid = new Dictionary<AxialCoordinate, HexData>();
@@ -64,22 +66,28 @@ public class HexGrid
         return Mathf.Clamp((coord.R - MiddleRow) / halfHeight, -1f, 1f);
     }
 
-    float GetLongitude01(AxialCoordinate c)
+    float GetLongitude01(AxialCoordinate coord)
     {
         float width = Mathf.Max(1f, ColBounds.max - ColBounds.min);
-        return Mathf.Repeat((c.Q - ColBounds.min) / width, 1f);
+        return Mathf.Repeat((coord.Q - ColBounds.min) / width, 1f);
+    }
+
+    float GetLongitudeSigned(AxialCoordinate coord)
+    {
+        float halfWidth = Mathf.Max(1f, Mathf.Max(MiddleCol - ColBounds.min, ColBounds.max - MiddleCol));
+        return Mathf.Clamp((coord.Q - MiddleCol) / halfWidth, -1f, 1f);
     }
 
     public Vector2 GetWindDirection(AxialCoordinate coord)
     {
-        float lat = GetLatitude01(coord);
-        float lon = GetLongitude01(coord);
+        float lat = GetLatitudeSigned(coord);
+        float lon = GetLongitudeSigned(coord);
 
-        float phaseAmp = 0.35f;
-        float phaseFreq = 1f;
+        float a = 2f;
+        float b = 2f;
 
-        float theta = 2f * Mathf.PI * lat + phaseAmp * Mathf.Sin(2f * Mathf.PI * phaseFreq * lon);
-
-        return new Vector2(Mathf.Cos(theta), Mathf.Sin(theta));
+        float dfdx = (a * Mathf.PI / 4f) * Mathf.Sin(a * Mathf.PI * lon);
+        float dfdy = (b * Mathf.PI / 4f) * Mathf.Sin(b * Mathf.PI * lat);
+        return CartesianGeometry.GetPerpendicularVector(new Vector2(dfdx, dfdy));
     }
 }

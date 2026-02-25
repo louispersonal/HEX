@@ -44,4 +44,16 @@ public class CartesianGeometry
 
         return points;
     }
+
+    public static Vector2 GetPerpendicularVector(Vector2 vec, bool clockwise=true)
+    {
+        if (clockwise)
+        {
+            return new Vector2(-vec.y, vec.x);
+        }
+        else
+        {
+            return new Vector2(vec.y, -vec.x);
+        }
+    }
 }
