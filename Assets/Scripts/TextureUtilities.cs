@@ -95,23 +95,6 @@ public class TextureUtilities
             }
         }
 
-        foreach (AxialCoordinate axial in coords.Keys)
-        {
-            if (grid.TryGetHex(axial, out HexData data))
-            {
-                Vector2 pixelCoord = coords[axial];
-                Vector2 windDirection = grid.GetWindDirection(data.Coord);
-                Vector2 upWindDirection = -windDirection;
-                AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
-
-                if (!neighborCoord.Equals(axial) && coords.TryGetValue(neighborCoord, out Vector2 neighborPixelCoord))
-                {
-                    DrawLine(pixelArray, horizontalPixels, pixelCoord, neighborPixelCoord, Color.red);
-                }
-            }
-        }
-
-
         return pixelArray;
     }
 
