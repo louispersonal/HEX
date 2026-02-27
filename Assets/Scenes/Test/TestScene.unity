@@ -311,7 +311,7 @@ MonoBehaviour:
     Octaves: 6
     Lacunarity: 1.9
     Gain: 0.8
-  _resolution: 3
+  _resolution: 2
   _rainPasses: 14
   _baseRain: 0.08
 --- !u!1 &806078982
