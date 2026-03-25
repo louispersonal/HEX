@@ -19,7 +19,8 @@ public class HexData : BaseHexData
     }
 }
 
-public class HexExtraData
+[System.Serializable]
+public struct HexExtraData
 {
     private const float ByteToFloat = 1f / 255f;
 
@@ -41,15 +42,6 @@ public class HexExtraData
     public bool IsSea { get { return _elevation == 0; } }
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
-
-    public HexExtraData()
-    {
-        _lowVegetation = 0;
-        _highVegetation = 0;
-        _temperature = 0;
-        _elevation = 0;
-        _precipitation = 0;
-    } 
 
     public void SetElevation(float elevation)
     {

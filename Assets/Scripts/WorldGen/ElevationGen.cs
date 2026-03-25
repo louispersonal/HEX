@@ -6,13 +6,10 @@ using UnityEngine.UI;
 
 public class ElevationGen
 {
-    private const float WIDTH_HEIGHT_RATIO = 1.5f;
-    private const int FRACTAL_WIDTH_SPAN = 200;
-
-    public static void GenerateHeightmap(HexGrid grid, int seed, FractalBrownianMotionParameters fbmParams)
+    public static void GenerateHeightmap(HexGrid grid, int seed, FractalBrownianMotionParameters fbmParams, float widthHeightRatio)
     {
         Vector2 _originPoint = SeedToVector2(seed);
-        Vector2 _boundPoint = _originPoint + new Vector2(FRACTAL_WIDTH_SPAN, FRACTAL_WIDTH_SPAN / WIDTH_HEIGHT_RATIO);
+        Vector2 _boundPoint = _originPoint + new Vector2(fbmParams.FractalWidthSpan, fbmParams.FractalWidthSpan / widthHeightRatio);
 
         var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.Grid.Keys.ToList(), _originPoint, _boundPoint, out float size);
 

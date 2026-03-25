@@ -110,4 +110,18 @@ public class HexGrid
         }
         return maxNumber;
     }
+
+    public int NumHexesFromFreshWater(HexData data)
+    {
+        int maxNumber = 8;
+        for (int n = 1; n < maxNumber; n++)
+        {
+            List<HexData> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(this, data, n);
+            foreach (HexData hex in hexes)
+            {
+
+            }
+        }
+        return maxNumber;
+    }
 }

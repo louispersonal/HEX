@@ -52,12 +52,14 @@ public class FractalBrownianMotionParameters
     public int Octaves;
     public float Lacunarity;
     public float Gain;
+    public float FractalWidthSpan;
 
-    public FractalBrownianMotionParameters(int seed)
+    public FractalBrownianMotionParameters(float baseFrequency, int octaves, float lacunarity, float gain, float fractalWidthSpan)
     {
-        BaseFrequency = 0.015f;
-        Octaves = 5;
-        Lacunarity = 1.5f;
-        Gain = 0.8f;
+        BaseFrequency = baseFrequency;
+        Octaves = octaves;
+        Lacunarity = lacunarity;
+        Gain = gain;
+        FractalWidthSpan = fractalWidthSpan;
     }
 }
