@@ -15,9 +15,6 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            var world = WorldGenController.GenerateWorldData(150, 4324324);
-        }
+
     }
 }
