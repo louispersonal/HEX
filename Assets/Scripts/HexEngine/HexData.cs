@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class HexData : BaseHexData
 {
-    public HexExtraData _extraData;
-    public HexExtraData ExtraData { get { return _extraData; } }
+    private HexExtraData _extraData;
+
+    public ref HexExtraData ExtraData => ref _extraData;
 
     public HexData(AxialCoordinate a) : base(a)
     {
@@ -20,7 +21,7 @@ public class HexData : BaseHexData
 }
 
 [System.Serializable]
-public class HexExtraData
+public struct HexExtraData
 {
     private const float ByteToFloat = 1f / 255f;
 
