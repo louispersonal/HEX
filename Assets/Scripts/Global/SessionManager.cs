@@ -16,10 +16,9 @@ public class SessionManager : MonoBehaviour
         _worldData = new WorldData(data);
     }
 
-    public void NewWorldData(int columns, int rows)
+    public void NewWorldData(int seed, int worldWidthInHexes)
     {
-        List<HexData> data = HexGridGeometry.GenerateRectangularGrid(columns, rows);
-        _worldData = new WorldData(data);
+        _worldData = WorldGenController.GenerateWorldData(worldWidthInHexes, seed);
     }
 
     public void SaveWorldData()

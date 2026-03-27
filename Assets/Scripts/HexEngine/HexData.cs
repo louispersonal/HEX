@@ -20,7 +20,7 @@ public class HexData : BaseHexData
 }
 
 [System.Serializable]
-public struct HexExtraData
+public class HexExtraData
 {
     private const float ByteToFloat = 1f / 255f;
 
