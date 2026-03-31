@@ -8,13 +8,13 @@ public class TemperatureGen
     {
         Dictionary<AxialCoordinate, float> baseTemps = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> windAdjustedTemps = new Dictionary<AxialCoordinate, float>();
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             float latitude = grid.GetLatitude01(data.Coord);
             baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation, data.Coord);
         }
 
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             float coastalDistance = grid.NumHexesFromSea(data, out HexData seaHex);
             if (coastalDistance > 0 && seaHex != null)
@@ -26,20 +26,19 @@ public class TemperatureGen
 
         for (int windPasses = 0; windPasses < 4; windPasses++)
         {
-            foreach (HexData data in grid.Grid.Values)
+            foreach (HexData data in grid.GetValidHexes())
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
                 Vector2 upWindDirection = -windDirection;
                 AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
-                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
+                if (baseTemps.TryGetValue(neighborCoord, out float neighborTemp))
                 {
-                    float neighborTemp = baseTemps[neighborCoord];
                     float newTemp = Mathf.Lerp(baseTemps[data.Coord], neighborTemp, Mathf.Abs(windDirection.magnitude));
                     windAdjustedTemps[data.Coord] = newTemp;
                 }
-            }
+            } 
 
-            foreach (HexData data in grid.Grid.Values)
+            foreach (HexData data in grid.GetValidHexes())
             {
                 if (windAdjustedTemps.TryGetValue(data.Coord, out float windAdjustedTemp))
                 {
@@ -48,7 +47,7 @@ public class TemperatureGen
             }
         }
 
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             data.ExtraData.SetTemperature(baseTemps[data.Coord]);
         }

@@ -17,7 +17,7 @@ public class NewGameMenuView : SubMenuView
 
     private int _defaultSeedValue = 2332;
 
-    private int _defaultWdithValue = 400;
+    private int _defaultWdithValue = 150;
 
     private int[] _previewImageResolution = { 1200, 695 }; // width, height
 

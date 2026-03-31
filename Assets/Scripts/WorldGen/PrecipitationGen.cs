@@ -13,7 +13,7 @@ public class PrecipitationGen
         Dictionary<AxialCoordinate, float> windAdjustedHums = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> accumulatedPrecs = new Dictionary<AxialCoordinate, float>();
 
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             baseHums[data.Coord] = 0f;
             accumulatedPrecs[data.Coord] = 0f;
@@ -21,14 +21,13 @@ public class PrecipitationGen
 
         for (int windPasses = 0; windPasses < _rainPasses; windPasses++)
         {
-            foreach (HexData data in grid.Grid.Values)
+            foreach (HexData data in grid.GetValidHexes())
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
                 Vector2 upWindDirection = -windDirection;
                 AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
-                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
+                if (baseHums.TryGetValue(neighborCoord, out float neighborHum))
                 {
-                    float neighborHum = baseHums[neighborCoord];
                     float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.magnitude));
 
                     if (data.ExtraData.IsSea) // evaporate
@@ -38,10 +37,6 @@ public class PrecipitationGen
 
                     else // precipitate
                     {
-                        float dh = data.ExtraData.Elevation - neighborHex.ExtraData.Elevation;
-                        float uplift = Mathf.Max(0f, dh);
-                        float upliftFactor = 0.01f;
-
                         float rainThisStep = newHum > _baseRain ? _baseRain : 0f;
 
                         accumulatedPrecs[data.Coord] += rainThisStep;
@@ -52,7 +47,7 @@ public class PrecipitationGen
                 }
             }
 
-            foreach (HexData data in grid.Grid.Values)
+            foreach (HexData data in grid.GetValidHexes())
             {
                 if (windAdjustedHums.TryGetValue(data.Coord, out float windAdjustedHum))
                 {
@@ -63,18 +58,18 @@ public class PrecipitationGen
 
         float maxPrec = 0f;
 
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             float currentPrec = accumulatedPrecs[data.Coord];
             if (currentPrec > maxPrec) maxPrec = currentPrec;
         }
 
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             accumulatedPrecs[data.Coord] /= maxPrec;
         }
 
-        foreach (HexData data in grid.Grid.Values)
+        foreach (HexData data in grid.GetValidHexes())
         {
             data.ExtraData.SetPrecipitation(accumulatedPrecs[data.Coord]);
         }

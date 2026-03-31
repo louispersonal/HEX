@@ -81,7 +81,7 @@ public class TextureUtilities
             pixelArray[p] = Color.blue;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.Grid.Keys.ToList(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
 
         foreach (AxialCoordinate axial in coords.Keys)
         {
