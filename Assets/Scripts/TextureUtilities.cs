@@ -72,8 +72,10 @@ public class TextureUtilities
         }
     }
 
-    public static Color[] GetPixelsFromHexGrid(HexGrid grid, int horizontalPixels, int verticalPixels)
+    public static Color[] GetPixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
     {
+        HexGrid grid = world.Grid;
+
         Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
 
         for (int p = 0; p < horizontalPixels * verticalPixels; p++)

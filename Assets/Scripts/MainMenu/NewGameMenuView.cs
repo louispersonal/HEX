@@ -57,7 +57,7 @@ public class NewGameMenuView : SubMenuView
         Debug.Log("World Generation Finished");
         Debug.Log("Previewing world...");
         _rawImageHexPreview.texture = TextureUtilities.GetTexture
-            (TextureUtilities.GetPixelsFromHexGrid(GameController.Instance.SessionManager.WorldData.Grid,
+            (TextureUtilities.GetPixelsFromWorldData(GameController.Instance.SessionManager.WorldData.Grid,
             _previewImageResolution[0], _previewImageResolution[1]), _previewImageResolution[0], _previewImageResolution[1]);
         Debug.Log("Preview finished");
     }
