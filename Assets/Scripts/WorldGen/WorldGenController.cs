@@ -25,6 +25,7 @@ public class WorldGenController
 
         PrecipitationGen.ComputePrecipitations(newWorld.Grid);
 
+        RiverGen.GenerateRivers(newWorld);
         return newWorld;
     }
 }

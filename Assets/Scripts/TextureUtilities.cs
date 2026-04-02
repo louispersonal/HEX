@@ -98,6 +98,10 @@ public class TextureUtilities
         }
 
         // Add rivers
+        foreach (River river in world.Rivers.Values)
+        {
+            
+        }
 
         return pixelArray;
     }
