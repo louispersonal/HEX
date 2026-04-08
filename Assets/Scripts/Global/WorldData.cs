@@ -8,12 +8,17 @@ public class WorldData
 
     public HexGrid Grid { get { return _grid; } }
 
+    private Pathfinder _pathFinder;
+
+    public Pathfinder PathFinder { get { return _pathFinder; } }
+
     public Dictionary<RiverID, River> Rivers;
     public Dictionary<AxialCoordinate, RiverID> RiverLookup;
 
     public WorldData(List<HexData> hexDataList)
     {
         _grid = new HexGrid(hexDataList);
+        _pathFinder = new Pathfinder(_grid);
     }
 
     public List<HexData> GetHexData()

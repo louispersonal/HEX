@@ -8,6 +8,11 @@ public class Pathfinder
 
     public HexGrid HexGrid;
 
+    public Pathfinder(HexGrid hexGrid)
+    {
+        HexGrid = hexGrid;
+    } 
+
     public List<AxialCoordinate> AStar(AxialCoordinate start, AxialCoordinate goal)
     {
         var nodes = new Dictionary<AxialCoordinate, PathNode>();
