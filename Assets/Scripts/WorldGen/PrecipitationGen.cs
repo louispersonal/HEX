@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PrecipitationGen
 {
-    private static float _rainPasses = 14f;
-    private static float _baseRain = 0.08f;
+    private static float _rainPasses = 80f;
+    private static float _baseRain = 1f;
 
     public static void ComputePrecipitations(HexGrid grid)
     {
@@ -32,7 +32,7 @@ public class PrecipitationGen
 
                     if (data.ExtraData.IsSea) // evaporate
                     {
-                        newHum = Mathf.Lerp(newHum, 1f, data.ExtraData.Temperature);
+                        newHum += _baseRain;
                     }
 
                     else // precipitate
