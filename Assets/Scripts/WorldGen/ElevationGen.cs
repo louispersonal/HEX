@@ -13,11 +13,25 @@ public class ElevationGen
 
         var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), _originPoint, _boundPoint, out float size);
 
+        float highestElevation = 0f;
+
         foreach (HexData data in grid.GetValidHexes())
         {
             float elevation = FractalBrownianMotion.FBM(coords[data.Coord], fbmParams);
             elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
+            if (elevation > highestElevation) highestElevation = elevation;
             data.ExtraData.SetElevation(elevation);
+        }
+
+        NormalizeHeightmap(grid, highestElevation);
+    }
+
+    public static void NormalizeHeightmap(HexGrid grid, float highestElevation)
+    {
+        foreach (HexData data in grid.GetValidHexes())
+        {
+            float newElevation = data.ExtraData.Elevation / highestElevation;
+            data.ExtraData.SetElevation(newElevation);
         }
     }
 

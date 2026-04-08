@@ -26,6 +26,25 @@ public class WorldGenController
         PrecipitationGen.ComputePrecipitations(newWorld.Grid);
 
         RiverGen.GenerateRivers(newWorld);
+
+        DebugStats(newWorld);
+
         return newWorld;
+    }
+
+    private static void DebugStats(WorldData world)
+    {
+        float highestElevation = 0f;
+        float highestTemperature = 0f;
+        float highestPrecipitation = 0f;
+
+        foreach (HexData data in world.Grid.GetValidHexes())
+        {
+            if (data.ExtraData.Elevation > highestElevation) highestElevation = data.ExtraData.Elevation;
+            if (data.ExtraData.Temperature > highestTemperature) highestTemperature = data.ExtraData.Temperature;
+            if (data.ExtraData.Precipitation > highestPrecipitation) highestPrecipitation = data.ExtraData.Precipitation;
+        }
+
+        Debug.Log($"Max Elevation: {highestElevation}, Max Temperature: {highestTemperature}, Max Precipitation: {highestPrecipitation}");
     }
 }

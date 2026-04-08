@@ -72,6 +72,22 @@ public class TextureUtilities
         }
     }
 
+    public static void DrawDot(Color[] pix, int horizontalPixels, Vector2 position, int radius, Color color)
+    {
+        Vector2Int snappedPosition = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
+        // create bounding box and then check if points satsify (x-cx)^2 + (y-cy)^2 = r
+        for (int y = snappedPosition.y - radius; y <= snappedPosition.y + radius; y++)
+        {
+            for (int x = snappedPosition.x - radius; x <= snappedPosition.x + radius; x++)
+            {
+                if (Mathf.Pow(x - snappedPosition.x, 2) + Mathf.Pow(y - snappedPosition.y, 2) <= radius)
+                {
+                    pix[y * horizontalPixels + x] = color;
+                }
+            }
+        }
+    }
+
     public static Color[] GetPixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
     {
         HexGrid grid = world.Grid;
@@ -100,7 +116,11 @@ public class TextureUtilities
         // Add rivers
         foreach (River river in world.Rivers.Values)
         {
-            
+            foreach(AxialCoordinate riverCoord in river.Hexes)
+            {
+                Vector2 pixelCoord = coords[riverCoord];
+                DrawDot(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size / 2f), Color.red);
+            }
         }
 
         return pixelArray;

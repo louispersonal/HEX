@@ -19,6 +19,9 @@ public class WorldData
     {
         _grid = new HexGrid(hexDataList);
         _pathFinder = new Pathfinder(_grid);
+
+        Rivers = new Dictionary<RiverID, River>();
+        RiverLookup = new Dictionary<AxialCoordinate, RiverID>();
     }
 
     public List<HexData> GetHexData()
