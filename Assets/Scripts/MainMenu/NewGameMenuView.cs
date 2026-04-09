@@ -8,6 +8,7 @@ public class NewGameMenuView : SubMenuView
     [SerializeField] private TMP_InputField _seedField;
     [SerializeField] private TMP_InputField _widthField;
     [SerializeField] private UnityEngine.UI.RawImage _rawImageHexPreview;
+    public LoadingPanel WorldGenLoadingPanel;
 
     NewGameMenuController NewGameMenu { get { return _subMenu as NewGameMenuController; } }
 
@@ -19,7 +20,7 @@ public class NewGameMenuView : SubMenuView
 
     private int _defaultWdithValue = 150;
 
-    private int[] _previewImageResolution = { 1200, 695 }; // width, height
+    public int[] PreviewImageResolution = { 1200, 695 }; // width, height
 
     protected override void Start()
     {
@@ -43,22 +44,11 @@ public class NewGameMenuView : SubMenuView
 
     public void GenerateButton()
     {
-        StartCoroutine(GenerateWorldAndPreview());
+        NewGameMenu.GenerateWorld(_widthFieldValue, _seedFieldValue);
     }
 
-    private IEnumerator GenerateWorldAndPreview()
+    public void UpdatePreview(Texture2D previewTexture)
     {
-        Debug.Log("Generating world...");
-        NewGameMenu.GenerateWorld(_widthFieldValue, _seedFieldValue);
-        while (GameController.Instance.SessionManager.WorldData == null)
-        {
-            yield return null;
-        }
-        Debug.Log("World Generation Finished");
-        Debug.Log("Previewing world...");
-        _rawImageHexPreview.texture = TextureUtilities.GetTexture
-            (TextureUtilities.GetPixelsFromWorldData(GameController.Instance.SessionManager.WorldData,
-            _previewImageResolution[0], _previewImageResolution[1]), _previewImageResolution[0], _previewImageResolution[1]);
-        Debug.Log("Preview finished");
+        _rawImageHexPreview.texture = previewTexture;
     }
 }

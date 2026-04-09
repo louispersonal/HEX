@@ -7,10 +7,11 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    [SerializeField]
-    SessionManager _sessionManager;
-
+    [SerializeField] SessionManager _sessionManager;
     public SessionManager SessionManager { get { return _sessionManager; } }
+
+    [SerializeField] WorldGenController _worldGenController;
+    public WorldGenController WorldGenController { get { return _worldGenController; } }
 
     string _currentScene;
 

@@ -1812,6 +1812,8 @@ MonoBehaviour:
   _seedField: {fileID: 2063360369}
   _widthField: {fileID: 1629142904}
   _rawImageHexPreview: {fileID: 617457990}
+  WorldGenLoadingPanel: {fileID: 1818220151}
+  PreviewImageResolution: b0040000b7020000
 --- !u!1 &1291747768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,6 +3024,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 424105871408441291}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818220151 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3215728367411992470, guid: a3c0315a2c60f014eba1765a288c4956,
+    type: 3}
+  m_PrefabInstance: {fileID: 424105871408441291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2a48a7738a0b745a5e0405ac6b2eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1820969077
 GameObject:
   m_ObjectHideFlags: 0

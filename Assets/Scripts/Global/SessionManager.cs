@@ -16,9 +16,9 @@ public class SessionManager : MonoBehaviour
         _worldData = new WorldData(data);
     }
 
-    public void NewWorldData(int seed, int worldWidthInHexes)
+    public void SetWorldData(WorldData worldData)
     {
-        _worldData = WorldGenController.GenerateWorldData(worldWidthInHexes, seed);
+        _worldData = worldData;
     }
 
     public void SaveWorldData()

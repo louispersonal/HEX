@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldGenController
+public class WorldGenController : MonoBehaviour
 {
     private const float BASE_FREQUENCY = 0.015f;
     private const int OCTAVES = 6;
@@ -11,28 +11,65 @@ public class WorldGenController
     private const float WIDTH_HEIGHT_RATIO = 1.5f;
     private const int FRACTAL_WIDTH_SPAN = 200;
 
-    public static WorldData GenerateWorldData(int worldWidthInHexes, int seed)
+    private bool _generationInProgress = false;
+    public bool GenerationInProgress { get { return _generationInProgress; } }
+
+    private WorldData _newWorld;
+    public WorldData NewWorld { get { return _newWorld; } }
+
+    private string _currentStatus;
+    public string  CurrentStatus { get { return _currentStatus; } }
+    private float _amountDone;
+    public float AmountDone { get { return _amountDone; } }
+
+    public IEnumerator GenerateWorldData(int worldWidthInHexes, int seed)
     {
+        _generationInProgress = true;
+        _currentStatus = "Starting";
+        _amountDone = 0f;
+
         FractalBrownianMotionParameters defaultParams = new FractalBrownianMotionParameters(BASE_FREQUENCY, OCTAVES, LACUNARITY, GAIN, FRACTAL_WIDTH_SPAN);
 
         List<HexData> newHexData = HexGridGeometry.GenerateRectangularGrid(worldWidthInHexes, Mathf.RoundToInt(worldWidthInHexes / WIDTH_HEIGHT_RATIO));
 
-        WorldData newWorld = new WorldData(newHexData);
+        _newWorld = new WorldData(newHexData);
 
-        ElevationGen.GenerateHeightmap(newWorld.Grid, seed, defaultParams, WIDTH_HEIGHT_RATIO);
 
-        TemperatureGen.ComputeTemperatures(newWorld.Grid);
+        _currentStatus = "Generating Heightmap";
+        _amountDone = 0.2f;
+        yield return null;
 
-        PrecipitationGen.ComputePrecipitations(newWorld.Grid);
+        ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, defaultParams, WIDTH_HEIGHT_RATIO);
 
-        RiverGen.GenerateRivers(newWorld);
+        _currentStatus = "Computing Temperatures";
+        _amountDone = 0.4f;
+        yield return null;
 
-        DebugStats(newWorld);
+        TemperatureGen.ComputeTemperatures(_newWorld.Grid);
 
-        return newWorld;
+        _currentStatus = "Computing Precipitations";
+        _amountDone = 0.6f;
+        yield return null;
+
+        PrecipitationGen.ComputePrecipitations(_newWorld.Grid);
+
+        _currentStatus = "Generating Rivers";
+        _amountDone = 0.8f;
+        yield return null;
+
+        RiverGen.GenerateRivers(_newWorld);
+
+        _currentStatus = "Done";
+        _amountDone = 1f;
+        yield return null;
+
+        DebugStats(_newWorld);
+
+        _generationInProgress = false;
+        yield return null;
     }
 
-    private static void DebugStats(WorldData world)
+    private void DebugStats(WorldData world)
     {
         float highestElevation = 0f;
         float highestTemperature = 0f;
