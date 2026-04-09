@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class PrecipitationGen
 {
-    private static float _rainPasses = 80f;
-    private static float _baseRain = 1f;
+    private static int _rainPasses = 12;
+    private static float _scalar = 0.99f;
 
     public static void ComputePrecipitations(HexGrid grid)
     {
         Dictionary<AxialCoordinate, float> baseHums = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> windAdjustedHums = new Dictionary<AxialCoordinate, float>();
-        Dictionary<AxialCoordinate, float> accumulatedPrecs = new Dictionary<AxialCoordinate, float>();
 
+        // Seed base values (sea 1, land 0)
         foreach (HexData data in grid.GetValidHexes())
         {
             baseHums[data.Coord] = 0f;
-            accumulatedPrecs[data.Coord] = 0f;
+            if (data.ExtraData.IsSea) baseHums[data.Coord] = 1f;
         }
 
         for (int windPasses = 0; windPasses < _rainPasses; windPasses++)
@@ -25,23 +25,10 @@ public class PrecipitationGen
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
                 Vector2 upWindDirection = -windDirection;
-                AxialCoordinate neighborCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
-                if (baseHums.TryGetValue(neighborCoord, out float neighborHum))
+                AxialCoordinate upwindCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
+                if (baseHums.TryGetValue(upwindCoord, out float upwindHum))
                 {
-                    float newHum = Mathf.Lerp(baseHums[data.Coord], neighborHum, Mathf.Abs(windDirection.magnitude));
-
-                    if (data.ExtraData.IsSea) // evaporate
-                    {
-                        newHum += _baseRain;
-                    }
-
-                    else // precipitate
-                    {
-                        float rainThisStep = newHum > _baseRain ? _baseRain : 0f;
-
-                        accumulatedPrecs[data.Coord] += rainThisStep;
-                        newHum -= rainThisStep;
-                    }
+                    float newHum = upwindHum * _scalar;
 
                     windAdjustedHums[data.Coord] = newHum;
                 }
@@ -56,22 +43,9 @@ public class PrecipitationGen
             }
         }
 
-        float maxPrec = 0f;
-
         foreach (HexData data in grid.GetValidHexes())
         {
-            float currentPrec = accumulatedPrecs[data.Coord];
-            if (currentPrec > maxPrec) maxPrec = currentPrec;
-        }
-
-        foreach (HexData data in grid.GetValidHexes())
-        {
-            accumulatedPrecs[data.Coord] /= maxPrec;
-        }
-
-        foreach (HexData data in grid.GetValidHexes())
-        {
-            data.ExtraData.SetPrecipitation(accumulatedPrecs[data.Coord]);
+            data.ExtraData.SetPrecipitation(baseHums[data.Coord]);
         }
     }
 }
