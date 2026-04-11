@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WorldGenController : MonoBehaviour
 {
+    [SerializeField] WorldGenParameters _worldParams;
+
     private const float BASE_FREQUENCY = 0.015f;
     private const int OCTAVES = 6;
     private const float LACUNARITY = 1.9f;
@@ -45,19 +47,19 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.4f;
         yield return null;
 
-        TemperatureGen.ComputeTemperatures(_newWorld.Grid);
+        TemperatureGen.ComputeTemperatures(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Computing Precipitations";
         _amountDone = 0.6f;
         yield return null;
 
-        PrecipitationGen.ComputePrecipitations(_newWorld.Grid);
+        PrecipitationGen.ComputePrecipitations(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Generating Rivers";
         _amountDone = 0.8f;
         yield return null;
 
-        RiverGen.GenerateRivers(_newWorld);
+        RiverGen.GenerateRivers(_newWorld, _worldParams);
 
         _currentStatus = "Done";
         _amountDone = 1f;

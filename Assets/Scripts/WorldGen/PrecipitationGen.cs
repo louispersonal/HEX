@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PrecipitationGen
 {
-    private static int _rainPasses = 12;
-    private static float _scalar = 0.99f;
-
-    public static void ComputePrecipitations(HexGrid grid)
+    public static void ComputePrecipitations(HexGrid grid, WorldGenParameters parameters)
     {
         Dictionary<AxialCoordinate, float> baseHums = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> windAdjustedHums = new Dictionary<AxialCoordinate, float>();
@@ -19,7 +16,7 @@ public class PrecipitationGen
             if (data.ExtraData.IsSea) baseHums[data.Coord] = 1f;
         }
 
-        for (int windPasses = 0; windPasses < _rainPasses; windPasses++)
+        for (int windPasses = 0; windPasses < parameters.HumidityPasses; windPasses++)
         {
             foreach (HexData data in grid.GetValidHexes())
             {
@@ -28,7 +25,7 @@ public class PrecipitationGen
                 AxialCoordinate upwindCoord = data.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
                 if (baseHums.TryGetValue(upwindCoord, out float upwindHum))
                 {
-                    float newHum = upwindHum * _scalar;
+                    float newHum = upwindHum * parameters.HumidityTransferScalar;
 
                     windAdjustedHums[data.Coord] = newHum;
                 }

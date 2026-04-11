@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TemperatureGen
 {
-    public static void ComputeTemperatures(HexGrid grid)
+    public static void ComputeTemperatures(HexGrid grid, WorldGenParameters parameters)
     {
         Dictionary<AxialCoordinate, float> baseTemps = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> windAdjustedTemps = new Dictionary<AxialCoordinate, float>();
@@ -19,7 +19,7 @@ public class TemperatureGen
             float coastalDistance = grid.NumHexesFromSea(data, out HexData seaHex);
             if (coastalDistance > 0 && seaHex != null)
             {
-                float coastalFactor = 1f / (1f + (coastalDistance / 8f));
+                float coastalFactor = 1f / (1f + (coastalDistance / (grid.Width / parameters.CoastalDenominator)));
                 baseTemps[data.Coord] = Mathf.Lerp(baseTemps[data.Coord], baseTemps[seaHex.Coord], coastalFactor * 0.6f);
             }
         }

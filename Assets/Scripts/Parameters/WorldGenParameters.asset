@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999db53df33dc0d42b915f23ebad2615, type: 3}
+  m_Name: WorldGenParameters
+  m_EditorClassIdentifier: 
+  CoastalDenominator: 18.75
+  MinimumElevationRiverSource: 0.5
+  MinimumPrecipitationRiverSource: 0.1
+  MaximumRiverLengthRatio: 2
+  BaseRiverChance: 0.1
+  HumidityPasses: 36
+  HumidityTransferScalar: 0.9999
