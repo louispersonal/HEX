@@ -12,16 +12,12 @@ public class WorldData
 
     public Pathfinder PathFinder { get { return _pathFinder; } }
 
-    public Dictionary<RiverID, River> Rivers;
-    public Dictionary<AxialCoordinate, RiverID> RiverLookup;
+    public SpatialLookup<RiverID, River> Rivers = new();
 
     public WorldData(List<HexData> hexDataList)
     {
         _grid = new HexGrid(hexDataList);
         _pathFinder = new Pathfinder(_grid);
-
-        Rivers = new Dictionary<RiverID, River>();
-        RiverLookup = new Dictionary<AxialCoordinate, RiverID>();
     }
 
     public List<HexData> GetHexData()

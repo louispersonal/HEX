@@ -17,7 +17,7 @@ public class RiverGen
 
                 BuildRiver(newRiver, world, parameters);
 
-                AddRiverToWorld(newRiver, world);
+                world.Rivers.Add(newID, newRiver, newRiver.Coords);
                 riverIndex++;
             }
         }
@@ -48,7 +48,7 @@ public class RiverGen
 
             if (downHillNeighbor == currentHex) break;
 
-            newRiver.Hexes.Add(downHillNeighbor.Coord);
+            newRiver.Coords.Add(downHillNeighbor.Coord);
 
             currentCoord = downHillNeighbor.Coord;
 
@@ -65,14 +65,5 @@ public class RiverGen
             if (neighbor.ExtraData.IsSea) return true;
         }
         return false;
-    }
-
-    private static void AddRiverToWorld(River newRiver, WorldData world)
-    {
-       world.Rivers.Add(newRiver.ID, newRiver);
-       foreach(AxialCoordinate coord in newRiver.Hexes)
-        {
-            world.RiverLookup.TryAdd(coord, newRiver.ID);
-        }
     }
 }

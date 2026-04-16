@@ -114,9 +114,9 @@ public class TextureUtilities
         }
 
         // Add rivers
-        foreach (River river in world.Rivers.Values)
+        foreach (River river in world.Rivers.Objects.Values)
         {
-            foreach(AxialCoordinate riverCoord in river.Hexes)
+            foreach(AxialCoordinate riverCoord in river.Coords)
             {
                 Vector2 pixelCoord = coords[riverCoord];
                 DrawDot(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size / 2f), Color.red);
