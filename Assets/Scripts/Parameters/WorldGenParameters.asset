@@ -17,5 +17,4 @@ MonoBehaviour:
   MinimumPrecipitationRiverSource: 0.1
   MaximumRiverLengthRatio: 2
   BaseRiverChance: 0.1
-  HumidityPasses: 36
-  HumidityTransferScalar: 0.9999
+  MaxPrecipitationDistanceFromSea: 0.0625

@@ -11,6 +11,5 @@ public class WorldGenParameters : ScriptableObject
     public float MinimumPrecipitationRiverSource;
     public float MaximumRiverLengthRatio;
     public float BaseRiverChance;
-    public int HumidityPasses;
-    public float HumidityTransferScalar;
+    public float MaxPrecipitationDistanceFromSea;
 }
