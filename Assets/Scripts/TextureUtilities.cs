@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class TextureUtilities
 {
@@ -107,9 +108,6 @@ public class TextureUtilities
             {
                 Vector2 pixelCoord = coords[axial];
                 DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), GetBiomeColor(data));
-
-                //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(0f, 0f, data.ExtraData.Precipitation));
-                //DrawFilledHex(pixelArray, horizontalPixels, verticalPixels, pixelCoord, size, new Color(data.ExtraData.Temperature, 0f, 0f));
             }
         }
 
@@ -120,6 +118,51 @@ public class TextureUtilities
             {
                 Vector2 pixelCoord = coords[riverCoord];
                 DrawDot(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size / 2f), Color.red);
+            }
+        }
+
+        return pixelArray;
+    }
+
+    public static Color[] GetMapModePixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels, Color color, MapModeTypes type)
+    {
+        HexGrid grid = world.Grid;
+
+        Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
+
+        for (int p = 0; p < horizontalPixels * verticalPixels; p++)
+        {
+            pixelArray[p] = Color.black;
+        }
+
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+
+        foreach (AxialCoordinate axial in coords.Keys)
+        {
+            if (grid.TryGetHex(axial, out HexData data))
+            {
+                Vector2 pixelCoord = coords[axial];
+
+                float parameterValue = 0f;
+
+                switch (type)
+                {
+                    case MapModeTypes.Elevation:
+                        parameterValue = data.ExtraData.Elevation;
+                        break;
+                    case MapModeTypes.Temperature:
+                        parameterValue = data.ExtraData.Temperature;
+                        break;
+                    case MapModeTypes.Precipitation:
+                        parameterValue = data.ExtraData.Precipitation;
+                        break;
+                }
+
+                Color.RGBToHSV(color, out float h, out float s, out float v);
+                v *= parameterValue;
+                Color newColor = Color.HSVToRGB(h, s, v);
+
+                DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), newColor);
             }
         }
 
@@ -149,4 +192,11 @@ public class TextureUtilities
         }
         return Color.blue;
     }
+}
+
+public enum MapModeTypes
+{
+    Elevation,
+    Temperature,
+    Precipitation
 }
