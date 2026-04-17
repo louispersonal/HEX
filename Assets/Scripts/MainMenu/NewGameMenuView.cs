@@ -7,7 +7,10 @@ public class NewGameMenuView : SubMenuView
 {
     [SerializeField] private TMP_InputField _seedField;
     [SerializeField] private TMP_InputField _widthField;
-    [SerializeField] private UnityEngine.UI.RawImage _rawImageHexPreview;
+    [SerializeField] private MapPreviewController _mapPreview;
+
+    public MapPreviewController MapPreview { get { return _mapPreview; } }
+
     public LoadingPanel WorldGenLoadingPanel;
 
     NewGameMenuController NewGameMenu { get { return _subMenu as NewGameMenuController; } }
@@ -45,10 +48,5 @@ public class NewGameMenuView : SubMenuView
     public void GenerateButton()
     {
         NewGameMenu.GenerateWorld(_widthFieldValue, _seedFieldValue);
-    }
-
-    public void UpdatePreview(Texture2D previewTexture)
-    {
-        _rawImageHexPreview.texture = previewTexture;
     }
 }

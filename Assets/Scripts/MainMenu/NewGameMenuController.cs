@@ -24,8 +24,27 @@ public class NewGameMenuController : SubMenu
 
         SetWorldAsCurrent(_worldGenController.NewWorld);
 
-        Color[] pixels = TextureUtilities.GetPixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
-        NewGameView.UpdatePreview(TextureUtilities.GetTexture(pixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]));
+        Color[] generalPixels = TextureUtilities.GetPixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+        Texture2D generalTexture = TextureUtilities.GetTexture(generalPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+
+        Color[] elevationPixels = TextureUtilities.GetMapModePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1],
+            Color.white, MapModeTypes.Elevation);
+        Texture2D elevationTexture = TextureUtilities.GetTexture(elevationPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+
+        Color[] temperaturePixels = TextureUtilities.GetMapModePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1],
+            Color.red, MapModeTypes.Temperature);
+        Texture2D temperatureTexture = TextureUtilities.GetTexture(temperaturePixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+
+        Color[] precipitationPixels = TextureUtilities.GetMapModePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1],
+            Color.blue, MapModeTypes.Precipitation);
+        Texture2D precipitationTexture = TextureUtilities.GetTexture(precipitationPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.General] = generalTexture;
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.Elevation] = elevationTexture;
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.Temperature] = temperatureTexture;
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.Precipitation] = precipitationTexture;
+
+        NewGameView.MapPreview.SetGeneralMapMode();
     }
 
     private void SetWorldAsCurrent(WorldData worldData)

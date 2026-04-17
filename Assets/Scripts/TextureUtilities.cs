@@ -198,5 +198,6 @@ public enum MapModeTypes
 {
     Elevation,
     Temperature,
-    Precipitation
+    Precipitation,
+    General
 }
