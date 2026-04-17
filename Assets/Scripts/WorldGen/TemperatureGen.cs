@@ -11,7 +11,7 @@ public class TemperatureGen
         foreach (HexData data in grid.GetValidHexes())
         {
             float latitude = grid.GetLatitude01(data.Coord);
-            baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation, data.Coord);
+            baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation, data.Coord, grid.Width);
         }
 
         foreach (HexData data in grid.GetValidHexes())
@@ -53,11 +53,11 @@ public class TemperatureGen
         }
     }
 
-    public static float ComputeBaseTemperature(float latitude, float elevation, AxialCoordinate coord)
+    public static float ComputeBaseTemperature(float latitude, float elevation, AxialCoordinate coord, int worldWidth)
     {
         float baseTemp = (1 - latitude) - (elevation * 0.128532f);
         float noiseSize = 0.3f;
-        float noiseSampleRate = 0.02f;
+        float noiseSampleRate = 3f / worldWidth;
         Vector2 noiseSamplePoint = AxialGeometry.AxialToCartesian(coord, noiseSampleRate);
         float noise = Mathf.PerlinNoise(noiseSamplePoint.x, noiseSamplePoint.y);
         noise = (noise * 2f) - 1f;
