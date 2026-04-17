@@ -48,6 +48,7 @@ public class RiverGen
             }
 
             if (downHillNeighbor == currentHex) break;
+            if (world.Rivers.ContainsAt(downHillNeighbor.Coord)) break;
 
             newRiver.Coords.Add(downHillNeighbor.Coord);
 

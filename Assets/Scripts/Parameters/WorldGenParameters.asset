@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoastalDenominator: 18.75
   MinimumElevationRiverSource: 0.5
-  MinimumPrecipitationRiverSource: 0.1
+  MinimumPrecipitationRiverSource: 0
   MaximumRiverLengthRatio: 2
-  RiverSpacing: 0.0625
+  RiverSpacing: 0.04
   MaxPrecipitationDistanceFromSea: 0.0625
