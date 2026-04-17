@@ -16,5 +16,5 @@ MonoBehaviour:
   MinimumElevationRiverSource: 0.5
   MinimumPrecipitationRiverSource: 0.1
   MaximumRiverLengthRatio: 2
-  BaseRiverChance: 0.1
+  RiverSpacing: 0.0625
   MaxPrecipitationDistanceFromSea: 0.0625

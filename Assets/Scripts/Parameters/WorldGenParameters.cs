@@ -10,6 +10,6 @@ public class WorldGenParameters : ScriptableObject
     public float MinimumElevationRiverSource;
     public float MinimumPrecipitationRiverSource;
     public float MaximumRiverLengthRatio;
-    public float BaseRiverChance;
+    public float RiverSpacing;
     public float MaxPrecipitationDistanceFromSea;
 }

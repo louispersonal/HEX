@@ -63,9 +63,9 @@ public class TextureUtilities
         }
     }
 
-    public static void DrawLine(Color[] pix, int horizontalPixels, Vector2 lineStart, Vector2 lineEnd, Color color)
+    public static void DrawLine(Color[] pix, int horizontalPixels, Vector2 lineStart, Vector2 lineEnd, Color color, int width=1)
     {
-        List<Vector2Int> points = CartesianGeometry.BresenhamsLine(new Vector2Int (Mathf.RoundToInt(lineStart.x), Mathf.RoundToInt(lineStart.y)), new Vector2Int(Mathf.RoundToInt(lineEnd.x), Mathf.RoundToInt(lineEnd.y)));
+        List<Vector2Int> points = CartesianGeometry.BresenhamsLine(new Vector2Int (Mathf.RoundToInt(lineStart.x), Mathf.RoundToInt(lineStart.y)), new Vector2Int(Mathf.RoundToInt(lineEnd.x), Mathf.RoundToInt(lineEnd.y)), width);
 
         foreach (Vector2Int point in points)
         {
@@ -76,16 +76,12 @@ public class TextureUtilities
     public static void DrawDot(Color[] pix, int horizontalPixels, Vector2 position, int radius, Color color)
     {
         Vector2Int snappedPosition = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y));
-        // create bounding box and then check if points satsify (x-cx)^2 + (y-cy)^2 = r
-        for (int y = snappedPosition.y - radius; y <= snappedPosition.y + radius; y++)
+
+        List<Vector2Int> points = CartesianGeometry.GetCircle(snappedPosition, radius);
+
+        foreach (Vector2Int point in points)
         {
-            for (int x = snappedPosition.x - radius; x <= snappedPosition.x + radius; x++)
-            {
-                if (Mathf.Pow(x - snappedPosition.x, 2) + Mathf.Pow(y - snappedPosition.y, 2) <= radius)
-                {
-                    pix[y * horizontalPixels + x] = color;
-                }
-            }
+            pix[point.y * horizontalPixels + point.x] = color;
         }
     }
 
@@ -114,10 +110,11 @@ public class TextureUtilities
         // Add rivers
         foreach (River river in world.Rivers.Objects.Values)
         {
-            foreach(AxialCoordinate riverCoord in river.Coords)
+            for (int i = 0; i < river.Coords.Count - 1; i++)
             {
-                Vector2 pixelCoord = coords[riverCoord];
-                DrawDot(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size / 2f), Color.red);
+                Vector2 pixelCoordRiverStart = coords[river.Coords[i]];
+                Vector2 pixelCoordRiverEnd = coords[river.Coords[i + 1]];
+                DrawLine(pixelArray, horizontalPixels, pixelCoordRiverStart, pixelCoordRiverEnd, new Color(0.26f, 0.94f, 0.96f), Mathf.RoundToInt(size * 0.75f));
             }
         }
 
