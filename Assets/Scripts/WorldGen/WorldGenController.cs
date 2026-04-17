@@ -38,28 +38,34 @@ public class WorldGenController : MonoBehaviour
 
 
         _currentStatus = "Generating Heightmap";
-        _amountDone = 0.2f;
+        _amountDone = 0.16f;
         yield return null;
 
         ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, defaultParams, WIDTH_HEIGHT_RATIO);
 
         _currentStatus = "Computing Temperatures";
-        _amountDone = 0.4f;
+        _amountDone = 0.32f;
         yield return null;
 
         TemperatureGen.ComputeTemperatures(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Computing Precipitations";
-        _amountDone = 0.6f;
+        _amountDone = 0.48f;
         yield return null;
 
         PrecipitationGen.ComputePrecipitations(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Generating Rivers";
-        _amountDone = 0.8f;
+        _amountDone = 0.6f;
         yield return null;
 
         RiverGen.GenerateRivers(_newWorld, _worldParams);
+
+        _currentStatus = "Generating Vegetation";
+        _amountDone = 0.78f;
+        yield return null;
+
+        VegetationGen.GenerateVegetation(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Done";
         _amountDone = 1f;

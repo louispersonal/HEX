@@ -153,6 +153,9 @@ public class TextureUtilities
                     case MapModeTypes.Precipitation:
                         parameterValue = data.ExtraData.Precipitation;
                         break;
+                    case MapModeTypes.Vegetation:
+                        parameterValue = data.ExtraData.LowVegetation;
+                        break;
                 }
 
                 Color.RGBToHSV(color, out float h, out float s, out float v);
@@ -196,5 +199,6 @@ public enum MapModeTypes
     Elevation,
     Temperature,
     Precipitation,
+    Vegetation,
     General
 }

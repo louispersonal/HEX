@@ -32,4 +32,9 @@ public class MapPreviewController : MonoBehaviour
     {
         SwitchMapMode(MapModeTypes.Precipitation);
     }
+
+    public void SetVegetationMapMode()
+    {
+        SwitchMapMode(MapModeTypes.Vegetation);
+    }
 }
