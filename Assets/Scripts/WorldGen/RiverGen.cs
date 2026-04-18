@@ -8,6 +8,7 @@ public class RiverGen
     public static void GenerateRivers(WorldData world, WorldGenParameters parameters)
     {
         int riverIndex = 0;
+        int lakeIndex = 0;
         foreach (HexData data in world.Grid.GetValidHexes())
         {
             float riverChance = 1f / (parameters.RiverSpacing * world.Grid.Width);
@@ -16,10 +17,18 @@ public class RiverGen
                 RiverID newID = new RiverID(riverIndex);
                 River newRiver = new River(newID, data.Coord);
 
-                BuildRiver(newRiver, world, parameters);
+                BuildRiver(newRiver, world, parameters, out HexData lakeHex);
 
                 world.Rivers.Add(newID, newRiver, newRiver.Coords);
                 riverIndex++;
+
+                if (lakeHex != null)
+                {
+                    LakeID newLakeId = new LakeID(lakeIndex);
+                    Lake newLake = new Lake(newLakeId, new List<AxialCoordinate> { lakeHex.Coord });
+                    world.Lakes.Add(newLakeId, newLake, new List<AxialCoordinate> { lakeHex.Coord });
+                    lakeIndex++;
+                }
             }
         }
     }
@@ -31,10 +40,12 @@ public class RiverGen
             && Random.Range(0f, 1f) < riverChance);
     }
 
-    private static void BuildRiver(River newRiver, WorldData world, WorldGenParameters parameters)
+    private static void BuildRiver(River newRiver, WorldData world, WorldGenParameters parameters, out HexData lakeHex)
     {
         int riverLength = 1;
         AxialCoordinate currentCoord = newRiver.Source;
+        bool endsInLake = false;
+        lakeHex = null;
         while (riverLength < world.Grid.Width / parameters.MaximumRiverLengthRatio)
         {
             if (CheckAdjacentSea(currentCoord, world)) break;
@@ -47,7 +58,7 @@ public class RiverGen
                 if (neighbor.ExtraData.Elevation < downHillNeighbor.ExtraData.Elevation) downHillNeighbor = neighbor;
             }
 
-            if (downHillNeighbor == currentHex) break;
+            if (downHillNeighbor == currentHex) { endsInLake = true; break; }
             if (world.Rivers.ContainsAt(downHillNeighbor.Coord)) break;
 
             newRiver.Coords.Add(downHillNeighbor.Coord);
@@ -56,6 +67,12 @@ public class RiverGen
 
             riverLength++;
         }
+
+        if (endsInLake && riverLength > 1)
+        {
+            lakeHex = world.Grid.TryGetHex(currentCoord, out HexData hex)? hex : null;
+        }
+
         newRiver.Mouth = currentCoord;
     }
 

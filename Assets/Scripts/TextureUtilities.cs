@@ -114,7 +114,16 @@ public class TextureUtilities
             {
                 Vector2 pixelCoordRiverStart = coords[river.Coords[i]];
                 Vector2 pixelCoordRiverEnd = coords[river.Coords[i + 1]];
-                DrawLine(pixelArray, horizontalPixels, pixelCoordRiverStart, pixelCoordRiverEnd, new Color(0.26f, 0.94f, 0.96f), Mathf.RoundToInt(size * 0.75f));
+                DrawLine(pixelArray, horizontalPixels, pixelCoordRiverStart, pixelCoordRiverEnd, new Color(0.26f, 0.94f, 0.96f), Mathf.RoundToInt(size * 0.5f));
+            }
+        }
+
+        // Add lakes
+        foreach (Lake lake in world.Lakes.Objects.Values)
+        {
+            for (int i = 0; i < lake.Coords.Count; i++)
+            {
+                DrawDot(pixelArray, horizontalPixels, coords[lake.Coords[0]], Mathf.RoundToInt(size * 0.75f), new Color(0.26f, 0.5f, 0.96f));
             }
         }
 

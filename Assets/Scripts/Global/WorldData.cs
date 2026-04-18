@@ -13,6 +13,7 @@ public class WorldData
     public Pathfinder PathFinder { get { return _pathFinder; } }
 
     public SpatialLookup<RiverID, River> Rivers = new();
+    public SpatialLookup<LakeID, Lake> Lakes = new();
 
     public WorldData(List<HexData> hexDataList)
     {
