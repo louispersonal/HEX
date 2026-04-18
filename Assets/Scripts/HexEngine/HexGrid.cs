@@ -134,8 +134,8 @@ public class HexGrid
         float a = 2f;
         float b = 2f;
 
-        float dfdx = (a * Mathf.PI / 4f) * Mathf.Sin(a * Mathf.PI * lon);
-        float dfdy = (b * Mathf.PI / 4f) * Mathf.Sin(b * Mathf.PI * lat);
+        float dfdx = 0.707f * Mathf.Sin(a * Mathf.PI * lon);
+        float dfdy = 0.707f * Mathf.Sin(b * Mathf.PI * lat);
         return CartesianGeometry.GetPerpendicularVector(new Vector2(dfdx, dfdy));
     }
 
