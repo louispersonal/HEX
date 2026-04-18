@@ -82,14 +82,16 @@ public class WorldGenController : MonoBehaviour
         float highestElevation = 0f;
         float highestTemperature = 0f;
         float highestPrecipitation = 0f;
+        float strongestWind = 0f;
 
         foreach (HexData data in world.Grid.GetValidHexes())
         {
             if (data.ExtraData.Elevation > highestElevation) highestElevation = data.ExtraData.Elevation;
             if (data.ExtraData.Temperature > highestTemperature) highestTemperature = data.ExtraData.Temperature;
             if (data.ExtraData.Precipitation > highestPrecipitation) highestPrecipitation = data.ExtraData.Precipitation;
+            if (world.Grid.GetWindDirection(data.Coord).magnitude > strongestWind) strongestWind = world.Grid.GetWindDirection(data.Coord).magnitude;
         }
 
-        Debug.Log($"Max Elevation: {highestElevation}, Max Temperature: {highestTemperature}, Max Precipitation: {highestPrecipitation}");
+        Debug.Log($"Max Elevation: {highestElevation}, Max Temperature: {highestTemperature}, Max Precipitation: {highestPrecipitation}, Strongest Wind: {strongestWind}");
     }
 }
