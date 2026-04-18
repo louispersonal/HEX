@@ -13,7 +13,9 @@ public class VegetationGen : MonoBehaviour
         {
             if (data.ExtraData.IsSea) continue;
             float totalBiomass = (0.5f * InverseQuadraticCurve(data.ExtraData.Temperature, OPTIMUM_TEMP, 4f)) + (0.5f * InverseQuadraticCurve(data.ExtraData.Precipitation, OPTIMUM_PREC, 4f));
-            data.ExtraData.SetVegetations(totalBiomass, totalBiomass);
+            float proportionLowVegetation = 0.5f * data.ExtraData.Elevation + 0.5f * grid.GetWindDirection(data.Coord).magnitude;
+            float proportionHighVegetation = 1f - proportionLowVegetation;
+            data.ExtraData.SetVegetations(totalBiomass * proportionLowVegetation, totalBiomass * proportionHighVegetation);
         }
     }
     

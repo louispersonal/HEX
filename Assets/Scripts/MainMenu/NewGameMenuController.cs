@@ -39,15 +39,20 @@ public class NewGameMenuController : SubMenu
             Color.blue, MapModeTypes.Precipitation);
         Texture2D precipitationTexture = TextureUtilities.GetTexture(precipitationPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
 
-        Color[] vegetationPixels = TextureUtilities.GetMapModePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1],
-            Color.green, MapModeTypes.Vegetation);
-        Texture2D vegetationTexture = TextureUtilities.GetTexture(vegetationPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+        Color[] lowVegetationPixels = TextureUtilities.GetMapModePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1],
+            Color.green, MapModeTypes.LowVegetation);
+        Texture2D lowVegetationTexture = TextureUtilities.GetTexture(lowVegetationPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+
+        Color[] highVegetationPixels = TextureUtilities.GetMapModePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1],
+            Color.green, MapModeTypes.HighVegetation);
+        Texture2D highVegetationTexture = TextureUtilities.GetTexture(highVegetationPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
 
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.General] = generalTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.Elevation] = elevationTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.Temperature] = temperatureTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.Precipitation] = precipitationTexture;
-        NewGameView.MapPreview.MapModeTextures[MapModeTypes.Vegetation] = vegetationTexture;
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.LowVegetation] = lowVegetationTexture;
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.HighVegetation] = highVegetationTexture;
 
         NewGameView.MapPreview.SetGeneralMapMode();
     }

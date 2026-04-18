@@ -33,8 +33,13 @@ public class MapPreviewController : MonoBehaviour
         SwitchMapMode(MapModeTypes.Precipitation);
     }
 
-    public void SetVegetationMapMode()
+    public void SetLowVegetationMapMode()
     {
-        SwitchMapMode(MapModeTypes.Vegetation);
+        SwitchMapMode(MapModeTypes.LowVegetation);
+    }
+
+    public void SetHighVegetationMapMode()
+    {
+        SwitchMapMode(MapModeTypes.HighVegetation);
     }
 }

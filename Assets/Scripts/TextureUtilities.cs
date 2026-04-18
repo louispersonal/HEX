@@ -162,8 +162,11 @@ public class TextureUtilities
                     case MapModeTypes.Precipitation:
                         parameterValue = data.ExtraData.Precipitation;
                         break;
-                    case MapModeTypes.Vegetation:
+                    case MapModeTypes.LowVegetation:
                         parameterValue = data.ExtraData.LowVegetation;
+                        break;
+                    case MapModeTypes.HighVegetation:
+                        parameterValue = data.ExtraData.HighVegetation;
                         break;
                 }
 
@@ -208,6 +211,7 @@ public enum MapModeTypes
     Elevation,
     Temperature,
     Precipitation,
-    Vegetation,
+    LowVegetation,
+    HighVegetation,
     General
 }
