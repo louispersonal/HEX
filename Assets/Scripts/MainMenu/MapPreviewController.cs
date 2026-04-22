@@ -42,4 +42,9 @@ public class MapPreviewController : MonoBehaviour
     {
         SwitchMapMode(MapModeTypes.HighVegetation);
     }
+
+    public void SetGeoFeatureMapMode()
+    {
+        SwitchMapMode(MapModeTypes.GeoFeatures);
+    }
 }

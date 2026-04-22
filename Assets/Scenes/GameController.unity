@@ -260,6 +260,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _worldParams: {fileID: 11400000, guid: 27627bbafce25e64ca166b50468e69ca, type: 2}
+  _geoFeatureSpawnParameters:
+  - {fileID: 11400000, guid: 6d166c5b48ed526499869109363a5a21, type: 2}
+  - {fileID: 11400000, guid: 13fac7186f6745a4d82ce557c8336342, type: 2}
+  - {fileID: 11400000, guid: acd5ee65cbd5cc74b9963312441f691c, type: 2}
+  - {fileID: 11400000, guid: c801427772a339e42a0390caf02a3cb8, type: 2}
+  - {fileID: 11400000, guid: 477408ea43a0ee04a8062a37b588d67f, type: 2}
+  - {fileID: 11400000, guid: 86251abbf881fd749a0f291d0ce3ab9c, type: 2}
+  - {fileID: 11400000, guid: 9d9b8a9ece1259f449fa767c9311feac, type: 2}
 --- !u!1 &1736040581
 GameObject:
   m_ObjectHideFlags: 0

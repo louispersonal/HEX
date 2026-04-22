@@ -181,6 +181,58 @@ public class TextureUtilities
         return pixelArray;
     }
 
+    public static Color[] GetGeoFeaturePixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
+    {
+        HexGrid grid = world.Grid;
+
+        Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
+
+        for (int p = 0; p < horizontalPixels * verticalPixels; p++)
+        {
+            pixelArray[p] = Color.black;
+        }
+
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+
+        foreach (AxialCoordinate axial in coords.Keys)
+        {
+            if (grid.TryGetHex(axial, out HexData data) && world.GeoFeatures.ContainsAt(axial))
+            {
+                Vector2 pixelCoord = coords[axial];
+
+                if (world.GeoFeatures.TryGetObjectAt(axial, out GeoFeature feature))
+                {
+                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), GetGeoFeatureColor(feature.Type));
+                }
+            }
+        }
+
+        return pixelArray;
+    }
+
+    public static Color GetGeoFeatureColor(GeoFeatureType type)
+    {
+        switch (type)
+        {
+            case GeoFeatureType.Canyon:
+                return new Color(0.98f, 0.494f, 0f);
+            case GeoFeatureType.Mountain:
+                return new Color(0.61f, 0.61f, 0.61f);
+            case GeoFeatureType.NaturalSpring:
+                return new Color(0.63f, 0.66f, 1f);
+            case GeoFeatureType.Waterfall:
+                return new Color(0f, 0f, 0.6f);
+            case GeoFeatureType.RockFormation:
+                return new Color(0.9f, 0f, 0.588f);
+            case GeoFeatureType.Valley:
+                return new Color(0.573f, 0.741f, 0f);
+            case GeoFeatureType.Cliff:
+                return new Color(0.631f, 0.467f, 0.741f);
+        }
+
+        return new Color(1f, 1f, 1f);
+    }
+
     public static Color GetBiomeColor(HexData data)
     {
         switch (data.ExtraData.Biome)
@@ -213,5 +265,6 @@ public enum MapModeTypes
     Precipitation,
     LowVegetation,
     HighVegetation,
+    GeoFeatures,
     General
 }

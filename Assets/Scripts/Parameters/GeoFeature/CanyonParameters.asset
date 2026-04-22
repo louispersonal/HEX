@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ebb1a41f72f3774ca965612d073682e, type: 3}
+  m_Name: CanyonParameters
+  m_EditorClassIdentifier: 
+  FeatureType: 0
+  AcceptedBiomes: 0000000004000000
+  MustBeSeaAdjacent: 0
+  ElevationMin: 0
+  ElevationMax: 1
+  TemperatureMin: 0
+  TemperatureMax: 1
+  PrecipitationMin: 0
+  PrecipitationMax: 1
+  LowVegetationMin: 0
+  LowVegetationMax: 1
+  HighVegetationMin: 0
+  HighVegetationMax: 1
+  MustContainRiver: 0
+  BaseChance: 0.4

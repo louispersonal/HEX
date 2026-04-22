@@ -6,6 +6,8 @@ public class WorldGenController : MonoBehaviour
 {
     [SerializeField] WorldGenParameters _worldParams;
 
+    [SerializeField] List<GeoFeatureSpawnParameters> _geoFeatureSpawnParameters;
+
     private const float BASE_FREQUENCY = 0.015f;
     private const int OCTAVES = 6;
     private const float LACUNARITY = 1.9f;
@@ -66,6 +68,8 @@ public class WorldGenController : MonoBehaviour
         yield return null;
 
         VegetationGen.GenerateVegetation(_newWorld.Grid, _worldParams);
+
+        GeoFeatureGen.AddGeoFeatures(_newWorld, _geoFeatureSpawnParameters);
 
         _currentStatus = "Done";
         _amountDone = 1f;
