@@ -8,8 +8,40 @@ public class Region
 
     public int Size;
 
-    public Region(ushort iD)
+    public AxialCoordinate SeedCoord;
+
+    public Region(ushort iD, AxialCoordinate seedCoord)
     {
         ID = iD;
-    }   
+        SeedCoord = seedCoord;
+    }
+
+    public List<HexData> GetHexesInRegion(WorldData world)
+    {
+        List<HexData> result = new();
+        Stack<HexData> stack = new();
+
+        world.Grid.TryGetHex(SeedCoord, out HexData seedHex);
+        stack.Push(seedHex);
+
+        while (stack.Count > 0)
+        {
+            HexData hex = stack.Pop();
+
+            if (hex == null) continue;
+            if (hex.ExtraData.RegionId != ID) continue;
+
+            result.Add(hex);
+
+            foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, hex, 1))
+            {
+                if (neighbor != null && neighbor.ExtraData.RegionId == ID && !result.Contains(neighbor))
+                {
+                    stack.Push(neighbor);
+                }
+            }
+        }
+
+        return result;
+    }
 }

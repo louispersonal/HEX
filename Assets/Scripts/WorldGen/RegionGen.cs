@@ -12,8 +12,9 @@ public class RegionGen
         {
             if (data.ExtraData.RegionId == 0 && !data.ExtraData.IsSea) // this hex does not belong to a region yet
             {
-                Region newRegion = new Region(currentRegionId);
+                Region newRegion = new Region(currentRegionId, data.Coord);
                 FillRegion(world, data, newRegion);
+                newRegion.Size = newRegion.GetHexesInRegion(world).Count;
                 regions.Add(newRegion);
                 currentRegionId++;
             }
