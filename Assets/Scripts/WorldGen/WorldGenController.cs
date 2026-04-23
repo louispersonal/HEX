@@ -71,6 +71,8 @@ public class WorldGenController : MonoBehaviour
 
         GeoFeatureGen.AddGeoFeatures(_newWorld, _geoFeatureSpawnParameters);
 
+       _newWorld.Regions = RegionGen.CreateRegions(_newWorld);
+
         _currentStatus = "Done";
         _amountDone = 1f;
         yield return null;

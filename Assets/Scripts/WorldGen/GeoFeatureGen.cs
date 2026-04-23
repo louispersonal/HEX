@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-public class GeoFeatureGen : MonoBehaviour
+public class GeoFeatureGen
 {
     public static void AddGeoFeatures(WorldData world, List<GeoFeatureSpawnParameters> parameters)
     {

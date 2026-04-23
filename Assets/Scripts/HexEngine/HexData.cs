@@ -40,6 +40,9 @@ public struct HexExtraData
     [SerializeField] byte _precipitation;
     public float Precipitation { get { return _precipitation * ByteToFloat; } }
 
+    [SerializeField] ushort _regionID;
+
+    public ushort RegionId { get { return _regionID; } }
     public bool IsSea { get { return _elevation == 0; } }
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
@@ -63,6 +66,11 @@ public struct HexExtraData
     {
         _lowVegetation = (byte)(lowVegetation * 255f);
         _highVegetation = (byte)(highVegetation * 255f);
+    }
+
+    public void SetRegionID(ushort regionId)
+    {
+        _regionID = regionId;
     }
 
     public int GetElevationInMeters()

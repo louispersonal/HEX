@@ -16,6 +16,8 @@ public class WorldData
     public SpatialLookup<LakeID, Lake> Lakes = new();
     public SpatialLookup<GeoID, GeoFeature> GeoFeatures = new();
 
+    public Region[] Regions = new Region[0];
+
     public WorldData(List<HexData> hexDataList)
     {
         _grid = new HexGrid(hexDataList);
