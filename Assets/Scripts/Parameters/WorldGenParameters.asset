@@ -18,3 +18,4 @@ MonoBehaviour:
   MaximumRiverLengthRatio: 2
   RiverSpacing: 0.04
   MaxPrecipitationDistanceFromSea: 0.0625
+  MaxRegionSizeRatio: 0.01
