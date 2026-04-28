@@ -13,8 +13,8 @@ public class RegionGen
             if (data.ExtraData.RegionId == 0 && !data.ExtraData.IsSea) // this hex does not belong to a region yet
             {
                 Region newRegion = new Region(currentRegionId, data.Coord);
+                newRegion.Size = 1;
                 FillRegion(world, data, newRegion);
-                newRegion.Size = newRegion.GetHexesInRegion(world).Count;
                 regions.Add(newRegion);
                 currentRegionId++;
             }
@@ -23,14 +23,31 @@ public class RegionGen
         return regions.ToArray();
     }
 
-    private static void FillRegion(WorldData world, HexData seedHex, Region newRegion)
+    private static void FillRegion(WorldData world, HexData startHex, Region newRegion)
     {
-        seedHex.ExtraData.SetRegionID(newRegion.ID);
-        foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, seedHex, 1))
+        Biome targetBiome = startHex.ExtraData.Biome;
+
+        Stack<HexData> stack = new Stack<HexData>();
+        stack.Push(startHex);
+
+        while (stack.Count > 0)
         {
-            if (neighbor.ExtraData.RegionId == 0 && neighbor.ExtraData.Biome == seedHex.ExtraData.Biome)
+            HexData hex = stack.Pop();
+            newRegion.Size++;
+
+            if (hex == null) continue;
+            if (hex.ExtraData.RegionId != 0) continue;
+            if (hex.ExtraData.Biome != targetBiome) continue;
+
+            hex.ExtraData.SetRegionID(newRegion.ID);
+
+            foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, hex, 1))
             {
-                FillRegion(world, neighbor, newRegion);
+                if (neighbor == null) continue;
+                if (neighbor.ExtraData.RegionId != 0) continue;
+                if (neighbor.ExtraData.Biome != targetBiome) continue;
+
+                stack.Push(neighbor);
             }
         }
     }

@@ -50,6 +50,9 @@ public class NewGameMenuController : SubMenu
         Color[] geoFeaturePixels = TextureUtilities.GetGeoFeaturePixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
         Texture2D geoFeatureTexture = TextureUtilities.GetTexture(geoFeaturePixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
 
+        Color[] regionPixels = TextureUtilities.GetRegionPixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+        Texture2D regionTexture = TextureUtilities.GetTexture(regionPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
+
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.General] = generalTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.Elevation] = elevationTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.Temperature] = temperatureTexture;
@@ -57,6 +60,7 @@ public class NewGameMenuController : SubMenu
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.LowVegetation] = lowVegetationTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.HighVegetation] = highVegetationTexture;
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.GeoFeatures] = geoFeatureTexture;
+        NewGameView.MapPreview.MapModeTextures[MapModeTypes.Regions] = regionTexture;
 
         NewGameView.MapPreview.SetGeneralMapMode();
     }

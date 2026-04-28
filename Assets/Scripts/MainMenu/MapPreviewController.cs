@@ -47,4 +47,9 @@ public class MapPreviewController : MonoBehaviour
     {
         SwitchMapMode(MapModeTypes.GeoFeatures);
     }
+
+    public void SetRegionMapMode()
+    {
+        SwitchMapMode(MapModeTypes.Regions);
+    }
 }

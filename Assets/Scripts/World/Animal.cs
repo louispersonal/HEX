@@ -17,7 +17,7 @@ public class SpeciesProfile
     public SizeTier Size;
 
     public FoodType[] Eats;
-    public Biome[] PreferredBiomes;
+    public Biome PreferredBiome;
 }
 
 public enum SizeTier

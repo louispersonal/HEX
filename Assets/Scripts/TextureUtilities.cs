@@ -210,6 +210,35 @@ public class TextureUtilities
         return pixelArray;
     }
 
+    public static Color[] GetRegionPixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
+    {
+        HexGrid grid = world.Grid;
+
+        Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
+
+        for (int p = 0; p < horizontalPixels * verticalPixels; p++)
+        {
+            pixelArray[p] = Color.blue;
+        }
+
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+
+        foreach (AxialCoordinate axial in coords.Keys)
+        {
+            if (grid.TryGetHex(axial, out HexData data))
+            {
+                Vector2 pixelCoord = coords[axial];
+
+                if (data.ExtraData.RegionId > 0)
+                {
+                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), ColorFromUShort(data.ExtraData.RegionId));
+                }
+            }
+        }
+
+        return pixelArray;
+    }
+
     public static Color GetGeoFeatureColor(GeoFeatureType type)
     {
         switch (type)
@@ -256,6 +285,34 @@ public class TextureUtilities
         }
         return Color.blue;
     }
+
+    public static Color ColorFromUShort(ushort value)
+    {
+        uint hash = Hash(value);
+
+        // Use hashed bits to generate HSV values
+        float hue = (hash & 0xFFFF) / 65535f;
+
+        // Keep saturation/value in nice visible ranges
+        float saturation = 0.55f + (((hash >> 16) & 0xFF) / 255f) * 0.35f;
+        float valueBrightness = 0.65f + (((hash >> 24) & 0xFF) / 255f) * 0.30f;
+
+        return Color.HSVToRGB(hue, saturation, valueBrightness);
+    }
+
+    private static uint Hash(ushort input)
+    {
+        uint x = input;
+
+        // Integer hash / avalanche
+        x ^= x >> 16;
+        x *= 0x7feb352d;
+        x ^= x >> 15;
+        x *= 0x846ca68b;
+        x ^= x >> 16;
+
+        return x;
+    }
 }
 
 public enum MapModeTypes
@@ -266,5 +323,6 @@ public enum MapModeTypes
     LowVegetation,
     HighVegetation,
     GeoFeatures,
+    Regions,
     General
 }
