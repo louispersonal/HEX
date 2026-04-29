@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class HexData : BaseHexData
 {
-    private HexExtraData _extraData;
+    [SerializeField] private HexExtraData _extraData;
 
     public ref HexExtraData ExtraData => ref _extraData;
 

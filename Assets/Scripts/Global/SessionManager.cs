@@ -23,7 +23,10 @@ public class SessionManager : MonoBehaviour
 
     public void SaveWorldData()
     {
-        List<HexData> data = _worldData.GetHexData();
+        WorldSaveData saveData = _worldData.ToSaveData();
+        string json = JsonUtility.ToJson(saveData, true);
+        string path = Application.persistentDataPath + "/world_123.json";
+        System.IO.File.WriteAllText(path, json);
     }
 
     public void LoadGameData(string filename)

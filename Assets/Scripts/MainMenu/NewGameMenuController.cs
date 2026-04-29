@@ -69,4 +69,9 @@ public class NewGameMenuController : SubMenu
     {
         GameController.Instance.SessionManager.SetWorldData(worldData);
     }
+
+    public void SaveCurrentWorld()
+    {
+        GameController.Instance.SessionManager.SaveWorldData();
+    }
 }

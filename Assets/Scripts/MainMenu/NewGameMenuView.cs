@@ -49,4 +49,9 @@ public class NewGameMenuView : SubMenuView
     {
         NewGameMenu.GenerateWorld(_widthFieldValue, _seedFieldValue);
     }
+
+    public void SaveButton()
+    {
+        NewGameMenu.SaveCurrentWorld();
+    }
 }

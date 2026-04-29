@@ -24,8 +24,19 @@ public class WorldData
         _pathFinder = new Pathfinder(_grid);
     }
 
-    public List<HexData> GetHexData()
+    public WorldSaveData ToSaveData()
     {
-        return Grid.GetHexData();
+        return new WorldSaveData(Grid.GetHexData());
     }
-} 
+}
+
+[System.Serializable]
+public class WorldSaveData
+{
+    public List<HexData> Hexes;
+
+    public WorldSaveData(List<HexData> hexes)
+    {
+        Hexes = hexes;
+    }
+}
