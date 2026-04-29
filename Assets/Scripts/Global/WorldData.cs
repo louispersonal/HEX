@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WorldData
@@ -26,7 +27,7 @@ public class WorldData
 
     public WorldSaveData ToSaveData()
     {
-        return new WorldSaveData(Grid.GetHexData());
+        return new WorldSaveData(Grid.GetHexData(), Rivers.Objects.Values.ToList(), Lakes.Objects.Values.ToList(), GeoFeatures.Objects.Values.ToList(), Regions);
     }
 }
 
@@ -34,9 +35,17 @@ public class WorldData
 public class WorldSaveData
 {
     public List<HexData> Hexes;
+    public List<River> Rivers;
+    public List<Lake> Lakes;
+    public List<GeoFeature> GeoFeatures;
+    public Region[] Regions;
 
-    public WorldSaveData(List<HexData> hexes)
+    public WorldSaveData(List<HexData> hexes, List<River> rivers, List<Lake> lakes, List<GeoFeature> geoFeatures, Region[] regions)
     {
         Hexes = hexes;
+        Rivers = rivers;
+        Lakes = lakes;
+        GeoFeatures = geoFeatures;
+        Regions = regions;
     }
 }

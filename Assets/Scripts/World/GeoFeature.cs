@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class GeoFeature
 {
     public GeoID ID;
@@ -17,6 +18,7 @@ public class GeoFeature
     }
 }
 
+[System.Serializable]
 public struct GeoID
 {
     public int Value;

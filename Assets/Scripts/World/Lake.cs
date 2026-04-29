@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Lake
 {
     public LakeID ID;
@@ -14,7 +15,7 @@ public class Lake
     }
 }
 
-
+[System.Serializable]
 public struct LakeID
 {
     public int Value;
