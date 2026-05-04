@@ -10,9 +10,12 @@ public class AnimalGroup
     public int Count;
 }
 
+[System.Serializable]
 public class SpeciesProfile
 {
     public ushort SpeciesId;
+
+    public string CommonName;
 
     public SizeTier Size;
 

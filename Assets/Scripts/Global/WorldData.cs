@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WorldData
 {
+    private string _name = "TestWorld";
+
     private HexGrid _grid;
 
     public HexGrid Grid { get { return _grid; } }
@@ -27,21 +29,23 @@ public class WorldData
 
     public WorldSaveData ToSaveData()
     {
-        return new WorldSaveData(Grid.GetHexData(), Rivers.Objects.Values.ToList(), Lakes.Objects.Values.ToList(), GeoFeatures.Objects.Values.ToList(), Regions);
+        return new WorldSaveData(_name, Grid.GetHexData(), Rivers.Objects.Values.ToList(), Lakes.Objects.Values.ToList(), GeoFeatures.Objects.Values.ToList(), Regions);
     }
 }
 
 [System.Serializable]
 public class WorldSaveData
 {
+    public string WorldName;
     public List<HexData> Hexes;
     public List<River> Rivers;
     public List<Lake> Lakes;
     public List<GeoFeature> GeoFeatures;
     public Region[] Regions;
 
-    public WorldSaveData(List<HexData> hexes, List<River> rivers, List<Lake> lakes, List<GeoFeature> geoFeatures, Region[] regions)
+    public WorldSaveData(string name, List<HexData> hexes, List<River> rivers, List<Lake> lakes, List<GeoFeature> geoFeatures, Region[] regions)
     {
+        WorldName = name;
         Hexes = hexes;
         Rivers = rivers;
         Lakes = lakes;

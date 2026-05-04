@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class SessionManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class SessionManager : MonoBehaviour
     public WorldData WorldData { get { return _worldData; } }
 
     private GameData _gameData;
+
+    private string WorldsFolder =>
+    Path.Combine(Application.persistentDataPath, "Worlds");
 
     public void LoadWorldData(string filename)
     {
@@ -25,13 +29,33 @@ public class SessionManager : MonoBehaviour
     {
         WorldSaveData saveData = _worldData.ToSaveData();
         string json = JsonUtility.ToJson(saveData, true);
-        string path = Application.persistentDataPath + "/world_123.json";
-        System.IO.File.WriteAllText(path, json);
+        string path = WorldsFolder + "/world_" + saveData.WorldName + ".json";
+        File.WriteAllText(path, json);
     }
 
     public void LoadGameData(string filename)
     {
+        WorldSaveData saveData = JsonUtility.FromJson<WorldSaveData>(filename);
+        WorldData loadedWorld = new WorldData(saveData.Hexes);
+        
+        foreach (River river in saveData.Rivers)
+        {
+            loadedWorld.Rivers.Add(river.ID, river, river.Coords);
+        }
 
+        foreach (Lake lake in saveData.Lakes)
+        {
+            loadedWorld.Lakes.Add(lake.ID, lake, lake.Coords);
+        }
+
+        foreach (GeoFeature geoFeature in saveData.GeoFeatures)
+        {
+            loadedWorld.GeoFeatures.Add(geoFeature.ID, geoFeature, geoFeature.Coords);
+        }
+
+        loadedWorld.Regions = saveData.Regions;
+
+        SetWorldData(loadedWorld);
     }
 
     public void NewGameData()
