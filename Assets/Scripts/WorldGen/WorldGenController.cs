@@ -26,7 +26,7 @@ public class WorldGenController : MonoBehaviour
     private float _amountDone;
     public float AmountDone { get { return _amountDone; } }
 
-    public IEnumerator GenerateWorldData(int worldWidthInHexes, int seed)
+    public IEnumerator GenerateWorldData(int worldWidthInHexes, int seed, string name)
     {
         _generationInProgress = true;
         _currentStatus = "Starting";
@@ -38,6 +38,7 @@ public class WorldGenController : MonoBehaviour
 
         _newWorld = new WorldData(newHexData);
 
+        _newWorld.Name = name;
 
         _currentStatus = "Generating Heightmap";
         _amountDone = 0.16f;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class SessionManager : MonoBehaviour
 {
@@ -13,11 +14,21 @@ public class SessionManager : MonoBehaviour
     private string WorldsFolder =>
     Path.Combine(Application.persistentDataPath, "Worlds");
 
-    public void LoadWorldData(string filename)
+    public List<string> GetWorldSaveFiles()
     {
-        // load in hex list
-        List<HexData> data = new List<HexData>();
-        _worldData = new WorldData(data);
+        List<string> saveFiles = new List<string>();
+        if (Directory.Exists(WorldsFolder))
+        {
+            string[] files = Directory.GetFiles(WorldsFolder, "*.json");
+
+            foreach (string filePath in files)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(filePath);
+                saveFiles.Add(fileName);
+            }
+        }
+
+        return saveFiles;
     }
 
     public void SetWorldData(WorldData worldData)
@@ -29,13 +40,15 @@ public class SessionManager : MonoBehaviour
     {
         WorldSaveData saveData = _worldData.ToSaveData();
         string json = JsonUtility.ToJson(saveData, true);
-        string path = WorldsFolder + "/world_" + saveData.WorldName + ".json";
+        string path = WorldsFolder + "/" + saveData.WorldName + ".json";
         File.WriteAllText(path, json);
     }
 
-    public void LoadGameData(string filename)
+    public void LoadWorldData(string worldName)
     {
-        WorldSaveData saveData = JsonUtility.FromJson<WorldSaveData>(filename);
+        string filename = Path.Combine(WorldsFolder, worldName + ".json");
+        string json = File.ReadAllText(filename);
+        WorldSaveData saveData = JsonUtility.FromJson<WorldSaveData>(json);
         WorldData loadedWorld = new WorldData(saveData.Hexes);
         
         foreach (River river in saveData.Rivers)

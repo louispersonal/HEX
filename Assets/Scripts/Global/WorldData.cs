@@ -6,6 +6,7 @@ using UnityEngine;
 public class WorldData
 {
     private string _name = "TestWorld";
+    public string Name { get { return _name; } set { _name = value; } }
 
     private HexGrid _grid;
 

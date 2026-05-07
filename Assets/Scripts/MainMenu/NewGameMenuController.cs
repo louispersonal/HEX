@@ -6,15 +6,17 @@ public class NewGameMenuController : SubMenu
 {
     NewGameMenuView NewGameView { get { return _subMenuView as NewGameMenuView; } }
 
-    public void GenerateWorld(int width, int seed)
+    public List<string> WorldSaveFilenames;
+
+    public void GenerateWorld(int width, int seed, string name)
     {
-        StartCoroutine(WaitForWorldGenerationCoroutine(width, seed));
+        StartCoroutine(WaitForWorldGenerationCoroutine(width, seed, name));
     }
 
-    private IEnumerator WaitForWorldGenerationCoroutine(int width, int seed)
+    private IEnumerator WaitForWorldGenerationCoroutine(int width, int seed, string name)
     {
         WorldGenController _worldGenController = GameController.Instance.WorldGenController;
-        _worldGenController.StartCoroutine(_worldGenController.GenerateWorldData(width, seed));
+        _worldGenController.StartCoroutine(_worldGenController.GenerateWorldData(width, seed, name));
 
         while (_worldGenController.GenerationInProgress)
         {
@@ -24,6 +26,11 @@ public class NewGameMenuController : SubMenu
 
         SetWorldAsCurrent(_worldGenController.NewWorld);
 
+        PreviewCurrentWorld();
+    }
+
+    private void PreviewCurrentWorld()
+    {
         Color[] generalPixels = TextureUtilities.GetPixelsFromWorldData(GameController.Instance.SessionManager.WorldData, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
         Texture2D generalTexture = TextureUtilities.GetTexture(generalPixels, NewGameView.PreviewImageResolution[0], NewGameView.PreviewImageResolution[1]);
 
@@ -63,6 +70,7 @@ public class NewGameMenuController : SubMenu
         NewGameView.MapPreview.MapModeTextures[MapModeTypes.Regions] = regionTexture;
 
         NewGameView.MapPreview.SetGeneralMapMode();
+        NewGameView.MapPreview.SetMapName(GameController.Instance.SessionManager.WorldData.Name);
     }
 
     private void SetWorldAsCurrent(WorldData worldData)
@@ -73,5 +81,17 @@ public class NewGameMenuController : SubMenu
     public void SaveCurrentWorld()
     {
         GameController.Instance.SessionManager.SaveWorldData();
+    }
+
+    public void UpdateSaveFileNames()
+    {
+        WorldSaveFilenames = GameController.Instance.SessionManager.GetWorldSaveFiles();
+    }
+
+    public void LoadWorld(string worldName)
+    {
+        GameController.Instance.SessionManager.LoadWorldData(worldName);
+
+        PreviewCurrentWorld();
     }
 }

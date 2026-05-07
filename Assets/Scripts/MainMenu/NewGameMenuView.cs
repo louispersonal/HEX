@@ -7,7 +7,9 @@ public class NewGameMenuView : SubMenuView
 {
     [SerializeField] private TMP_InputField _seedField;
     [SerializeField] private TMP_InputField _widthField;
+    [SerializeField] private TMP_InputField _nameField;
     [SerializeField] private MapPreviewController _mapPreview;
+    [SerializeField] private TMP_Dropdown _loadDropdown;
 
     public MapPreviewController MapPreview { get { return _mapPreview; } }
 
@@ -18,6 +20,8 @@ public class NewGameMenuView : SubMenuView
     private int _seedFieldValue;
 
     private int _widthFieldValue;
+
+    private string _nameFieldValue;
 
     private int _defaultSeedValue = 2332;
 
@@ -33,6 +37,7 @@ public class NewGameMenuView : SubMenuView
         _seedField.text = _seedFieldValue.ToString();
         _widthFieldValue = _defaultWdithValue;
         _widthField.text = _widthFieldValue.ToString();
+        UpdateSaveFilesDropdown();
     }
 
     public void UpdateSeed(string value)
@@ -45,13 +50,30 @@ public class NewGameMenuView : SubMenuView
         _widthFieldValue = int.Parse(value);
     }
 
+    public void UpdateName(string value)
+    {
+        _nameFieldValue = value;
+    }
+
     public void GenerateButton()
     {
-        NewGameMenu.GenerateWorld(_widthFieldValue, _seedFieldValue);
+        NewGameMenu.GenerateWorld(_widthFieldValue, _seedFieldValue, _nameFieldValue);
     }
 
     public void SaveButton()
     {
         NewGameMenu.SaveCurrentWorld();
+    }
+
+    public void LoadButton()
+    {
+        NewGameMenu.LoadWorld(_loadDropdown.options[_loadDropdown.value].text);
+    }
+
+    public void UpdateSaveFilesDropdown()
+    {
+        NewGameMenu.UpdateSaveFileNames();
+        _loadDropdown.ClearOptions();
+        _loadDropdown.AddOptions(NewGameMenu.WorldSaveFilenames);
     }
 }
