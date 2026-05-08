@@ -41,38 +41,46 @@ public class WorldGenController : MonoBehaviour
         _newWorld.Name = name;
 
         _currentStatus = "Generating Heightmap";
-        _amountDone = 0.16f;
+        _amountDone = 0.14f;
         yield return null;
 
         ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, defaultParams, WIDTH_HEIGHT_RATIO);
 
         _currentStatus = "Computing Temperatures";
-        _amountDone = 0.32f;
+        _amountDone = 0.28f;
         yield return null;
 
         TemperatureGen.ComputeTemperatures(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Computing Precipitations";
-        _amountDone = 0.48f;
+        _amountDone = 0.42f;
         yield return null;
 
         PrecipitationGen.ComputePrecipitations(_newWorld.Grid, _worldParams);
 
         _currentStatus = "Generating Rivers";
-        _amountDone = 0.6f;
+        _amountDone = 0.56f;
         yield return null;
 
         RiverGen.GenerateRivers(_newWorld, _worldParams);
 
         _currentStatus = "Generating Vegetation";
-        _amountDone = 0.78f;
+        _amountDone = 0.7f;
         yield return null;
 
         VegetationGen.GenerateVegetation(_newWorld.Grid, _worldParams);
 
+        _currentStatus = "Generating GeoFeatures";
+        _amountDone = 0.84f;
+        yield return null;
+
         GeoFeatureGen.AddGeoFeatures(_newWorld, _geoFeatureSpawnParameters);
 
-       _newWorld.Regions = RegionGen.CreateRegions(_newWorld, _worldParams);
+        _currentStatus = "Generating Regions";
+        _amountDone = 0.98f;
+        yield return null;
+
+        _newWorld.Regions = RegionGen.CreateRegions(_newWorld, _worldParams);
 
         _currentStatus = "Done";
         _amountDone = 1f;

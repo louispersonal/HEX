@@ -29,24 +29,25 @@ public class RegionGen
     {
         Biome targetBiome = startHex.ExtraData.Biome;
 
-        Queue<HexData> queue = new Queue<HexData>();
-
+        Stack<HexData> stack = new Stack<HexData>();
         startHex.ExtraData.SetRegionID(newRegion.ID);
-        queue.Enqueue(startHex);
+        stack.Push(startHex);
 
-        while (queue.Count > 0 && newRegion.Size < maxRegionSize)
+        while (stack.Count > 0 && newRegion.Size < maxRegionSize)
         {
-            HexData hex = queue.Dequeue();
+            HexData hex = stack.Pop();
             newRegion.Size++;
 
-            foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, hex, 1))
+            foreach (AxialCoordinate dir in AxialDirections.Directions)
             {
+                HexData neighbor = world.Grid.TryGetHex(hex.Coord + dir, out var outHex)? outHex : null;
+
                 if (neighbor == null) continue;
                 if (neighbor.ExtraData.RegionId != 0) continue;
                 if (neighbor.ExtraData.Biome != targetBiome) continue;
 
                 neighbor.ExtraData.SetRegionID(newRegion.ID);
-                queue.Enqueue(neighbor);
+                stack.Push(neighbor);
             }
         }
     }
