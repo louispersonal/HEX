@@ -50,37 +50,78 @@ public class RiverGen
             || hex.ExtraData.Precipitation > parameters.MinimumPrecipitationRiverSource);
     }
 
-    private static void BuildRiver(River newRiver, WorldData world, WorldGenParameters parameters, out HexData lakeHex)
+    private static void BuildRiver(
+        River newRiver,
+        WorldData world,
+        WorldGenParameters parameters,
+        out HexData lakeHex)
     {
         int riverLength = 1;
         AxialCoordinate currentCoord = newRiver.Source;
-        bool endsInLake = false;
+
         lakeHex = null;
+
+        float uphillTolerance = 0.1f;
+        int flatStepsRemaining = 3;
+
         while (riverLength < world.Grid.Width / parameters.MaximumRiverLengthRatio)
         {
-            if (CheckAdjacentSea(currentCoord, world)) break;
+            if (CheckAdjacentSea(currentCoord, world))
+                break;
 
-            // pick most downhill neighbor
-            world.Grid.TryGetHex(currentCoord, out HexData currentHex);
-            HexData downHillNeighbor = currentHex;
+            if (!world.Grid.TryGetHex(currentCoord, out HexData currentHex))
+                break;
+
+            HexData bestDownhill = null;
+            HexData bestTolerated = null;
+
+            float currentElevation = currentHex.ExtraData.Elevation;
+            float lowestDownhillElevation = currentElevation;
+            float lowestToleratedElevation = currentElevation + uphillTolerance;
+
             foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, currentHex, 1))
             {
-                if (neighbor.ExtraData.Elevation < downHillNeighbor.ExtraData.Elevation) downHillNeighbor = neighbor;
+                if (neighbor == null) continue;
+                if (world.Rivers.ContainsAt(neighbor.Coord)) continue;
+
+                float neighborElevation = neighbor.ExtraData.Elevation;
+
+                // True downhill candidate
+                if (neighborElevation < lowestDownhillElevation)
+                {
+                    bestDownhill = neighbor;
+                    lowestDownhillElevation = neighborElevation;
+                }
+
+                // Slightly uphill / flat escape candidate
+                if (neighborElevation <= lowestToleratedElevation)
+                {
+                    bestTolerated = neighbor;
+                    lowestToleratedElevation = neighborElevation;
+                }
             }
 
-            if (downHillNeighbor == currentHex) { endsInLake = true; break; }
-            if (world.Rivers.ContainsAt(downHillNeighbor.Coord)) break;
+            HexData nextHex = null;
 
-            newRiver.Coords.Add(downHillNeighbor.Coord);
+            if (bestDownhill != null)
+            {
+                nextHex = bestDownhill;
+                flatStepsRemaining = 3;
+            }
+            else if (bestTolerated != null && flatStepsRemaining > 0)
+            {
+                nextHex = bestTolerated;
+                flatStepsRemaining--;
+            }
+            else
+            {
+                lakeHex = currentHex;
+                break;
+            }
 
-            currentCoord = downHillNeighbor.Coord;
-
+            newRiver.Coords.Add(nextHex.Coord);
+            currentCoord = nextHex.Coord;
             riverLength++;
-        }
-
-        if (endsInLake && riverLength > 1)
-        {
-            lakeHex = world.Grid.TryGetHex(currentCoord, out HexData hex)? hex : null;
         }
 
         newRiver.Mouth = currentCoord;
