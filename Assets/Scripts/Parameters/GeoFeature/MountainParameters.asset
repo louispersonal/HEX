@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FeatureType: 1
   AcceptedBiomes: 000000000100000002000000030000000400000005000000
-  MustBeSeaAdjacent: 0
   ElevationMin: 0.6
   ElevationMax: 1
   TemperatureMin: 0
@@ -25,5 +24,6 @@ MonoBehaviour:
   LowVegetationMax: 1
   HighVegetationMin: 0
   HighVegetationMax: 1
-  MustContainRiver: 0
-  BaseChance: 0.8
+  SeaAdjacentRequirement: 0
+  RiverRequirement: 0
+  TargetNumber: 100

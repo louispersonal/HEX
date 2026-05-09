@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ebb1a41f72f3774ca965612d073682e, type: 3}
-  m_Name: CanyonParameters
+  m_Name: VolcanoParameters
   m_EditorClassIdentifier: 
-  FeatureType: 0
-  AcceptedBiomes: 0000000004000000
-  ElevationMin: 0
+  FeatureType: 7
+  AcceptedBiomes: 030000000500000004000000
+  ElevationMin: 0.6
   ElevationMax: 1
   TemperatureMin: 0
   TemperatureMax: 1
@@ -24,6 +24,6 @@ MonoBehaviour:
   LowVegetationMax: 1
   HighVegetationMin: 0
   HighVegetationMax: 1
-  SeaAdjacentRequirement: 2
-  RiverRequirement: 1
+  SeaAdjacentRequirement: 0
+  RiverRequirement: 0
   TargetNumber: 100

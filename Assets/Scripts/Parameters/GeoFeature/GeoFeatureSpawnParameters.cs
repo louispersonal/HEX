@@ -9,7 +9,6 @@ public class GeoFeatureSpawnParameters : ScriptableObject
     public GeoFeatureType FeatureType;
 
     public List<Biome> AcceptedBiomes;
-    public bool MustBeSeaAdjacent;
 
     public float ElevationMin;
     public float ElevationMax;
@@ -26,7 +25,15 @@ public class GeoFeatureSpawnParameters : ScriptableObject
     public float HighVegetationMin;
     public float HighVegetationMax;
 
-    public bool MustContainRiver;
+    public Requirement SeaAdjacentRequirement;
+    public Requirement RiverRequirement;
 
-    public float BaseChance;
+    public float TargetNumber;
+}
+
+public enum Requirement
+{
+    Any,
+    MustBeTrue,
+    MustBeFalse
 }
