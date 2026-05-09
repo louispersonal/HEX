@@ -9,13 +9,24 @@ public class RiverGen
     {
         int riverIndex = 0;
         int lakeIndex = 0;
+
+        List<HexData> candidateHexes = new List<HexData>();
+
         foreach (HexData data in world.Grid.GetValidHexes())
         {
-            float riverChance = 1f / (parameters.RiverSpacing * world.Grid.Width);
-            if (RiverOriginViability(data, parameters, riverChance))
+            if (RiverOriginViability(data, parameters)) candidateHexes.Add(data);
+
+        }
+
+        int numCandidates = candidateHexes.Count;
+        float chance = parameters.TargetNumberRivers / numCandidates;
+
+        foreach (HexData candidate in candidateHexes)
+        {
+            if (Random.Range(0f, 1f) < chance)
             {
                 RiverID newID = new RiverID(riverIndex);
-                River newRiver = new River(newID, data.Coord);
+                River newRiver = new River(newID, candidate.Coord);
 
                 BuildRiver(newRiver, world, parameters, out HexData lakeHex);
 
@@ -33,11 +44,10 @@ public class RiverGen
         }
     }
 
-    private static bool RiverOriginViability(HexData hex, WorldGenParameters parameters, float riverChance)
+    private static bool RiverOriginViability(HexData hex, WorldGenParameters parameters)
     {
         return (hex.ExtraData.Elevation > parameters.MinimumElevationRiverSource
-            && hex.ExtraData.Precipitation > parameters.MinimumPrecipitationRiverSource
-            && Random.Range(0f, 1f) < riverChance);
+            || hex.ExtraData.Precipitation > parameters.MinimumPrecipitationRiverSource);
     }
 
     private static void BuildRiver(River newRiver, WorldData world, WorldGenParameters parameters, out HexData lakeHex)
