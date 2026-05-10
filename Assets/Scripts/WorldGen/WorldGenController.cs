@@ -68,7 +68,7 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.7f;
         yield return null;
 
-        VegetationGen.GenerateVegetation(_newWorld.Grid, _worldParams);
+        VegetationGen.GenerateVegetation(_newWorld, _worldParams);
 
         _currentStatus = "Generating GeoFeatures";
         _amountDone = 0.84f;

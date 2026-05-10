@@ -6,14 +6,16 @@ public class VegetationGen : MonoBehaviour
 {
     private const float OPTIMUM_TEMP = 0.66f;
     private const float OPTIMUM_PREC = 0.66f;
+    private const float RIVER_BONUS = 0.66f;
 
-    public static void GenerateVegetation(HexGrid grid, WorldGenParameters parameters)
+    public static void GenerateVegetation(WorldData world, WorldGenParameters parameters)
     {
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (HexData data in world.Grid.GetValidHexes())
         {
             if (data.ExtraData.IsSea) continue;
-            float totalBiomass = (0.5f * InverseQuadraticCurve(data.ExtraData.Temperature, OPTIMUM_TEMP, 4f)) + (0.5f * InverseQuadraticCurve(data.ExtraData.Precipitation, OPTIMUM_PREC, 4f));
-            float proportionLowVegetation = 0.5f * data.ExtraData.Elevation + 0.5f * grid.GetWindDirection(data.Coord).magnitude;
+            float availableWater = world.Rivers.ContainsAt(data.Coord) ? Mathf.Max(RIVER_BONUS, data.ExtraData.Precipitation) : data.ExtraData.Precipitation;
+            float totalBiomass = (0.5f * InverseQuadraticCurve(data.ExtraData.Temperature, OPTIMUM_TEMP, 4f)) + (0.5f * InverseQuadraticCurve(availableWater, OPTIMUM_PREC, 4f));
+            float proportionLowVegetation = 0.5f * data.ExtraData.Elevation + 0.5f * world.Grid.GetWindDirection(data.Coord).magnitude;
             float proportionHighVegetation = 1f - proportionLowVegetation;
             data.ExtraData.SetVegetations(totalBiomass * proportionLowVegetation, totalBiomass * proportionHighVegetation);
         }

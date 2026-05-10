@@ -62,7 +62,7 @@ public class RiverGen
         lakeHex = null;
 
         float uphillTolerance = 0.1f;
-        int flatStepsRemaining = 3;
+        int flatStepsRemaining = 5;
 
         while (riverLength < world.Grid.Width / parameters.MaximumRiverLengthRatio)
         {
