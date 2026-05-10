@@ -125,7 +125,7 @@ public class RiverGen
         }
 
         newRiver.Mouth = currentCoord;
-    }
+    } 
 
     private static bool CheckAdjacentSea(AxialCoordinate coord, WorldData world)
     {
