@@ -139,11 +139,10 @@ public class HexGrid
         return CartesianGeometry.GetPerpendicularVector(new Vector2(dfdx, dfdy));
     }
 
-    public int NumHexesFromSea(HexData data, out HexData seaHex)
+    public int NumHexesFromSea(HexData data, int maxNumber, out HexData seaHex)
     {
         seaHex = null;
         if (data.ExtraData.IsSea) return 0;
-        int maxNumber = 8;
         for (int n = 1; n < maxNumber; n++)
         {
             List<HexData> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(this, data, n);

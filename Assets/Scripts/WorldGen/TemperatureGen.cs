@@ -16,7 +16,7 @@ public class TemperatureGen
 
         foreach (HexData data in grid.GetValidHexes())
         {
-            float coastalDistance = grid.NumHexesFromSea(data, out HexData seaHex);
+            float coastalDistance = grid.NumHexesFromSea(data, 8, out HexData seaHex);
             if (coastalDistance > 0 && seaHex != null)
             {
                 float coastalFactor = 1f / (1f + (coastalDistance / (grid.Width / parameters.CoastalDenominator)));

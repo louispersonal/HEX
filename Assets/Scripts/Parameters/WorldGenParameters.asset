@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: WorldGenParameters
   m_EditorClassIdentifier: 
   CoastalDenominator: 18.75
-  MinimumElevationRiverSource: 0.7
-  MinimumPrecipitationRiverSource: 0.7
+  MinimumElevationRiverSource: 0.4
+  MinimumPrecipitationRiverSource: 0.4
   MaximumRiverLengthRatio: 2
-  TargetNumberRivers: 100
+  TargetNumberRivers: 50
   MaxPrecipitationDistanceFromSea: 0.0625
   MaxRegionSizeRatio: 0.01

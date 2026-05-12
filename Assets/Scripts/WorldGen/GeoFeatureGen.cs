@@ -55,7 +55,7 @@ public class GeoFeatureGen
     {
         if (parameter.SeaAdjacentRequirement != Requirement.Any)
         {
-            bool isSeaAdjacent = world.Grid.NumHexesFromSea(hex, out var hexData) == 1;
+            bool isSeaAdjacent = world.Grid.NumHexesFromSea(hex, 2, out var hexData) == 1;
             if (!PassesRequirement(isSeaAdjacent, parameter.SeaAdjacentRequirement)) return false;
         }
 

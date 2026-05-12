@@ -15,31 +15,26 @@ public class RiverGen
         foreach (HexData data in world.Grid.GetValidHexes())
         {
             if (RiverOriginViability(data, parameters)) candidateHexes.Add(data);
-
         }
 
-        int numCandidates = candidateHexes.Count;
-        float chance = parameters.TargetNumberRivers / numCandidates;
+        List<RiverSourceCandidate> sortedCandidates = SortCandidates(world, candidateHexes, (int)parameters.TargetNumberRivers, world.Grid.Width / 50);
 
-        foreach (HexData candidate in candidateHexes)
+        foreach (RiverSourceCandidate candidate in sortedCandidates)
         {
-            if (Random.Range(0f, 1f) < chance)
+            RiverID newID = new RiverID(riverIndex);
+            River newRiver = new River(newID, candidate.RiverSourceHex.Coord);
+
+            BuildRiver(newRiver, world, parameters, out HexData lakeHex);
+
+            world.Rivers.Add(newID, newRiver, newRiver.Coords);
+            riverIndex++;
+
+            if (lakeHex != null)
             {
-                RiverID newID = new RiverID(riverIndex);
-                River newRiver = new River(newID, candidate.Coord);
-
-                BuildRiver(newRiver, world, parameters, out HexData lakeHex);
-
-                world.Rivers.Add(newID, newRiver, newRiver.Coords);
-                riverIndex++;
-
-                if (lakeHex != null)
-                {
-                    LakeID newLakeId = new LakeID(lakeIndex);
-                    Lake newLake = new Lake(newLakeId, new List<AxialCoordinate> { lakeHex.Coord });
-                    world.Lakes.Add(newLakeId, newLake, new List<AxialCoordinate> { lakeHex.Coord });
-                    lakeIndex++;
-                }
+                LakeID newLakeId = new LakeID(lakeIndex);
+                Lake newLake = new Lake(newLakeId, new List<AxialCoordinate> { lakeHex.Coord });
+                world.Lakes.Add(newLakeId, newLake, new List<AxialCoordinate> { lakeHex.Coord });
+                lakeIndex++;
             }
         }
     }
@@ -135,5 +130,34 @@ public class RiverGen
             if (neighbor.ExtraData.IsSea) return true;
         }
         return false;
+    }
+
+    private static List<RiverSourceCandidate> SortCandidates(WorldData world, List<HexData> candidates, int numNeeded, int spacing)
+    {
+        List<RiverSourceCandidate> prioritizedCandidates = new List<RiverSourceCandidate>(candidates.Count);
+        for(int i = 0; i < candidates.Count; i++)
+        {
+            bool withinSpacing = false;
+            for (int j = 0; j < i; j++)
+            {
+                if(AxialGeometry.DistanceBetweenCoords(candidates[j].Coord, candidates[i].Coord) < (float)spacing) withinSpacing = true;
+            }
+            if (!withinSpacing) prioritizedCandidates.Add(new RiverSourceCandidate(candidates[i], world.Grid.NumHexesFromSea(candidates[i], world.Grid.Width / 50, out _)));
+        }
+        prioritizedCandidates.Sort((a, b) => b.DistanceFromSea.CompareTo(a.DistanceFromSea));
+        if (numNeeded < prioritizedCandidates.Count) prioritizedCandidates.RemoveRange(numNeeded, prioritizedCandidates.Count - numNeeded);
+        return prioritizedCandidates;
+    }
+}
+
+public class RiverSourceCandidate
+{
+    public HexData RiverSourceHex;
+    public float DistanceFromSea;
+
+    public RiverSourceCandidate(HexData riverSourceHex, float distanceFromSea)
+    {
+        RiverSourceHex = riverSourceHex;
+        DistanceFromSea = distanceFromSea;
     }
 }

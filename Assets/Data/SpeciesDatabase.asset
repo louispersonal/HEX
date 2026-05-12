@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cea5e54bc5097845bb88f29b57cbcc9, type: 3}
   m_Name: SpeciesDatabase
   m_EditorClassIdentifier: 
-  Species:
-  - SpeciesId: 0
-    CommonName: 
-    Size: 0
-    Eats: 00000000
-    PreferredBiome: 0
+  Species: []
