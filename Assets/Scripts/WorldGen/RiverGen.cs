@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class RiverGen
 {
@@ -17,12 +18,12 @@ public class RiverGen
             if (RiverOriginViability(data, parameters)) candidateHexes.Add(data);
         }
 
-        List<RiverSourceCandidate> sortedCandidates = SortCandidates(world, candidateHexes, (int)parameters.TargetNumberRivers, world.Grid.Width / 50);
+        ListExtensions.Shuffle<HexData>(candidateHexes);
 
-        foreach (RiverSourceCandidate candidate in sortedCandidates)
+        for (int c = 0; c < parameters.TargetNumberRivers; c++)
         {
             RiverID newID = new RiverID(riverIndex);
-            River newRiver = new River(newID, candidate.RiverSourceHex.Coord);
+            River newRiver = new River(newID, candidateHexes[c].Coord);
 
             BuildRiver(newRiver, world, parameters, out HexData lakeHex);
 
@@ -130,34 +131,5 @@ public class RiverGen
             if (neighbor.ExtraData.IsSea) return true;
         }
         return false;
-    }
-
-    private static List<RiverSourceCandidate> SortCandidates(WorldData world, List<HexData> candidates, int numNeeded, int spacing)
-    {
-        List<RiverSourceCandidate> prioritizedCandidates = new List<RiverSourceCandidate>(candidates.Count);
-        for(int i = 0; i < candidates.Count; i++)
-        {
-            bool withinSpacing = false;
-            for (int j = 0; j < i; j++)
-            {
-                if(AxialGeometry.DistanceBetweenCoords(candidates[j].Coord, candidates[i].Coord) < (float)spacing) withinSpacing = true;
-            }
-            if (!withinSpacing) prioritizedCandidates.Add(new RiverSourceCandidate(candidates[i], world.Grid.NumHexesFromSea(candidates[i], world.Grid.Width / 50, out _)));
-        }
-        prioritizedCandidates.Sort((a, b) => b.DistanceFromSea.CompareTo(a.DistanceFromSea));
-        if (numNeeded < prioritizedCandidates.Count) prioritizedCandidates.RemoveRange(numNeeded, prioritizedCandidates.Count - numNeeded);
-        return prioritizedCandidates;
-    }
-}
-
-public class RiverSourceCandidate
-{
-    public HexData RiverSourceHex;
-    public float DistanceFromSea;
-
-    public RiverSourceCandidate(HexData riverSourceHex, float distanceFromSea)
-    {
-        RiverSourceHex = riverSourceHex;
-        DistanceFromSea = distanceFromSea;
     }
 }
