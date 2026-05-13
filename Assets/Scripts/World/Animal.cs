@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class AnimalGroup
 {
-    public ushort SpeciesId;
+    public ushort ArchetypeId;
 
     public ushort RegionId;
     public int Count;
 }
 
 [System.Serializable]
-public class SpeciesProfile
+public class ArchetypeProfile
 {
-    public ushort SpeciesId;
+    public ushort ArchetypeId;
 
     public string CommonName;
 
     public SizeTier Size;
 
     public FoodType[] Eats;
-    public Biome PreferredBiome;
 }
 
 public enum SizeTier
 {
     Small = 0,
     Medium = 1,
-    Large = 2,
-    Huge = 3
+    Large = 2
 }
 
 public enum FoodType
