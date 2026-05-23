@@ -11,10 +11,29 @@ public class Region
 
     public AxialCoordinate SeedCoord;
 
+    private int _hasRiver = -1;
+
+    private int _isCoastal = -1;
+
     public Region(ushort iD, AxialCoordinate seedCoord)
     {
         ID = iD;
         SeedCoord = seedCoord;
+    }
+
+    public bool HasRiver(WorldData world)
+    {
+        if (_hasRiver == -1)
+        {
+            _hasRiver = 0;
+            var hexes = GetHexesInRegion(world);
+            foreach (var hex in hexes)
+            {
+                if (world.Rivers.ContainsAt(hex.Coord)) _hasRiver = 1;
+            }
+        }
+
+        return _hasRiver == 1;
     }
 
     public List<HexData> GetHexesInRegion(WorldData world)

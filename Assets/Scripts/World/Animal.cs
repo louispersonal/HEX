@@ -20,6 +20,11 @@ public class ArchetypeProfile
     public SizeTier Size;
 
     public FoodType[] Eats;
+
+    public bool FitsInRegion(WorldData data, Region region)
+    {
+        return region.HasRiver(data);
+    }
 }
 
 public enum SizeTier
