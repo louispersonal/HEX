@@ -16,6 +16,8 @@ public class RegionGen
             {
                 Region newRegion = new Region(currentRegionId, data.Coord);
                 newRegion.Size = 1;
+                newRegion.TotalLowVegetation = data.ExtraData.LowVegetation;
+                newRegion.TotalHighVegetation = data.ExtraData.HighVegetation;
                 FillRegion(world, data, newRegion, maxRegionSize);
                 regions.Add(newRegion);
                 currentRegionId++;
@@ -37,6 +39,8 @@ public class RegionGen
         {
             HexData hex = stack.Pop();
             newRegion.Size++;
+            newRegion.TotalLowVegetation += hex.ExtraData.LowVegetation;
+            newRegion.TotalHighVegetation += hex.ExtraData.HighVegetation;
 
             foreach (AxialCoordinate dir in AxialDirections.Directions)
             {

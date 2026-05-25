@@ -23,6 +23,7 @@ public class ArchetypeProfile
 
     public bool FitsInRegion(WorldData data, Region region)
     {
+        bool canEat;
         return region.HasRiver(data);
     }
 }

@@ -9,6 +9,10 @@ public class Region
 
     public int Size;
 
+    public float TotalLowVegetation;
+
+    public float TotalHighVegetation;
+
     public AxialCoordinate SeedCoord;
 
     private int _hasRiver = -1;
@@ -29,11 +33,38 @@ public class Region
             var hexes = GetHexesInRegion(world);
             foreach (var hex in hexes)
             {
-                if (world.Rivers.ContainsAt(hex.Coord)) _hasRiver = 1;
+                if (world.Rivers.ContainsAt(hex.Coord))
+                {
+                    _hasRiver = 1;
+                    break;
+                }
             }
         }
 
         return _hasRiver == 1;
+    }
+
+    public bool IsCoastal(WorldData world)
+    {
+        if (_isCoastal == -1)
+        {
+            _isCoastal = 0;
+            var hexes = GetHexesInRegion(world);
+            foreach (var hex in hexes)
+            {
+                foreach (var neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, hex, 1))
+                {
+                    if (neighbor.ExtraData.IsSea)
+                    {
+                        _isCoastal = 1;
+                        break;
+                    }
+                }
+                if (_isCoastal == 1) break;
+            }
+        }
+
+        return _isCoastal == 1;
     }
 
     public List<HexData> GetHexesInRegion(WorldData world)
