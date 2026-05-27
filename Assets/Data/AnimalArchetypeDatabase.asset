@@ -17,71 +17,89 @@ MonoBehaviour:
     CommonName: SmallGrazer
     Size: 0
     Eats: 00000000
+    MaxPopulationPerHex: 100000
   - ArchetypeId: 1
     CommonName: MediumGrazer
     Size: 1
     Eats: 00000000
+    MaxPopulationPerHex: 10000
   - ArchetypeId: 2
     CommonName: LargeGrazer
     Size: 2
     Eats: 00000000
+    MaxPopulationPerHex: 500
   - ArchetypeId: 3
     CommonName: SmallBrowser
     Size: 0
     Eats: 01000000
+    MaxPopulationPerHex: 50000
   - ArchetypeId: 4
     CommonName: MediumBrowser
     Size: 1
     Eats: 01000000
+    MaxPopulationPerHex: 4000
   - ArchetypeId: 5
     CommonName: LargeBrowser
     Size: 2
     Eats: 01000000
+    MaxPopulationPerHex: 100
   - ArchetypeId: 6
     CommonName: SmallMixedFeeder
     Size: 0
     Eats: 0000000001000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 7
     CommonName: MediumMixedFeeder
     Size: 1
     Eats: 0000000001000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 8
     CommonName: LargeMixedFeeder
     Size: 2
     Eats: 0000000001000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 9
     CommonName: SmallOmnivore
     Size: 0
     Eats: 00000000010000000200000004000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 10
     CommonName: MediumOmnivore
     Size: 1
     Eats: 00000000010000000200000004000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 11
     CommonName: LargeOmnivore
     Size: 2
     Eats: 00000000010000000200000004000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 12
     CommonName: SmallPredator
     Size: 0
     Eats: 03000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 13
     CommonName: MediumPredator
     Size: 1
     Eats: 03000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 14
     CommonName: LargePredator
     Size: 2
     Eats: 03000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 15
     CommonName: SmallScavenger
     Size: 0
     Eats: 05000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 16
     CommonName: MediumScavenger
     Size: 1
     Eats: 05000000
+    MaxPopulationPerHex: 0
   - ArchetypeId: 17
     CommonName: LargeScavenger
     Size: 2
     Eats: 05000000
+    MaxPopulationPerHex: 0

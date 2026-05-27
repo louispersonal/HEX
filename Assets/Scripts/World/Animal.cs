@@ -21,6 +21,8 @@ public class ArchetypeProfile
 
     public FoodType[] Eats;
 
+    public int MaxPopulationPerHex; // assuming maximum food abundance
+
     public bool FitsInRegion(WorldData data, Region region)
     {
         bool canEat;
