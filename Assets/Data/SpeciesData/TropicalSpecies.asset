@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12e23412326e0d4396e857344582759, type: 3}
+  m_Name: TropicalSpecies
+  m_EditorClassIdentifier: 
+  Species:
+  - ArchetypeId: 0
+    SpeciesName: Agouti
+  - ArchetypeId: 1
+    SpeciesName: Capybara
+  - ArchetypeId: 2
+    SpeciesName: Buffalo
+  - ArchetypeId: 3
+    SpeciesName: Fowl
+  - ArchetypeId: 4
+    SpeciesName: Capuchin
+  - ArchetypeId: 5
+    SpeciesName: Rhinoceros
+  - ArchetypeId: 7
+    SpeciesName: Peccary
+  - ArchetypeId: 9
+    SpeciesName: Coati
+  - ArchetypeId: 10
+    SpeciesName: Chimpanzee
+  - ArchetypeId: 11
+    SpeciesName: SunBear
+  - ArchetypeId: 12
+    SpeciesName: Ocelot
+  - ArchetypeId: 13
+    SpeciesName: Boa
+  - ArchetypeId: 14
+    SpeciesName: Jaguar
+  - ArchetypeId: 15
+    SpeciesName: VultureBee
+  - ArchetypeId: 16
+    SpeciesName: Vulture

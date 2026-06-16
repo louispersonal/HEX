@@ -21,13 +21,29 @@ public class ArchetypeProfile
 
     public FoodType[] Eats;
 
-    public int MaxPopulationPerHex; // assuming maximum food abundance
-
-    public bool FitsInRegion(WorldData data, Region region)
+    public float NutritionRequirement
     {
-        bool canEat;
-        return region.HasRiver(data);
+        get
+        {
+            switch (Size)
+            {
+                case SizeTier.Small:
+                    return 1;
+                case SizeTier.Medium:
+                    return 10;
+                default:
+                    return 100;
+            }
+        }
     }
+}
+
+[System.Serializable]
+public class SpeciesProfile
+{
+    public ushort ArchetypeId;
+    public ushort SpeciesId;
+    public string SpeciesName;
 }
 
 public enum SizeTier

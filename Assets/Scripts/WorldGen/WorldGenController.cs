@@ -8,6 +8,10 @@ public class WorldGenController : MonoBehaviour
 
     [SerializeField] List<GeoFeatureSpawnParameters> _geoFeatureSpawnParameters;
 
+    [SerializeField] AnimalArchetypeDatabaseAsset _animalArchetypeDatabse;
+
+    [SerializeField] List<SpeciesDatabaseAsset> _speciesDatabases;
+
     private const float BASE_FREQUENCY = 0.015f;
     private const int OCTAVES = 6;
     private const float LACUNARITY = 1.9f;

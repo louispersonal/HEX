@@ -268,6 +268,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 477408ea43a0ee04a8062a37b588d67f, type: 2}
   - {fileID: 11400000, guid: 86251abbf881fd749a0f291d0ce3ab9c, type: 2}
   - {fileID: 11400000, guid: 9d9b8a9ece1259f449fa767c9311feac, type: 2}
+  _animalArchetypeDatabse: {fileID: 11400000, guid: 0950a87af1782a841bc660928063cdf4,
+    type: 2}
+  _speciesDatabases:
+  - {fileID: 11400000, guid: 34bc3296a8800e54cb95ffcec7e07c41, type: 2}
+  - {fileID: 11400000, guid: d4e0da94c8a002b4dafcc2edc55fc5ed, type: 2}
+  - {fileID: 11400000, guid: 73804b81f0d1b5648b059868a07e0f75, type: 2}
+  - {fileID: 11400000, guid: f9bee6a6d5cb7194cb7fb3d0b40abe4c, type: 2}
+  - {fileID: 11400000, guid: bae15c65731c6304ebdb79c4eb056251, type: 2}
+  - {fileID: 11400000, guid: c709a18ca7462f94eb0c0b903ed5f705, type: 2}
+  - {fileID: 11400000, guid: f3355e3fd68d0b049b485a7c518bc406, type: 2}
 --- !u!1 &1736040581
 GameObject:
   m_ObjectHideFlags: 0

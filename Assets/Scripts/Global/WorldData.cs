@@ -22,6 +22,9 @@ public class WorldData
 
     public Region[] Regions = new Region[0];
 
+    public Dictionary<ushort, ArchetypeProfile> AnimalArchetypes;
+    public Dictionary<ushort, SpeciesProfile> AnimalSpecies;
+
     public WorldData(List<HexData> hexDataList)
     {
         _grid = new HexGrid(hexDataList);

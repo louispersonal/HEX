@@ -15,9 +15,13 @@ public class Region
 
     public AxialCoordinate SeedCoord;
 
+    public List<ushort> SpeciesInRegion;
+
     private int _hasRiver = -1;
 
     private int _isCoastal = -1;
+
+    private int _riverLength = -1;
 
     public Region(ushort iD, AxialCoordinate seedCoord)
     {
@@ -67,6 +71,24 @@ public class Region
         return _isCoastal == 1;
     }
 
+    public int RiverLength(WorldData world)
+    {
+        if (_riverLength == -1)
+        {
+            _riverLength = 0;
+            var hexes = GetHexesInRegion(world);
+            foreach (var hex in hexes)
+            {
+                if (world.Rivers.ContainsAt(hex.Coord))
+                {
+                    _riverLength++;
+                }
+            }
+        }
+
+        return _riverLength;
+    }
+
     public List<HexData> GetHexesInRegion(WorldData world)
     {
         List<HexData> result = new();
@@ -94,5 +116,44 @@ public class Region
         }
 
         return result;
+    }
+
+    public float GetLowVegetationNutrition()
+    {
+        return 200000f * TotalLowVegetation;
+    }
+
+    public float GetHighVegetationNutrition()
+    {
+        return 80000f * TotalHighVegetation;
+    }
+
+    public float GetRiverNutrition()
+    {
+        return 4000f * _riverLength;
+    }
+
+    public float GetMicroFaunaNutrition()
+    {
+        return 0.25f * (GetLowVegetationNutrition() + GetHighVegetationNutrition());
+    }
+
+    public float GetPreyNutrition(SizeTier preySize, int population)
+    {
+        float nutritionPerAnimal;
+        switch (preySize)
+        {
+            case SizeTier.Small:
+                nutritionPerAnimal = 0.05f;
+                break;
+            case SizeTier.Medium:
+                nutritionPerAnimal = 0.5f;
+                break;
+            default:
+                nutritionPerAnimal = 5f;
+                break;
+        }
+
+        return nutritionPerAnimal * population;
     }
 }

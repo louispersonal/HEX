@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12e23412326e0d4396e857344582759, type: 3}
+  m_Name: DesertSpecies
+  m_EditorClassIdentifier: 
+  Species:
+  - ArchetypeId: 0
+    SpeciesName: Jerboa
+  - ArchetypeId: 1
+    SpeciesName: Gazelle
+  - ArchetypeId: 2
+    SpeciesName: Camel
+  - ArchetypeId: 3
+    SpeciesName: Hyrax
+  - ArchetypeId: 4
+    SpeciesName: Ibex
+  - ArchetypeId: 5
+    SpeciesName: Giraffe
+  - ArchetypeId: 9
+    SpeciesName: Kangaroo Rat
+  - ArchetypeId: 12
+    SpeciesName: Cobra
+  - ArchetypeId: 13
+    SpeciesName: Coyote
+  - ArchetypeId: 14
+    SpeciesName: Lion
+  - ArchetypeId: 15
+    SpeciesName: Scarab
+  - ArchetypeId: 16
+    SpeciesName: Jackal
+  - ArchetypeId: 17
+    SpeciesName: Hyena
