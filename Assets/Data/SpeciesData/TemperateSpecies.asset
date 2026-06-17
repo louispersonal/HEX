@@ -14,22 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 52
     SpeciesName: Rabbit
   - ArchetypeId: 2
+    SpeciesId: 53
     SpeciesName: Elk
   - ArchetypeId: 6
+    SpeciesId: 54
     SpeciesName: Squirrel
   - ArchetypeId: 7
+    SpeciesId: 55
     SpeciesName: Deer
   - ArchetypeId: 9
+    SpeciesId: 56
     SpeciesName: Raccoon
   - ArchetypeId: 10
+    SpeciesId: 57
     SpeciesName: Boar
   - ArchetypeId: 11
+    SpeciesId: 58
     SpeciesName: BrownBear
   - ArchetypeId: 12
+    SpeciesId: 59
     SpeciesName: Fox
   - ArchetypeId: 13
+    SpeciesId: 60
     SpeciesName: Wolf
   - ArchetypeId: 15
+    SpeciesId: 61
     SpeciesName: Crow

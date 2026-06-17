@@ -84,6 +84,7 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.98f;
         yield return null;
 
+        ExtractAnimalData(_newWorld);
         _newWorld.Regions = RegionGen.CreateRegions(_newWorld, _worldParams);
 
         _currentStatus = "Done";
@@ -112,5 +113,27 @@ public class WorldGenController : MonoBehaviour
         }
 
         Debug.Log($"Max Elevation: {highestElevation}, Max Temperature: {highestTemperature}, Max Precipitation: {highestPrecipitation}, Strongest Wind: {strongestWind}");
+    }
+
+    private void ExtractAnimalData(WorldData world)
+    {
+        world.AnimalArchetypes = new Dictionary<ushort, ArchetypeProfile>();
+
+        foreach(ArchetypeProfile archetype in _animalArchetypeDatabse.Archetypes)
+        {
+            if (!world.AnimalArchetypes.TryAdd(archetype.ArchetypeId, archetype)) Debug.LogWarning("Two archetypes with same ID");
+        }
+
+        world.AnimalSpeciesByBiome = new Dictionary<Biome, Dictionary<ushort, SpeciesProfile>>();
+
+        foreach(SpeciesDatabaseAsset biomeSpeciesData in _speciesDatabases)
+        {
+            world.AnimalSpeciesByBiome[(Biome)_speciesDatabases.IndexOf(biomeSpeciesData)] = new Dictionary<ushort, SpeciesProfile>();
+            var currentBiomeDict = world.AnimalSpeciesByBiome[(Biome)_speciesDatabases.IndexOf(biomeSpeciesData)];
+            foreach (SpeciesProfile species in biomeSpeciesData.Species)
+            {
+                if (!currentBiomeDict.TryAdd(species.SpeciesId, species)) Debug.LogWarning("Two archetypes with same ID");
+            }
+        }
     }
 }

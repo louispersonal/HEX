@@ -14,20 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 77
     SpeciesName: ArcticHare
   - ArchetypeId: 1
+    SpeciesId: 78
     SpeciesName: Caribou
   - ArchetypeId: 4
+    SpeciesId: 79
     SpeciesName: Reindeer
   - ArchetypeId: 6
+    SpeciesId: 80
     SpeciesName: ArcticSquirrel
   - ArchetypeId: 8
+    SpeciesId: 81
     SpeciesName: Ox
   - ArchetypeId: 12
+    SpeciesId: 82
     SpeciesName: ArcticFox
   - ArchetypeId: 13
+    SpeciesId: 83
     SpeciesName: Wolf
   - ArchetypeId: 14
+    SpeciesId: 84
     SpeciesName: PolarBear
   - ArchetypeId: 15
+    SpeciesId: 85
     SpeciesName: Raven

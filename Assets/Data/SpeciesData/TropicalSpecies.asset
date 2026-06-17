@@ -14,32 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 62
     SpeciesName: Agouti
   - ArchetypeId: 1
+    SpeciesId: 63
     SpeciesName: Capybara
   - ArchetypeId: 2
+    SpeciesId: 64
     SpeciesName: Buffalo
   - ArchetypeId: 3
+    SpeciesId: 65
     SpeciesName: Fowl
   - ArchetypeId: 4
+    SpeciesId: 66
     SpeciesName: Capuchin
   - ArchetypeId: 5
+    SpeciesId: 67
     SpeciesName: Rhinoceros
   - ArchetypeId: 7
+    SpeciesId: 68
     SpeciesName: Peccary
   - ArchetypeId: 9
+    SpeciesId: 69
     SpeciesName: Coati
   - ArchetypeId: 10
+    SpeciesId: 70
     SpeciesName: Chimpanzee
   - ArchetypeId: 11
+    SpeciesId: 71
     SpeciesName: SunBear
   - ArchetypeId: 12
+    SpeciesId: 72
     SpeciesName: Ocelot
   - ArchetypeId: 13
+    SpeciesId: 73
     SpeciesName: Boa
   - ArchetypeId: 14
+    SpeciesId: 74
     SpeciesName: Jaguar
   - ArchetypeId: 15
+    SpeciesId: 75
     SpeciesName: VultureBee
   - ArchetypeId: 16
+    SpeciesId: 76
     SpeciesName: Vulture

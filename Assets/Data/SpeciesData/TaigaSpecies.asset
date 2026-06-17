@@ -14,22 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 42
     SpeciesName: SnowshoeHare
   - ArchetypeId: 1
+    SpeciesId: 43
     SpeciesName: Reindeer
   - ArchetypeId: 8
+    SpeciesId: 44
     SpeciesName: Moose
   - ArchetypeId: 9
+    SpeciesId: 45
     SpeciesName: Squirrel
   - ArchetypeId: 10
+    SpeciesId: 46
     SpeciesName: Wolverine
   - ArchetypeId: 11
+    SpeciesId: 47
     SpeciesName: BrownBear
   - ArchetypeId: 12
+    SpeciesId: 48
     SpeciesName: Marten
   - ArchetypeId: 13
+    SpeciesId: 49
     SpeciesName: Wolf
   - ArchetypeId: 14
+    SpeciesId: 50
     SpeciesName: Tiger
   - ArchetypeId: 15
+    SpeciesId: 51
     SpeciesName: Raven

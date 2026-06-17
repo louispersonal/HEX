@@ -14,28 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 0
     SpeciesName: Jerboa
   - ArchetypeId: 1
+    SpeciesId: 1
     SpeciesName: Gazelle
   - ArchetypeId: 2
+    SpeciesId: 2
     SpeciesName: Camel
   - ArchetypeId: 3
+    SpeciesId: 3
     SpeciesName: Hyrax
   - ArchetypeId: 4
+    SpeciesId: 4
     SpeciesName: Ibex
   - ArchetypeId: 5
+    SpeciesId: 5
     SpeciesName: Giraffe
   - ArchetypeId: 9
+    SpeciesId: 6
     SpeciesName: Kangaroo Rat
   - ArchetypeId: 12
+    SpeciesId: 7
     SpeciesName: Cobra
   - ArchetypeId: 13
+    SpeciesId: 8
     SpeciesName: Coyote
   - ArchetypeId: 14
+    SpeciesId: 9
     SpeciesName: Lion
   - ArchetypeId: 15
+    SpeciesId: 10
     SpeciesName: Scarab
   - ArchetypeId: 16
+    SpeciesId: 11
     SpeciesName: Jackal
   - ArchetypeId: 17
+    SpeciesId: 12
     SpeciesName: Hyena

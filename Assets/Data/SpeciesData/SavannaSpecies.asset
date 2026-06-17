@@ -14,32 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 13
     SpeciesName: Grass Rat
   - ArchetypeId: 1
+    SpeciesId: 14
     SpeciesName: Impala
   - ArchetypeId: 2
+    SpeciesId: 15
     SpeciesName: Wildebeest
   - ArchetypeId: 3
+    SpeciesId: 16
     SpeciesName: Dikdik
   - ArchetypeId: 4
+    SpeciesId: 17
     SpeciesName: Greater Kudu
   - ArchetypeId: 5
+    SpeciesId: 18
     SpeciesName: Giraffe
   - ArchetypeId: 6
+    SpeciesId: 19
     SpeciesName: Warthog
   - ArchetypeId: 9
+    SpeciesId: 20
     SpeciesName: Meerkat
   - ArchetypeId: 10
+    SpeciesId: 21
     SpeciesName: Baboon
   - ArchetypeId: 12
+    SpeciesId: 22
     SpeciesName: Serval
   - ArchetypeId: 13
+    SpeciesId: 23
     SpeciesName: Cheetah
   - ArchetypeId: 14
+    SpeciesId: 24
     SpeciesName: Lion
   - ArchetypeId: 15
+    SpeciesId: 25
     SpeciesName: Scarab
   - ArchetypeId: 16
+    SpeciesId: 26
     SpeciesName: Jackal
   - ArchetypeId: 17
+    SpeciesId: 27
     SpeciesName: Hyena

@@ -19,6 +19,8 @@ public class RegionGen
                 newRegion.TotalLowVegetation = data.ExtraData.LowVegetation;
                 newRegion.TotalHighVegetation = data.ExtraData.HighVegetation;
                 FillRegion(world, data, newRegion, maxRegionSize);
+
+                // upkeep
                 regions.Add(newRegion);
                 currentRegionId++;
             }
@@ -54,5 +56,15 @@ public class RegionGen
                 stack.Push(neighbor);
             }
         }
+    }
+
+    private static void PopulateRegion(WorldData world, Region newRegion)
+    {
+        float totalLowVegetationNutrition = newRegion.GetLowVegetationNutrition();
+        float totalHighVegetationNutrition = newRegion.GetHighVegetationNutrition();
+        float totalRiverNutrition = newRegion.GetRiverNutrition();
+        float totalMicroFaunaNutrition = newRegion.GetMicroFaunaNutrition();
+
+
     }
 }

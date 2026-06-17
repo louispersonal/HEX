@@ -23,7 +23,7 @@ public class WorldData
     public Region[] Regions = new Region[0];
 
     public Dictionary<ushort, ArchetypeProfile> AnimalArchetypes;
-    public Dictionary<ushort, SpeciesProfile> AnimalSpecies;
+    public Dictionary<Biome, Dictionary<ushort, SpeciesProfile>> AnimalSpeciesByBiome;
 
     public WorldData(List<HexData> hexDataList)
     {

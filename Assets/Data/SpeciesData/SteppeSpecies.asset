@@ -14,30 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Species:
   - ArchetypeId: 0
+    SpeciesId: 28
     SpeciesName: Pika
   - ArchetypeId: 1
+    SpeciesId: 29
     SpeciesName: Saiga
   - ArchetypeId: 2
+    SpeciesId: 30
     SpeciesName: Horse
   - ArchetypeId: 3
+    SpeciesId: 31
     SpeciesName: Hare
   - ArchetypeId: 4
+    SpeciesId: 32
     SpeciesName: Deer
   - ArchetypeId: 5
+    SpeciesId: 33
     SpeciesName: Camel
   - ArchetypeId: 9
+    SpeciesId: 34
     SpeciesName: GroundSquirrel
   - ArchetypeId: 10
+    SpeciesId: 35
     SpeciesName: Badger
   - ArchetypeId: 11
+    SpeciesId: 36
     SpeciesName: BrownBear
   - ArchetypeId: 12
+    SpeciesId: 37
     SpeciesName: Polecat
   - ArchetypeId: 13
+    SpeciesId: 38
     SpeciesName: Wolf
   - ArchetypeId: 14
+    SpeciesId: 39
     SpeciesName: Tiger
   - ArchetypeId: 15
+    SpeciesId: 40
     SpeciesName: Raven
   - ArchetypeId: 17
+    SpeciesId: 41
     SpeciesName: Hyena
