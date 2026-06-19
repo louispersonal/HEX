@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class AnimalGroup
 {
-    public ushort ArchetypeId;
-
+    public ushort SpeciesId;
     public ushort RegionId;
     public int Count;
 }

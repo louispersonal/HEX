@@ -15,7 +15,7 @@ public class Region
 
     public AxialCoordinate SeedCoord;
 
-    public List<ushort> SpeciesInRegion;
+    public List<AnimalGroup> AnimalsInRegion;
 
     private int _hasRiver = -1;
 
