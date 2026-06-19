@@ -94,4 +94,9 @@ public class NewGameMenuController : SubMenu
 
         PreviewCurrentWorld();
     }
+
+    public void StartGame()
+    {
+        GameController.Instance.GoToScene(SceneNames.Game);
+    }
 }

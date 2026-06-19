@@ -76,4 +76,9 @@ public class NewGameMenuView : SubMenuView
         _loadDropdown.ClearOptions();
         _loadDropdown.AddOptions(NewGameMenu.WorldSaveFilenames);
     }
+
+    public void StartGameButton()
+    {
+        NewGameMenu.StartGame();
+    }
 }
