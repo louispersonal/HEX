@@ -35,6 +35,17 @@ public class WorldData
     {
         return new WorldSaveData(_name, Grid.GetHexData(), Rivers.Objects.Values.ToList(), Lakes.Objects.Values.ToList(), GeoFeatures.Objects.Values.ToList(), Regions);
     }
+
+    public List<AxialCardinalDirections> GetRiverNeighbors(HexData hexData)
+    {
+        List<AxialCardinalDirections> neighbors = new List<AxialCardinalDirections>();
+        for (int d = 0; d < AxialDirections.Directions.Length; d++)
+        {
+            AxialCoordinate neighborCoord = hexData.Coord + AxialDirections.Directions[d];
+            if (Rivers.ContainsAt(neighborCoord)) neighbors.Add((AxialCardinalDirections) d);
+        }
+        return neighbors;
+    }
 }
 
 [System.Serializable]

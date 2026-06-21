@@ -6,7 +6,7 @@ public class HexView : MonoBehaviour
 {
 	public HexData Data { get; private set; }
 
-    public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
+    public WorldData WorldData { get { return Data.WorldData; } }
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -27,6 +27,8 @@ public class HexView : MonoBehaviour
 	[SerializeField] Sprite _steppeSprite;
 	[SerializeField] Sprite _savannaSprite;
 
+	[SerializeField] RiverOverlayController _riverOverlay;
+
     public static float SceneSize = 1.15f; //1 unit in unity world space
 
     public void Initialize(HexData data)
@@ -46,6 +48,8 @@ public class HexView : MonoBehaviour
 		{
             _spriteRenderer.color = Color.white;
         }
+
+		_riverOverlay.InitializeOverlays(Data);
     }
 
 	public void Terminate()

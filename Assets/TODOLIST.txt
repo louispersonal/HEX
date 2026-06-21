@@ -1,13 +1,4 @@
-Make Grid dicionary something that is not a dictionary
-
-Add loading times to generation and turn it into coroutines
-
-Allow saving and loading of map
-
-make world preview a bit sharper (why blank space at top, why sometimes lines between hexes)
-
-put the pathfinder somewhere smarter
-
 make pathfinder use a priority queue
 
 make cost function for pathfinder
+

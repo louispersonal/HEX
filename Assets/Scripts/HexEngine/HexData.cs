@@ -7,6 +7,8 @@ public class HexData : BaseHexData
 {
     [SerializeField] private HexExtraData _extraData;
 
+    public WorldData WorldData { get { return GameController.Instance.SessionManager.WorldData; } }
+
     public ref HexExtraData ExtraData => ref _extraData;
 
     public HexData(AxialCoordinate a) : base(a)
