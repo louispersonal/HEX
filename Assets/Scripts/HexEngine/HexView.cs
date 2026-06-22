@@ -15,9 +15,11 @@ public class HexView : MonoBehaviour
 	[SerializeField] ParticleSystem _highVegetationParticles;
     [SerializeField] int _maxHighVegetationParticles;
     [SerializeField] private SpriteRenderer _elevationOverlayRenderer;
+    [SerializeField] private SpriteRenderer _geoFeatureRenderer;
 
     [SerializeField] List<Sprite> _elevationOverlays;
-	[SerializeField] Color _seaColor;
+    [SerializeField] List<Sprite> _geoFeatures;
+    [SerializeField] Color _seaColor;
 
 	[SerializeField] Sprite _desertSprite;
 	[SerializeField] Sprite _tundraSprite;
@@ -37,7 +39,20 @@ public class HexView : MonoBehaviour
 		gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Coord);
 		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.ExtraData.LowVegetation * _maxLowVegetationParticles)));
 		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.ExtraData.HighVegetation * _maxHighVegetationParticles)));
-        _elevationOverlayRenderer.sprite = _elevationOverlays[Mathf.RoundToInt(Data.ExtraData.Elevation * (_elevationOverlays.Count - 1))];
+
+		_elevationOverlayRenderer.sprite = null;
+		_geoFeatureRenderer.sprite = null;
+
+        if (WorldData.GeoFeatures.TryGetObjectAt(Data.Coord, out GeoFeature feature))
+		{
+			int featureSpriteIndex = (int)feature.Type;
+			_geoFeatureRenderer.sprite = _geoFeatures[featureSpriteIndex];
+		}
+		else
+		{
+            _elevationOverlayRenderer.sprite = _elevationOverlays[Mathf.RoundToInt(Data.ExtraData.Elevation * (_elevationOverlays.Count - 1))];
+        }
+
 		SetSprite();
 
 		if (Data.ExtraData.IsSea)
