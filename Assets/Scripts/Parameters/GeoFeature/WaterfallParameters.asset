@@ -25,5 +25,5 @@ MonoBehaviour:
   HighVegetationMin: 0
   HighVegetationMax: 1
   SeaAdjacentRequirement: 0
-  RiverRequirement: 0
+  RiverRequirement: 1
   TargetNumber: 100
