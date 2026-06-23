@@ -14,12 +14,7 @@ public class WorldGenController : MonoBehaviour
 
     [SerializeField] private FractalBrownianMotionParameters _fBMBaseLayerParameters;
 
-    private const float BASE_FREQUENCY = 0.015f;
-    private const int OCTAVES = 6;
-    private const float LACUNARITY = 1.9f;
-    private const float GAIN = 0.8f;
     private const float WIDTH_HEIGHT_RATIO = 1.5f;
-    private const int FRACTAL_WIDTH_SPAN = 200;
 
     private bool _generationInProgress = false;
     public bool GenerationInProgress { get { return _generationInProgress; } }
