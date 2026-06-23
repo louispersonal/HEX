@@ -20,7 +20,7 @@ public class RiverGen
 
         ListExtensions.Shuffle<HexData>(candidateHexes);
 
-        for (int c = 0; c < parameters.TargetNumberRivers; c++)
+        for (int c = 0; c < parameters.TargetNumberRivers && c < candidateHexes.Count; c++)
         {
             RiverID newID = new RiverID(riverIndex);
             River newRiver = new River(newID, candidateHexes[c].Coord);
