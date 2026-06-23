@@ -6,23 +6,28 @@ using UnityEngine.UI;
 
 public class ElevationGen
 {
-    public static void GenerateHeightmap(HexGrid grid, int seed, FractalBrownianMotionParameters fbmParams, float widthHeightRatio)
+    public static void GenerateHeightmap(HexGrid grid, int seed, List<FBMLayerInformation> layers, float widthHeightRatio)
     {
-        Vector2 _originPoint = SeedToVector2(seed);
-        Vector2 _boundPoint = _originPoint + new Vector2(fbmParams.FractalWidthSpan, fbmParams.FractalWidthSpan / widthHeightRatio);
-
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), _originPoint, _boundPoint, out float size);
-
         float highestElevation = 0f;
-
-        foreach (HexData data in grid.GetValidHexes())
+        
+        foreach (var layer in layers)
         {
-            float elevation = FractalBrownianMotion.FBM(coords[data.Coord], fbmParams);
-            elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
-            if (elevation > highestElevation) highestElevation = elevation;
-            data.ExtraData.SetElevation(elevation);
-        }
+            var fbmParams = layer.LayerParams;
+            
+            Vector2 _originPoint = SeedToVector2(seed);
+            Vector2 _boundPoint = _originPoint + new Vector2(fbmParams.FractalWidthSpan, fbmParams.FractalWidthSpan / widthHeightRatio);
 
+            var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), _originPoint, _boundPoint, out float size);
+            
+            foreach (HexData data in grid.GetValidHexes())
+            {
+                float elevation = layer.LayerWeight * FractalBrownianMotion.FBM(coords[data.Coord], fbmParams);
+                elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
+                if (elevation > highestElevation) highestElevation = elevation;
+                data.ExtraData.SetElevation(elevation);
+            }
+        }
+        
         NormalizeHeightmap(grid, highestElevation);
     }
 
@@ -55,4 +60,11 @@ public class ElevationGen
 
         return new Vector2(x * 10000f, y * 10000f);
     }
+}
+
+[System.Serializable]
+public class FBMLayerInformation
+{
+    public FractalBrownianMotionParameters LayerParams;
+    public float LayerWeight;
 }

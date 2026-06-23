@@ -12,7 +12,7 @@ public class WorldGenController : MonoBehaviour
 
     [SerializeField] List<SpeciesDatabaseAsset> _speciesDatabases;
 
-    [SerializeField] private FractalBrownianMotionParameters _fBMBaseLayerParameters;
+    [SerializeField] private List<FBMLayerInformation> _fBMLayerParameters;
 
     private const float WIDTH_HEIGHT_RATIO = 1.5f;
 
@@ -43,7 +43,7 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.14f;
         yield return null;
 
-        ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, _fBMBaseLayerParameters, WIDTH_HEIGHT_RATIO);
+        ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, _fBMLayerParameters, WIDTH_HEIGHT_RATIO);
 
         _currentStatus = "Computing Temperatures";
         _amountDone = 0.28f;
