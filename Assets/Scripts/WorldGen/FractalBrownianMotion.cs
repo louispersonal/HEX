@@ -45,21 +45,13 @@ public class FractalBrownianMotion
     }
 }
 
-[System.Serializable]
-public class FractalBrownianMotionParameters
+[CreateAssetMenu(fileName = "FBMParameters", menuName = "ScriptableObjects/FBMParameters", order = 3)]
+
+public class FractalBrownianMotionParameters : ScriptableObject
 {
     public float BaseFrequency;
     public int Octaves;
     public float Lacunarity;
     public float Gain;
     public float FractalWidthSpan;
-
-    public FractalBrownianMotionParameters(float baseFrequency, int octaves, float lacunarity, float gain, float fractalWidthSpan)
-    {
-        BaseFrequency = baseFrequency;
-        Octaves = octaves;
-        Lacunarity = lacunarity;
-        Gain = gain;
-        FractalWidthSpan = fractalWidthSpan;
-    }
 }

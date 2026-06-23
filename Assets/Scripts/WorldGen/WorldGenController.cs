@@ -12,6 +12,8 @@ public class WorldGenController : MonoBehaviour
 
     [SerializeField] List<SpeciesDatabaseAsset> _speciesDatabases;
 
+    [SerializeField] private FractalBrownianMotionParameters _fBMBaseLayerParameters;
+
     private const float BASE_FREQUENCY = 0.015f;
     private const int OCTAVES = 6;
     private const float LACUNARITY = 1.9f;
@@ -35,9 +37,7 @@ public class WorldGenController : MonoBehaviour
         _generationInProgress = true;
         _currentStatus = "Starting";
         _amountDone = 0f;
-
-        FractalBrownianMotionParameters defaultParams = new FractalBrownianMotionParameters(BASE_FREQUENCY, OCTAVES, LACUNARITY, GAIN, FRACTAL_WIDTH_SPAN);
-
+        
         List<HexData> newHexData = HexGridGeometry.GenerateRectangularGrid(worldWidthInHexes, Mathf.RoundToInt(worldWidthInHexes / WIDTH_HEIGHT_RATIO));
 
         _newWorld = new WorldData(newHexData);
@@ -48,7 +48,7 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.14f;
         yield return null;
 
-        ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, defaultParams, WIDTH_HEIGHT_RATIO);
+        ElevationGen.GenerateHeightmap(_newWorld.Grid, seed, _fBMBaseLayerParameters, WIDTH_HEIGHT_RATIO);
 
         _currentStatus = "Computing Temperatures";
         _amountDone = 0.28f;

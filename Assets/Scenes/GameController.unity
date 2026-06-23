@@ -278,6 +278,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bae15c65731c6304ebdb79c4eb056251, type: 2}
   - {fileID: 11400000, guid: c709a18ca7462f94eb0c0b903ed5f705, type: 2}
   - {fileID: 11400000, guid: f3355e3fd68d0b049b485a7c518bc406, type: 2}
+  _fBMBaseLayerParameters: {fileID: 11400000, guid: 63f6242e6e1f89848a82691537588bd7,
+    type: 2}
 --- !u!1 &1736040581
 GameObject:
   m_ObjectHideFlags: 0
