@@ -8,39 +8,49 @@ public class ElevationGen
 {
     public static void GenerateHeightmap(HexGrid grid, int seed, List<FBMLayerInformation> layers, float widthHeightRatio)
     {
-        float highestElevation = 0f;
-
         foreach (var layer in layers)
         {
             layer.OriginPoint = SeedToVector2(seed);
             layer.BoundPoint = layer.OriginPoint + new Vector2(layer.LayerParams.FractalWidthSpan, layer.LayerParams.FractalWidthSpan / widthHeightRatio);
             layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float size);
+            layer.ElevationMap = new();
+            
+            float highestElevationLayer = 0f;
+            
+            foreach (HexData data in grid.GetValidHexes())
+            {
+                float elevation = FractalBrownianMotion.FBM(layer.CoordMap[data.Coord], layer.LayerParams);
+                if (layer.BaseLayer) elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
+                if (elevation > highestElevationLayer) highestElevationLayer = elevation;
+                layer.ElevationMap[data.Coord] = elevation;
+            }
+            NormalizeElevationMap(layer.ElevationMap, highestElevationLayer, layer.LayerWeight);
         }
         
         foreach (HexData data in grid.GetValidHexes())
         {
-            float elevation = 0f;
+            float layerSum = 0f;
             foreach (var layer in layers)
             {
-                elevation += layer.LayerWeight * FractalBrownianMotion.FBM(layer.CoordMap[data.Coord], layer.LayerParams);
+                if (layer.BaseLayer || layerSum > 0) layerSum += layer.ElevationMap[data.Coord];
             }
-            elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
-            if (elevation > highestElevation) highestElevation = elevation;
-            data.ExtraData.SetElevation(elevation);
+            data.ExtraData.SetElevation(layerSum);
         }
-        
-        NormalizeHeightmap(grid, highestElevation);
     }
 
-    public static void NormalizeHeightmap(HexGrid grid, float highestElevation)
+    public static void NormalizeElevationMap(Dictionary<AxialCoordinate, float> elevationMap, float highestElevation, float weight=1)
     {
-        foreach (HexData data in grid.GetValidHexes())
+        if (highestElevation <= 0f)
+            return;
+
+        var keys = new List<AxialCoordinate>(elevationMap.Keys);
+
+        foreach (var key in keys)
         {
-            float newElevation = data.ExtraData.Elevation / highestElevation;
-            data.ExtraData.SetElevation(newElevation);
+            elevationMap[key] = (elevationMap[key] / highestElevation) * weight;
         }
     }
-
+    
     public static Vector2 SeedToVector2(int seed)
     {
         uint hash = (uint)seed;
@@ -68,8 +78,10 @@ public class FBMLayerInformation
 {
     public FractalBrownianMotionParameters LayerParams;
     public float LayerWeight;
+    public bool BaseLayer;
 
     [HideInInspector] public Vector2 OriginPoint;
     [HideInInspector] public Vector2 BoundPoint;
     [HideInInspector] public Dictionary<AxialCoordinate, Vector2> CoordMap;
+    [HideInInspector] public Dictionary<AxialCoordinate, float> ElevationMap;
 }

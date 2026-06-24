@@ -280,9 +280,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3355e3fd68d0b049b485a7c518bc406, type: 2}
   _fBMLayerParameters:
   - LayerParams: {fileID: 11400000, guid: 63f6242e6e1f89848a82691537588bd7, type: 2}
-    LayerWeight: 1
+    LayerWeight: 0.5
+    BaseLayer: 1
+    OriginPoint: {x: 0, y: 0}
+    BoundPoint: {x: 0, y: 0}
   - LayerParams: {fileID: 11400000, guid: 7c29191fdcee2c64cafcedc5ae4f0c5c, type: 2}
-    LayerWeight: 0
+    LayerWeight: 0.5
+    BaseLayer: 0
+    OriginPoint: {x: 0, y: 0}
+    BoundPoint: {x: 0, y: 0}
 --- !u!1 &1736040581
 GameObject:
   m_ObjectHideFlags: 0
