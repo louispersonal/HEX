@@ -15,39 +15,34 @@ public class ElevationGen
             layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float size);
             layer.ElevationMap = new();
             
-            float highestElevationLayer = 0f;
-            
             foreach (HexData data in grid.GetValidHexes())
             {
-                float elevation = FractalBrownianMotion.FBM(layer.CoordMap[data.Coord], layer.LayerParams);
-                if (layer.BaseLayer) elevation = elevation > 0.5 ? (elevation - 0.5f) * 2f : 0f;
-                if (elevation > highestElevationLayer) highestElevationLayer = elevation;
-                layer.ElevationMap[data.Coord] = elevation;
+                layer.ElevationMap[data.Coord] = FractalBrownianMotion.FBM(layer.CoordMap[data.Coord], layer.LayerParams);
             }
-            NormalizeElevationMap(layer.ElevationMap, highestElevationLayer, layer.LayerWeight);
         }
+
+        float highestElevation = 0f;
         
         foreach (HexData data in grid.GetValidHexes())
         {
             float layerSum = 0f;
             foreach (var layer in layers)
             {
-                if (layer.BaseLayer || layerSum > 0) layerSum += layer.ElevationMap[data.Coord];
+                layerSum += layer.ElevationMap[data.Coord] * layer.LayerWeight;
             }
+            layerSum = layerSum > 0.5f ? (layerSum - 0.5f) * 2f : 0f;
+            if (layerSum > highestElevation) highestElevation = layerSum;
             data.ExtraData.SetElevation(layerSum);
         }
+        
+        NormalizeMap(grid,  highestElevation);
     }
 
-    public static void NormalizeElevationMap(Dictionary<AxialCoordinate, float> elevationMap, float highestElevation, float weight=1)
+    public static void NormalizeMap(HexGrid grid, float highestElevation)
     {
-        if (highestElevation <= 0f)
-            return;
-
-        var keys = new List<AxialCoordinate>(elevationMap.Keys);
-
-        foreach (var key in keys)
+        foreach (HexData data in grid.GetValidHexes())
         {
-            elevationMap[key] = (elevationMap[key] / highestElevation) * weight;
+            data.ExtraData.SetElevation(data.ExtraData.Elevation / highestElevation);
         }
     }
     
@@ -78,7 +73,6 @@ public class FBMLayerInformation
 {
     public FractalBrownianMotionParameters LayerParams;
     public float LayerWeight;
-    public bool BaseLayer;
 
     [HideInInspector] public Vector2 OriginPoint;
     [HideInInspector] public Vector2 BoundPoint;
