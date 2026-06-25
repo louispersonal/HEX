@@ -11,8 +11,6 @@ public class DebugView : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _fpsText;
 
-    [SerializeField] TextMeshProUGUI _hexDebugText;
-
     public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
     // Start is called before the first frame update
@@ -25,7 +23,6 @@ public class DebugView : MonoBehaviour
     void Update()
     {
         UpdateFPSText();
-        UpdateHexDebugText();
     }
 
     void UpdateFPSText()
@@ -43,10 +40,5 @@ public class DebugView : MonoBehaviour
             _timeInWindow = 0f;
             _framesInWindow = 0;
         }
-    }
-
-    void UpdateHexDebugText()
-    {
-
     }
 }
