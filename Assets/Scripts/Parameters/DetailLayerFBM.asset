@@ -16,4 +16,4 @@ MonoBehaviour:
   Octaves: 6
   Lacunarity: 1.9
   Gain: 0.8
-  FractalWidthSpan: 400
+  FractalWidthSpan: 1000

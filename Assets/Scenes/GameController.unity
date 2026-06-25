@@ -278,15 +278,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bae15c65731c6304ebdb79c4eb056251, type: 2}
   - {fileID: 11400000, guid: c709a18ca7462f94eb0c0b903ed5f705, type: 2}
   - {fileID: 11400000, guid: f3355e3fd68d0b049b485a7c518bc406, type: 2}
-  _fBMLayerParameters:
-  - LayerParams: {fileID: 11400000, guid: 63f6242e6e1f89848a82691537588bd7, type: 2}
-    LayerWeight: 0.5
-    BaseLayer: 1
+  _fBMBaseLayer:
+    LayerParams: {fileID: 11400000, guid: 63f6242e6e1f89848a82691537588bd7, type: 2}
+    LayerWeight: 0.01
     OriginPoint: {x: 0, y: 0}
     BoundPoint: {x: 0, y: 0}
+  _fBMDetailLayers:
   - LayerParams: {fileID: 11400000, guid: 7c29191fdcee2c64cafcedc5ae4f0c5c, type: 2}
-    LayerWeight: 0.5
-    BaseLayer: 0
+    LayerWeight: 0.99
     OriginPoint: {x: 0, y: 0}
     BoundPoint: {x: 0, y: 0}
 --- !u!1 &1736040581

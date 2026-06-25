@@ -6,43 +6,88 @@ using UnityEngine.UI;
 
 public class ElevationGen
 {
-    public static void GenerateHeightmap(HexGrid grid, int seed, List<FBMLayerInformation> layers, float widthHeightRatio)
+    public static void GenerateHeightmap(HexGrid grid, int seed, FBMLayerInformation baseLayer, List<FBMLayerInformation> detailLayers, float widthHeightRatio)
     {
-        foreach (var layer in layers)
+            
+        baseLayer.OriginPoint = SeedToVector2(seed);
+        baseLayer.BoundPoint = baseLayer.OriginPoint + new Vector2(baseLayer.LayerParams.FractalWidthSpan, baseLayer.LayerParams.FractalWidthSpan / widthHeightRatio);
+        baseLayer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), baseLayer.OriginPoint, baseLayer.BoundPoint, out float size);
+        baseLayer.ElevationMap = new();
+
+        foreach (var layer in detailLayers)
         {
             layer.OriginPoint = SeedToVector2(seed);
             layer.BoundPoint = layer.OriginPoint + new Vector2(layer.LayerParams.FractalWidthSpan, layer.LayerParams.FractalWidthSpan / widthHeightRatio);
-            layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float size);
+            layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float hexSize);
             layer.ElevationMap = new();
+            
+            float minElevation = float.MaxValue;
+            float maxElevation = float.MinValue;
             
             foreach (HexData data in grid.GetValidHexes())
             {
                 layer.ElevationMap[data.Coord] = FractalBrownianMotion.FBM(layer.CoordMap[data.Coord], layer.LayerParams);
+                if (layer.ElevationMap[data.Coord] > maxElevation) maxElevation = layer.ElevationMap[data.Coord];
+                if (layer.ElevationMap[data.Coord] < minElevation) minElevation = layer.ElevationMap[data.Coord];
             }
+            
+            NormalizeElevationMap(layer.ElevationMap, minElevation, maxElevation);
         }
 
-        float highestElevation = 0f;
-        
         foreach (HexData data in grid.GetValidHexes())
         {
-            float layerSum = 0f;
-            foreach (var layer in layers)
+            float elevation = FractalBrownianMotion.FBM(baseLayer.CoordMap[data.Coord], baseLayer.LayerParams);
+            elevation = elevation > 0.5f ? baseLayer.LayerWeight : 0f;
+            baseLayer.ElevationMap[data.Coord] = elevation;
+        }
+
+        foreach (HexData data in grid.GetValidHexes())
+        {
+            float layerSum = baseLayer.ElevationMap[data.Coord];
+            foreach (var layer in detailLayers)
             {
-                layerSum += layer.ElevationMap[data.Coord] * layer.LayerWeight;
+                if (layerSum > 0f)
+                {
+                    layerSum += layer.ElevationMap[data.Coord] * layer.LayerWeight;
+                }
             }
-            layerSum = layerSum > 0.5f ? (layerSum - 0.5f) * 2f : 0f;
-            if (layerSum > highestElevation) highestElevation = layerSum;
+            //flatten slightly
+            layerSum = Mathf.Pow(layerSum, 3f);
             data.ExtraData.SetElevation(layerSum);
         }
-        
-        NormalizeMap(grid,  highestElevation);
     }
 
+    private static void DebugMinMax(Dictionary<AxialCoordinate, float> map)
+    {
+        float min = float.MaxValue;
+        float max = float.MinValue;
+        
+        var keys = map.Keys;
+
+        foreach (var key in keys)
+        {
+            if (map[key] >  max) max = map[key];
+            if (map[key] <  min) min = map[key];
+        }
+        
+        Debug.Log("Max: " + max + " Min: " + min);
+    }
+    
     public static void NormalizeMap(HexGrid grid, float highestElevation)
     {
         foreach (HexData data in grid.GetValidHexes())
         {
             data.ExtraData.SetElevation(data.ExtraData.Elevation / highestElevation);
+        }
+    }
+
+    public static void NormalizeElevationMap(Dictionary<AxialCoordinate, float> map, float maxElevation,
+        float minElevation)
+    {
+        var keys = new List<AxialCoordinate>(map.Keys);
+        foreach (var key in keys)
+        {
+            map[key] = (map[key] - minElevation) / (maxElevation - minElevation);
         }
     }
     
@@ -73,7 +118,7 @@ public class FBMLayerInformation
 {
     public FractalBrownianMotionParameters LayerParams;
     public float LayerWeight;
-
+    
     [HideInInspector] public Vector2 OriginPoint;
     [HideInInspector] public Vector2 BoundPoint;
     [HideInInspector] public Dictionary<AxialCoordinate, Vector2> CoordMap;
