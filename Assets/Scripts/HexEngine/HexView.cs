@@ -50,7 +50,7 @@ public class HexView : MonoBehaviour
 		}
 		else
 		{
-            _elevationOverlayRenderer.sprite = _elevationOverlays[Mathf.RoundToInt(Data.ExtraData.Elevation * (_elevationOverlays.Count - 1))];
+			SetElevationSprite();
         }
 
 		SetSprite();
@@ -80,6 +80,22 @@ public class HexView : MonoBehaviour
 		s.Pause();
 	}
 
+	private void SetElevationSprite()
+	{
+		if (Data.ExtraData.Elevation < 0.5f)
+		{
+			_elevationOverlayRenderer.sprite = _elevationOverlays[0];
+		}
+		else if (Data.ExtraData.Elevation < 0.75f)
+		{
+			_elevationOverlayRenderer.sprite = _elevationOverlays[1];
+		}
+		else
+		{
+			_elevationOverlayRenderer.sprite = _elevationOverlays[2];
+		}
+	}
+	
 	private void SetSprite()
 	{
 		switch (Data.ExtraData.Biome)

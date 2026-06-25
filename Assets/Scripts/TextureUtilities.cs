@@ -154,7 +154,23 @@ public class TextureUtilities
                 switch (type)
                 {
                     case MapModeTypes.Elevation:
-                        parameterValue = data.ExtraData.Elevation;
+                        //parameterValue = data.ExtraData.Elevation;
+                        if (data.ExtraData.Elevation == 0f)
+                        {
+                            parameterValue = 0f;
+                        }
+                        else if (data.ExtraData.Elevation < 0.5f)
+                        {
+                            parameterValue = 0.4f;
+                        }
+                        else if (data.ExtraData.Elevation < 0.75f)
+                        {
+                            parameterValue = 0.7f;
+                        }
+                        else
+                        {
+                            parameterValue = 1f;
+                        }
                         break;
                     case MapModeTypes.Temperature:
                         parameterValue = data.ExtraData.Temperature;

@@ -52,7 +52,7 @@ public class ElevationGen
                 }
             }
             //flatten slightly
-            layerSum = Mathf.Pow(layerSum, 3f);
+            layerSum = Mathf.Pow(layerSum, 1.5f);
             data.ExtraData.SetElevation(layerSum);
         }
     }
