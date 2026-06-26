@@ -11,6 +11,8 @@ public class SessionManager : MonoBehaviour
 
     private GameData _gameData;
 
+    public UiData UiData { get; set; }
+
     private string WorldsFolder =>
     Path.Combine(Application.persistentDataPath, "Worlds");
 

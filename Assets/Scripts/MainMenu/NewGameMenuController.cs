@@ -27,6 +27,8 @@ public class NewGameMenuController : SubMenu
         SetWorldAsCurrent(_worldGenController.NewWorld);
 
         PreviewCurrentWorld();
+        
+        GameController.Instance.SessionManager.UiData = new UiData(NewGameView.MapPreview.MapModeTextures[MapModeTypes.General]);
     }
 
     private void PreviewCurrentWorld()
