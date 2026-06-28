@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 353080004}
+  - component: {fileID: 353080005}
   - component: {fileID: 353080003}
   - component: {fileID: 353080002}
   - component: {fileID: 353080001}
@@ -224,6 +225,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &353080005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353080000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7480fb9cb5e35aa4898d4ee46d21b324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _miniMap: {fileID: 1069789071}
 --- !u!1 &368472077
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -826.4, y: -486.85574}
+  m_AnchoredPosition: {x: -826.4, y: -239}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &504996466
@@ -449,6 +463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1069789068}
   - component: {fileID: 1069789070}
+  - component: {fileID: 1069789071}
   - component: {fileID: 1069789069}
   m_Layer: 5
   m_Name: MiniMap
@@ -474,7 +489,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 225, y: 150}
+  m_SizeDelta: {x: 337.5, y: 225}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1069789069
 MonoBehaviour:
@@ -511,6 +526,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069789067}
   m_CullTransparentMesh: 1
+--- !u!114 &1069789071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069789067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08aa566d32231f4a96471d5fef2571b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _miniMapImage: {fileID: 1069789069}
 --- !u!1 &1084633992
 GameObject:
   m_ObjectHideFlags: 0
