@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class AxialGeometry
 {
@@ -145,11 +147,12 @@ public class AxialGeometry
         return outList;
     }
 
-    public static Dictionary<AxialCoordinate, Vector2> ConvertAxialSetToBoundedCartesian(List<AxialCoordinate> axialCoords, Vector2 bottomLeftBound, Vector2 topRightBound, out float adjustedHexSize)
+    public static Dictionary<AxialCoordinate, Vector2> ConvertAxialSetToBoundedCartesian(List<AxialCoordinate> axialCoords, Vector2 bottomLeftBound, Vector2 topRightBound, out float adjustedHexSize, out Vector2 usedTopRightBound)
     {
         if (axialCoords == null || axialCoords.Count == 0)
         {
             adjustedHexSize = 0f;
+            usedTopRightBound = Vector2.zero;
             return new Dictionary<AxialCoordinate, Vector2>();
         }
 
@@ -201,7 +204,10 @@ public class AxialGeometry
         float sizeFromVertical = availableH / totalVerticalSpan;
 
         adjustedHexSize = Mathf.Min(sizeFromHorizontal, sizeFromVertical);
-
+        usedTopRightBound = bottomLeftBound + new Vector2(
+            totalHorizontalSpan * adjustedHexSize,
+            totalVerticalSpan * adjustedHexSize );
+        
         // Now compute offset so the grid's min tile-edge maps to bottomLeftBound
         float halfW = Mathf.Sqrt(3f) * 0.5f * adjustedHexSize;
         float halfH = 1f * adjustedHexSize;

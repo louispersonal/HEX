@@ -11,14 +11,14 @@ public class ElevationGen
             
         baseLayer.OriginPoint = SeedToVector2(seed);
         baseLayer.BoundPoint = baseLayer.OriginPoint + new Vector2(baseLayer.LayerParams.FractalWidthSpan, baseLayer.LayerParams.FractalWidthSpan / widthHeightRatio);
-        baseLayer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), baseLayer.OriginPoint, baseLayer.BoundPoint, out float size);
+        baseLayer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), baseLayer.OriginPoint, baseLayer.BoundPoint, out float size, out Vector2 newBaseTopRightBound);
         baseLayer.ElevationMap = new();
 
         foreach (var layer in detailLayers)
         {
             layer.OriginPoint = SeedToVector2(seed);
             layer.BoundPoint = layer.OriginPoint + new Vector2(layer.LayerParams.FractalWidthSpan, layer.LayerParams.FractalWidthSpan / widthHeightRatio);
-            layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float hexSize);
+            layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float hexSize, out Vector2 newTopRightBound);
             layer.ElevationMap = new();
             
             float minElevation = float.MaxValue;

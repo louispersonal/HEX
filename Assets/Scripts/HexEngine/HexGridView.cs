@@ -9,6 +9,8 @@ public class HexGridView : MonoBehaviour
 	public static HexGridView Instance { get; private set; }
 	public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
+	public (float q, float r)[] CornerCoords { get; private set; }
+	
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;
 	HashSet<AxialCoordinate> _targetCoords;
@@ -44,6 +46,8 @@ public class HexGridView : MonoBehaviour
 		_despawnNow = new List<AxialCoordinate>();
 
 		_hexPool = new ObjectPool<HexView>(CreateHex, OnTakeFromPool, OnReturnedToPool, OnDestroyPooledObject, collectionCheck:false, defaultCapacity:100, maxSize:500);
+
+		CornerCoords = new (float q, float r)[4];
 	}
 	
 	private HexView CreateHex()
@@ -164,6 +168,11 @@ public class HexGridView : MonoBehaviour
 		(float q, float r) br = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 0f), planeZ));
 		(float q, float r) tl = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ));
 		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ));
+
+		CornerCoords[0] = bl;
+		CornerCoords[1] = br;
+		CornerCoords[2] = tl;
+		CornerCoords[3] = tr;
 		
 		return Mathf.CeilToInt(Mathf.Max(DistanceBetweenFractionalAxialCoords(bl,center), DistanceBetweenFractionalAxialCoords(br,center), DistanceBetweenFractionalAxialCoords(tl,center), DistanceBetweenFractionalAxialCoords(tr,center)));
 	}

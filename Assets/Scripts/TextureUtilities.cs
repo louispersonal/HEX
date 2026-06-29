@@ -96,8 +96,10 @@ public class TextureUtilities
             pixelArray[p] = Color.blue;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
 
+        Debug.Log(newTopRightBound);
+        
         foreach (AxialCoordinate axial in coords.Keys)
         {
             if (grid.TryGetHex(axial, out HexData data))
@@ -141,7 +143,7 @@ public class TextureUtilities
             pixelArray[p] = Color.black;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
 
         foreach (AxialCoordinate axial in coords.Keys)
         {
@@ -208,7 +210,7 @@ public class TextureUtilities
             pixelArray[p] = Color.black;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
 
         foreach (AxialCoordinate axial in coords.Keys)
         {
@@ -237,7 +239,7 @@ public class TextureUtilities
             pixelArray[p] = Color.blue;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
 
         foreach (AxialCoordinate axial in coords.Keys)
         {
