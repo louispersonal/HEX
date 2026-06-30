@@ -23,6 +23,7 @@ public class HexGridView : MonoBehaviour
     int _bufferSize = 2;
 	int _radius;
 	(float q, float r) _cameraCenter;
+	public (float q, float r) CameraCenter { get  { return _cameraCenter; } }
 
 	[SerializeField] HexView _hexViewPrefab;
 	
