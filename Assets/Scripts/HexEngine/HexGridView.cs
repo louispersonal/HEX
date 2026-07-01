@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ public class HexGridView : MonoBehaviour
 	public static HexGridView Instance { get; private set; }
 	public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
-	public (float q, float r)[] CornerCoords { get; private set; }
+	public (float q, float r)[] CameraCorners { get; private set; }
+	public Vector2[] WorldCorners { get; private set; }
 	
 	HashSet<AxialCoordinate> _needNow;
 	HashSet<AxialCoordinate> _bufferBand;
@@ -48,7 +50,26 @@ public class HexGridView : MonoBehaviour
 
 		_hexPool = new ObjectPool<HexView>(CreateHex, OnTakeFromPool, OnReturnedToPool, OnDestroyPooledObject, collectionCheck:false, defaultCapacity:100, maxSize:500);
 
-		CornerCoords = new (float q, float r)[4];
+		CameraCorners = new (float q, float r)[4];
+	}
+
+	private void Start()
+	{
+		FindWorldCorners();
+	}
+
+	private void FindWorldCorners()
+	{
+		AxialCoordinate tl = AxialGeometry.OddRToAxial((HexGrid.ColBounds.min, HexGrid.RowBounds.min));
+		AxialCoordinate bl = AxialGeometry.OddRToAxial((HexGrid.ColBounds.min, HexGrid.RowBounds.max));
+		AxialCoordinate tr = AxialGeometry.OddRToAxial((HexGrid.ColBounds.max, HexGrid.RowBounds.min));
+		AxialCoordinate br = AxialGeometry.OddRToAxial((HexGrid.ColBounds.max, HexGrid.RowBounds.max));
+		
+		WorldCorners = new Vector2[4];
+		WorldCorners[0] = HexGridGeometry.AxialToScene(bl);
+		WorldCorners[1] = HexGridGeometry.AxialToScene(tl);
+		WorldCorners[2] = HexGridGeometry.AxialToScene(tr);
+		WorldCorners[3] = HexGridGeometry.AxialToScene(br);
 	}
 	
 	private HexView CreateHex()
@@ -170,10 +191,10 @@ public class HexGridView : MonoBehaviour
 		(float q, float r) tl = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ));
 		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ));
 
-		CornerCoords[0] = bl;
-		CornerCoords[1] = br;
-		CornerCoords[2] = tl;
-		CornerCoords[3] = tr;
+		CameraCorners[0] = bl;
+		CameraCorners[1] = br;
+		CameraCorners[2] = tl;
+		CameraCorners[3] = tr;
 		
 		return Mathf.CeilToInt(Mathf.Max(DistanceBetweenFractionalAxialCoords(bl,center), DistanceBetweenFractionalAxialCoords(br,center), DistanceBetweenFractionalAxialCoords(tl,center), DistanceBetweenFractionalAxialCoords(tr,center)));
 	}
