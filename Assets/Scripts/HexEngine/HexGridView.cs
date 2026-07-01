@@ -10,7 +10,7 @@ public class HexGridView : MonoBehaviour
 	public static HexGridView Instance { get; private set; }
 	public HexGrid HexGrid { get { return GameController.Instance.SessionManager.WorldData.Grid; } }
 
-	public (float q, float r)[] CameraCorners { get; private set; }
+	public Vector2[] CameraCorners { get; private set; }
 	public Vector2[] WorldCorners { get; private set; }
 	
 	HashSet<AxialCoordinate> _needNow;
@@ -50,7 +50,7 @@ public class HexGridView : MonoBehaviour
 
 		_hexPool = new ObjectPool<HexView>(CreateHex, OnTakeFromPool, OnReturnedToPool, OnDestroyPooledObject, collectionCheck:false, defaultCapacity:100, maxSize:500);
 
-		CameraCorners = new (float q, float r)[4];
+		CameraCorners = new Vector2[4];
 	}
 
 	private void Start()
@@ -60,10 +60,10 @@ public class HexGridView : MonoBehaviour
 
 	private void FindWorldCorners()
 	{
-		AxialCoordinate tl = AxialGeometry.OddRToAxial((HexGrid.ColBounds.min, HexGrid.RowBounds.min));
-		AxialCoordinate bl = AxialGeometry.OddRToAxial((HexGrid.ColBounds.min, HexGrid.RowBounds.max));
-		AxialCoordinate tr = AxialGeometry.OddRToAxial((HexGrid.ColBounds.max, HexGrid.RowBounds.min));
-		AxialCoordinate br = AxialGeometry.OddRToAxial((HexGrid.ColBounds.max, HexGrid.RowBounds.max));
+		AxialCoordinate tl = AxialGeometry.OddRToAxial((HexGrid.RowBounds.min, HexGrid.ColBounds.min));
+		AxialCoordinate bl = AxialGeometry.OddRToAxial((HexGrid.RowBounds.max, HexGrid.ColBounds.min));
+		AxialCoordinate tr = AxialGeometry.OddRToAxial((HexGrid.RowBounds.min, HexGrid.ColBounds.max));
+		AxialCoordinate br = AxialGeometry.OddRToAxial((HexGrid.RowBounds.max, HexGrid.ColBounds.max));
 		
 		WorldCorners = new Vector2[4];
 		WorldCorners[0] = HexGridGeometry.AxialToScene(bl);
@@ -186,15 +186,15 @@ public class HexGridView : MonoBehaviour
 		Camera cam = Camera.main;
 		float planeZ = 0f;
 		
-		(float q, float r) bl = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0f, 0f), planeZ));
-		(float q, float r) br = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 0f), planeZ));
-		(float q, float r) tl = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ));
-		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ));
-
-		CameraCorners[0] = bl;
-		CameraCorners[1] = br;
-		CameraCorners[2] = tl;
-		CameraCorners[3] = tr;
+		CameraCorners[0] = ProjectViewportToPlane(cam, new Vector2(0f, 0f), planeZ);
+		CameraCorners[2] = ProjectViewportToPlane(cam, new Vector2(1f, 0f), planeZ);
+		CameraCorners[1] = ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ);
+		CameraCorners[3] = ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ);
+		
+		(float q, float r) bl = HexGridGeometry.SceneToFractionalAxial(CameraCorners[0]);
+		(float q, float r) br = HexGridGeometry.SceneToFractionalAxial(CameraCorners[1]);
+		(float q, float r) tl = HexGridGeometry.SceneToFractionalAxial(CameraCorners[2]);
+		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(CameraCorners[3]);
 		
 		return Mathf.CeilToInt(Mathf.Max(DistanceBetweenFractionalAxialCoords(bl,center), DistanceBetweenFractionalAxialCoords(br,center), DistanceBetweenFractionalAxialCoords(tl,center), DistanceBetweenFractionalAxialCoords(tr,center)));
 	}

@@ -27,6 +27,7 @@ public class MiniMap : MonoBehaviour
         if (!_initialized) return;
 
         _windowRect.position = GetWindowWorldPosition();
+        _windowRect.sizeDelta = GetWindowScale();
     }
 
     private Vector3 GetWindowWorldPosition()
@@ -46,6 +47,19 @@ public class MiniMap : MonoBehaviour
         _miniMapRect.GetWorldCorners(corners);
 
         return corners[1] + (Vector3)localPosition;
+    }
+
+    private Vector2 GetWindowScale()
+    {
+        HexGridView view = GameSceneController.Instance.HexGridView;
+        
+        float worldSpan = view.WorldCorners[3].x - view.WorldCorners[0].x;
+        float worldHeight = view.WorldCorners[1].y - view.WorldCorners[0].y;
+        
+        float cameraSpan = view.CameraCorners[3].x - view.CameraCorners[0].x;
+        float cameraHeight = view.CameraCorners[1].y - view.CameraCorners[0].y;
+        
+        return new Vector2((cameraSpan / worldSpan) * _miniMapRect.sizeDelta.x, (cameraHeight / worldHeight) * _miniMapRect.sizeDelta.y);
     }
     
     private AxialCoordinate GetCameraAxialPosition()
