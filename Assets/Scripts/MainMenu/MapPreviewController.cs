@@ -9,11 +9,11 @@ public class MapPreviewController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _mapPreviewName;
 
-    public Dictionary<MapModeTypes, Texture2D> MapModeTextures = new Dictionary<MapModeTypes, Texture2D>();
+    public Dictionary<MapModeTypes, MapTexture> MapModeTextures = new Dictionary<MapModeTypes, MapTexture>();
 
     private void SwitchMapMode(MapModeTypes type)
     {
-        _rawImageHexPreview.texture = MapModeTextures[type];
+        _rawImageHexPreview.texture = MapModeTextures[type].Texture;
     }
 
     public void SetMapName(string name)

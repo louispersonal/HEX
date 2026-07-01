@@ -85,7 +85,7 @@ public class TextureUtilities
         }
     }
 
-    public static Color[] GetPixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
+    public static MapTexture GetMapTextureFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
     {
         HexGrid grid = world.Grid;
 
@@ -127,10 +127,11 @@ public class TextureUtilities
             }
         }
 
-        return pixelArray;
+        Texture2D texture = GetTexture(pixelArray, horizontalPixels, verticalPixels);
+        return new MapTexture(texture, coords.HexSize);
     }
 
-    public static Color[] GetMapModePixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels, Color color, MapModeTypes type)
+    public static MapTexture GetMapModePixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels, Color color, MapModeTypes type)
     {
         HexGrid grid = world.Grid;
 
@@ -194,10 +195,11 @@ public class TextureUtilities
             }
         }
 
-        return pixelArray;
+        Texture2D texture = GetTexture(pixelArray, horizontalPixels, verticalPixels);
+        return new MapTexture(texture, coords.HexSize);
     }
 
-    public static Color[] GetGeoFeaturePixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
+    public static MapTexture GetGeoFeaturePixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
     {
         HexGrid grid = world.Grid;
 
@@ -223,10 +225,11 @@ public class TextureUtilities
             }
         }
 
-        return pixelArray;
+        Texture2D texture = GetTexture(pixelArray, horizontalPixels, verticalPixels);
+        return new MapTexture(texture, coords.HexSize);
     }
 
-    public static Color[] GetRegionPixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
+    public static MapTexture GetRegionPixelsFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
     {
         HexGrid grid = world.Grid;
 
@@ -252,7 +255,8 @@ public class TextureUtilities
             }
         }
 
-        return pixelArray;
+        Texture2D texture = GetTexture(pixelArray, horizontalPixels, verticalPixels);
+        return new MapTexture(texture, coords.HexSize);
     }
 
     public static Color GetGeoFeatureColor(GeoFeatureType type)

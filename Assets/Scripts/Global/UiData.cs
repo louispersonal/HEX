@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UiData
 {
-    public Texture2D MiniMapTexture { get; }
+    public MapTexture MiniMapTexture { get; }
 
-    public UiData(Texture2D miniMapTexture)
+    public UiData(MapTexture miniMapTexture)
     {
         MiniMapTexture = miniMapTexture;
     }
