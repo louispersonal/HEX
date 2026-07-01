@@ -147,13 +147,11 @@ public class AxialGeometry
         return outList;
     }
 
-    public static Dictionary<AxialCoordinate, Vector2> ConvertAxialSetToBoundedCartesian(List<AxialCoordinate> axialCoords, Vector2 bottomLeftBound, Vector2 topRightBound, out float adjustedHexSize, out Vector2 usedTopRightBound)
+    public static AxialCoordMap ConvertAxialSetToBoundedCartesian(List<AxialCoordinate> axialCoords, Vector2 bottomLeftBound, Vector2 topRightBound)
     {
         if (axialCoords == null || axialCoords.Count == 0)
         {
-            adjustedHexSize = 0f;
-            usedTopRightBound = Vector2.zero;
-            return new Dictionary<AxialCoordinate, Vector2>();
+            Debug.LogError("No axial coords to process");
         }
 
         // Find odd-r bounds
@@ -203,8 +201,8 @@ public class AxialGeometry
         float sizeFromHorizontal = availableW / totalHorizontalSpan;
         float sizeFromVertical = availableH / totalVerticalSpan;
 
-        adjustedHexSize = Mathf.Min(sizeFromHorizontal, sizeFromVertical);
-        usedTopRightBound = bottomLeftBound + new Vector2(
+        float adjustedHexSize = Mathf.Min(sizeFromHorizontal, sizeFromVertical);
+        Vector2 usedTopRightBound = bottomLeftBound + new Vector2(
             totalHorizontalSpan * adjustedHexSize,
             totalVerticalSpan * adjustedHexSize );
         
@@ -221,6 +219,6 @@ public class AxialGeometry
         foreach (AxialCoordinate aC in axialCoords)
             result[aC] = AxialToCartesian(aC, adjustedHexSize) + offset;
 
-        return result;
+        return new AxialCoordMap(result, bottomLeftBound, usedTopRightBound, adjustedHexSize);
     }
 }

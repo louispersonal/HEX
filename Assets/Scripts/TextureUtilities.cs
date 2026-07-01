@@ -96,16 +96,14 @@ public class TextureUtilities
             pixelArray[p] = Color.blue;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
-
-        Debug.Log(newTopRightBound);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels));
         
-        foreach (AxialCoordinate axial in coords.Keys)
+        foreach (AxialCoordinate axial in coords.Map.Keys)
         {
             if (grid.TryGetHex(axial, out HexData data))
             {
-                Vector2 pixelCoord = coords[axial];
-                DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), GetBiomeColor(data));
+                Vector2 pixelCoord = coords.Map[axial];
+                DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), GetBiomeColor(data));
             }
         }
 
@@ -114,9 +112,9 @@ public class TextureUtilities
         {
             for (int i = 0; i < river.Coords.Count - 1; i++)
             {
-                Vector2 pixelCoordRiverStart = coords[river.Coords[i]];
-                Vector2 pixelCoordRiverEnd = coords[river.Coords[i + 1]];
-                DrawLine(pixelArray, horizontalPixels, pixelCoordRiverStart, pixelCoordRiverEnd, new Color(0.26f, 0.94f, 0.96f), Mathf.RoundToInt(size * 0.5f));
+                Vector2 pixelCoordRiverStart = coords.Map[river.Coords[i]];
+                Vector2 pixelCoordRiverEnd = coords.Map[river.Coords[i + 1]];
+                DrawLine(pixelArray, horizontalPixels, pixelCoordRiverStart, pixelCoordRiverEnd, new Color(0.26f, 0.94f, 0.96f), Mathf.RoundToInt(coords.HexSize * 0.5f));
             }
         }
 
@@ -125,7 +123,7 @@ public class TextureUtilities
         {
             for (int i = 0; i < lake.Coords.Count; i++)
             {
-                DrawDot(pixelArray, horizontalPixels, coords[lake.Coords[0]], Mathf.RoundToInt(size * 0.75f), new Color(0.26f, 0.5f, 0.96f));
+                DrawDot(pixelArray, horizontalPixels, coords.Map[lake.Coords[0]], Mathf.RoundToInt(coords.HexSize * 0.75f), new Color(0.26f, 0.5f, 0.96f));
             }
         }
 
@@ -143,13 +141,13 @@ public class TextureUtilities
             pixelArray[p] = Color.black;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels));
 
-        foreach (AxialCoordinate axial in coords.Keys)
+        foreach (AxialCoordinate axial in coords.Map.Keys)
         {
             if (grid.TryGetHex(axial, out HexData data))
             {
-                Vector2 pixelCoord = coords[axial];
+                Vector2 pixelCoord = coords.Map[axial];
 
                 float parameterValue = 0f;
 
@@ -192,7 +190,7 @@ public class TextureUtilities
                 v *= parameterValue;
                 Color newColor = Color.HSVToRGB(h, s, v);
 
-                DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), newColor);
+                DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), newColor);
             }
         }
 
@@ -210,17 +208,17 @@ public class TextureUtilities
             pixelArray[p] = Color.black;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels));
 
-        foreach (AxialCoordinate axial in coords.Keys)
+        foreach (AxialCoordinate axial in coords.Map.Keys)
         {
             if (grid.TryGetHex(axial, out HexData data) && world.GeoFeatures.ContainsAt(axial))
             {
-                Vector2 pixelCoord = coords[axial];
+                Vector2 pixelCoord = coords.Map[axial];
 
                 if (world.GeoFeatures.TryGetObjectAt(axial, out GeoFeature feature))
                 {
-                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), GetGeoFeatureColor(feature.Type));
+                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), GetGeoFeatureColor(feature.Type));
                 }
             }
         }
@@ -239,17 +237,17 @@ public class TextureUtilities
             pixelArray[p] = Color.blue;
         }
 
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels), out float size, out Vector2 newTopRightBound);
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels));
 
-        foreach (AxialCoordinate axial in coords.Keys)
+        foreach (AxialCoordinate axial in coords.Map.Keys)
         {
             if (grid.TryGetHex(axial, out HexData data))
             {
-                Vector2 pixelCoord = coords[axial];
+                Vector2 pixelCoord = coords.Map[axial];
 
                 if (data.ExtraData.RegionId > 0)
                 {
-                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(size), ColorFromUShort(data.ExtraData.RegionId));
+                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), ColorFromUShort(data.ExtraData.RegionId));
                 }
             }
         }

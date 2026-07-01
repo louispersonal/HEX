@@ -11,14 +11,14 @@ public class ElevationGen
             
         baseLayer.OriginPoint = SeedToVector2(seed);
         baseLayer.BoundPoint = baseLayer.OriginPoint + new Vector2(baseLayer.LayerParams.FractalWidthSpan, baseLayer.LayerParams.FractalWidthSpan / widthHeightRatio);
-        baseLayer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), baseLayer.OriginPoint, baseLayer.BoundPoint, out float size, out Vector2 newBaseTopRightBound);
+        baseLayer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), baseLayer.OriginPoint, baseLayer.BoundPoint);
         baseLayer.ElevationMap = new();
 
         foreach (var layer in detailLayers)
         {
             layer.OriginPoint = SeedToVector2(seed);
             layer.BoundPoint = layer.OriginPoint + new Vector2(layer.LayerParams.FractalWidthSpan, layer.LayerParams.FractalWidthSpan / widthHeightRatio);
-            layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint, out float hexSize, out Vector2 newTopRightBound);
+            layer.CoordMap = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), layer.OriginPoint, layer.BoundPoint);
             layer.ElevationMap = new();
             
             float minElevation = float.MaxValue;
@@ -26,7 +26,7 @@ public class ElevationGen
             
             foreach (HexData data in grid.GetValidHexes())
             {
-                layer.ElevationMap[data.Coord] = FractalBrownianMotion.FBM(layer.CoordMap[data.Coord], layer.LayerParams);
+                layer.ElevationMap[data.Coord] = FractalBrownianMotion.FBM(layer.CoordMap.Map[data.Coord], layer.LayerParams);
                 if (layer.ElevationMap[data.Coord] > maxElevation) maxElevation = layer.ElevationMap[data.Coord];
                 if (layer.ElevationMap[data.Coord] < minElevation) minElevation = layer.ElevationMap[data.Coord];
             }
@@ -36,7 +36,7 @@ public class ElevationGen
 
         foreach (HexData data in grid.GetValidHexes())
         {
-            float elevation = FractalBrownianMotion.FBM(baseLayer.CoordMap[data.Coord], baseLayer.LayerParams);
+            float elevation = FractalBrownianMotion.FBM(baseLayer.CoordMap.Map[data.Coord], baseLayer.LayerParams);
             elevation = elevation > 0.5f ? baseLayer.LayerWeight : 0f;
             baseLayer.ElevationMap[data.Coord] = elevation;
         }
@@ -121,6 +121,6 @@ public class FBMLayerInformation
     
     [HideInInspector] public Vector2 OriginPoint;
     [HideInInspector] public Vector2 BoundPoint;
-    [HideInInspector] public Dictionary<AxialCoordinate, Vector2> CoordMap;
+    [HideInInspector] public AxialCoordMap CoordMap;
     [HideInInspector] public Dictionary<AxialCoordinate, float> ElevationMap;
 }
