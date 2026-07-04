@@ -26,7 +26,8 @@ public class RiverGen
             River newRiver = new River(newID, candidateHexes[c].Coord);
 
             BuildRiver(newRiver, world, parameters, out HexData lakeHex);
-
+            newRiver.PopulateRiverConnections();
+            
             world.Rivers.Add(newID, newRiver, newRiver.Coords);
             riverIndex++;
 
@@ -115,12 +116,11 @@ public class RiverGen
                 break;
             }
 
+            
             newRiver.Coords.Add(nextHex.Coord);
             currentCoord = nextHex.Coord;
             riverLength++;
         }
-
-        newRiver.Mouth = currentCoord;
     } 
 
     private static bool CheckAdjacentSea(AxialCoordinate coord, WorldData world)

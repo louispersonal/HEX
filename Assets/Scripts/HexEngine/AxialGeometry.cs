@@ -90,10 +90,21 @@ public class AxialGeometry
         return FractionalAxialToAxial(CartesianToFractionalAxial(point, axialSize));
     }
 
+    public static AxialCardinalDirections GetDirection(AxialCoordinate from, AxialCoordinate to)
+    {
+        var delta = to - from;
+        return AxialDirections.DirectionMap[delta];
+    }
+
+    public static AxialCardinalDirections GetOppositeDirection(AxialCardinalDirections direction)
+    {
+        return (AxialCardinalDirections)(((int)direction + 3) % 6);
+    }
+    
     public static float DistanceBetweenCoords(AxialCoordinate a, AxialCoordinate b)
     {
         AxialCoordinate diff = a - b;
-        return (Mathf.Abs(diff.Q) + Mathf.Abs(diff.R) + Mathf.Abs(diff.Q + diff.R)) / 2;
+        return (Mathf.Abs(diff.Q) + Mathf.Abs(diff.R) + Mathf.Abs(diff.Q + diff.R)) / 2f;
     }
 
     public static List<AxialCoordinate> CoordsWithinRadiusOfCoord(AxialCoordinate a, int radius)

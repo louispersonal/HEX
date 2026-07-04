@@ -9,10 +9,9 @@ public class RiverOverlayController : MonoBehaviour
     public void InitializeOverlays(HexData hexData)
     {
         DisableAll();
-        if (!hexData.WorldData.Rivers.ContainsAt(hexData.Coord)) return;
-
-        List<AxialCardinalDirections> neighborRivers = hexData.WorldData.GetRiverNeighbors(hexData);
-        foreach (AxialCardinalDirections direction in neighborRivers)
+        if (!hexData.WorldData.Rivers.TryGetObjectAt(hexData.Coord, out River river)) return;
+        
+        foreach (AxialCardinalDirections direction in river.GetConnections(hexData.Coord))
         {
             _riverOverlays[(int)direction].gameObject.SetActive(true);
         }
