@@ -22,11 +22,12 @@ public class HexGridView : MonoBehaviour
 	Dictionary<AxialCoordinate, float> _graceUntil;
 	List<AxialCoordinate> _spawnList;
     List<AxialCoordinate> _despawnNow;
-    int _bufferSize = 2;
+    int _bufferSize = 3;
 	int _radius;
 	(float q, float r) _cameraCenter;
 	public (float q, float r) CameraCenter { get  { return _cameraCenter; } }
-
+	private (int vertical, int horizontal) _cameraDistances;
+	
 	[SerializeField] HexView _hexViewPrefab;
 	
 	private void Awake()
@@ -100,11 +101,10 @@ public class HexGridView : MonoBehaviour
 		float planeZ = 0f;
 		
 		(float q, float r) newCenter = HexGridGeometry.SceneToFractionalAxial(ProjectViewportToPlane(cam, new Vector2(0.5f, 0.5f), planeZ));
-		int newRadius = ComputeRadiusFractionalAxial(newCenter);
 		
 		_cameraCenter = newCenter;
-		_radius = newRadius;
-
+		_cameraDistances = ComputeOddRDistanceCameraCenter(_cameraCenter);
+		
 		// Proceed with updating sets
 		AxialCoordinate cameraCoord = new AxialCoordinate(Mathf.RoundToInt(_cameraCenter.q), Mathf.RoundToInt(_cameraCenter.r));
 		UpdateNeedNowSet(cameraCoord);
@@ -115,7 +115,7 @@ public class HexGridView : MonoBehaviour
 	
 	public void UpdateNeedNowSet(AxialCoordinate cameraCoord)
 	{
-		_needNow = AxialGeometry.CoordsInDistance(cameraCoord, _radius).ToHashSet();
+		_needNow = AxialGeometry.CoordsInDistance(cameraCoord, _cameraDistances.vertical + _bufferSize, _cameraDistances.horizontal + _bufferSize).ToHashSet();
 	}
 	
 	public void UpdateBufferBandSet(AxialCoordinate cameraCoord)
@@ -181,7 +181,7 @@ public class HexGridView : MonoBehaviour
 		_hexPool.Release(view);
 	}
 
-	public int ComputeRadiusFractionalAxial((float q, float r) center)
+	private int ComputeRadiusFractionalAxial((float q, float r) center)
 	{
 		Camera cam = Camera.main;
 		float planeZ = 0f;
@@ -197,6 +197,29 @@ public class HexGridView : MonoBehaviour
 		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(CameraCorners[3]);
 		
 		return Mathf.CeilToInt(Mathf.Max(DistanceBetweenFractionalAxialCoords(bl,center), DistanceBetweenFractionalAxialCoords(br,center), DistanceBetweenFractionalAxialCoords(tl,center), DistanceBetweenFractionalAxialCoords(tr,center)));
+	}
+
+	private (int vertical, int horizontal) ComputeOddRDistanceCameraCenter((float q, float r) center)
+	{
+		Camera cam = Camera.main;
+		float planeZ = 0f;
+		
+		CameraCorners[0] = ProjectViewportToPlane(cam, new Vector2(0f, 0f), planeZ);
+		CameraCorners[2] = ProjectViewportToPlane(cam, new Vector2(1f, 0f), planeZ);
+		CameraCorners[1] = ProjectViewportToPlane(cam, new Vector2(0f, 1f), planeZ);
+		CameraCorners[3] = ProjectViewportToPlane(cam, new Vector2(1f, 1f), planeZ);
+		
+		(float q, float r) bl = HexGridGeometry.SceneToFractionalAxial(CameraCorners[0]);
+		(float q, float r) tr = HexGridGeometry.SceneToFractionalAxial(CameraCorners[3]);
+
+		(int vertical, int horizontal) distances;
+
+		var blOddR = AxialGeometry.AxialToOddR(AxialGeometry.FractionalAxialToAxial(bl));
+		var trOddR = AxialGeometry.AxialToOddR(AxialGeometry.FractionalAxialToAxial(tr));
+		
+		distances.vertical = (blOddR.row -  trOddR.row) / 2;
+		distances.horizontal = (trOddR.col - blOddR.col) / 2;
+		return distances;
 	}
 	
 	public static float DistanceBetweenFractionalAxialCoords((float q, float r) a, (float q, float r) b)
