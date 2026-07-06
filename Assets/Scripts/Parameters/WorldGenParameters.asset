@@ -16,6 +16,6 @@ MonoBehaviour:
   MinimumElevationRiverSource: 0.4
   MinimumPrecipitationRiverSource: 0.4
   MaximumRiverLengthRatio: 2
-  TargetNumberRivers: 100
+  TargetNumberRivers: 1000
   MaxPrecipitationDistanceFromSea: 0.0625
   MaxRegionSizeRatio: 0.01

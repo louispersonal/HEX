@@ -125,6 +125,20 @@ public class AxialGeometry
         return coordsInRange;
     }
 
+    public static List<AxialCoordinate> CoordsInDistance(AxialCoordinate a, int verticalDistance, int horizontalDistance)
+    {
+        (int row, int col) oddRCoord = AxialToOddR(a);
+        List<AxialCoordinate> coordsInDistance = new List<AxialCoordinate>();
+        for (int row = oddRCoord.row - verticalDistance; row <= oddRCoord.row + verticalDistance; row++)
+        {
+            for (int col = oddRCoord.col - horizontalDistance; col <= oddRCoord.col + horizontalDistance; col++)
+            {
+                coordsInDistance.Add(OddRToAxial((row, col)));
+            }
+        }
+        return  coordsInDistance;
+    }
+    
     public static List<AxialCoordinate> CoordsInRingOfRadius(AxialCoordinate a, int radius)
     {
         List<AxialCoordinate> outList = new List<AxialCoordinate>();

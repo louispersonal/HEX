@@ -115,12 +115,12 @@ public class HexGridView : MonoBehaviour
 	
 	public void UpdateNeedNowSet(AxialCoordinate cameraCoord)
 	{
-		_needNow = AxialGeometry.CoordsWithinRadiusOfCoord(cameraCoord, _radius).ToHashSet();
+		_needNow = AxialGeometry.CoordsInDistance(cameraCoord, _radius).ToHashSet();
 	}
 	
 	public void UpdateBufferBandSet(AxialCoordinate cameraCoord)
 	{
-		_bufferBand = AxialGeometry.CoordsInRingsOfRadii(cameraCoord, _radius + 1, _radius + _bufferSize).ToHashSet();
+		//_bufferBand = AxialGeometry.CoordsInRingsOfRadii(cameraCoord, _radius + 1, _radius + _bufferSize).ToHashSet();
 	}
 	
 	void SyncPoolWithTarget()

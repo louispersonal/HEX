@@ -16,6 +16,7 @@ public class HexView : MonoBehaviour
     [SerializeField] int _maxHighVegetationParticles;
     [SerializeField] private SpriteRenderer _elevationOverlayRenderer;
     [SerializeField] private SpriteRenderer _geoFeatureRenderer;
+    [SerializeField] private SpriteRenderer _lakeRenderer;
 
     [SerializeField] List<Sprite> _elevationOverlays;
     [SerializeField] List<Sprite> _geoFeatures;
@@ -65,6 +66,9 @@ public class HexView : MonoBehaviour
         }
 
 		_riverOverlay.InitializeOverlays(Data);
+		
+		_lakeRenderer.gameObject.SetActive(false);
+		if (WorldData.Lakes.ContainsAt(Data.Coord)) _lakeRenderer.gameObject.SetActive(true);
     }
 
 	public void Terminate()
