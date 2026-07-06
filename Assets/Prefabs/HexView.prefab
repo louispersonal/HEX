@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6e58f08c5d8af794680b8067b5c00fc3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c09bcb83b2b2bfe41906cedee4f2292b, type: 3}
   m_Color: {r: 0.51152694, g: 0.59748423, b: 0.28371102, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -297,14 +297,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b07656fe816f6ce4fa12d33c6b61febb, type: 3}
   - {fileID: 21300000, guid: 81253e140759eb642aa5484c1db76448, type: 3}
   - {fileID: 21300000, guid: 13318bfec7f75434d87a8cd2289f1924, type: 3}
-  _seaColor: {r: 0, g: 0.06531011, b: 0.7106918, a: 1}
-  _desertSprite: {fileID: 21300000, guid: a042013c8452df842adedb61b14ce0c9, type: 3}
-  _tundraSprite: {fileID: 21300000, guid: 22b0d2efab0ad8f4b9d9abebd9e7c034, type: 3}
-  _taigaSprite: {fileID: 21300000, guid: a57b9d7b364e47f48bff5c6184eedad8, type: 3}
-  _tropicalSprite: {fileID: 21300000, guid: 63e35b87dc478cf4ca410140f16dee04, type: 3}
-  _temperateSprite: {fileID: 21300000, guid: 4df1d13b625b4d04b867bc11fcde6c41, type: 3}
-  _steppeSprite: {fileID: 21300000, guid: b8394c5195de4074c8f9f8a09ef7b532, type: 3}
-  _savannaSprite: {fileID: 21300000, guid: c36c5daf74327044d837ec834110f17d, type: 3}
+  _desertSprite: {fileID: 21300000, guid: 5e9c15af9a28ee642a6c1e993b4ecc6a, type: 3}
+  _tundraSprite: {fileID: 21300000, guid: 126671430e2126042a41fdf676c8691d, type: 3}
+  _taigaSprite: {fileID: 21300000, guid: 1fa550b0251e97447b82eaaf0f475e7f, type: 3}
+  _tropicalSprite: {fileID: 21300000, guid: 25a9fb895cf84814c9b7ed6afe27c1a9, type: 3}
+  _temperateSprite: {fileID: 21300000, guid: 92cc2eefb47863a42969fbae8c561bb5, type: 3}
+  _steppeSprite: {fileID: 21300000, guid: a1c637877044226438b6c68d63689668, type: 3}
+  _savannaSprite: {fileID: 21300000, guid: 627ab85757b642547ac5e5fcc5aea9d1, type: 3}
+  _seaSprite: {fileID: 21300000, guid: 122f3d0b327b4734487fd335c987cc25, type: 3}
   _riverOverlay: {fileID: 5148182516556960666}
 --- !u!1 &2846276562634507280
 GameObject:
@@ -658,7 +658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8512605147050096979
 Transform:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.2, y: 3.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 928618326665044208}
@@ -714,9 +714,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7e5d523e2e1032a4cbbbc0ab08619c70, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9902158, b: 0, a: 0.15686275}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1477,7 +1477,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.83
+      value: 3.18
       mode: 0
       spread: 0
       speed:
@@ -6391,7 +6391,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.83
+      value: 3.18
       mode: 0
       spread: 0
       speed:

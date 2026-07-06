@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class HexView : MonoBehaviour
 
     [SerializeField] List<Sprite> _elevationOverlays;
     [SerializeField] List<Sprite> _geoFeatures;
-    [SerializeField] Color _seaColor;
 
 	[SerializeField] Sprite _desertSprite;
 	[SerializeField] Sprite _tundraSprite;
@@ -29,10 +29,11 @@ public class HexView : MonoBehaviour
 	[SerializeField] Sprite _temperateSprite;
 	[SerializeField] Sprite _steppeSprite;
 	[SerializeField] Sprite _savannaSprite;
+	[SerializeField] Sprite _seaSprite;
 
 	[SerializeField] RiverOverlayController _riverOverlay;
 
-    public static float SceneSize = 1.15f; //1 unit in unity world space
+    public static float SceneSize = 3.695f; //1 unit in unity world space - compute from vertical hex size in pixels/200
 
     public void Initialize(HexData data)
 	{
@@ -56,14 +57,7 @@ public class HexView : MonoBehaviour
 
 		SetSprite();
 
-		if (Data.ExtraData.IsSea)
-		{
-            _spriteRenderer.color = _seaColor;
-        }
-		else
-		{
-            _spriteRenderer.color = Color.white;
-        }
+        _spriteRenderer.color = Color.white;
 
 		_riverOverlay.InitializeOverlays(Data);
 		
@@ -102,6 +96,11 @@ public class HexView : MonoBehaviour
 	
 	private void SetSprite()
 	{
+		if (Data.ExtraData.IsSea)
+		{
+			_spriteRenderer.sprite = _seaSprite;
+			return;
+		}
 		switch (Data.ExtraData.Biome)
 		{
 			case Biome.Desert:
