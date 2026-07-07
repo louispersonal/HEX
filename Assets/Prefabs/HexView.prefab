@@ -284,6 +284,7 @@ MonoBehaviour:
   _elevationOverlayRenderer: {fileID: 39161749735106590}
   _geoFeatureRenderer: {fileID: 4037974670833896168}
   _lakeRenderer: {fileID: 8446218484288455361}
+  _outline: {fileID: 3078373409018712142}
   _elevationOverlays:
   - {fileID: 0}
   - {fileID: 21300000, guid: bd14e50f60bc04540896d3aa602875eb, type: 3}
