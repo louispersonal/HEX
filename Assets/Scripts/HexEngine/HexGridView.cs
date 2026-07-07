@@ -27,7 +27,7 @@ public class HexGridView : MonoBehaviour
 	(float q, float r) _cameraCenter;
 	public (float q, float r) CameraCenter { get  { return _cameraCenter; } }
 	private (int vertical, int horizontal) _cameraDistances;
-	
+	private int _maxVisibleHexes = 500;
 	[SerializeField] HexView _hexViewPrefab;
 	
 	private void Awake()
@@ -164,6 +164,12 @@ public class HexGridView : MonoBehaviour
 	{
 		if (_liveCoords.Contains(c) || !HexGrid.TryGetHex(c, out HexData data)) return;
 
+		if (_liveCoords.Count >= _maxVisibleHexes)
+		{
+			Debug.LogWarning($"Reached visible hex cap ({_maxVisibleHexes}).");
+			return;
+		}
+		
 		HexView view = _hexPool.Get();
 		view.Initialize(data);
 		_liveHexes[c] = view;
