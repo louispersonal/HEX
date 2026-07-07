@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HexView : MonoBehaviour
+public class HexView : MonoBehaviour, ISelectable
 {
 	public HexData Data { get; private set; }
 
@@ -18,6 +19,7 @@ public class HexView : MonoBehaviour
     [SerializeField] private SpriteRenderer _elevationOverlayRenderer;
     [SerializeField] private SpriteRenderer _geoFeatureRenderer;
     [SerializeField] private SpriteRenderer _lakeRenderer;
+    [SerializeField] private SpriteRenderer _outline;
 
     [SerializeField] List<Sprite> _elevationOverlays;
     [SerializeField] List<Sprite> _geoFeatures;
@@ -128,5 +130,17 @@ public class HexView : MonoBehaviour
 				_spriteRenderer.sprite = _desertSprite;
 				break;
         }
+	}
+
+	//Selection interface members
+	
+	public void OnSelected()
+	{
+		_outline.gameObject.SetActive(true);
+	}
+
+	public void OnDeselected()
+	{
+		_outline.gameObject.SetActive(false);
 	}
 }

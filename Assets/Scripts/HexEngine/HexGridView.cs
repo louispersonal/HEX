@@ -245,4 +245,9 @@ public class HexGridView : MonoBehaviour
             return ray.GetPoint(enter);
         return cam.transform.position + ray.direction * 1000f;
     }
+
+    public bool TryGetLiveHex(AxialCoordinate target, out HexView hexView)
+    {
+	    return _liveHexes.TryGetValue(target, out hexView);
+    }
 }
