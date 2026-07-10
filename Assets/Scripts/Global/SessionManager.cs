@@ -7,10 +7,11 @@ using static UnityEditor.Progress;
 public class SessionManager : MonoBehaviour
 {
     private WorldData _worldData;
-    public WorldData WorldData { get { return _worldData; } }
+    public WorldData WorldData => _worldData;
 
     private GameData _gameData;
-
+    public GameData GameData => _gameData;
+    
     public UiData UiData { get; set; }
 
     private string WorldsFolder =>
