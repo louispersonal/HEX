@@ -816,6 +816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _subMenu: {fileID: 0}
   _simulationLengthField: {fileID: 1429415380881697774}
+  _previewImage: {fileID: 1088457578203847426}
+  _previewName: {fileID: 3322196420541295454}
 --- !u!1 &7237696136770973561
 GameObject:
   m_ObjectHideFlags: 0
