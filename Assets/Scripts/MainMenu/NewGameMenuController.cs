@@ -93,4 +93,9 @@ public class NewGameMenuController : SubMenu
     {
         GameController.Instance.GoToScene(SceneNames.Game);
     }
+
+    public void GoToSimulation()
+    {
+        _mainMenuSceneController.SwitchMenu((int)MainMenuSceneSubMenus.Simulation);
+    }
 }

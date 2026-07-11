@@ -81,4 +81,9 @@ public class NewGameMenuView : SubMenuView
     {
         NewGameMenu.StartGame();
     }
+
+    public void SimulateButton()
+    {
+        NewGameMenu.GoToSimulation();
+    }
 }

@@ -30,5 +30,6 @@ public class MainMenuSceneController : MonoBehaviour
 public enum MainMenuSceneSubMenus
 {
     Title,
-    NewGame
+    NewGame,
+    Simulation
 }
