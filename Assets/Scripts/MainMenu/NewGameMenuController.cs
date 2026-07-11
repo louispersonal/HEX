@@ -6,7 +6,7 @@ public class NewGameMenuController : SubMenu
 {
     NewGameMenuView NewGameView { get { return _subMenuView as NewGameMenuView; } }
 
-    public List<string> WorldSaveFilenames;
+    [HideInInspector] public List<string> WorldSaveFilenames;
 
     public void GenerateWorld(int width, int seed, string name)
     {
@@ -87,11 +87,6 @@ public class NewGameMenuController : SubMenu
         GameController.Instance.SessionManager.LoadWorldData(worldName);
 
         PreviewCurrentWorld();
-    }
-
-    public void StartGame()
-    {
-        GameController.Instance.GoToScene(SceneNames.Game);
     }
 
     public void GoToSimulation()

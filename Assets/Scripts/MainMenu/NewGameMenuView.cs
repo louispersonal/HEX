@@ -77,11 +77,6 @@ public class NewGameMenuView : SubMenuView
         _loadDropdown.AddOptions(NewGameMenu.WorldSaveFilenames);
     }
 
-    public void StartGameButton()
-    {
-        NewGameMenu.StartGame();
-    }
-
     public void SimulateButton()
     {
         NewGameMenu.GoToSimulation();

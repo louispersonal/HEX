@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class SimulationMenuController : SubMenu
 {
-
+    public void StartGame()
+    {
+        GameController.Instance.GoToScene(SceneNames.Game);
+    }
 }
