@@ -433,6 +433,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7cbc667f35ad38349a136e320a50e9e4, type: 3}
   - {fileID: 8300000, guid: 17d048d79c5190548af5277792d90d28, type: 3}
   - {fileID: 8300000, guid: b8646c90079dced49a88d7e81b5e5bab, type: 3}
+  - {fileID: 8300000, guid: 8a4b745a8df21fe4584157807db84260, type: 3}
   _musicSource: {fileID: 1736040582}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
