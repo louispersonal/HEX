@@ -10,17 +10,18 @@ public class SimulationMenuView : SubMenuView
     [SerializeField] private TMP_InputField _simulationLengthField;
     [SerializeField] private RawImage _previewImage;
     [SerializeField] private TextMeshProUGUI _previewName;
+    [SerializeField] private LoadingPanel _loadingPanel;
     
     private int _defaultSimulationLength = 10000;
-    private int _simulationLength;
+    private int _simulationLengthYears;
 
     SimulationMenuController SimulationMenuController { get { return _subMenu as SimulationMenuController; } }
     
     protected override void Start()
     {
         base.Start();
-        _simulationLength = _defaultSimulationLength;
-        _simulationLengthField.text = _simulationLength.ToString();
+        _simulationLengthYears = _defaultSimulationLength;
+        _simulationLengthField.text = _simulationLengthYears.ToString();
     }
 
     private void OnEnable()
@@ -30,12 +31,12 @@ public class SimulationMenuView : SubMenuView
 
     public void UpdateSimulationLength(string value)
     {
-        _simulationLength = int.Parse(value);
+        _simulationLengthYears = int.Parse(value);
     }
 
     public void StartSimulation()
     {
-        
+        SimulationMenuController.Simulate(_simulationLengthYears, _loadingPanel);
     }
 
     public void StartGame()

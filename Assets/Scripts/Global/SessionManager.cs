@@ -76,7 +76,7 @@ public class SessionManager : MonoBehaviour
 
     public void NewGameData()
     {
-
+        _gameData = new GameData();
     }
 
     public void SaveGameData()

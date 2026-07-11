@@ -818,6 +818,7 @@ MonoBehaviour:
   _simulationLengthField: {fileID: 1429415380881697774}
   _previewImage: {fileID: 1088457578203847426}
   _previewName: {fileID: 3322196420541295454}
+  _loadingPanel: {fileID: 3746807014666806481}
 --- !u!1 &7237696136770973561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,6 +1331,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3c0315a2c60f014eba1765a288c4956, type: 3}
+--- !u!114 &3746807014666806481 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3215728367411992470, guid: a3c0315a2c60f014eba1765a288c4956,
+    type: 3}
+  m_PrefabInstance: {fileID: 2260766095970743111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2a48a7738a0b745a5e0405ac6b2eda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4439935551716530366 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2504576527847664633, guid: a3c0315a2c60f014eba1765a288c4956,
