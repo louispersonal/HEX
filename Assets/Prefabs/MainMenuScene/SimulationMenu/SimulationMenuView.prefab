@@ -819,6 +819,8 @@ MonoBehaviour:
   _previewImage: {fileID: 1088457578203847426}
   _previewName: {fileID: 3322196420541295454}
   _loadingPanel: {fileID: 3746807014666806481}
+  _popViewPrefab: {fileID: 7812179666112782686, guid: e64373ec9ec92354c82f17ed306448a3,
+    type: 3}
 --- !u!1 &7237696136770973561
 GameObject:
   m_ObjectHideFlags: 0

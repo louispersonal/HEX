@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class SimulationMenuController : SubMenu
         GameController.Instance.GoToScene(SceneNames.Game);
     }
 
-    public void Simulate(int simulationLengthYears, LoadingPanel loadingPanel)
+    public void Simulate(int simulationLengthYears, LoadingPanel loadingPanel, Action updateView)
     {
         int simulationLength = simulationLengthYears * 365;
         TickInfo newTickInfo =  new TickInfo();
@@ -19,13 +20,14 @@ public class SimulationMenuController : SubMenu
 
         Pop seedPop = PlaceSeedPop();
         PopBrain seedPopBrain = new PopBrain(seedPop);
-        
+
+        GameController.Instance.SessionManager.GameData.Pops.Add(seedPop.Location, seedPop);
         GameController.Instance.SessionManager.GameData.Ticker.Register(seedPopBrain);
         
-        StartCoroutine(SimulationCoroutine(simulationLength, loadingPanel));
+        StartCoroutine(SimulationCoroutine(simulationLength, loadingPanel, updateView));
     }
 
-    private IEnumerator SimulationCoroutine(int simulationLength, LoadingPanel loadingPanel)
+    private IEnumerator SimulationCoroutine(int simulationLength, LoadingPanel loadingPanel, Action updateView)
     {
         int chunkSize = 200 * 365;
         int chunkProgress = 0;
@@ -40,6 +42,7 @@ public class SimulationMenuController : SubMenu
             {
                 loadingPanel.UpdateStatus(tickCount / (float) simulationLength, "Year " + year);
                 chunkProgress = 0;
+                updateView?.Invoke();
                 yield return null;
             }
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pop
 {
     private AxialCoordinate _location;
+    public AxialCoordinate Location => _location;
     private MovementData _movementData;
 
     private CultureID _cultureId;
