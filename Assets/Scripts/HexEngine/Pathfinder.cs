@@ -27,7 +27,7 @@ public class Pathfinder
         openList.Add(startNode);
         List<PathNode> closedList = new List<PathNode>();
 
-        startNode.G = 0f;
+        startNode.G = float.PositiveInfinity;
         startNode.H = Heuristic(startNode, goalNode);
         startNode.F = startNode.G + startNode.H;
 
