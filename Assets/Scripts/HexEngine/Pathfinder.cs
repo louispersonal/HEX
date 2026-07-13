@@ -113,7 +113,10 @@ public class Pathfinder
         List<PathNode> neighbors = new List<PathNode>();
         foreach (AxialCoordinate direction in AxialDirections.Directions)
         {
-            neighbors.Add(GetNode(node.Coord + direction, nodes));
+            if (HexGrid.TryGetHex(direction, out var hex))
+            {
+                neighbors.Add(GetNode(node.Coord + direction, nodes));
+            }
         }
         return neighbors;
     }
