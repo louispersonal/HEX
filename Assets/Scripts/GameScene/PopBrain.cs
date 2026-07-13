@@ -13,6 +13,19 @@ public class PopBrain : ITickable
     }
     public void Tick(TickInfo tickInfo)
     {
-        // Pop.DoSomething()
+        if (Random.Range(0, 1000) <= 1 && _pop.MovementData.Path.Count == 0)
+        {
+            SetMigrationDestination();
+        }
+        _pop.AdvanceMovement();
+    }
+
+    private void SetMigrationDestination()
+    {
+        var world = GameController.Instance.SessionManager.WorldData;
+        foreach (var scoutHex in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, _pop.HexData, 4))
+        {
+            if (_pop.TryMigrate(scoutHex.Coord)) break;
+        }
     }
 }

@@ -7,6 +7,7 @@ public class Pop
     private AxialCoordinate _location;
     public AxialCoordinate Location => _location;
     private MovementData _movementData;
+    public MovementData MovementData => _movementData;
 
     private CultureID _cultureId;
     public CultureID CultureId => _cultureId;
@@ -14,6 +15,8 @@ public class Pop
     private ReligionID _religionId;
     public ReligionID ReligionId => _religionId;
 
+    public HexData HexData => GetCurrentHex();
+    
     private float _cultureDecay;
     
     public Pop(AxialCoordinate location, CultureID cultureId, ReligionID religionId)
@@ -25,14 +28,16 @@ public class Pop
         _cultureDecay = 1.0f;
     }
     
-    private void Move(AxialCoordinate neighbor)
+    public void AdvanceMovement()
     {
-        _location = neighbor;
+        if (_movementData.Path.Count == 0) return;
+        AxialCoordinate nextLocation = _movementData.Path.Dequeue();
+        _location = nextLocation;
     }
     
-    private void Migrate(AxialCoordinate target)
+    public bool TryMigrate(AxialCoordinate target)
     {
-        TrySetPath(target);
+        return TrySetPath(target);
     }
 
     private bool TrySetPath(AxialCoordinate target)
@@ -48,10 +53,16 @@ public class Pop
     {
         _cultureId = cultureId;
     }
+
+    private HexData GetCurrentHex()
+    {
+        GameController.Instance.SessionManager.WorldData.Grid.TryGetHex(_location, out var hex);
+        return hex;
+    }
 }
 
 public class MovementData
 {
     public AxialCoordinate Destination;
-    public Queue<AxialCoordinate> Path;
+    public Queue<AxialCoordinate> Path = new();
 }
