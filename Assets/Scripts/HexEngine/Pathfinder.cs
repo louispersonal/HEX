@@ -15,6 +15,10 @@ public class Pathfinder
 
     public List<AxialCoordinate> AStar(AxialCoordinate start, AxialCoordinate goal)
     {
+        if (!HexGrid.TryGetHex(start, out _)) return null;
+
+        if (!HexGrid.TryGetHex(goal, out _)) return null;
+        
         var nodes = new Dictionary<AxialCoordinate, PathNode>();
 
         PathNode startNode = GetNode(start, nodes);
