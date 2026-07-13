@@ -23,9 +23,12 @@ public class PopBrain : ITickable
     private void SetMigrationDestination()
     {
         var world = GameController.Instance.SessionManager.WorldData;
-        foreach (var scoutHex in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, _pop.HexData, 4))
+        List<AxialCoordinate> candidates = new();
+        foreach (var scoutHex in HexGridGeometry.HexesWithinRadiusOfHex(world.Grid, _pop.HexData, 4))
         {
-            if (_pop.TryMigrate(scoutHex.Coord)) break;
+            if (_pop.TryMigrate(scoutHex.Coord)) candidates.Add(scoutHex.Coord);
         }
+
+        if (candidates.Count > 0) _pop.TryMigrate(candidates[Random.Range(0, candidates.Count)]);
     }
 }
