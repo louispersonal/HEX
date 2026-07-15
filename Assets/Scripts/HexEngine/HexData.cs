@@ -20,6 +20,17 @@ public class HexData : BaseHexData
     {
         _extraData = new HexExtraData();
     }
+    
+    public BiomePlantProfile PlantProfile => VegetationProfiles.Profiles[_extraData.Biome];
+
+    public float FreshWater
+    {
+        get
+        {
+            if (WorldData.Rivers.ContainsAt(Coord)) return float.PositiveInfinity;
+            return 0f;
+        }
+    }
 }
 
 [System.Serializable]
@@ -48,8 +59,6 @@ public struct HexExtraData
     public bool IsSea { get { return _elevation == 0; } }
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
-
-    public BiomePlantProfile PlantProfile { get { return VegetationProfiles.Profiles[Biome]; } }
     
     public void SetElevation(float elevation)
     {
