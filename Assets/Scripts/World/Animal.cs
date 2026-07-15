@@ -43,6 +43,7 @@ public class SpeciesProfile
     public ushort ArchetypeId;
     public ushort SpeciesId;
     public string SpeciesName;
+    public List<AnimalTags> Tags;
 }
 
 public enum SizeTier
@@ -60,4 +61,15 @@ public enum FoodType
     Meat = 3,
     Fish = 4,
     Carrion = 5
+}
+
+public enum AnimalTags
+{
+    Venomous,
+    Poisonous,
+    Furry,
+    Woolly,
+    Flying,
+    Scales,
+    Fast
 }
