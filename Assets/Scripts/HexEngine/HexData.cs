@@ -49,6 +49,8 @@ public struct HexExtraData
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
 
+    public BiomePlantProfile PlantProfile { get { return VegetationProfiles.Profiles[Biome]; } }
+    
     public void SetElevation(float elevation)
     {
         _elevation = (byte)(elevation * 255f);
