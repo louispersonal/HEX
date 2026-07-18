@@ -8,8 +8,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -17,8 +15,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -29,8 +25,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -38,8 +32,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -50,8 +42,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -59,8 +49,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -71,8 +59,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -80,8 +66,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -92,8 +76,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -101,8 +83,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -113,8 +93,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -122,8 +100,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -134,8 +110,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         },
 
@@ -143,8 +117,6 @@ public static class VegetationProfiles
         {
             Roots = 0.40f,
             Seeds = 0.30f,
-            Fruits = 0.15f,
-            Nuts = 0.05f,
             Greens = 0.10f
         }
     };
@@ -170,9 +142,11 @@ public class BiomePlantProfile
 
 public class PlantProfile
 {
-    public float Roots;
-    public float Seeds;
-    public float Fruits;
-    public float Nuts;
+    public float Wood;
+    public float Grubs;
     public float Greens;
+    public float Seeds;
+    public float Fruit;
+    public float Fungus;
+    public float Roots;
 }
