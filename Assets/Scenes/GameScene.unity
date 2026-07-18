@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HexGridView: {fileID: 1336889304}
+  GameCamera: {fileID: 1320601116}
 --- !u!1 &1069789067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanSpeed: 30
+  ZoomSpeed: 300
+  MaxZPosition: -10
+  MinZPosition: -100
 --- !u!1 &1336889302
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,12 @@ using UnityEngine.Serialization;
 public class GameCamera : MonoBehaviour
 {
     public float PanSpeed;
+
+    public float ZoomSpeed;
+
+    public float MaxZPosition;
+    
+    public float MinZPosition;
     
     // Start is called before the first frame update
     void Start()
@@ -30,7 +36,14 @@ public class GameCamera : MonoBehaviour
         float scroll = Input.mouseScrollDelta.y;
         if (Mathf.Abs(scroll) > 0.0001f)
         {
-            
+            Zoom(scroll);
         }
+    }
+
+    void Zoom(float scrollDelta)
+    {
+        float zDelta = scrollDelta * (ZoomSpeed * Time.deltaTime);
+        float newZ = Mathf.Clamp(transform.position.z + zDelta, MinZPosition, MaxZPosition);
+        transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
 }

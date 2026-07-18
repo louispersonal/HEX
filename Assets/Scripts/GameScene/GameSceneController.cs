@@ -8,6 +8,8 @@ public class GameSceneController : MonoBehaviour
 
     public HexGridView HexGridView;
 
+    public GameCamera GameCamera;
+    
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
