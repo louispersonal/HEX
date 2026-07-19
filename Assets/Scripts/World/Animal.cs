@@ -55,12 +55,16 @@ public enum SizeTier
 
 public enum FoodType
 {
-    LowVegetation = 0,
-    HighVegetation = 1,
-    Microfauna = 2,
-    Meat = 3,
-    Fish = 4,
-    Carrion = 5
+    Greens,
+    Seeds,
+    Fruit,
+    Roots,
+    Wood,
+    Grubs,
+    Fungus,
+    Meat,
+    Fish,
+    Carrion
 }
 
 public enum AnimalTags
