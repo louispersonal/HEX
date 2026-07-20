@@ -18,7 +18,7 @@ public class ArchetypeProfile
 
     public SizeTier Size;
 
-    public FoodType[] Eats;
+    public Resources[] Eats;
 
     public float NutritionRequirement
     {
@@ -51,20 +51,6 @@ public enum SizeTier
     Small = 0,
     Medium = 1,
     Large = 2
-}
-
-public enum FoodType
-{
-    Greens,
-    Seeds,
-    Fruit,
-    Roots,
-    Wood,
-    Grubs,
-    Fungus,
-    Meat,
-    Fish,
-    Carrion
 }
 
 public enum AnimalTags
