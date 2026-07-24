@@ -3,169 +3,169 @@ using System.Collections.Generic;
 
 public static class VegetationProfiles
 {
-    public static readonly BiomePlantProfile DesertProfile = new()
+    public static readonly BiomeVegetationProfile DesertProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.18f,
-            seeds:   0.25f,
-            fruit:   0.08f,
-            roots:   0.28f,
-            wood:    0.10f,
-            grubs:   0.09f,
-            fungus:  0.02f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 1200f),
+            DailyYield(ResourceIDMap.Seeds, 1800f),
+            DailyYield(ResourceIDMap.Fruit, 400f),
+            DailyYield(ResourceIDMap.Roots, 1600f),
+            DailyYield(ResourceIDMap.Wood, 600f),
+            DailyYield(ResourceIDMap.Grubs, 450f),
+            DailyYield(ResourceIDMap.Fungus, 50f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.12f,
-            seeds:   0.18f,
-            fruit:   0.15f,
-            roots:   0.08f,
-            wood:    0.38f,
-            grubs:   0.07f,
-            fungus:  0.02f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 800f),
+            DailyYield(ResourceIDMap.Seeds, 1000f),
+            DailyYield(ResourceIDMap.Fruit, 900f),
+            DailyYield(ResourceIDMap.Roots, 400f),
+            DailyYield(ResourceIDMap.Wood, 5000f),
+            DailyYield(ResourceIDMap.Grubs, 350f),
+            DailyYield(ResourceIDMap.Fungus, 100f)
         )
     };
 
-    public static readonly BiomePlantProfile TundraProfile = new()
+    public static readonly BiomeVegetationProfile TundraProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.30f,
-            seeds:   0.08f,
-            fruit:   0.12f,
-            roots:   0.18f,
-            wood:    0.05f,
-            grubs:   0.12f,
-            fungus:  0.15f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 2600f),
+            DailyYield(ResourceIDMap.Seeds, 550f),
+            DailyYield(ResourceIDMap.Fruit, 1000f),
+            DailyYield(ResourceIDMap.Roots, 1500f),
+            DailyYield(ResourceIDMap.Wood, 350f),
+            DailyYield(ResourceIDMap.Grubs, 550f),
+            DailyYield(ResourceIDMap.Fungus, 1100f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.18f,
-            seeds:   0.08f,
-            fruit:   0.14f,
-            roots:   0.07f,
-            wood:    0.28f,
-            grubs:   0.10f,
-            fungus:  0.15f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 1100f),
+            DailyYield(ResourceIDMap.Seeds, 400f),
+            DailyYield(ResourceIDMap.Fruit, 900f),
+            DailyYield(ResourceIDMap.Roots, 350f),
+            DailyYield(ResourceIDMap.Wood, 6500f),
+            DailyYield(ResourceIDMap.Grubs, 450f),
+            DailyYield(ResourceIDMap.Fungus, 1000f)
         )
     };
 
-    public static readonly BiomePlantProfile TaigaProfile = new()
+    public static readonly BiomeVegetationProfile TaigaProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.22f,
-            seeds:   0.10f,
-            fruit:   0.12f,
-            roots:   0.10f,
-            wood:    0.08f,
-            grubs:   0.16f,
-            fungus:  0.22f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 3000f),
+            DailyYield(ResourceIDMap.Seeds, 1100f),
+            DailyYield(ResourceIDMap.Fruit, 1700f),
+            DailyYield(ResourceIDMap.Roots, 1200f),
+            DailyYield(ResourceIDMap.Wood, 1000f),
+            DailyYield(ResourceIDMap.Grubs, 1900f),
+            DailyYield(ResourceIDMap.Fungus, 2800f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.14f,
-            seeds:   0.13f,
-            fruit:   0.08f,
-            roots:   0.04f,
-            wood:    0.42f,
-            grubs:   0.08f,
-            fungus:  0.11f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 1800f),
+            DailyYield(ResourceIDMap.Seeds, 1800f),
+            DailyYield(ResourceIDMap.Fruit, 1400f),
+            DailyYield(ResourceIDMap.Roots, 600f),
+            DailyYield(ResourceIDMap.Wood, 22000f),
+            DailyYield(ResourceIDMap.Grubs, 1500f),
+            DailyYield(ResourceIDMap.Fungus, 2600f)
         )
     };
 
-    public static readonly BiomePlantProfile TropicalProfile = new()
+    public static readonly BiomeVegetationProfile TropicalProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.25f,
-            seeds:   0.08f,
-            fruit:   0.15f,
-            roots:   0.10f,
-            wood:    0.06f,
-            grubs:   0.21f,
-            fungus:  0.15f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 9000f),
+            DailyYield(ResourceIDMap.Seeds, 2500f),
+            DailyYield(ResourceIDMap.Fruit, 7000f),
+            DailyYield(ResourceIDMap.Roots, 3500f),
+            DailyYield(ResourceIDMap.Wood, 1800f),
+            DailyYield(ResourceIDMap.Grubs, 7500f),
+            DailyYield(ResourceIDMap.Fungus, 5500f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.14f,
-            seeds:   0.08f,
-            fruit:   0.22f,
-            roots:   0.03f,
-            wood:    0.34f,
-            grubs:   0.12f,
-            fungus:  0.07f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 5000f),
+            DailyYield(ResourceIDMap.Seeds, 3000f),
+            DailyYield(ResourceIDMap.Fruit, 13000f),
+            DailyYield(ResourceIDMap.Roots, 1600f),
+            DailyYield(ResourceIDMap.Wood, 35000f),
+            DailyYield(ResourceIDMap.Grubs, 6500f),
+            DailyYield(ResourceIDMap.Fungus, 4500f)
         )
     };
 
-    public static readonly BiomePlantProfile SavannaProfile = new()
+    public static readonly BiomeVegetationProfile SavannaProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.42f,
-            seeds:   0.20f,
-            fruit:   0.06f,
-            roots:   0.12f,
-            wood:    0.04f,
-            grubs:   0.13f,
-            fungus:  0.03f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 9500f),
+            DailyYield(ResourceIDMap.Seeds, 4800f),
+            DailyYield(ResourceIDMap.Fruit, 1300f),
+            DailyYield(ResourceIDMap.Roots, 3000f),
+            DailyYield(ResourceIDMap.Wood, 800f),
+            DailyYield(ResourceIDMap.Grubs, 2800f),
+            DailyYield(ResourceIDMap.Fungus, 450f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.18f,
-            seeds:   0.10f,
-            fruit:   0.18f,
-            roots:   0.05f,
-            wood:    0.36f,
-            grubs:   0.09f,
-            fungus:  0.04f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 2300f),
+            DailyYield(ResourceIDMap.Seeds, 1500f),
+            DailyYield(ResourceIDMap.Fruit, 2800f),
+            DailyYield(ResourceIDMap.Roots, 800f),
+            DailyYield(ResourceIDMap.Wood, 15000f),
+            DailyYield(ResourceIDMap.Grubs, 1400f),
+            DailyYield(ResourceIDMap.Fungus, 700f)
         )
     };
 
-    public static readonly BiomePlantProfile TemperateProfile = new()
+    public static readonly BiomeVegetationProfile TemperateProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.27f,
-            seeds:   0.14f,
-            fruit:   0.12f,
-            roots:   0.12f,
-            wood:    0.07f,
-            grubs:   0.14f,
-            fungus:  0.14f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 6500f),
+            DailyYield(ResourceIDMap.Seeds, 3200f),
+            DailyYield(ResourceIDMap.Fruit, 3600f),
+            DailyYield(ResourceIDMap.Roots, 3000f),
+            DailyYield(ResourceIDMap.Wood, 1200f),
+            DailyYield(ResourceIDMap.Grubs, 3500f),
+            DailyYield(ResourceIDMap.Fungus, 3300f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.13f,
-            seeds:   0.18f,
-            fruit:   0.14f,
-            roots:   0.03f,
-            wood:    0.36f,
-            grubs:   0.07f,
-            fungus:  0.09f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 2600f),
+            DailyYield(ResourceIDMap.Seeds, 3600f),
+            DailyYield(ResourceIDMap.Fruit, 4200f),
+            DailyYield(ResourceIDMap.Roots, 900f),
+            DailyYield(ResourceIDMap.Wood, 24000f),
+            DailyYield(ResourceIDMap.Grubs, 2200f),
+            DailyYield(ResourceIDMap.Fungus, 3000f)
         )
     };
 
-    public static readonly BiomePlantProfile SteppeProfile = new()
+    public static readonly BiomeVegetationProfile SteppeProfile = new()
     {
-        LowVProfile = new PlantProfile(
-            greens: 0.43f,
-            seeds:   0.24f,
-            fruit:   0.04f,
-            roots:   0.14f,
-            wood:    0.03f,
-            grubs:   0.10f,
-            fungus:  0.02f
+        LowVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 8500f),
+            DailyYield(ResourceIDMap.Seeds, 5500f),
+            DailyYield(ResourceIDMap.Fruit, 700f),
+            DailyYield(ResourceIDMap.Roots, 3300f),
+            DailyYield(ResourceIDMap.Wood, 450f),
+            DailyYield(ResourceIDMap.Grubs, 1900f),
+            DailyYield(ResourceIDMap.Fungus, 250f)
         ),
 
-        HighVProfile = new PlantProfile(
-            greens: 0.17f,
-            seeds:   0.15f,
-            fruit:   0.10f,
-            roots:   0.06f,
-            wood:    0.40f,
-            grubs:   0.08f,
-            fungus:  0.04f
+        HighVegetationProfile = new VegetationYieldProfile(
+            DailyYield(ResourceIDMap.Greens, 1500f),
+            DailyYield(ResourceIDMap.Seeds, 1700f),
+            DailyYield(ResourceIDMap.Fruit, 1300f),
+            DailyYield(ResourceIDMap.Roots, 650f),
+            DailyYield(ResourceIDMap.Wood, 11000f),
+            DailyYield(ResourceIDMap.Grubs, 900f),
+            DailyYield(ResourceIDMap.Fungus, 450f)
         )
     };
-
-    public static readonly IReadOnlyDictionary<Biome, BiomePlantProfile> Profiles =
-        new Dictionary<Biome, BiomePlantProfile>
+    
+    public static readonly IReadOnlyDictionary<Biome, BiomeVegetationProfile>
+        Profiles = new Dictionary<Biome, BiomeVegetationProfile>
         {
             [Biome.Desert] = DesertProfile,
             [Biome.Tundra] = TundraProfile,
@@ -175,63 +175,41 @@ public static class VegetationProfiles
             [Biome.Steppe] = SteppeProfile,
             [Biome.Tropical] = TropicalProfile
         };
-}
 
-public class BiomePlantProfile
-{
-    public PlantProfile LowVProfile;
-    public PlantProfile HighVProfile;
-}
-
-public class PlantProfile
-{
-    private const int ItemCount = 7;
-    private const float PrecisionTolerance = 0.01f;
-
-    public readonly float[] Items = new float[ItemCount];
-
-    public PlantProfile(
-        float greens,
-        float seeds,
-        float fruit,
-        float roots,
-        float wood,
-        float grubs,
-        float fungus)
+    private static ResourceDailyYield DailyYield(ResourceID resourceId, float maximumDailyYield)
     {
-        float total =
-            greens +
-            seeds +
-            fruit +
-            roots +
-            wood +
-            grubs +
-            fungus;
-
-        if (Math.Abs(total - 1f) > PrecisionTolerance)
-        {
-            throw new ArgumentException($"Plant profile fractions must total 1.0. Actual total: {total}");
-        }
-
-        Items[(int)PlantProfileIndexes.Greens] = greens;
-        Items[(int)PlantProfileIndexes.Seeds] = seeds;
-        Items[(int)PlantProfileIndexes.Fruit] = fruit;
-        Items[(int)PlantProfileIndexes.Roots] = roots;
-        Items[(int)PlantProfileIndexes.Wood] = wood;
-        Items[(int)PlantProfileIndexes.Grubs] = grubs;
-        Items[(int)PlantProfileIndexes.Fungus] = fungus;
+        return new ResourceDailyYield(resourceId, maximumDailyYield);
     }
-
-    public float this[PlantProfileIndexes index] => Items[(int)index];
 }
 
-public enum PlantProfileIndexes
+public sealed class BiomeVegetationProfile
 {
-    Greens,
-    Seeds,
-    Fruit,
-    Roots,
-    Wood,
-    Grubs,
-    Fungus
+    public VegetationYieldProfile LowVegetationProfile { get; set; }
+    public VegetationYieldProfile HighVegetationProfile { get; set; }
+}
+
+public sealed class VegetationYieldProfile
+{
+    private readonly ResourceDailyYield[] _dailyYields;
+
+    public IReadOnlyList<ResourceDailyYield> DailyYields => _dailyYields;
+
+    public VegetationYieldProfile(params ResourceDailyYield[] dailyYields)
+    {
+        _dailyYields = dailyYields ?? throw new ArgumentNullException(nameof(dailyYields));
+    }
+}
+
+public readonly struct ResourceDailyYield
+{
+    public ResourceID ResourceId { get; }
+    
+    public float MaximumDailyYield { get; }
+
+    public ResourceDailyYield(ResourceID resourceId, float maximumDailyYield) 
+    {
+
+        ResourceId = resourceId;
+        MaximumDailyYield = maximumDailyYield;
+    }
 }

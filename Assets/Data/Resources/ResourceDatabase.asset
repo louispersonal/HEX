@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b315b7a91da6f468be6c8f556f1f55, type: 3}
+  m_Name: ResourceDatabase
+  m_EditorClassIdentifier: 
+  _resources:
+  - Id:
+      Value: 0
+    DisplayName: Greens
+    NutritionalValue: 0
+  - Id:
+      Value: 1
+    DisplayName: Seeds
+    NutritionalValue: 0
+  - Id:
+      Value: 2
+    DisplayName: Fruit
+    NutritionalValue: 0
+  - Id:
+      Value: 3
+    DisplayName: Roots
+    NutritionalValue: 0
+  - Id:
+      Value: 4
+    DisplayName: Wood
+    NutritionalValue: 0
+  - Id:
+      Value: 5
+    DisplayName: Grubs
+    NutritionalValue: 0
+  - Id:
+      Value: 6
+    DisplayName: Fungus
+    NutritionalValue: 0

@@ -20,8 +20,6 @@ public class HexData : BaseHexData
     {
         _extraData = new HexExtraData();
     }
-    
-    public BiomePlantProfile PlantProfile => VegetationProfiles.Profiles[_extraData.Biome];
 
     public float FreshWater
     {

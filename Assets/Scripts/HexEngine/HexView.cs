@@ -137,10 +137,12 @@ public class HexView : MonoBehaviour, ISelectable
 	public void OnSelected()
 	{
 		_outline.gameObject.SetActive(true);
+		GameSceneController.Instance.UiView.OpenHexFlyOut(Data);
 	}
 
 	public void OnDeselected()
 	{
 		_outline.gameObject.SetActive(false);
+		GameSceneController.Instance.UiView.CloseHexFlyOut();
 	}
 }

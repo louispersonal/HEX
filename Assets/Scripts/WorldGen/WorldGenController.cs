@@ -16,6 +16,8 @@ public class WorldGenController : MonoBehaviour
     
     [SerializeField] private List<FBMLayerInformation> _fBMDetailLayers;
 
+    [SerializeField] private ResourceDatabase _resourceDatabase;
+
     private const float WIDTH_HEIGHT_RATIO = 1.5f;
 
     private bool _generationInProgress = false;
@@ -75,6 +77,8 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.84f;
         yield return null;
 
+        _newWorld.ResourceDatabase = _resourceDatabase;
+        
         GeoFeatureGen.AddGeoFeatures(_newWorld, _geoFeatureSpawnParameters);
 
         _currentStatus = "Generating Regions";

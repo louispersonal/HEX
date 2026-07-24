@@ -10,6 +10,10 @@ public class GameSceneController : MonoBehaviour
 
     public GameCamera GameCamera;
     
+    public SelectionManager SelectionManager;
+    
+    public UiView UiView;
+    
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
