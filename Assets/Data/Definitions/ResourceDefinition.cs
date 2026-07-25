@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 
-[System.Serializable]
-public class ResourceDefinition
+[Serializable]
+public class ResourceDefinition : IDatabaseItem<ResourceID>
 {
-    public ResourceID Id;
+    [SerializeField] private ResourceID _id;
+    
+    public ResourceID Id => _id;
+    
     public string DisplayName;
 
     private ResourceTag _tags;
@@ -16,13 +20,13 @@ public class ResourceDefinition
     }
 }
 
-[System.Serializable]
+[Serializable]
 public struct HexResources
 {
     public AvailableResource[] Resources;
 }
 
-[System.Serializable]
+[Serializable]
 public struct AvailableResource
 {
     [SerializeField]
@@ -41,20 +45,28 @@ public struct AvailableResource
     }
 }
 
-[System.Serializable]
-public struct ResourceID
+[Serializable]
+public readonly struct ResourceID : IEquatable<ResourceID>
 {
-    public ushort Value;
+    public readonly ushort Value;
 
     public ResourceID(ushort value)
     {
         Value = value;
     }
-    
+
     public bool Equals(ResourceID other) => Value == other.Value;
+
+    public override bool Equals(object obj) => obj is ResourceID other && Equals(other);
+
+    public override int GetHashCode() => Value.GetHashCode();
+
+    public static bool operator ==(ResourceID left, ResourceID right) => left.Equals(right);
+
+    public static bool operator !=(ResourceID left, ResourceID right) => !left.Equals(right);
 }
 
-[System.Flags]
+[Flags]
 public enum ResourceTag : int
 {
     None          = 0,

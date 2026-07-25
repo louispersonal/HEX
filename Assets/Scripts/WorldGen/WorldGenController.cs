@@ -8,9 +8,9 @@ public class WorldGenController : MonoBehaviour
 
     [SerializeField] List<GeoFeatureSpawnParameters> _geoFeatureSpawnParameters;
 
-    [SerializeField] AnimalArchetypeDatabaseAsset _animalArchetypeDatabse;
+    [SerializeField] AnimalArchetypeDatabase _animalArchetypeDatabse;
 
-    [SerializeField] List<SpeciesDatabaseAsset> _speciesDatabases;
+    [SerializeField] List<SpeciesDatabase> _speciesDatabases;
 
     [SerializeField] private FBMLayerInformation _fBMBaseLayer;
     
@@ -118,23 +118,6 @@ public class WorldGenController : MonoBehaviour
 
     private void ExtractAnimalData(WorldData world)
     {
-        world.AnimalArchetypes = new Dictionary<ushort, ArchetypeProfile>();
 
-        foreach(ArchetypeProfile archetype in _animalArchetypeDatabse.Archetypes)
-        {
-            if (!world.AnimalArchetypes.TryAdd(archetype.ArchetypeId, archetype)) Debug.LogWarning("Two archetypes with same ID");
-        }
-
-        world.AnimalSpeciesByBiome = new Dictionary<Biome, Dictionary<ushort, SpeciesProfile>>();
-
-        foreach(SpeciesDatabaseAsset biomeSpeciesData in _speciesDatabases)
-        {
-            world.AnimalSpeciesByBiome[(Biome)_speciesDatabases.IndexOf(biomeSpeciesData)] = new Dictionary<ushort, SpeciesProfile>();
-            var currentBiomeDict = world.AnimalSpeciesByBiome[(Biome)_speciesDatabases.IndexOf(biomeSpeciesData)];
-            foreach (SpeciesProfile species in biomeSpeciesData.Species)
-            {
-                if (!currentBiomeDict.TryAdd(species.SpeciesId, species)) Debug.LogWarning("Two archetypes with same ID");
-            }
-        }
     }
 }
