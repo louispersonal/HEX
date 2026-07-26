@@ -14,6 +14,8 @@ public class ResourceDefinition : IDatabaseItem<ResourceID>
     
     public float NutritionalValue;
 
+    public Sprite Thumbnail;
+    
     public bool HasTag(ResourceTag tag)
     {
         return (_tags & tag) == tag;
@@ -43,4 +45,12 @@ public struct AvailableResource
         _resourceId = resourceId;
         _quantity = quantity;
     }
+}
+
+[Flags]
+public enum ResourceTag : int
+{
+    None          = 0,
+    Edible        = 1 << 0,
+    Fuel          = 1 << 1
 }

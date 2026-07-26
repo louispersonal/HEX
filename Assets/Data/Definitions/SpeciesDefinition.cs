@@ -13,4 +13,5 @@ public class SpeciesDefinition : IDatabaseItem<SpeciesID>
     public AnimalArchetypeID ArchetypeId;
     public string SpeciesName;
     public List<AnimalTags> Tags;
+    public Sprite Thumbnail;
 }

@@ -20,11 +20,3 @@ public readonly struct ResourceID : IEquatable<ResourceID>
 
     public static bool operator !=(ResourceID left, ResourceID right) => !left.Equals(right);
 }
-
-[Flags]
-public enum ResourceTag : int
-{
-    None          = 0,
-    Edible        = 1 << 0,
-    Fuel          = 1 << 1
-}
