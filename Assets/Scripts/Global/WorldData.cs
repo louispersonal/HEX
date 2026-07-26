@@ -20,10 +20,7 @@ public class WorldData
     public SpatialLookup<LakeID, Lake> Lakes = new();
     public SpatialLookup<GeoID, GeoFeature> GeoFeatures = new();
 
-    public Region[] Regions = new Region[0];
-
-    public Dictionary<ushort, ArchetypeProfile> AnimalArchetypes;
-    public Dictionary<Biome, Dictionary<ushort, SpeciesProfile>> AnimalSpeciesByBiome;
+    public Region[] Regions = new Region[0];  
 
     private Dictionary<AxialCoordinate, HexResources> _resourcesByHex = new();
     

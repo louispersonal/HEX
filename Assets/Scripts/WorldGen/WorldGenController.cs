@@ -84,8 +84,7 @@ public class WorldGenController : MonoBehaviour
         _currentStatus = "Generating Regions";
         _amountDone = 0.98f;
         yield return null;
-
-        ExtractAnimalData(_newWorld);
+        
         _newWorld.Regions = RegionGen.CreateRegions(_newWorld, _worldParams);
 
         _currentStatus = "Done";
@@ -114,10 +113,5 @@ public class WorldGenController : MonoBehaviour
         }
 
         Debug.Log($"Max Elevation: {highestElevation}, Max Temperature: {highestTemperature}, Max Precipitation: {highestPrecipitation}, Strongest Wind: {strongestWind}");
-    }
-
-    private void ExtractAnimalData(WorldData world)
-    {
-
     }
 }

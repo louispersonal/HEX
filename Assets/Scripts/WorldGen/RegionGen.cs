@@ -58,14 +58,5 @@ public class RegionGen
             }
         }
     }
-
-    private static SpeciesProfile PickSpecies(
-        List<SpeciesProfile> species,
-        ushort regionId,
-        ushort archetypeId)
-    {
-        // Deterministic pseudo-random choice.
-        int index = Mathf.Abs((regionId * 397) ^ archetypeId) % species.Count;
-        return species[index];
-    }
+    
 }

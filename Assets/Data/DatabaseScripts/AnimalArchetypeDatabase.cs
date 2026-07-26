@@ -6,5 +6,4 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(menuName = "Game Data/Animal Archetype Database")]
 public class AnimalArchetypeDatabase : Database<AnimalArchetypeID, AnimalArchetypeDefinition>
 {
-
 } 
