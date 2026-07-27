@@ -14,5 +14,5 @@ public class AnimalArchetypeDefinition : IDatabaseItem<AnimalArchetypeID>
 
     public ushort Size; // {0, 1, 2}
 
-    public Resources[] Eats;
+    public ResourceID[] Diet;
 }

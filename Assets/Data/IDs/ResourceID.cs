@@ -1,9 +1,9 @@
 using System;
 
 [Serializable]
-public readonly struct ResourceID : IEquatable<ResourceID>
+public struct ResourceID : IEquatable<ResourceID>
 {
-    public readonly ushort Value;
+    public ushort Value;
 
     public ResourceID(ushort value)
     {

@@ -12,4 +12,130 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cea5e54bc5097845bb88f29b57cbcc9, type: 3}
   m_Name: AnimalArchetypes
   m_EditorClassIdentifier: 
-  _items: []
+  _items:
+  - _id:
+      Value: 0
+    CommonName: SmallGrazer
+    Size: 0
+    Diet:
+    - Value: 0
+  - _id:
+      Value: 0
+    CommonName: SmallBrowser
+    Size: 0
+    Diet:
+    - Value: 0
+    - Value: 2
+  - _id:
+      Value: 0
+    CommonName: SmallSeedEater
+    Size: 0
+    Diet:
+    - Value: 1
+  - _id:
+      Value: 0
+    CommonName: SmallFrugivore
+    Size: 0
+    Diet:
+    - Value: 1
+    - Value: 2
+  - _id:
+      Value: 0
+    CommonName: SmallRootForager
+    Size: 0
+    Diet:
+    - Value: 0
+    - Value: 3
+  - _id:
+      Value: 0
+    CommonName: SmallInsectivore
+    Size: 0
+    Diet:
+    - Value: 5
+  - _id:
+      Value: 0
+    CommonName: SmallOmnivore
+    Size: 0
+    Diet:
+    - Value: 0
+    - Value: 1
+    - Value: 2
+    - Value: 3
+    - Value: 5
+    - Value: 6
+  - _id:
+      Value: 0
+    CommonName: SmallPredator
+    Size: 0
+    Diet:
+    - Value: 7
+  - _id:
+      Value: 0
+    CommonName: MediumGrazer
+    Size: 1
+    Diet:
+    - Value: 0
+  - _id:
+      Value: 0
+    CommonName: MediumBrowser
+    Size: 1
+    Diet:
+    - Value: 0
+    - Value: 2
+  - _id:
+      Value: 0
+    CommonName: MediumRootForager
+    Size: 1
+    Diet:
+    - Value: 0
+    - Value: 3
+    - Value: 5
+    - Value: 6
+  - _id:
+      Value: 0
+    CommonName: MediumOmnivore
+    Size: 1
+    Diet:
+    - Value: 0
+    - Value: 1
+    - Value: 2
+    - Value: 3
+    - Value: 5
+    - Value: 6
+    - Value: 7
+  - _id:
+      Value: 0
+    CommonName: MediumPredator
+    Size: 1
+    Diet:
+    - Value: 7
+  - _id:
+      Value: 0
+    CommonName: LargeGrazer
+    Size: 2
+    Diet:
+    - Value: 0
+  - _id:
+      Value: 0
+    CommonName: LargeBrowser
+    Size: 2
+    Diet:
+    - Value: 0
+    - Value: 2
+    - Value: 3
+  - _id:
+      Value: 0
+    CommonName: LargeOmnivore
+    Size: 2
+    Diet:
+    - Value: 2
+    - Value: 3
+    - Value: 5
+    - Value: 6
+    - Value: 7
+  - _id:
+      Value: 0
+    CommonName: LargePredator
+    Size: 2
+    Diet:
+    - Value: 7

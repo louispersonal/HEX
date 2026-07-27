@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
   - DisplayName: Greens
-    NutritionalValue: 0
+    _tags: 1
     Thumbnail: {fileID: 21300000, guid: 7a43c3d6d8adcdd4cbf7949e443bf8a7, type: 3}
   - DisplayName: Seeds
-    NutritionalValue: 0
+    _tags: 1
     Thumbnail: {fileID: 21300000, guid: ced2eaeb834b5464db5507fd69300aee, type: 3}
   - DisplayName: Fruit
-    NutritionalValue: 0
+    _tags: 1
     Thumbnail: {fileID: 21300000, guid: e67d3e985ec3cd9458921540cbf77273, type: 3}
   - DisplayName: Roots
-    NutritionalValue: 0
+    _tags: 1
     Thumbnail: {fileID: 21300000, guid: 05d2322bfaf4ba94abceceb150b16ea5, type: 3}
   - DisplayName: Wood
-    NutritionalValue: 0
+    _tags: 6
     Thumbnail: {fileID: 21300000, guid: ecafcaf831568264ca4eb9a635ce1186, type: 3}
   - DisplayName: Grubs
-    NutritionalValue: 0
+    _tags: 1
     Thumbnail: {fileID: 21300000, guid: db092a918d6574d40aed51f7a04abce4, type: 3}
   - DisplayName: Fungus
-    NutritionalValue: 0
+    _tags: 1
     Thumbnail: {fileID: 21300000, guid: b67bcf63e3d7bf64ea66ef49eb49f502, type: 3}
+  - DisplayName: Meat
+    _tags: 1
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}

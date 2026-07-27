@@ -10,9 +10,7 @@ public class ResourceDefinition : IDatabaseItem<ResourceID>
     
     public string DisplayName;
 
-    private ResourceTag _tags;
-    
-    public float NutritionalValue;
+    [SerializeField] private ResourceTag _tags;
 
     public Sprite Thumbnail;
     
@@ -52,5 +50,6 @@ public enum ResourceTag : int
 {
     None          = 0,
     Edible        = 1 << 0,
-    Fuel          = 1 << 1
+    Fuel          = 1 << 1,
+    Buildable     = 1 << 2
 }

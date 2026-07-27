@@ -11,4 +11,5 @@ public static class ResourceIDMap
     public static readonly ResourceID Wood = new(4);
     public static readonly ResourceID Grubs = new(5);
     public static readonly ResourceID Fungus = new(6);
+    public static readonly ResourceID Meat = new(7);
 }
