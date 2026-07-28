@@ -6,5 +6,10 @@ public enum AnimalTags
     Woolly,
     Flying,
     Scales,
-    Fast
+    Fast,
+    Horned,
+    Tusked,
+    Domesticable,
+    BeastOfBurden,
+    Rideable
 }
