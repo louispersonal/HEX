@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12e23412326e0d4396e857344582759, type: 3}
+  m_Name: Species
+  m_EditorClassIdentifier: 
+  _items:
+  - _id:
+      Value: 0
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Rabbit
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 1
+    ArchetypeId:
+      Value: 1
+    SpeciesName: Hare
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 2
+    ArchetypeId:
+      Value: 2
+    SpeciesName: Mouse
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 3
+    ArchetypeId:
+      Value: 3
+    SpeciesName: Squirrel
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 4
+    ArchetypeId:
+      Value: 4
+    SpeciesName: Vole
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 5
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Shrew
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 6
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Rat
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 7
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Weasel
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 8
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Gazelle
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 9
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Deer
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 10
+    ArchetypeId:
+      Value: 10
+    SpeciesName: Boar
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 11
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Baboon
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 12
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Wolf
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 13
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Bison
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 14
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Moose
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 15
+    ArchetypeId:
+      Value: 15
+    SpeciesName: Bear
+    Tags: 
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 16
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Lion
+    Tags: 
+    Thumbnail: {fileID: 0}
