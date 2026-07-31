@@ -199,6 +199,7 @@ Transform:
   m_Children:
   - {fileID: 183880467}
   - {fileID: 1617614241}
+  - {fileID: 2040912710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1274943568
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sessionManager: {fileID: 183880468}
   _worldGenController: {fileID: 1617614242}
+  _staticDatabases: {fileID: 2040912711}
 --- !u!1 &1617614240
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +438,61 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b8646c90079dced49a88d7e81b5e5bab, type: 3}
   - {fileID: 8300000, guid: 8a4b745a8df21fe4584157807db84260, type: 3}
   _musicSource: {fileID: 1736040582}
+--- !u!1 &2040912709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040912710}
+  - component: {fileID: 2040912711}
+  m_Layer: 0
+  m_Name: StaticDatabases
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2040912710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040912709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1274943567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2040912711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040912709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 033aeb159fec9ea44aa4104162e257c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resourceDatabase: {fileID: 11400000, guid: 06c809549d0604643b3156e25ddff8a1, type: 2}
+  _animalArchetypeDatabase: {fileID: 11400000, guid: 2ccdbdada7e6b8a4582203ddf4046f33,
+    type: 2}
+  _speciesDatabases:
+  - {fileID: 11400000, guid: a7e2676f43a5ad447b85ee76a4e73033, type: 2}
+  - {fileID: 11400000, guid: ec5290e9d84c4f7438e3464f09f8afc3, type: 2}
+  - {fileID: 11400000, guid: b80fb6874e20c3d48b20295a2fd2bfad, type: 2}
+  - {fileID: 11400000, guid: 640b1992fc989a54997a6e37c7288cd2, type: 2}
+  - {fileID: 11400000, guid: 2d8c71b677cabd845a149878aa800156, type: 2}
+  - {fileID: 11400000, guid: 6a097e1ba25acd34f9c3344ff52e95f7, type: 2}
+  - {fileID: 11400000, guid: 3f2d567bac1e0c14eb330c00885e7126, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

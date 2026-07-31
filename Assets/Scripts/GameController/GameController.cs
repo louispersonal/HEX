@@ -8,11 +8,14 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     [SerializeField] SessionManager _sessionManager;
-    public SessionManager SessionManager { get { return _sessionManager; } }
+    public SessionManager SessionManager => _sessionManager;
 
     [SerializeField] WorldGenController _worldGenController;
-    public WorldGenController WorldGenController { get { return _worldGenController; } }
+    public WorldGenController WorldGenController => _worldGenController;
 
+    [SerializeField] StaticDatabases _staticDatabases;
+    public StaticDatabases StaticDatabases => _staticDatabases;
+    
     string _currentScene;
 
     void Awake()
