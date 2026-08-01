@@ -18,7 +18,7 @@ public class SimulationMenuController : SubMenu
         GameController.Instance.SessionManager.NewGameData();
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
 
-        Pop seedPop = PlaceSeedPop();
+        Pop seedPop = new Pop();
         PopBrain seedPopBrain = new PopBrain(seedPop);
 
         GameController.Instance.SessionManager.GameData.Pops.Add(seedPop.Location, seedPop);
@@ -48,18 +48,8 @@ public class SimulationMenuController : SubMenu
         }
     }
     
-    private Pop PlaceSeedPop()
+    private void PlaceSeedPop()
     {
-        WorldData world = GameController.Instance.SessionManager.WorldData;
-        HexData currentOptimumHex = null;
-        foreach (var hexData in world.Grid.GetValidHexes())
-        {
-            if (hexData.ExtraData.Biome == Biome.Savanna)
-            {
-                currentOptimumHex = hexData;
-            }
-        }
-        
-        return new Pop(currentOptimumHex.Coord, new CultureID(), new ReligionID());
+
     }
 }
