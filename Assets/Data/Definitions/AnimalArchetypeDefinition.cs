@@ -15,4 +15,11 @@ public class AnimalArchetypeDefinition : IDatabaseItem<AnimalArchetypeID>
     public ushort Size; // {0, 1, 2}
 
     public ResourceID[] Diet;
+
+    [Tooltip("Or hunting ability in predators")]
+    public float ForagingAbility;
+
+    public float NutritionRequired;
+
+    public float NutritionProvided;
 }
