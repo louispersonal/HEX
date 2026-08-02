@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RegionGen
@@ -58,5 +59,43 @@ public class RegionGen
             }
         }
     }
-    
+
+    public static void PopulateRegion(WorldData world, StaticDatabases databases, Region region)
+    {
+        if (!world.Grid.TryGetHex(region.SeedCoord, out HexData seedHex)) return;
+        Biome regionBiome = seedHex.ExtraData.Biome;
+        var biomeVegetationProfile = VegetationProfiles.Profiles[regionBiome];
+        
+        Dictionary<ResourceID, float> regionResourceYields = new Dictionary<ResourceID, float>();
+        
+        foreach (ResourceDailyYield yield in biomeVegetationProfile.LowVegetationProfile.DailyYields)
+        {
+            float quantity = yield.MaximumDailyYield * region.TotalLowVegetation;
+            regionResourceYields.TryGetValue(yield.ResourceId, out float existing);
+            regionResourceYields[yield.ResourceId] = existing + quantity;
+        }
+        
+        foreach (ResourceDailyYield yield in biomeVegetationProfile.HighVegetationProfile.DailyYields)
+        {
+            float quantity = yield.MaximumDailyYield * region.TotalHighVegetation;
+            regionResourceYields.TryGetValue(yield.ResourceId, out float existing);
+            regionResourceYields[yield.ResourceId] = existing + quantity;
+        }
+        
+        foreach (SpeciesDefinition species in databases.GetSpeciesDatabase(regionBiome).Items)
+        {
+            AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
+            float totalAvailableNutrition = 0f;
+            foreach (ResourceID resource in archetype.Diet)
+            {
+                if (resource != ResourceIDMap.Meat)
+                {
+                    totalAvailableNutrition += regionResourceYields[resource] * archetype.ForagingAbility;
+                }
+            }
+
+            float largestPossiblePopulation = totalAvailableNutrition / archetype.NutritionRequired;
+            if (largestPossiblePopulation > 0) region.Animals[species.Id] = Mathf.RoundToInt(largestPossiblePopulation);
+        }
+    }
 }

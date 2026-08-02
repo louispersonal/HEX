@@ -15,6 +15,8 @@ public class Region
 
     public AxialCoordinate SeedCoord;
 
+    public Dictionary<SpeciesID, int> Animals = new();
+
     private int _hasRiver = -1;
 
     private int _isCoastal = -1;

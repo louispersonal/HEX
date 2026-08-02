@@ -87,6 +87,11 @@ public class WorldGenController : MonoBehaviour
         
         _newWorld.Regions = RegionGen.CreateRegions(_newWorld, _worldParams);
 
+        foreach (Region region in _newWorld.Regions)
+        {
+            RegionGen.PopulateRegion(_newWorld, GameController.Instance.StaticDatabases, region);
+        }
+        
         _currentStatus = "Done";
         _amountDone = 1f;
         yield return null;
