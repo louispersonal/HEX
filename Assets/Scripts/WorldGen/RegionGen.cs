@@ -82,6 +82,7 @@ public class RegionGen
             regionResourceYields[yield.ResourceId] = existing + quantity;
         }
         
+        // herbivores first
         foreach (SpeciesDefinition species in databases.GetSpeciesDatabase(regionBiome).Items)
         {
             AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
@@ -97,5 +98,35 @@ public class RegionGen
             float largestPossiblePopulation = totalAvailableNutrition / archetype.NutritionRequired;
             if (largestPossiblePopulation > 0) region.Animals[species.Id] = Mathf.RoundToInt(largestPossiblePopulation);
         }
+        
+        // then predators
+        foreach (SpeciesDefinition species in databases.GetSpeciesDatabase(regionBiome).Items)
+        {
+            AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
+            float totalAvailableNutrition = 0f;
+            foreach (ResourceID resource in archetype.Diet)
+            {
+                if (resource == ResourceIDMap.Meat)
+                {
+                    totalAvailableNutrition += GetAvailablePreyMeat(region.Animals, databases, regionBiome, archetype.Size) * archetype.ForagingAbility;
+                }
+            }
+
+            float largestPossiblePopulation = totalAvailableNutrition / archetype.NutritionRequired;
+            if (largestPossiblePopulation > 0) region.Animals[species.Id] = Mathf.RoundToInt(largestPossiblePopulation);
+        }
+    }
+
+    private static float GetAvailablePreyMeat(Dictionary<SpeciesID, int> animals, StaticDatabases databases, Biome biome, int predatorSize)
+    {
+        float meatAvailable = 0f;
+        foreach (var animal in animals.Keys)
+        {
+            AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get
+                (databases.GetSpeciesDatabase(biome).Get(animal).ArchetypeId);
+            if (archetype.Size <= predatorSize) meatAvailable += archetype.NutritionProvided * animals[animal];
+        }
+
+        return meatAvailable;
     }
 }
