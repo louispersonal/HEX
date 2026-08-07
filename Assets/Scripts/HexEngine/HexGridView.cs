@@ -75,7 +75,7 @@ public class HexGridView : MonoBehaviour
 	
 	private HexView CreateHex()
 	{
-		HexView hexView = Instantiate(_hexViewPrefab);
+		HexView hexView = Instantiate(_hexViewPrefab, transform);
 		hexView.gameObject.SetActive(false);
 		return hexView;
 	}

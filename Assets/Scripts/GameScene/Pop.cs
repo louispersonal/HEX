@@ -10,7 +10,7 @@ public class Pop : Pawn
     
     public AxialCoordinate Location;
     
-    private List<Assignment> _assignments;
+    private List<Assignment> _assignments = new();
 
     public override void Tick(TickInfo tickInfo)
     {

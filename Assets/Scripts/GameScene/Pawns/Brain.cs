@@ -1,42 +1,56 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Brain : ITickable
 {
+    public TickableType TickableType => TickableType.Brain;
+
     private readonly Pawn _pawn;
     public Pawn Pawn => _pawn;
 
-    private Queue<Job> _jobs = new();
+    private List<Job> _jobs = new();
     
     public Brain(Pawn pawn)
     {
         _pawn = pawn;
     }
 
-    public void Tick(TickInfo tickInfo)
+    public virtual void Tick(TickInfo tickInfo)
     {
-        ProgressJob(tickInfo);
+        ProgressJobs(tickInfo);
     }
 
-    public void EnqueueJob(Job job)
+    public void AddJob(Job job)
     {
-        _jobs.Enqueue(job);
+        _jobs.Add(job);
     }
     
-    private void ProgressJob(TickInfo tickInfo)
+    private void ProgressJobs(TickInfo tickInfo)
     {
-        if (_jobs.Count == 0) return;
-
-        Job currentJob = _jobs.Peek();
-        
-        if (currentJob.Status == JobStatus.NotStarted) currentJob.Start(_pawn);
-        
-        currentJob.Progress(tickInfo);
-        
-        if (currentJob.IsComplete)
+        for (int i = 0; i < _jobs.Count; i++)
         {
-            _jobs.Dequeue();
+            Job job = _jobs[i];
+
+            ProgressJob(job, tickInfo);
+
+            if (job.Type == JobType.Exclusive)
+            {
+                break;
+            }
+        }
+
+        _jobs.RemoveAll(job => job.IsComplete);
+    }
+
+    private void ProgressJob(Job job, TickInfo tickInfo)
+    {
+        if (job.Status == JobStatus.NotStarted)
+        {
+            job.Start(_pawn);
+        }
+
+        if (!job.IsComplete)
+        {
+            job.Progress(tickInfo);
         }
     }
 }

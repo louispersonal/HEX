@@ -7,8 +7,6 @@ public class UiView : MonoBehaviour
 {
     [SerializeField] MiniMap _miniMap;
     
-    [SerializeField] HexFlyOut _hexFlyOut;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,14 +22,13 @@ public class UiView : MonoBehaviour
         
     }
 
-    public void OpenHexFlyOut(HexData selectedHex)
+    public void OpenFlyOut()
     {
-        _hexFlyOut.gameObject.SetActive(true);
-        _hexFlyOut.RefreshText(selectedHex);
+
     }
     
-    public void CloseHexFlyOut()
+    public void CloseFlyOut()
     {
-        _hexFlyOut.gameObject.SetActive(false);
+
     }
 }

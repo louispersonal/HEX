@@ -72,6 +72,11 @@ public class SessionManager : MonoBehaviour
         loadedWorld.Regions = saveData.Regions;
 
         SetWorldData(loadedWorld);
+
+        MapTexture miniMapTexture =
+            TextureUtilities.GetMapTextureFromWorldData(GameController.Instance.SessionManager.WorldData, 1200, 695);
+
+        GameController.Instance.SessionManager.UiData = new UiData(miniMapTexture);
     }
 
     public void NewGameData()

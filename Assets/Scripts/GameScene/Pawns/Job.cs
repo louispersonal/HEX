@@ -4,14 +4,24 @@ using UnityEngine;
 
 public abstract class Job
 {
-    public JobStatus Status{ get; protected set; } = JobStatus.NotStarted;
+    public JobStatus Status{ get; protected set; }
 
+    public JobType Type{ get; protected set; }
+    
     public bool IsComplete =>
         Status == JobStatus.Succeeded
         || Status == JobStatus.Failed
         || Status == JobStatus.Cancelled;
 
+    private int _ticksToComplete;
+    
     private Pawn _pawn;
+
+    public Job(int ticksToComplete)
+    {
+        _ticksToComplete = ticksToComplete;
+        Status = JobStatus.NotStarted;
+    }
     
     public virtual void Start(Pawn pawn)
     {
@@ -42,4 +52,10 @@ public enum JobStatus
     Succeeded,
     Failed,
     Cancelled
+}
+
+public enum JobType
+{
+    Parallel,
+    Exclusive
 }

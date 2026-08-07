@@ -8,4 +8,9 @@ public class PopBrain : Brain
     {
         
     }
+    
+    public override void Tick(TickInfo tickInfo)
+    {
+        base.Tick(tickInfo);
+    }
 }

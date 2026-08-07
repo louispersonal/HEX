@@ -17,12 +17,12 @@ public class HexGrid
     public (int min, int max) RowBounds;
     public (int min, int max) ColBounds;
 
-    public int MiddleRow { get { return (RowBounds.max - RowBounds.min) / 2; } }
+    public int MiddleRow => (RowBounds.max - RowBounds.min) / 2;
 
-    public int MiddleCol { get { return (ColBounds.max - ColBounds.min / 2); } }
+    public int MiddleCol => (ColBounds.max - ColBounds.min) / 2;
 
-    public int Width { get { return (ColBounds.max - ColBounds.min); } }
-    public int Height { get { return (RowBounds.max - RowBounds.min); } }
+    public int Width => ColBounds.max - ColBounds.min + 1;
+    public int Height => RowBounds.max - RowBounds.min + 1;
 
     public HexGrid(List<HexData> hexDataList)
     {

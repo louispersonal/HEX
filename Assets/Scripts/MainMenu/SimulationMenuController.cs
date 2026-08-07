@@ -19,10 +19,12 @@ public class SimulationMenuController : SubMenu
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
 
         Pop seedPop = new Pop();
+        PlaceSeedPop(seedPop);
         PopBrain seedPopBrain = new PopBrain(seedPop);
 
         GameController.Instance.SessionManager.GameData.Pops.Add(seedPop.Location, seedPop);
         GameController.Instance.SessionManager.GameData.Ticker.Register(seedPopBrain);
+        GameController.Instance.SessionManager.GameData.Ticker.Register(seedPop);
         
         StartCoroutine(SimulationCoroutine(simulationLength, loadingPanel, updateView));
     }
@@ -48,8 +50,20 @@ public class SimulationMenuController : SubMenu
         }
     }
     
-    private void PlaceSeedPop()
+    private void PlaceSeedPop(Pop pop)
     {
+        float optimumTemp = 0.7f;
+        float optimumPrec = 0.5f;
+        (float meanError, HexData hex) optimumHex = (float.MaxValue, null);
+        foreach (var hexData in GameController.Instance.SessionManager.WorldData.Grid.GetValidHexes())
+        {
+            float tempError = hexData.ExtraData.Temperature - optimumTemp;
+            float precError = hexData.ExtraData.Precipitation - optimumPrec;
+            float euclidean = Mathf.Sqrt(Mathf.Pow(tempError, 2) + Mathf.Pow(precError, 2));
 
+            if (euclidean <= optimumHex.meanError) optimumHex = (euclidean, hexData);
+        }
+
+        pop.Location = optimumHex.hex.Coord;
     }
 }
