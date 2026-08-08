@@ -13,6 +13,8 @@ public class GameSceneController : MonoBehaviour
     public SelectionManager SelectionManager;
     
     public UiView UiView;
+
+    public InGameClock GameClock;
     
     void Awake()
     {

@@ -10,7 +10,11 @@ public class SelectionManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (TryGetHexSelection(out ISelectable selectionAttempt)) Select(selectionAttempt);
+            if (TryGetHexSelection(out ISelectable selectionAttempt) && selectionAttempt != null &&
+                selectionAttempt != _currentSelection)
+            {
+                Select(selectionAttempt);
+            }
             else ClearSelection();
         }
     }
@@ -33,10 +37,21 @@ public class SelectionManager : MonoBehaviour
     
     private bool TryGetHexSelection(out ISelectable selection)
     {
+        selection = null;
         HexGrid grid = GameController.Instance.SessionManager.WorldData.Grid;
-        HexData target = HexGridGeometry.GetHexAtScenePoint(grid, HexGridView.MouseToPlane(Camera.main, 0f));
-        bool success =  GameSceneController.Instance.HexGridView.TryGetLiveHex(target.Coord, out HexView hexView);
-        selection = success ? hexView : null;
-        return success;
+
+        if (!HexGridGeometry.TryGetHexAtScenePoint( grid, HexGridView.MouseToPlane(Camera.main, 0f),
+                out HexData target))
+        {
+            return false;
+        }
+
+        if (!GameSceneController.Instance.HexGridView.TryGetLiveHex(target.Coord, out HexView hexView))
+        {
+            return false;
+        }
+
+        selection = hexView;
+        return true;
     }
 }

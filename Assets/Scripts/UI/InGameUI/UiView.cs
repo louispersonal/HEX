@@ -7,6 +7,8 @@ public class UiView : MonoBehaviour
 {
     [SerializeField] MiniMap _miniMap;
     
+    [SerializeField] HRPFlyout _hrpflyout;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +26,11 @@ public class UiView : MonoBehaviour
 
     public void OpenFlyOut()
     {
-
+        _hrpflyout.OpenFlyOut();
     }
     
     public void CloseFlyOut()
     {
-
+        _hrpflyout.CloseFlyOut();
     }
 }

@@ -26,6 +26,15 @@ public class Ticker
 
     public void Register(ITickable tickable)
     {
+        if (!_isTicking) InstantRegister(tickable);
+        else
+        {
+            _pendingRegistration.Add(tickable);
+        }
+    }
+
+    private void InstantRegister(ITickable tickable)
+    {
         switch (tickable.TickableType)
         {
             case TickableType.Brain:
@@ -54,6 +63,15 @@ public class Ticker
         }
         
         _isTicking = false;
+        SyncPending();
+    }
+
+    private void SyncPending()
+    {
+        foreach (ITickable pending in _pendingRegistration)
+        {
+            InstantRegister(pending);
+        }
     }
 }
 

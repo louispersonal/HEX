@@ -19,14 +19,9 @@ public class HexGridGeometry
         return AxialGeometry.CartesianToFractionalAxial(p, HexView.SceneSize);
     }
 
-    public static HexData GetHexAtScenePoint(HexGrid grid, Vector2 p)
+    public static bool TryGetHexAtScenePoint(HexGrid grid, Vector2 p, out HexData hexData)
     {
-        if (grid.TryGetHex(SceneToAxial(p), out HexData hex))
-        {
-            return hex;
-        }
-        Debug.Log("No hex at point: " + p.ToString());
-        return null;
+        return grid.TryGetHex(SceneToAxial(p), out hexData);
     }
 
     public static List<HexData> GenerateHexShapedGrid(int N)
