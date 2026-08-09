@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class PopPanel : Panel
 {
-
+    public void Populate(Pop pop)
+    {
+        
+    }
 }

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class RegionPanel : Panel
 {
-
+    public void Populate(Region region)
+    {
+        
+    }
 }

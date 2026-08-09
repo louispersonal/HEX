@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flyout : MonoBehaviour
 {
-    [SerializeField]  Panel[] _panels;
+    [SerializeField] protected Panel[] _panels;
     
     public void OpenFlyOut()
     {
