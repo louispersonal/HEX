@@ -6,6 +6,8 @@ public class SelectionManager : MonoBehaviour
 {
     private ISelectable _currentSelection;
 
+    private UiView _uiView => GameSceneController.Instance.UiView;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -27,6 +29,8 @@ public class SelectionManager : MonoBehaviour
 
         _currentSelection = selectable;
         _currentSelection.OnSelected();
+
+        UpdateSelectionUI();
     }
 
     private void ClearSelection()
@@ -53,5 +57,15 @@ public class SelectionManager : MonoBehaviour
 
         selection = hexView;
         return true;
+    }
+
+    private void UpdateSelectionUI()
+    {
+        if (_currentSelection is HexView hexView)
+        {
+            Region currentRegion = GameController.Instance.SessionManager.WorldData.GetRegion(hexView.Data.ExtraData.RegionId);
+            _uiView.OpenFlyOut(hexView.Data, currentRegion, null);
+        }
+        else _uiView.CloseFlyOut();
     }
 }

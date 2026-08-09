@@ -17,6 +17,8 @@ public class Region
 
     public Dictionary<SpeciesID, int> Animals = new();
 
+    public Biome Biome;
+
     private int _hasRiver = -1;
 
     private int _isCoastal = -1;
@@ -97,6 +99,8 @@ public class Region
         world.Grid.TryGetHex(SeedCoord, out HexData seedHex);
         stack.Push(seedHex);
 
+        Biome = seedHex.ExtraData.Biome;
+        
         while (stack.Count > 0)
         {
             HexData hex = stack.Pop();
