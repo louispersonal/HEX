@@ -14,4 +14,15 @@ public class SpeciesDefinition : IDatabaseItem<SpeciesID>
     public string SpeciesName;
     public List<AnimalTags> Tags;
     public Sprite Thumbnail;
+
+    public string GetTagsString()
+    {
+        string result = "";
+        foreach (var tag in Tags)
+        {
+            result += tag.ToString() + ", ";
+        }
+
+        return result;
+    }
 }

@@ -69,6 +69,16 @@ public class WorldData
         resources.TryGetValue(resourceId, out float existing);
         resources[resourceId] = existing + quantity;
     }
+
+    public Region GetRegion(int regionId)
+    {
+        foreach (Region region in Regions)
+        {
+            if (region.ID == regionId) return  region;
+        }
+
+        return null;
+    }
     
     public WorldSaveData ToSaveData()
     {
