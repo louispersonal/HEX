@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -10,15 +11,16 @@ public class SelectionManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0)) return;
+        
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        
+        if (TryGetHexSelection(out ISelectable selectionAttempt) && selectionAttempt != null &&
+            selectionAttempt != _currentSelection)
         {
-            if (TryGetHexSelection(out ISelectable selectionAttempt) && selectionAttempt != null &&
-                selectionAttempt != _currentSelection)
-            {
-                Select(selectionAttempt);
-            }
-            else ClearSelection();
+            Select(selectionAttempt);
         }
+        else ClearSelection();
     }
 
     private void Select(ISelectable selectable)
