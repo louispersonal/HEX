@@ -8,10 +8,6 @@ public class WorldGenController : MonoBehaviour
 
     [SerializeField] List<GeoFeatureSpawnParameters> _geoFeatureSpawnParameters;
 
-    [SerializeField] AnimalArchetypeDatabase _animalArchetypeDatabse;
-
-    [SerializeField] List<SpeciesDatabase> _speciesDatabases;
-
     [SerializeField] private FBMLayerInformation _fBMBaseLayer;
     
     [SerializeField] private List<FBMLayerInformation> _fBMDetailLayers;

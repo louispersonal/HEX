@@ -270,16 +270,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 477408ea43a0ee04a8062a37b588d67f, type: 2}
   - {fileID: 11400000, guid: 86251abbf881fd749a0f291d0ce3ab9c, type: 2}
   - {fileID: 11400000, guid: 9d9b8a9ece1259f449fa767c9311feac, type: 2}
-  _animalArchetypeDatabse: {fileID: 11400000, guid: 0950a87af1782a841bc660928063cdf4,
-    type: 2}
-  _speciesDatabases:
-  - {fileID: 11400000, guid: 34bc3296a8800e54cb95ffcec7e07c41, type: 2}
-  - {fileID: 11400000, guid: d4e0da94c8a002b4dafcc2edc55fc5ed, type: 2}
-  - {fileID: 11400000, guid: 73804b81f0d1b5648b059868a07e0f75, type: 2}
-  - {fileID: 11400000, guid: f9bee6a6d5cb7194cb7fb3d0b40abe4c, type: 2}
-  - {fileID: 11400000, guid: bae15c65731c6304ebdb79c4eb056251, type: 2}
-  - {fileID: 11400000, guid: c709a18ca7462f94eb0c0b903ed5f705, type: 2}
-  - {fileID: 11400000, guid: f3355e3fd68d0b049b485a7c518bc406, type: 2}
   _fBMBaseLayer:
     LayerParams: {fileID: 11400000, guid: 63f6242e6e1f89848a82691537588bd7, type: 2}
     LayerWeight: 0.01
@@ -290,7 +280,6 @@ MonoBehaviour:
     LayerWeight: 0.99
     OriginPoint: {x: 0, y: 0}
     BoundPoint: {x: 0, y: 0}
-  _resourceDatabase: {fileID: 11400000, guid: 306ecc26c55b82a4a985df910440cc94, type: 2}
 --- !u!1 &1736040581
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +426,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17d048d79c5190548af5277792d90d28, type: 3}
   - {fileID: 8300000, guid: b8646c90079dced49a88d7e81b5e5bab, type: 3}
   - {fileID: 8300000, guid: 8a4b745a8df21fe4584157807db84260, type: 3}
+  - {fileID: 8300000, guid: 56faa03a07de5894ca6592193c726f26, type: 3}
   _musicSource: {fileID: 1736040582}
 --- !u!1 &2040912709
 GameObject:
@@ -485,14 +475,7 @@ MonoBehaviour:
   _resourceDatabase: {fileID: 11400000, guid: 06c809549d0604643b3156e25ddff8a1, type: 2}
   _animalArchetypeDatabase: {fileID: 11400000, guid: 2ccdbdada7e6b8a4582203ddf4046f33,
     type: 2}
-  _speciesDatabases:
-  - {fileID: 11400000, guid: a7e2676f43a5ad447b85ee76a4e73033, type: 2}
-  - {fileID: 11400000, guid: ec5290e9d84c4f7438e3464f09f8afc3, type: 2}
-  - {fileID: 11400000, guid: b80fb6874e20c3d48b20295a2fd2bfad, type: 2}
-  - {fileID: 11400000, guid: 640b1992fc989a54997a6e37c7288cd2, type: 2}
-  - {fileID: 11400000, guid: 2d8c71b677cabd845a149878aa800156, type: 2}
-  - {fileID: 11400000, guid: 6a097e1ba25acd34f9c3344ff52e95f7, type: 2}
-  - {fileID: 11400000, guid: 3f2d567bac1e0c14eb330c00885e7126, type: 2}
+  _speciesDatabase: {fileID: 11400000, guid: 1b20cb573041dc148a03d07351e2a90f, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

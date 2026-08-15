@@ -16,8 +16,7 @@ public class RegionPanel : Panel
         ClearAll();
         foreach (var species in region.Animals.Keys)
         {
-            SpeciesDefinition def = 
-                GameController.Instance.StaticDatabases.GetSpeciesDatabase(region.Biome).Get(species);
+            SpeciesDefinition def = GameController.Instance.StaticDatabases.SpeciesDatabase.Get(species);
             var pill = Instantiate(_animalPillPrefab, _content.transform);
             _activePills.Add(pill);
             pill.Initialize(def);

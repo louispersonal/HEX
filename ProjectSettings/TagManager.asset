@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: HexGrid
+    uniqueID: 3787769693
+    locked: 0
+  - name: Pops
+    uniqueID: 599553681
+    locked: 0

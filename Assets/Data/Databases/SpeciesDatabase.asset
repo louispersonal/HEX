@@ -1,0 +1,1286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12e23412326e0d4396e857344582759, type: 3}
+  m_Name: SpeciesDatabase
+  m_EditorClassIdentifier: 
+  _items:
+  - _id:
+      Value: 0
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Fennec Fox
+    Tags: []
+    Biomes:
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 1
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Red Fox
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 2
+    - 1
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 2
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Culpeo
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 3
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Bat-eared Fox
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 4
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Scorpion
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    - 6
+    - 3
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 5
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Viper
+    Tags: []
+    Biomes:
+    - 0
+    - 6
+    - 4
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 6
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Dromedary
+    Tags: []
+    Biomes:
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 7
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Savanna Elephant
+    Tags: []
+    Biomes:
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 8
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Jungle Elephant
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 9
+    ArchetypeId:
+      Value: 2
+    SpeciesName: Jerboa
+    Tags: []
+    Biomes:
+    - 0
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 10
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Baboon
+    Tags: []
+    Biomes:
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 11
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Crocodile
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 12
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Hyena
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 13
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Oryx
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 14
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Camel
+    Tags: []
+    Biomes:
+    - 0
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 15
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Sand Cat
+    Tags: []
+    Biomes:
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 16
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Caracal
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 17
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Cobra
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 18
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Vicuña
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 19
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Viscacha
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 20
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Flamingo
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 21
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Kangaroo
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 22
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Dingo
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    - 6
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 23
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Goanna
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 24
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Frilled-Necked Lizard
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 25
+    ArchetypeId:
+      Value: 15
+    SpeciesName: Black Bear
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 26
+    ArchetypeId:
+      Value: 15
+    SpeciesName: Grizzly Bear
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 27
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Polar Bear
+    Tags: []
+    Biomes:
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 28
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Panda Bear
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 29
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Sun Bear
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 30
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Golden Eagle
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 2
+    - 1
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 31
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Bald Eagle
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 32
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Pallas Cat
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 33
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Horse
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 34
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Khulan
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 35
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Wild Ass
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 36
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Wolf
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 2
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 37
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Deer
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 38
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Moose
+    Tags: []
+    Biomes:
+    - 2
+    - 5
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 39
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Elk
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 40
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Bobcat
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 41
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Cougar
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 0
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 42
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Coyote
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 0
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 43
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Raccoon
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 44
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Opossum
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 45
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Skunk
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 46
+    ArchetypeId:
+      Value: 2
+    SpeciesName: Chipmunk
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 47
+    ArchetypeId:
+      Value: 2
+    SpeciesName: Squirrel
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 48
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Groundhog
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 49
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Marmot
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 50
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Prairie Dog
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 51
+    ArchetypeId:
+      Value: 1
+    SpeciesName: Porcupine
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 52
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Salamander
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 53
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Copperhead
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 54
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Turtle
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 55
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Rabbit
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 56
+    ArchetypeId:
+      Value: 0
+    SpeciesName: Hare
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 2
+    - 1
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 57
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Badger
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 58
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Boar
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 59
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Stork
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 60
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Swan
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 61
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Goose
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 2
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 62
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Beaver
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 63
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Otter
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 64
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Hedgehog
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 65
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Ferret
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 66
+    ArchetypeId:
+      Value: 1
+    SpeciesName: Pudu
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 67
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Monito del Monte
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 68
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Kodkod
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 69
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Woodpecker
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 70
+    ArchetypeId:
+      Value: 3
+    SpeciesName: Hummingbird
+    Tags: []
+    Biomes:
+    - 3
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 71
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Bison
+    Tags: []
+    Biomes:
+    - 6
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 72
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Pronghorn
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 73
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Owl
+    Tags: []
+    Biomes:
+    - 5
+    - 2
+    - 6
+    - 0
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 74
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Sheep
+    Tags: []
+    Biomes:
+    - 6
+    - 5
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 75
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Goat
+    Tags: []
+    Biomes:
+    - 6
+    - 5
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 76
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Tiger
+    Tags: []
+    Biomes:
+    - 3
+    - 5
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 77
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Lynx
+    Tags: []
+    Biomes:
+    - 2
+    - 5
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 78
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Leopard
+    Tags: []
+    Biomes:
+    - 4
+    - 3
+    - 0
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 79
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Snow Leopard
+    Tags: []
+    Biomes:
+    - 6
+    - 1
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 80
+    ArchetypeId:
+      Value: 1
+    SpeciesName: Red Panda
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 81
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Reindeer
+    Tags: []
+    Biomes:
+    - 1
+    - 2
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 82
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Penguin
+    Tags: []
+    Biomes:
+    - 1
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 83
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Howler Monkey
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 84
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Capuchin
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 85
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Anaconda
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 86
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Boa
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 87
+    ArchetypeId:
+      Value: 3
+    SpeciesName: Kinkajou
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 88
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Sloth
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 89
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Coatimundi
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 90
+    ArchetypeId:
+      Value: 8
+    SpeciesName: Capybara
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 91
+    ArchetypeId:
+      Value: 3
+    SpeciesName: Toucan
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 92
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Jaguar
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 93
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Gorilla
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 94
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Condor
+    Tags: []
+    Biomes:
+    - 6
+    - 0
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 95
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Vulture
+    Tags: []
+    Biomes:
+    - 4
+    - 0
+    - 6
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 96
+    ArchetypeId:
+      Value: 3
+    SpeciesName: Lemur
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 97
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Mandrill
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 98
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Guereza
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 99
+    ArchetypeId:
+      Value: 17
+    SpeciesName: Aardvark
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 100
+    ArchetypeId:
+      Value: 17
+    SpeciesName: Anteater
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 101
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Chameleon
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 102
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Chimpanzee
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 103
+    ArchetypeId:
+      Value: 12
+    SpeciesName: Monitor
+    Tags: []
+    Biomes:
+    - 3
+    - 4
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 104
+    ArchetypeId:
+      Value: 15
+    SpeciesName: Orangutan
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 105
+    ArchetypeId:
+      Value: 9
+    SpeciesName: Proboscis Monkey
+    Tags: []
+    Biomes:
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 106
+    ArchetypeId:
+      Value: 1
+    SpeciesName: Dik-dik
+    Tags: []
+    Biomes:
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 107
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Genet
+    Tags: []
+    Biomes:
+    - 4
+    - 3
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 108
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Meerkat
+    Tags: []
+    Biomes:
+    - 0
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 109
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Dwarf Mongoose
+    Tags: []
+    Biomes:
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 110
+    ArchetypeId:
+      Value: 16
+    SpeciesName: Lion
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 111
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Wildebeest
+    Tags: []
+    Biomes:
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 112
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Buffalo
+    Tags: []
+    Biomes:
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 113
+    ArchetypeId:
+      Value: 14
+    SpeciesName: Giraffe
+    Tags: []
+    Biomes:
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 114
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Aurochs
+    Tags: []
+    Biomes:
+    - 5
+    - 6
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 115
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Hippo
+    Tags: []
+    Biomes:
+    - 4
+    - 3
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 116
+    ArchetypeId:
+      Value: 11
+    SpeciesName: Jackal
+    Tags: []
+    Biomes:
+    - 4
+    - 6
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 117
+    ArchetypeId:
+      Value: 13
+    SpeciesName: Gazelle
+    Tags: []
+    Biomes:
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 118
+    ArchetypeId:
+      Value: 2
+    SpeciesName: Mouse
+    Tags: []
+    Biomes:
+    - 5
+    - 4
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 119
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Colorado River Toad
+    Tags: []
+    Biomes:
+    - 0
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 120
+    ArchetypeId:
+      Value: 6
+    SpeciesName: Rat
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 121
+    ArchetypeId:
+      Value: 5
+    SpeciesName: Shrew
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 122
+    ArchetypeId:
+      Value: 4
+    SpeciesName: Vole
+    Tags: []
+    Biomes:
+    - 5
+    Thumbnail: {fileID: 0}
+  - _id:
+      Value: 123
+    ArchetypeId:
+      Value: 7
+    SpeciesName: Weasel
+    Tags: []
+    Biomes:
+    - 5
+    - 3
+    Thumbnail: {fileID: 0}

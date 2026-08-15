@@ -566,13 +566,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368472077}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.566252, y: -4.20185, z: -0.9346929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1336889303}
-  m_Father: {fileID: 0}
+  - {fileID: 1491727001}
+  m_Father: {fileID: 986721845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &430128079
 GameObject:
@@ -1062,6 +1063,7 @@ Transform:
   - {fileID: 579536732}
   - {fileID: 1320601115}
   - {fileID: 917147350}
+  - {fileID: 368472078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &986721846
@@ -1081,6 +1083,7 @@ MonoBehaviour:
   SelectionManager: {fileID: 880998836}
   UiView: {fileID: 353080005}
   GameClock: {fileID: 917147351}
+  AllPopsView: {fileID: 1491727002}
 --- !u!1 &1031758369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +1993,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hexViewPrefab: {fileID: 1365005969108271355, guid: 8cea9e5e160327f4790efc21469db20b,
     type: 3}
+--- !u!1 &1491727000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491727001}
+  - component: {fileID: 1491727002}
+  m_Layer: 0
+  m_Name: AllPopsView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1491727001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491727000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 368472078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1491727002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491727000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9f9982265d82b4abfa7dd09af18416, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _popViewPrefab: {fileID: 7779197471975406264, guid: 0354cf53a99ce7844a15eef525f7b7c9,
+    type: 3}
 --- !u!1 &1527380352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,5 +2801,4 @@ SceneRoots:
   - {fileID: 1084633994}
   - {fileID: 552704274}
   - {fileID: 1699038398}
-  - {fileID: 368472078}
   - {fileID: 353080004}

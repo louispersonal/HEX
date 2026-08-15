@@ -13,10 +13,7 @@ public class StaticDatabases : MonoBehaviour
     
     public Database<AnimalArchetypeID, AnimalArchetypeDefinition> AnimalArchetypeDatabase  => _animalArchetypeDatabase;
     
-    [SerializeField] private Database<SpeciesID, SpeciesDefinition>[] _speciesDatabases;
-
-    public Database<SpeciesID, SpeciesDefinition> GetSpeciesDatabase(Biome biome)
-    {
-        return _speciesDatabases[(int)biome];
-    }
+    [SerializeField] private Database<SpeciesID, SpeciesDefinition> _speciesDatabase;
+    
+    public Database<SpeciesID, SpeciesDefinition> SpeciesDatabase => _speciesDatabase;
 }

@@ -15,6 +15,8 @@ public class GameSceneController : MonoBehaviour
     public UiView UiView;
 
     public InGameClock GameClock;
+
+    public AllPopsView AllPopsView;
     
     void Awake()
     {

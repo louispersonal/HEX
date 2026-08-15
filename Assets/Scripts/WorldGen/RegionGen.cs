@@ -83,8 +83,10 @@ public class RegionGen
         }
         
         // herbivores first
-        foreach (SpeciesDefinition species in databases.GetSpeciesDatabase(regionBiome).Items)
+        foreach (SpeciesDefinition species in databases.SpeciesDatabase.Items)
         {
+            if (!species.Biomes.Contains(region.Biome)) continue;
+            
             AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
             float totalAvailableNutrition = 0f;
             foreach (ResourceID resource in archetype.Diet)
@@ -100,8 +102,10 @@ public class RegionGen
         }
         
         // then predators
-        foreach (SpeciesDefinition species in databases.GetSpeciesDatabase(regionBiome).Items)
+        foreach (SpeciesDefinition species in databases.SpeciesDatabase.Items)
         {
+            if (!species.Biomes.Contains(region.Biome)) continue;
+            
             AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
             float totalAvailableNutrition = 0f;
             foreach (ResourceID resource in archetype.Diet)
@@ -123,7 +127,7 @@ public class RegionGen
         foreach (var animal in animals.Keys)
         {
             AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get
-                (databases.GetSpeciesDatabase(biome).Get(animal).ArchetypeId);
+                (databases.SpeciesDatabase.Get(animal).ArchetypeId);
             if (archetype.Size <= predatorSize) meatAvailable += archetype.NutritionProvided * animals[animal];
         }
 

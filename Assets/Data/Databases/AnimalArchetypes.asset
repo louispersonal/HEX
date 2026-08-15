@@ -190,3 +190,12 @@ MonoBehaviour:
     ForagingAbility: 0.45
     NutritionRequired: 5
     NutritionProvided: 500
+  - _id:
+      Value: 17
+    CommonName: MediumInsectivore
+    Size: 2
+    Diet:
+    - Value: 5
+    ForagingAbility: 0.75
+    NutritionRequired: 1
+    NutritionProvided: 100
