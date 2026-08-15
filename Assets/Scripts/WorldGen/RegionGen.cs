@@ -34,6 +34,7 @@ public class RegionGen
     private static void FillRegion(WorldData world, HexData startHex, Region newRegion, int maxRegionSize)
     {
         Biome targetBiome = startHex.ExtraData.Biome;
+        newRegion.Biome = targetBiome;
 
         Stack<HexData> stack = new Stack<HexData>();
         startHex.ExtraData.SetRegionID(newRegion.ID);
@@ -63,8 +64,7 @@ public class RegionGen
     public static void PopulateRegion(WorldData world, StaticDatabases databases, Region region)
     {
         if (!world.Grid.TryGetHex(region.SeedCoord, out HexData seedHex)) return;
-        Biome regionBiome = seedHex.ExtraData.Biome;
-        var biomeVegetationProfile = VegetationProfiles.Profiles[regionBiome];
+        var biomeVegetationProfile = VegetationProfiles.Profiles[region.Biome];
         
         Dictionary<ResourceID, float> regionResourceYields = new Dictionary<ResourceID, float>();
         
@@ -112,7 +112,7 @@ public class RegionGen
             {
                 if (resource == ResourceIDMap.Meat)
                 {
-                    totalAvailableNutrition += GetAvailablePreyMeat(region.Animals, databases, regionBiome, archetype.Size) * archetype.ForagingAbility;
+                    totalAvailableNutrition += GetAvailablePreyMeat(region.Animals, databases, region.Biome, archetype.Size) * archetype.ForagingAbility;
                 }
             }
 

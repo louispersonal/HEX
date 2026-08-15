@@ -98,8 +98,6 @@ public class Region
 
         world.Grid.TryGetHex(SeedCoord, out HexData seedHex);
         stack.Push(seedHex);
-
-        Biome = seedHex.ExtraData.Biome;
         
         while (stack.Count > 0)
         {
