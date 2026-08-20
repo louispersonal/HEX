@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MiniMap : MonoBehaviour
@@ -30,6 +32,31 @@ public class MiniMap : MonoBehaviour
         _windowRect.sizeDelta = GetWindowScale();
     }
 
+    private void OnPointerClick(PointerEventData eventData)
+    {
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_miniMapRect,  eventData.position, 
+            eventData.pressEventCamera, out Vector2 localPoint))
+        {
+            Vector2 normalizedPoint = new Vector2(
+                Mathf.InverseLerp(_miniMapRect.rect.xMin, _miniMapRect.rect.xMax, localPoint.x),
+                Mathf.InverseLerp(_miniMapRect.rect.yMin, _miniMapRect.rect.yMax, localPoint.y) );
+
+            ForceCameraJump(normalizedPoint);
+        }
+    }
+
+    private void ForceCameraJump(Vector2 normalizedPosition)
+    {
+        HexGridView view = GameSceneController.Instance.HexGridView;
+        float worldSpan = view.WorldCorners[3].x - view.WorldCorners[0].x;
+        float worldHeight = view.WorldCorners[1].y - view.WorldCorners[0].y;
+
+        Vector2 newCameraPosition = new Vector2(view.WorldCorners[0].x + worldSpan * normalizedPosition.x,
+            view.WorldCorners[0].y + worldHeight * normalizedPosition.y);
+        
+        GameSceneController.Instance.GameCamera.SnapToPosition(newCameraPosition);
+    }
+    
     private Vector3 GetWindowWorldPosition()
     {
         Vector2 mapPixelPosition = AxialGeometry.AxialToCartesian(

@@ -46,4 +46,9 @@ public class GameCamera : MonoBehaviour
         float newZ = Mathf.Clamp(transform.position.z + zDelta, MinZPosition, MaxZPosition);
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
     }
+    
+    public void SnapToPosition(Vector2 position)
+    {
+        transform.position = new Vector3(position.x, position.y, transform.position.z);
+    }
 }

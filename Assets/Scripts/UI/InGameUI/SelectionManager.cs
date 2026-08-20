@@ -39,6 +39,7 @@ public class SelectionManager : MonoBehaviour
     {
         _currentSelection?.OnDeselected();
         _currentSelection = null;
+        UpdateSelectionUI();
     }
     
     private bool TryGetHexSelection(out ISelectable selection)
