@@ -18,1269 +18,990 @@ MonoBehaviour:
     ArchetypeId:
       Value: 6
     SpeciesName: Fennec Fox
-    Tags: []
-    Biomes:
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 00000000
+    Thumbnail: {fileID: 21300000, guid: 98d584bc9611c5649aaecbb5df3bbafe, type: 3}
   - _id:
       Value: 1
     ArchetypeId:
       Value: 6
     SpeciesName: Red Fox
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 2
-    - 1
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000020000000100000000000000
+    Thumbnail: {fileID: 21300000, guid: ff3424eb8f8b84b4a995dbe6b155f040, type: 3}
   - _id:
       Value: 2
     ArchetypeId:
       Value: 6
     SpeciesName: Culpeo
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 8201c0fd9aadf9546984b2f24de49341, type: 3}
   - _id:
       Value: 3
     ArchetypeId:
       Value: 5
     SpeciesName: Bat-eared Fox
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 684583c2c65c054489bd7801ba07517b, type: 3}
   - _id:
       Value: 4
     ArchetypeId:
       Value: 7
     SpeciesName: Scorpion
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    - 6
-    - 3
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0000000004000000060000000300000005000000
+    Thumbnail: {fileID: 21300000, guid: 1d1e3694a12a25c48a8d5c31de6d3fff, type: 3}
   - _id:
       Value: 5
     ArchetypeId:
       Value: 7
     SpeciesName: Viper
-    Tags: []
-    Biomes:
-    - 0
-    - 6
-    - 4
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 00000000060000000400000005000000
+    Thumbnail: {fileID: 21300000, guid: 0d2e3a7137be9db428413bb747ca487d, type: 3}
   - _id:
       Value: 6
     ArchetypeId:
       Value: 14
     SpeciesName: Dromedary
-    Tags: []
-    Biomes:
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 00000000
+    Thumbnail: {fileID: 21300000, guid: e66bcbf5d7ba4c34c83a453d28d1e483, type: 3}
   - _id:
       Value: 7
     ArchetypeId:
       Value: 14
     SpeciesName: Savanna Elephant
-    Tags: []
-    Biomes:
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000
+    Thumbnail: {fileID: 21300000, guid: 63ebbfecd415afc4ba8c8c0eebafc8bb, type: 3}
   - _id:
       Value: 8
     ArchetypeId:
       Value: 14
     SpeciesName: Jungle Elephant
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: b6f4d911587f428439dac4f2baa8ff34, type: 3}
   - _id:
       Value: 9
     ArchetypeId:
       Value: 2
     SpeciesName: Jerboa
-    Tags: []
-    Biomes:
-    - 0
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0000000006000000
+    Thumbnail: {fileID: 21300000, guid: 3a6910ac138ca4247af3c82e3ade1ce0, type: 3}
   - _id:
       Value: 10
     ArchetypeId:
       Value: 11
     SpeciesName: Baboon
-    Tags: []
-    Biomes:
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0400000003000000
+    Thumbnail: {fileID: 21300000, guid: 8f022ad6d62db564b8456d23c7405db8, type: 3}
   - _id:
       Value: 11
     ArchetypeId:
       Value: 16
     SpeciesName: Crocodile
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: faae2cf8d98fd7b4599c8ea4e3920945, type: 3}
   - _id:
       Value: 12
     ArchetypeId:
       Value: 12
     SpeciesName: Hyena
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: e0a8711c120a7544aab7ace97ccf4c45, type: 3}
   - _id:
       Value: 13
     ArchetypeId:
       Value: 13
     SpeciesName: Oryx
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 000000000400000006000000
+    Thumbnail: {fileID: 21300000, guid: 9a08712093815e5479596822c1794892, type: 3}
   - _id:
       Value: 14
     ArchetypeId:
       Value: 14
     SpeciesName: Camel
-    Tags: []
-    Biomes:
-    - 0
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0000000006000000
+    Thumbnail: {fileID: 21300000, guid: 276ad21d162062a45849a4cb7bb1a0fd, type: 3}
   - _id:
       Value: 15
     ArchetypeId:
       Value: 7
     SpeciesName: Sand Cat
-    Tags: []
-    Biomes:
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 00000000
+    Thumbnail: {fileID: 21300000, guid: c9581eb20f32b3c4b98389ffc6dae85d, type: 3}
   - _id:
       Value: 16
     ArchetypeId:
       Value: 12
     SpeciesName: Caracal
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: f310a3045c6f3d447be7fa88f9a0df11, type: 3}
   - _id:
       Value: 17
     ArchetypeId:
       Value: 7
     SpeciesName: Cobra
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 000000000400000003000000
+    Thumbnail: {fileID: 21300000, guid: d106aa3f00605d44794a9b55f5d324ed, type: 3}
   - _id:
       Value: 18
     ArchetypeId:
       Value: 8
-    SpeciesName: Vicuña
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    SpeciesName: "Vicu\xF1a"
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 95237b821c533e945b83f7853d8dba6c, type: 3}
   - _id:
       Value: 19
     ArchetypeId:
       Value: 0
     SpeciesName: Viscacha
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 6bcd813e2df39c649a4899263442d479, type: 3}
   - _id:
       Value: 20
     ArchetypeId:
       Value: 11
     SpeciesName: Flamingo
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 000000000400000003000000
+    Thumbnail: {fileID: 21300000, guid: 7c5ac9c537112e14fa957b3a7983a817, type: 3}
   - _id:
       Value: 21
     ArchetypeId:
       Value: 8
     SpeciesName: Kangaroo
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 71d9fa54467a41941a71e185b3c394de, type: 3}
   - _id:
       Value: 22
     ArchetypeId:
       Value: 12
     SpeciesName: Dingo
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    - 6
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 00000000040000000600000003000000
+    Thumbnail: {fileID: 21300000, guid: 0df79146f0477e745b187fbd4526a6d2, type: 3}
   - _id:
       Value: 23
     ArchetypeId:
       Value: 12
     SpeciesName: Goanna
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 000000000400000003000000
+    Thumbnail: {fileID: 21300000, guid: 89d9983b78ae6f94ea298b18f0389edc, type: 3}
   - _id:
       Value: 24
     ArchetypeId:
       Value: 5
-    SpeciesName: Frilled-Necked Lizard
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    SpeciesName: Frilled-Neck Lizard
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: 94e3ebd2e0689ea4f8bedd9c21d09ab3, type: 3}
   - _id:
       Value: 25
     ArchetypeId:
       Value: 15
     SpeciesName: Black Bear
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000002000000
+    Thumbnail: {fileID: 21300000, guid: 4e6693b9819fc3a41b00de9974c3cd12, type: 3}
   - _id:
       Value: 26
     ArchetypeId:
       Value: 15
     SpeciesName: Grizzly Bear
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000001000000
+    Thumbnail: {fileID: 21300000, guid: 511ecf87c6c47674a805c406ed1f676d, type: 3}
   - _id:
       Value: 27
     ArchetypeId:
       Value: 16
     SpeciesName: Polar Bear
-    Tags: []
-    Biomes:
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 01000000
+    Thumbnail: {fileID: 21300000, guid: ae09334e6c97bce49a923e80ed0e7302, type: 3}
   - _id:
       Value: 28
     ArchetypeId:
       Value: 13
     SpeciesName: Panda Bear
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 94544da6f27d8ca47a745391d3b75dc8, type: 3}
   - _id:
       Value: 29
     ArchetypeId:
       Value: 11
     SpeciesName: Sun Bear
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 06adedbcafa0d9f4fa6024b7fbc244dc, type: 3}
   - _id:
       Value: 30
     ArchetypeId:
       Value: 12
     SpeciesName: Golden Eagle
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 2
-    - 1
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000020000000100000000000000
+    Thumbnail: {fileID: 21300000, guid: 414078b49789c824d92ccabe67c8771a, type: 3}
   - _id:
       Value: 31
     ArchetypeId:
       Value: 12
     SpeciesName: Bald Eagle
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000001000000
+    Thumbnail: {fileID: 21300000, guid: 323049df0d8b47a4196b6a7901f2d5f2, type: 3}
   - _id:
       Value: 32
     ArchetypeId:
       Value: 7
     SpeciesName: Pallas Cat
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 542d94341e8339444b1213bc017e5750, type: 3}
   - _id:
       Value: 33
     ArchetypeId:
       Value: 13
     SpeciesName: Horse
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000
+    Thumbnail: {fileID: 21300000, guid: ac34379418a1d8e4195c30c14cea4175, type: 3}
   - _id:
       Value: 34
     ArchetypeId:
       Value: 13
     SpeciesName: Khulan
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 613ef79621d2db440b92413f6266b0d8, type: 3}
   - _id:
       Value: 35
     ArchetypeId:
       Value: 13
     SpeciesName: Wild Ass
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 09a4f6b78d50f5b4abcfd2dd5c0e43af, type: 3}
   - _id:
       Value: 36
     ArchetypeId:
       Value: 12
     SpeciesName: Wolf
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 2
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000060000000200000001000000
+    Thumbnail: {fileID: 21300000, guid: 46dd741d38e5ff34ab0a9fc851cde075, type: 3}
   - _id:
       Value: 37
     ArchetypeId:
       Value: 9
     SpeciesName: Deer
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000002000000
+    Thumbnail: {fileID: 21300000, guid: eb71e8badc65dd946b029e5881c7a1b6, type: 3}
   - _id:
       Value: 38
     ArchetypeId:
       Value: 14
     SpeciesName: Moose
-    Tags: []
-    Biomes:
-    - 2
-    - 5
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 020000000500000001000000
+    Thumbnail: {fileID: 21300000, guid: 620de43e282def64c965bb25b3827a1e, type: 3}
   - _id:
       Value: 39
     ArchetypeId:
       Value: 13
     SpeciesName: Elk
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000006000000
+    Thumbnail: {fileID: 21300000, guid: d9b579fca6c34f7499c0c2568d62af1c, type: 3}
   - _id:
       Value: 40
     ArchetypeId:
       Value: 12
     SpeciesName: Bobcat
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000000000000
+    Thumbnail: {fileID: 21300000, guid: 9163b39b45af6174e9536ed636e3b61e, type: 3}
   - _id:
       Value: 41
     ArchetypeId:
       Value: 12
     SpeciesName: Cougar
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 0
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000060000000000000003000000
+    Thumbnail: {fileID: 21300000, guid: 8d054d4a262a0a5489ce6d1993a8b95c, type: 3}
   - _id:
       Value: 42
     ArchetypeId:
       Value: 11
     SpeciesName: Coyote
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 0
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000060000000000000004000000
+    Thumbnail: {fileID: 21300000, guid: fc3374cc9cf801c4bbd6817671ccb57f, type: 3}
   - _id:
       Value: 43
     ArchetypeId:
       Value: 6
     SpeciesName: Raccoon
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: a8a485d7ace688a4f81e49df819dc9cb, type: 3}
   - _id:
       Value: 44
     ArchetypeId:
       Value: 6
     SpeciesName: Opossum
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000003000000
+    Thumbnail: {fileID: 21300000, guid: 98c6f20f9775f6b4594313b588297f3c, type: 3}
   - _id:
       Value: 45
     ArchetypeId:
       Value: 6
     SpeciesName: Skunk
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000
+    Thumbnail: {fileID: 21300000, guid: 5cac1a2d27bd9254a84612ad1a6411e4, type: 3}
   - _id:
       Value: 46
     ArchetypeId:
       Value: 2
     SpeciesName: Chipmunk
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000002000000
+    Thumbnail: {fileID: 21300000, guid: c0ee3c75a38fc71408521c4db3ba882d, type: 3}
   - _id:
       Value: 47
     ArchetypeId:
       Value: 2
     SpeciesName: Squirrel
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000003000000
+    Thumbnail: {fileID: 21300000, guid: 0a0d59cf8fa617a4f97226f7dba14cf2, type: 3}
   - _id:
       Value: 48
     ArchetypeId:
       Value: 0
     SpeciesName: Groundhog
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 306fb924040b6bc47857637ae75df3f8, type: 3}
   - _id:
       Value: 49
     ArchetypeId:
       Value: 0
     SpeciesName: Marmot
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000600000001000000
+    Thumbnail: {fileID: 21300000, guid: 87bba1d3382ba5945af3aa2c0b64a66d, type: 3}
   - _id:
       Value: 50
     ArchetypeId:
       Value: 0
     SpeciesName: Prairie Dog
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 8d4818caa65aade4796a308c106439ed, type: 3}
   - _id:
       Value: 51
     ArchetypeId:
       Value: 1
     SpeciesName: Porcupine
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000020000000300000004000000
+    Thumbnail: {fileID: 21300000, guid: 91daf1e30172ada4fbcd28493a533ad0, type: 3}
   - _id:
       Value: 52
     ArchetypeId:
       Value: 5
     SpeciesName: Salamander
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000003000000
+    Thumbnail: {fileID: 21300000, guid: 464c0e49ec2962f419e190802e5a7bf9, type: 3}
   - _id:
       Value: 53
     ArchetypeId:
       Value: 7
     SpeciesName: Copperhead
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 00e66af664b003f4380770045a316c33, type: 3}
   - _id:
       Value: 54
     ArchetypeId:
       Value: 6
     SpeciesName: Turtle
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000300000004000000
+    Thumbnail: {fileID: 21300000, guid: ffab4070ea94bd848a7ffa179626ffb4, type: 3}
   - _id:
       Value: 55
     ArchetypeId:
       Value: 0
     SpeciesName: Rabbit
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 36c028ae2ca0abb4fbe9a347efe051fe, type: 3}
   - _id:
       Value: 56
     ArchetypeId:
       Value: 0
     SpeciesName: Hare
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 2
-    - 1
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000020000000100000000000000
+    Thumbnail: {fileID: 21300000, guid: d8641a17d773d0748b6c2b06c2d4ceb3, type: 3}
   - _id:
       Value: 57
     ArchetypeId:
       Value: 11
     SpeciesName: Badger
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000600000002000000
+    Thumbnail: {fileID: 21300000, guid: c7345f5c08f63824f8dbb2b18e2813f8, type: 3}
   - _id:
       Value: 58
     ArchetypeId:
       Value: 11
     SpeciesName: Boar
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000300000002000000
+    Thumbnail: {fileID: 21300000, guid: 4395cf85e3375b04981007027b813d69, type: 3}
   - _id:
       Value: 59
     ArchetypeId:
       Value: 12
     SpeciesName: Stork
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000300000004000000
+    Thumbnail: {fileID: 21300000, guid: 0880781da3426854f9ae3f02d60a5527, type: 3}
   - _id:
       Value: 60
     ArchetypeId:
       Value: 8
     SpeciesName: Swan
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000001000000
+    Thumbnail: {fileID: 21300000, guid: 5d8af91a97b8a034bb166bc85e53d733, type: 3}
   - _id:
       Value: 61
     ArchetypeId:
       Value: 8
     SpeciesName: Goose
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 2
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000060000000200000001000000
+    Thumbnail: {fileID: 21300000, guid: 74ce77358cfa89b48bbed19a3085383f, type: 3}
   - _id:
       Value: 62
     ArchetypeId:
       Value: 9
     SpeciesName: Beaver
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000002000000
+    Thumbnail: {fileID: 21300000, guid: 8a543417f0e414642baf200bf7343a64, type: 3}
   - _id:
       Value: 63
     ArchetypeId:
       Value: 12
     SpeciesName: Otter
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000003000000
+    Thumbnail: {fileID: 21300000, guid: fa4649ab9aef8bb418dafdb9b9cc4f00, type: 3}
   - _id:
       Value: 64
     ArchetypeId:
       Value: 5
     SpeciesName: Hedgehog
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 20e2f8c2d059f5d48a8cd87709e7254c, type: 3}
   - _id:
       Value: 65
     ArchetypeId:
       Value: 7
     SpeciesName: Ferret
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000
+    Thumbnail: {fileID: 21300000, guid: 93780546b048fb6478074de1945ac6e7, type: 3}
   - _id:
       Value: 66
     ArchetypeId:
       Value: 1
     SpeciesName: Pudu
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000003000000
+    Thumbnail: {fileID: 21300000, guid: 66947865b43004349a68da55ccec8ce6, type: 3}
   - _id:
       Value: 67
     ArchetypeId:
       Value: 6
     SpeciesName: Monito del Monte
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 5df94d390d0ace04c9c38fccd1bf062c, type: 3}
   - _id:
       Value: 68
     ArchetypeId:
       Value: 7
     SpeciesName: Kodkod
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 3f39207aa3f88a94b985bee29198cb24, type: 3}
   - _id:
       Value: 69
     ArchetypeId:
       Value: 5
     SpeciesName: Woodpecker
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 050000000200000003000000
+    Thumbnail: {fileID: 21300000, guid: 14763393959ad1f4bb4916f62062f5b3, type: 3}
   - _id:
       Value: 70
     ArchetypeId:
       Value: 3
     SpeciesName: Hummingbird
-    Tags: []
-    Biomes:
-    - 3
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000005000000
+    Thumbnail: {fileID: 21300000, guid: 1e0bf9b4c7eca14449ccbe65fb0d6051, type: 3}
   - _id:
       Value: 71
     ArchetypeId:
       Value: 13
     SpeciesName: Bison
-    Tags: []
-    Biomes:
-    - 6
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000005000000
+    Thumbnail: {fileID: 21300000, guid: 8be4ed7921fe3f941bed26312b7503fa, type: 3}
   - _id:
       Value: 72
     ArchetypeId:
       Value: 9
     SpeciesName: Pronghorn
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000000000000
+    Thumbnail: {fileID: 21300000, guid: 374c1a0546b45f9458be8eec9027f884, type: 3}
   - _id:
       Value: 73
     ArchetypeId:
       Value: 7
     SpeciesName: Owl
-    Tags: []
-    Biomes:
-    - 5
-    - 2
-    - 6
-    - 0
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000002000000060000000000000001000000
+    Thumbnail: {fileID: 21300000, guid: 53572b755774f1f4bb22619001976a35, type: 3}
   - _id:
       Value: 74
     ArchetypeId:
       Value: 8
     SpeciesName: Sheep
-    Tags: []
-    Biomes:
-    - 6
-    - 5
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 060000000500000000000000
+    Thumbnail: {fileID: 21300000, guid: 91bd651f82e8e16458541ed5089e7782, type: 3}
   - _id:
       Value: 75
     ArchetypeId:
       Value: 9
     SpeciesName: Goat
-    Tags: []
-    Biomes:
-    - 6
-    - 5
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 060000000500000000000000
+    Thumbnail: {fileID: 21300000, guid: b214435dcbf7aef42bb9a7c465f6c4cb, type: 3}
   - _id:
       Value: 76
     ArchetypeId:
       Value: 16
     SpeciesName: Tiger
-    Tags: []
-    Biomes:
-    - 3
-    - 5
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 030000000500000002000000
+    Thumbnail: {fileID: 21300000, guid: 37556e9b9a351d74d86c7c538f55fbc9, type: 3}
   - _id:
       Value: 77
     ArchetypeId:
       Value: 12
     SpeciesName: Lynx
-    Tags: []
-    Biomes:
-    - 2
-    - 5
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 020000000500000001000000
+    Thumbnail: {fileID: 21300000, guid: 30f37e3da14aa5d48a34f6b600b70063, type: 3}
   - _id:
       Value: 78
     ArchetypeId:
       Value: 16
     SpeciesName: Leopard
-    Tags: []
-    Biomes:
-    - 4
-    - 3
-    - 0
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000030000000000000005000000
+    Thumbnail: {fileID: 21300000, guid: 787cfc124d5f78b49a7afb80d072a9d4, type: 3}
   - _id:
       Value: 79
     ArchetypeId:
       Value: 16
     SpeciesName: Snow Leopard
-    Tags: []
-    Biomes:
-    - 6
-    - 1
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0600000001000000
+    Thumbnail: {fileID: 21300000, guid: 49897fa64a61ed747a85b80519f6d80b, type: 3}
   - _id:
       Value: 80
     ArchetypeId:
       Value: 1
     SpeciesName: Red Panda
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 848321c81e0d8a54c9cfc29130f730ed, type: 3}
   - _id:
       Value: 81
     ArchetypeId:
       Value: 13
     SpeciesName: Reindeer
-    Tags: []
-    Biomes:
-    - 1
-    - 2
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0100000002000000
+    Thumbnail: {fileID: 21300000, guid: a34573b876449ed4f9c2dd26cf1b0fc5, type: 3}
   - _id:
       Value: 82
     ArchetypeId:
       Value: 12
     SpeciesName: Penguin
-    Tags: []
-    Biomes:
-    - 1
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0100000005000000
+    Thumbnail: {fileID: 21300000, guid: c721d6d52fc9fd44bbbd27aed3c5c1cd, type: 3}
   - _id:
       Value: 83
     ArchetypeId:
       Value: 9
     SpeciesName: Howler Monkey
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 4bfd4f906d01ca948a85fa2195432d8d, type: 3}
   - _id:
       Value: 84
     ArchetypeId:
       Value: 6
     SpeciesName: Capuchin
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: ef73ace4b0984a14c8e1d112816337ad, type: 3}
   - _id:
       Value: 85
     ArchetypeId:
       Value: 16
     SpeciesName: Anaconda
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 0a7cfe1a8817e7d44bcfe8a0cb6879f3, type: 3}
   - _id:
       Value: 86
     ArchetypeId:
       Value: 12
     SpeciesName: Boa
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: 57b24ba34d4a37349ab26c2e4ca956bc, type: 3}
   - _id:
       Value: 87
     ArchetypeId:
       Value: 3
     SpeciesName: Kinkajou
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: a4f7cda7b35ccd74eaec2424de5775a1, type: 3}
   - _id:
       Value: 88
     ArchetypeId:
       Value: 9
     SpeciesName: Sloth
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 64b0479bdba1f994296c8d6ff9154c4e, type: 3}
   - _id:
       Value: 89
     ArchetypeId:
       Value: 6
     SpeciesName: Coatimundi
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 6e403002ce1c5c44a971dfd6a9c4a407, type: 3}
   - _id:
       Value: 90
     ArchetypeId:
       Value: 8
     SpeciesName: Capybara
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: c2b020db225fae44686a5091df646ee1, type: 3}
   - _id:
       Value: 91
     ArchetypeId:
       Value: 3
     SpeciesName: Toucan
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: d02fd69472fc90b479e662d3b6a1cfa3, type: 3}
   - _id:
       Value: 92
     ArchetypeId:
       Value: 16
     SpeciesName: Jaguar
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: f5b36660f33ae8040bc84a23857cc89e, type: 3}
   - _id:
       Value: 93
     ArchetypeId:
       Value: 14
     SpeciesName: Gorilla
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 30d63449cc03aa741aa9e4a230e68b36, type: 3}
   - _id:
       Value: 94
     ArchetypeId:
       Value: 12
     SpeciesName: Condor
-    Tags: []
-    Biomes:
-    - 6
-    - 0
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 060000000000000005000000
+    Thumbnail: {fileID: 21300000, guid: 7e8e8b58f112577488f17963aecfacb0, type: 3}
   - _id:
       Value: 95
     ArchetypeId:
       Value: 12
     SpeciesName: Vulture
-    Tags: []
-    Biomes:
-    - 4
-    - 0
-    - 6
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000000000000600000003000000
+    Thumbnail: {fileID: 21300000, guid: 6f092058408c5594887d3f0f0c7adc43, type: 3}
   - _id:
       Value: 96
     ArchetypeId:
       Value: 3
     SpeciesName: Lemur
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 99377e0e4294370419c90670b7c154e2, type: 3}
   - _id:
       Value: 97
     ArchetypeId:
       Value: 11
     SpeciesName: Mandrill
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 12c0805ecb7ee8f4ba9e9c1742987120, type: 3}
   - _id:
       Value: 98
     ArchetypeId:
       Value: 9
     SpeciesName: Guereza
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 4d16e049860ce3c4291ed2f5a3e4fdc1, type: 3}
   - _id:
       Value: 99
     ArchetypeId:
       Value: 17
     SpeciesName: Aardvark
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0400000006000000
+    Thumbnail: {fileID: 21300000, guid: 2b4f04cbcc7e26c478b901735954b99f, type: 3}
   - _id:
       Value: 100
     ArchetypeId:
       Value: 17
     SpeciesName: Anteater
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: 9d07dcc7cb69f6040baa1da3b1e20dec, type: 3}
   - _id:
       Value: 101
     ArchetypeId:
       Value: 5
     SpeciesName: Chameleon
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0300000004000000
+    Thumbnail: {fileID: 21300000, guid: 9f98e2e0278f038479b483f53c5285dc, type: 3}
   - _id:
       Value: 102
     ArchetypeId:
       Value: 11
     SpeciesName: Chimpanzee
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 90c7d1c687bda144b8ca8d44a1bf7cf8, type: 3}
   - _id:
       Value: 103
     ArchetypeId:
       Value: 12
     SpeciesName: Monitor
-    Tags: []
-    Biomes:
-    - 3
-    - 4
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 030000000400000000000000
+    Thumbnail: {fileID: 21300000, guid: 295c8ec289fa0064a98aba95b0401d94, type: 3}
   - _id:
       Value: 104
     ArchetypeId:
       Value: 15
     SpeciesName: Orangutan
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 623f2116fee75b44f97baa3a58fb4263, type: 3}
   - _id:
       Value: 105
     ArchetypeId:
       Value: 9
     SpeciesName: Proboscis Monkey
-    Tags: []
-    Biomes:
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 03000000
+    Thumbnail: {fileID: 21300000, guid: 2613677187f5a9e4e803d13a5cc23e49, type: 3}
   - _id:
       Value: 106
     ArchetypeId:
       Value: 1
     SpeciesName: Dik-dik
-    Tags: []
-    Biomes:
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000
+    Thumbnail: {fileID: 21300000, guid: d3e97fea74f4cf94699854638ebb7f67, type: 3}
   - _id:
       Value: 107
     ArchetypeId:
       Value: 7
     SpeciesName: Genet
-    Tags: []
-    Biomes:
-    - 4
-    - 3
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000300000006000000
+    Thumbnail: {fileID: 21300000, guid: 45dcfedcf3c7b7d4f971f71ecc93e884, type: 3}
   - _id:
       Value: 108
     ArchetypeId:
       Value: 5
     SpeciesName: Meerkat
-    Tags: []
-    Biomes:
-    - 0
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0000000004000000
+    Thumbnail: {fileID: 21300000, guid: f32a12b2ef281134d9ba87e870ea0c5e, type: 3}
   - _id:
       Value: 109
     ArchetypeId:
       Value: 5
     SpeciesName: Dwarf Mongoose
-    Tags: []
-    Biomes:
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0400000003000000
+    Thumbnail: {fileID: 21300000, guid: 9deeb4af3add0284196f102794ccc842, type: 3}
   - _id:
       Value: 110
     ArchetypeId:
       Value: 16
     SpeciesName: Lion
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 3547d685f6586054e93359472564c4dc, type: 3}
   - _id:
       Value: 111
     ArchetypeId:
       Value: 13
     SpeciesName: Wildebeest
-    Tags: []
-    Biomes:
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000
+    Thumbnail: {fileID: 21300000, guid: 771e104ae843a594888218009a86a3a0, type: 3}
   - _id:
       Value: 112
     ArchetypeId:
       Value: 13
     SpeciesName: Buffalo
-    Tags: []
-    Biomes:
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0400000003000000
+    Thumbnail: {fileID: 21300000, guid: e6c61e4474c250240af206a433ccd26c, type: 3}
   - _id:
       Value: 113
     ArchetypeId:
       Value: 14
     SpeciesName: Giraffe
-    Tags: []
-    Biomes:
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000
+    Thumbnail: {fileID: 21300000, guid: efe9ebdbdb8b2374fbdc8ead2b78885c, type: 3}
   - _id:
       Value: 114
     ArchetypeId:
       Value: 13
     SpeciesName: Aurochs
-    Tags: []
-    Biomes:
-    - 5
-    - 6
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000006000000
+    Thumbnail: {fileID: 21300000, guid: 460f99b531616a14cb71dd0f25c8f148, type: 3}
   - _id:
       Value: 115
     ArchetypeId:
       Value: 13
-    SpeciesName: Hippo
-    Tags: []
-    Biomes:
-    - 4
-    - 3
-    Thumbnail: {fileID: 0}
+    SpeciesName: Hippopotamus
+    Tags: 
+    Biomes: 0400000003000000
+    Thumbnail: {fileID: 21300000, guid: abab8db2ce9faf24887072af1172701b, type: 3}
   - _id:
       Value: 116
     ArchetypeId:
       Value: 11
     SpeciesName: Jackal
-    Tags: []
-    Biomes:
-    - 4
-    - 6
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 040000000600000000000000
+    Thumbnail: {fileID: 21300000, guid: 9430d5ccca8365c4e8369e8f4f40f22d, type: 3}
   - _id:
       Value: 117
     ArchetypeId:
       Value: 13
     SpeciesName: Gazelle
-    Tags: []
-    Biomes:
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 04000000
+    Thumbnail: {fileID: 21300000, guid: d40c80b4337b3834e8292ce23e4f0af2, type: 3}
   - _id:
       Value: 118
     ArchetypeId:
       Value: 2
     SpeciesName: Mouse
-    Tags: []
-    Biomes:
-    - 5
-    - 4
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000004000000
+    Thumbnail: {fileID: 21300000, guid: de7d26fcac808e946ab31d7bf3148bef, type: 3}
   - _id:
       Value: 119
     ArchetypeId:
       Value: 5
     SpeciesName: Colorado River Toad
-    Tags: []
-    Biomes:
-    - 0
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 00000000
+    Thumbnail: {fileID: 21300000, guid: e004b9fbe52f3884cbba97404d2740d4, type: 3}
   - _id:
       Value: 120
     ArchetypeId:
       Value: 6
     SpeciesName: Rat
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: d19967233bce202468ae471687f95a82, type: 3}
   - _id:
       Value: 121
     ArchetypeId:
       Value: 5
     SpeciesName: Shrew
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: 84472643559c5b749bea6eb6a95727f2, type: 3}
   - _id:
       Value: 122
     ArchetypeId:
       Value: 4
     SpeciesName: Vole
-    Tags: []
-    Biomes:
-    - 5
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 05000000
+    Thumbnail: {fileID: 21300000, guid: fa1fd56de7df56744ac7357866fb3ae3, type: 3}
   - _id:
       Value: 123
     ArchetypeId:
       Value: 7
     SpeciesName: Weasel
-    Tags: []
-    Biomes:
-    - 5
-    - 3
-    Thumbnail: {fileID: 0}
+    Tags: 
+    Biomes: 0500000003000000
+    Thumbnail: {fileID: 21300000, guid: 43e83f4209a297c409a07fc318972274, type: 3}

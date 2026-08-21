@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MiniMap : MonoBehaviour
+public class MiniMap : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private RawImage _miniMapImage;
     [SerializeField] private Image _windowImage;
@@ -32,7 +32,7 @@ public class MiniMap : MonoBehaviour
         _windowRect.sizeDelta = GetWindowScale();
     }
 
-    private void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_miniMapRect,  eventData.position, 
             eventData.pressEventCamera, out Vector2 localPoint))
