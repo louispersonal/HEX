@@ -22,4 +22,11 @@ public class AnimalArchetypeDefinition : IDatabaseItem<AnimalArchetypeID>
     public float NutritionRequired;
 
     public float NutritionProvided;
+
+    public string SizeString()
+    {
+        if (Size == 1) return "Medium";
+        if (Size == 2) return "Large";
+        return "Small";
+    }
 }

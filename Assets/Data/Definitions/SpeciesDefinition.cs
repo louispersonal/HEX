@@ -21,7 +21,7 @@ public class SpeciesDefinition : IDatabaseItem<SpeciesID>
         string result = "";
         foreach (var tag in Tags)
         {
-            result += tag.ToString() + ", ";
+            result += tag + " ";
         }
 
         return result;
