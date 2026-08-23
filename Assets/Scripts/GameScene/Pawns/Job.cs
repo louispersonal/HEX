@@ -26,9 +26,8 @@ public abstract class Job
         _currentTick = 0;
     }
     
-    public virtual void Start(Pawn pawn)
+    public virtual void Start()
     {
-        _pawn = pawn;
         Status = JobStatus.InProgress;
     }
 

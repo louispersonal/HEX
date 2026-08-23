@@ -29,4 +29,32 @@ public class PopBrain : Brain
         if (workerSurplus > 0) Pop.Assignments.OfType<GatherAssignment>().First().AddWorkers(workerSurplus);
         if (workerSurplus < 0) Pop.Assignments.OfType<GatherAssignment>().First().RemoveWorkers(-workerSurplus);
     }
+
+    private void DecideMove()
+    {
+        var grid = GameController.Instance.SessionManager.WorldData.Grid;
+        List<HexData> neighborData = new List<HexData>();
+        foreach (AxialCoordinate direction in AxialDirections.Directions)
+        {
+            if (grid.TryGetHex(Pop.CurrentHex.Coord + direction, out var neighbor))
+            {
+                neighborData.Add(neighbor);
+            }
+        }
+
+        float currentHexValue = AssessHex(Pop.CurrentHex);
+        var sortedNeighbors = neighborData.OrderByDescending(AssessHex).ToList();
+        if (AssessHex(sortedNeighbors[0]) > currentHexValue) CreateMoveJob(sortedNeighbors[0].Coord);
+    }
+
+    private float AssessHex(HexData hexData)
+    {
+        // get attracttiveness value of hex
+        return 0f;
+    }
+    
+    private void CreateMoveJob(AxialCoordinate destination)
+    {
+        AddJob(new MoveJob(5, Pop,  destination));
+    }
 }

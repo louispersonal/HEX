@@ -45,7 +45,7 @@ public class Brain : ITickable
     {
         if (job.Status == JobStatus.NotStarted)
         {
-            job.Start(_pawn);
+            job.Start();
         }
 
         if (!job.IsComplete)
