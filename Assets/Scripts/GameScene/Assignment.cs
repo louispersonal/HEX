@@ -7,9 +7,14 @@ public abstract class Assignment
         Workers = workerCount;
     }
 
-    public void ChangeWorkerCount(int newCount)
+    public void AddWorkers(int addCount)
     {
-        Workers = newCount;
+        Workers += addCount;
+    }
+    
+    public void RemoveWorkers(int removeCount)
+    {
+        Workers -= removeCount;
     }
 
     public abstract void Tick(Pop pop);
