@@ -69,8 +69,12 @@ public class Pop : Pawn
             if (resourceDefinition.HasTag(ResourceTag.Edible))
             {
                 float nutritionAvailable = ResourceStockpile[resourceId];
-                nutritionRequired -= nutritionAvailable;
-                ResourceStockpile[resourceId] -= nutritionAvailable;
+                float nutritionConsumed = Mathf.Min(nutritionRequired, nutritionAvailable);
+
+                ResourceStockpile[resourceId] -= nutritionConsumed;
+                nutritionRequired -= nutritionConsumed;
+
+                if (nutritionRequired <= 0f) break;
             }
         }
         if (nutritionRequired > 0f) Debug.Log("The people are starving!");
