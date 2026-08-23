@@ -46,6 +46,11 @@ public class HexGrid
         return true;
     }
 
+    public HexData GetHex(AxialCoordinate coord)
+    {
+        return Grid[GetArrayIndex(coord)];
+    }
+    
     private int GetArrayIndex(AxialCoordinate coord)
     {
         var oddR = AxialGeometry.AxialToOddR(coord);

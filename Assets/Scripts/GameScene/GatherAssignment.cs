@@ -7,16 +7,14 @@ public class GatherAssignment : Assignment
     private const float VEGETATION_ACCESSIBILITY = 0.1f;
     
     private const float BASE_GATHER_RATE = 1f;
-    
-    private HexData _currentHex;
 
     private Dictionary<ResourceID, float> _resourceBuffer;
 
     private WorldData _worldData => GameController.Instance.SessionManager.WorldData;
     
-    public GatherAssignment(int workerCount, HexData currentHex) : base(workerCount)
+    public GatherAssignment(int workerCount) : base(workerCount)
     {
-        _currentHex = currentHex;
+        
     }
 
     public override void Tick(Pop pop)
@@ -34,7 +32,7 @@ public class GatherAssignment : Assignment
     {
         Dictionary<ResourceID, float> allResources = new();
 
-        _worldData.GetAvailableResources(_currentHex.Coord, allResources);
+        _worldData.GetAvailableResources(pop.CurrentHex.Coord, allResources);
 
         foreach (ResourceID resourceId in allResources.Keys)
         {
