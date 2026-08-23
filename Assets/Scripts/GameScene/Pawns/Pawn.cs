@@ -8,6 +8,11 @@ public class Pawn : ITickable
 
     public virtual void Tick(TickInfo tickInfo)
     {
+        Upkeep(tickInfo);
+    }
+
+    protected virtual void Upkeep(TickInfo tickInfo)
+    {
         
     }
 }

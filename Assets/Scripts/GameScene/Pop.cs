@@ -23,6 +23,7 @@ public class Pop : Pawn
     public Pop(int startingPopulation)
     {
         Population = startingPopulation;
+        ResourceStockpile = new Dictionary<ResourceID, float>();
     }
     
     public override void Tick(TickInfo tickInfo)
@@ -31,22 +32,47 @@ public class Pop : Pawn
         {
             assignment.Tick(this);
         }
+        
+        base.Tick(tickInfo);
     }
 
     public int CheckAssignmentNumbers()
     {
-        int sum = 0;
+        int assignedWorkers = 0;
+
         foreach (var assignment in _assignments)
         {
-            sum += assignment.Workers;
+            assignedWorkers += assignment.Workers;
         }
-        return sum;
+        
+        return Population - assignedWorkers;
     }
 
-    public GatherAssignment CreateGatherAssignment(int workers)
+    public void CreateGatherAssignment(int workers)
     {
         var gather = new GatherAssignment(workers);
         _assignments.Add(gather);
-        return gather;
+    }
+
+    protected override void Upkeep(TickInfo tickInfo)
+    {
+        EatUpkeep();
+        base.Upkeep(tickInfo);
+    }
+
+    private void EatUpkeep()
+    {
+        float nutritionRequired = Population * 1f;
+        foreach (ResourceID resourceId in ResourceStockpile.Keys)
+        {
+            var resourceDefinition = GameController.Instance.StaticDatabases.ResourceDatabase.Get(resourceId);
+            if (resourceDefinition.HasTag(ResourceTag.Edible))
+            {
+                float nutritionAvailable = ResourceStockpile[resourceId];
+                nutritionRequired -= nutritionAvailable;
+                ResourceStockpile[resourceId] -= nutritionAvailable;
+            }
+        }
+        if (nutritionRequired > 0f) Debug.Log("The people are starving!");
     }
 }

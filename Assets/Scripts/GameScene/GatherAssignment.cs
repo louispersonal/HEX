@@ -8,7 +8,7 @@ public class GatherAssignment : Assignment
     
     private const float BASE_GATHER_RATE = 1f;
 
-    private Dictionary<ResourceID, float> _resourceBuffer;
+    private Dictionary<ResourceID, float> _resourceBuffer = new();
 
     private WorldData _worldData => GameController.Instance.SessionManager.WorldData;
     

@@ -27,6 +27,6 @@ public class PopBrain : Brain
         
         int workerSurplus = Pop.CheckAssignmentNumbers();
         if (workerSurplus > 0) Pop.Assignments.OfType<GatherAssignment>().First().AddWorkers(workerSurplus);
-        if (workerSurplus < 0) Pop.Assignments.OfType<GatherAssignment>().First().RemoveWorkers(workerSurplus);
+        if (workerSurplus < 0) Pop.Assignments.OfType<GatherAssignment>().First().RemoveWorkers(-workerSurplus);
     }
 }
