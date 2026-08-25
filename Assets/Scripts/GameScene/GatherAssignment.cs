@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GatherAssignment : Assignment
 {
+    public override string AssignmentName => "Gather";
+    
     private const float VEGETATION_ACCESSIBILITY = 0.1f;
     
     private const float BASE_GATHER_RATE = 1f;

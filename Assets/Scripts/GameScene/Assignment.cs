@@ -1,5 +1,6 @@
 public abstract class Assignment
 {
+    public abstract string AssignmentName { get; }
     public int Workers { get; private set; }
     
     protected Assignment(int workerCount)
@@ -18,4 +19,9 @@ public abstract class Assignment
     }
 
     public abstract void Tick(Pop pop);
+
+    public override string ToString()
+    {
+        return $"{AssignmentName}: {Workers}";
+    }
 }

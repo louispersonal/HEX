@@ -6,8 +6,16 @@ using UnityEngine;
 public class Pop : Pawn
 {
     public float GatheringEfficiency = 1f;
+
+    public string Name;
     
     public int Population { get; private set; }
+
+    public string Faction;
+
+    public CultureID CultureID;
+    
+    public ReligionID ReligionID;
     
     public Dictionary<ResourceID, float> ResourceStockpile { get; private set; }
     
