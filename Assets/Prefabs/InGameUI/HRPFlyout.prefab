@@ -1113,6 +1113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0f8c8e10b8c14788482a578ba706d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: {fileID: 7816461825776543329}
+  Population: {fileID: 1771775418445597901}
+  Faction: {fileID: 2259899356652653991}
+  Culture: {fileID: 6268825999176925104}
+  Religion: {fileID: 6013971424463634421}
+  Assignments: {fileID: 7269079096712964909}
 --- !u!1 &2950121780469321568
 GameObject:
   m_ObjectHideFlags: 0

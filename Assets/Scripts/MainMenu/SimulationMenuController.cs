@@ -18,7 +18,7 @@ public class SimulationMenuController : SubMenu
         GameController.Instance.SessionManager.NewGameData();
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
 
-        Pop seedPop = new Pop(30);
+        Pop seedPop = new Pop("Bogoma",30, new CultureID(0), new ReligionID(0));
         PlaceSeedPop(seedPop);
         PopBrain seedPopBrain = new PopBrain(seedPop);
 

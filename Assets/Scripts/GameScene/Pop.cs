@@ -28,9 +28,12 @@ public class Pop : Pawn
     
     public List<Assignment> Assignments => _assignments;
 
-    public Pop(int startingPopulation)
+    public Pop(string name, int startingPopulation, CultureID culure, ReligionID religion)
     {
+        Name = name;
         Population = startingPopulation;
+        CultureID = culure;
+        ReligionID = religion;
         ResourceStockpile = new Dictionary<ResourceID, float>();
     }
     

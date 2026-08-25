@@ -33,21 +33,27 @@ public class GatherAssignment : Assignment
     private void Gather(Pop pop)
     {
         Dictionary<ResourceID, float> allResources = new();
-
         _worldData.GetAvailableResources(pop.CurrentHex.Coord, allResources);
 
-        foreach (ResourceID resourceId in allResources.Keys)
+        foreach (var resource in allResources)
         {
-            var resourceDefinition = GameController.Instance.StaticDatabases.ResourceDatabase.Get(resourceId);
+            ResourceID resourceId = resource.Key;
+            float availableAmount = resource.Value;
+
+            var resourceDefinition =
+                GameController.Instance.StaticDatabases.ResourceDatabase.Get(resourceId);
+
+            float maximumGatherable = 0f;
+
             if (resourceDefinition.HasTag(ResourceTag.Edible))
             {
-                float maximumGatherable = allResources[resourceId] * VEGETATION_ACCESSIBILITY;
-                allResources[resourceId] = maximumGatherable;
+                maximumGatherable = availableAmount * VEGETATION_ACCESSIBILITY;
             }
-            else allResources[resourceId] = 0;
-            
+
             float workforceCapacity = Workers * BASE_GATHER_RATE * pop.GatheringEfficiency;
-            _resourceBuffer[resourceId] = Mathf.Min(workforceCapacity, allResources[resourceId]);
+
+            _resourceBuffer[resourceId] =
+                Mathf.Min(workforceCapacity, maximumGatherable);
         }
     }
 }
