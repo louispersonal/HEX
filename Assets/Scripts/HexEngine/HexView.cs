@@ -38,13 +38,20 @@ public class HexView : MonoBehaviour, ISelectable
 
     public static float SceneSize = 3.695f; //1 unit in unity world space - compute from vertical hex size in pixels/200
 
-    public void Initialize(HexData data)
+    public void Initialize(HexData data, bool enableParticles)
 	{
 		Data = data;
 		gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Coord);
-		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.ExtraData.LowVegetation * _maxLowVegetationParticles)));
-		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.ExtraData.HighVegetation * _maxHighVegetationParticles)));
+		if (enableParticles)
+		{
+			EnableParticles();
+		}
 
+		else
+		{
+			DisableParticles();
+		}
+		
 		_elevationOverlayRenderer.sprite = null;
 		_geoFeatureRenderer.sprite = null;
 
@@ -147,5 +154,19 @@ public class HexView : MonoBehaviour, ISelectable
 	public void OnDeselected()
 	{
 		_outline.gameObject.SetActive(false);
+	}
+
+	public void EnableParticles()
+	{
+		_lowVegetationParticles.gameObject.SetActive(true);
+		_highVegetationParticles.gameObject.SetActive(true);
+		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.ExtraData.LowVegetation * _maxLowVegetationParticles)));
+		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.ExtraData.HighVegetation * _maxHighVegetationParticles)));
+	}
+
+	public void DisableParticles()
+	{
+		_lowVegetationParticles.gameObject.SetActive(false);
+		_highVegetationParticles.gameObject.SetActive(false);
 	}
 }

@@ -1860,6 +1860,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hexViewPrefab: {fileID: 1365005969108271355, guid: 8cea9e5e160327f4790efc21469db20b,
     type: 3}
+  _gameCamera: {fileID: 1320601116}
 --- !u!1 &1491727000
 GameObject:
   m_ObjectHideFlags: 0

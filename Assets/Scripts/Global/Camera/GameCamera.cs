@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,14 @@ public class GameCamera : MonoBehaviour
     
     public float MinZPosition;
     
+    public ZoomLevel CurrentZoomLevel { get; private set; }
+    
+    public event Action<ZoomLevel> OnZoomChanged;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetZoomLevel();
     }
 
     // Update is called once per frame
@@ -45,10 +50,38 @@ public class GameCamera : MonoBehaviour
         float zDelta = scrollDelta * (ZoomSpeed * Time.deltaTime);
         float newZ = Mathf.Clamp(transform.position.z + zDelta, MinZPosition, MaxZPosition);
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
+        SetZoomLevel();
     }
     
     public void SnapToPosition(Vector2 position)
     {
         transform.position = new Vector3(position.x, position.y, transform.position.z);
     }
+
+    private void SetZoomLevel()
+    {
+        if (Mathf.Abs(transform.position.z - MaxZPosition) > Mathf.Abs(transform.position.z - MinZPosition))
+        {
+            if (CurrentZoomLevel == ZoomLevel.Close)
+            {
+                CurrentZoomLevel = ZoomLevel.Far;
+                OnZoomChanged?.Invoke(ZoomLevel.Far);
+            }
+
+        }
+        else
+        {
+            if (CurrentZoomLevel == ZoomLevel.Far)
+            {
+                CurrentZoomLevel = ZoomLevel.Close;
+                OnZoomChanged?.Invoke(ZoomLevel.Close);
+            }
+        }
+    }
+}
+
+public enum ZoomLevel
+{
+    Close,
+    Far
 }

@@ -11,6 +11,7 @@ public class PopPanel : Panel
     [SerializeField] private TextMeshProUGUI Culture;
     [SerializeField] private TextMeshProUGUI Religion;
     [SerializeField] private TextMeshProUGUI Assignments;
+    [SerializeField] private ResourceView ResourceView;
     
     public void Populate(Pop pop)
     {
@@ -20,6 +21,7 @@ public class PopPanel : Panel
         Culture.text = $"{pop.CultureID}";
         Religion.text = $"{pop.ReligionID}";
         Assignments.text = FormatAssignmentText(pop.Assignments);
+        ResourceView.Populate(pop);
     }
 
     private string FormatAssignmentText(List<Assignment> assignments)

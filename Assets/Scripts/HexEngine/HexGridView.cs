@@ -29,6 +29,9 @@ public class HexGridView : MonoBehaviour
 	private (int vertical, int horizontal) _cameraDistances;
 	private int _maxVisibleHexes = 500;
 	[SerializeField] HexView _hexViewPrefab;
+	[SerializeField] GameCamera _gameCamera;
+
+	private bool _enableParticles = false;
 	
 	private void Awake()
 	{
@@ -57,6 +60,8 @@ public class HexGridView : MonoBehaviour
 	private void Start()
 	{
 		FindWorldCorners();
+		ChangeLOD(_gameCamera.CurrentZoomLevel);
+		_gameCamera.OnZoomChanged += ChangeLOD;
 	}
 
 	private void FindWorldCorners()
@@ -171,7 +176,7 @@ public class HexGridView : MonoBehaviour
 		}
 		
 		HexView view = _hexPool.Get();
-		view.Initialize(data);
+		view.Initialize(data, _enableParticles);
 		_liveHexes[c] = view;
 		_liveCoords.Add(c);
 	}
@@ -255,5 +260,15 @@ public class HexGridView : MonoBehaviour
     public bool TryGetLiveHex(AxialCoordinate target, out HexView hexView)
     {
 	    return _liveHexes.TryGetValue(target, out hexView);
+    }
+
+    private void ChangeLOD(ZoomLevel level)
+    {
+	    _enableParticles = level == ZoomLevel.Close;
+	    foreach (HexView view in _liveHexes.Values)
+	    {
+		    if (_enableParticles) view.EnableParticles();
+		    else  view.DisableParticles();
+	    }
     }
 }
