@@ -1814,6 +1814,8 @@ MonoBehaviour:
   ZoomSpeed: 300
   MaxZPosition: -10
   MinZPosition: -100
+  MaxZRotation: -50
+  MinZRotation: 0
 --- !u!1 &1336889302
 GameObject:
   m_ObjectHideFlags: 0

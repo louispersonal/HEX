@@ -13,6 +13,10 @@ public class GameCamera : MonoBehaviour
     public float MaxZPosition;
     
     public float MinZPosition;
+
+    [FormerlySerializedAs("MaxZRotation")] public float MaxXRotation;
+    
+    [FormerlySerializedAs("MinZRotation")] public float MinXRotation;
     
     public ZoomLevel CurrentZoomLevel { get; private set; }
     
@@ -50,6 +54,10 @@ public class GameCamera : MonoBehaviour
         float zDelta = scrollDelta * (ZoomSpeed * Time.deltaTime);
         float newZ = Mathf.Clamp(transform.position.z + zDelta, MinZPosition, MaxZPosition);
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
+
+        float newXAngle = Mathf.Lerp(MaxXRotation, MinXRotation, newZ / (MinZPosition - MaxZPosition));
+        transform.eulerAngles = new Vector3(newXAngle, 0, 0);
+        
         SetZoomLevel();
     }
     
