@@ -6,7 +6,9 @@ using UnityEngine.Serialization;
 
 public class GameCamera : MonoBehaviour
 {
-    public float PanSpeed;
+    public float MinPanSpeed;
+    
+    public float MaxPanSpeed;
 
     public float ZoomSpeed;
 
@@ -26,6 +28,7 @@ public class GameCamera : MonoBehaviour
     void Start()
     {
         SetZoomLevel();
+        SetAngle();
     }
 
     // Update is called once per frame
@@ -38,7 +41,9 @@ public class GameCamera : MonoBehaviour
         
         if (input.sqrMagnitude > 0f)
         {
-            Vector3 delta = new Vector3(input.x, input.y, 0f) * (PanSpeed * Time.deltaTime);
+            float currentPanSpeed = Mathf.Lerp(MinPanSpeed, MaxPanSpeed,
+                transform.position.z / (MinZPosition - MaxZPosition));
+            Vector3 delta = new Vector3(input.x, input.y, 0f) * (currentPanSpeed * Time.deltaTime);
             transform.position += delta;
         }
         
@@ -54,11 +59,9 @@ public class GameCamera : MonoBehaviour
         float zDelta = scrollDelta * (ZoomSpeed * Time.deltaTime);
         float newZ = Mathf.Clamp(transform.position.z + zDelta, MinZPosition, MaxZPosition);
         transform.position = new Vector3(transform.position.x, transform.position.y, newZ);
-
-        float newXAngle = Mathf.Lerp(MaxXRotation, MinXRotation, newZ / (MinZPosition - MaxZPosition));
-        transform.eulerAngles = new Vector3(newXAngle, 0, 0);
         
         SetZoomLevel();
+        SetAngle();
     }
     
     public void SnapToPosition(Vector2 position)
@@ -85,6 +88,12 @@ public class GameCamera : MonoBehaviour
                 OnZoomChanged?.Invoke(ZoomLevel.Close);
             }
         }
+    }
+
+    private void SetAngle()
+    {
+        float newXAngle = Mathf.Lerp(MaxXRotation, MinXRotation, transform.position.z / (MinZPosition - MaxZPosition));
+        transform.eulerAngles = new Vector3(newXAngle, 0, 0);
     }
 }
 

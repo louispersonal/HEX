@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -35,6 +36,28 @@ public class HexView : MonoBehaviour, ISelectable
 	[SerializeField] Sprite _seaSprite;
 
 	[SerializeField] RiverOverlayController _riverOverlay;
+
+	[Header("Vegetation Sprites")] 
+	[SerializeField] private Sprite[] DesertLowSprites;
+	[SerializeField] private Sprite[] DesertHighSprites;
+	
+	[SerializeField] private Sprite[] TundraLowSprites;
+	[SerializeField] private Sprite[] TundraHighSprites;
+	
+	[SerializeField] private Sprite[] TaigaLowSprites;
+	[SerializeField] private Sprite[] TaigaHighSprites;
+	
+	[SerializeField] private Sprite[] TropicalLowSprites;
+	[SerializeField] private Sprite[] TropicalHighSprites;
+	
+	[SerializeField] private Sprite[] SavannaLowSprites;
+	[SerializeField] private Sprite[] SavannaHighSprites;
+	
+	[SerializeField] private Sprite[] TemperateLowSprites;
+	[SerializeField] private Sprite[] TemperateHighSprites;
+	
+	[SerializeField] private Sprite[] SteppeLowSprites;
+	[SerializeField] private Sprite[] SteppeHighSprites;
 
     public static float SceneSize = 3.695f; //1 unit in unity world space - compute from vertical hex size in pixels/200
 
@@ -84,14 +107,38 @@ public class HexView : MonoBehaviour, ISelectable
 			GameSceneController.Instance.AllPopsView.DeSpawnPop(Data.Coord);
 	}
 
-	private IEnumerator ParticleBurstAndFreeze(ParticleSystem s, int numParticles)
+	private IEnumerator ParticleBurstAndFreeze(ParticleSystem s, int numParticles, bool isLow)
 	{
+		s.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+		s.useAutoRandomSeed = false;
+		s.randomSeed = AxialGeometry.GetSeedFromAxial(Data.Coord, isLow? (uint) 1 :  2);
+		Sprite[] sprites = isLow ? GetBiomeLowVegetationSprites() : GetBiomeHighVegetationSprites();
+		SwitchParticleTextures(s, sprites);
+		
 		s.Play();
 		s.Emit(numParticles);
+
 		yield return null;
+
 		s.Pause();
 	}
 
+	private void SwitchParticleTextures(ParticleSystem s, Sprite[] sprites)
+	{
+		var textureSheet = s.textureSheetAnimation;
+
+		while (textureSheet.spriteCount > 0)
+		{
+			textureSheet.RemoveSprite(textureSheet.spriteCount - 1);
+		}
+		
+		foreach (Sprite sprite in sprites)
+		{
+			textureSheet.AddSprite(sprite);
+		}
+	}
+	
 	private void SetElevationSprite()
 	{
 		if (Data.ExtraData.Elevation < 0.5f)
@@ -144,6 +191,52 @@ public class HexView : MonoBehaviour, ISelectable
         }
 	}
 
+	private Sprite[] GetBiomeLowVegetationSprites()
+	{
+		switch (Data.ExtraData.Biome)
+		{
+			case Biome.Desert:
+				return DesertLowSprites;
+			case Biome.Tundra:
+				return TundraLowSprites;
+			case Biome.Taiga:
+				return TaigaLowSprites;
+			case Biome.Tropical:
+				return TropicalLowSprites;
+			case Biome.Temperate:
+				return TemperateLowSprites;
+			case Biome.Steppe:
+				return SteppeLowSprites;
+			case Biome.Savanna:
+				return SavannaLowSprites;
+			default:
+				return DesertLowSprites;
+		}
+	}
+	
+	private Sprite[] GetBiomeHighVegetationSprites()
+	{
+		switch (Data.ExtraData.Biome)
+		{
+			case Biome.Desert:
+				return DesertHighSprites;
+			case Biome.Tundra:
+				return TundraHighSprites;
+			case Biome.Taiga:
+				return TaigaHighSprites;
+			case Biome.Tropical:
+				return TropicalHighSprites;
+			case Biome.Temperate:
+				return TemperateHighSprites;
+			case Biome.Steppe:
+				return SteppeHighSprites;
+			case Biome.Savanna:
+				return SavannaHighSprites;
+			default:
+				return DesertHighSprites;
+		}
+	}
+	
 	//Selection interface members
 	
 	public void OnSelected()
@@ -158,10 +251,16 @@ public class HexView : MonoBehaviour, ISelectable
 
 	public void EnableParticles()
 	{
+		if (Data.ExtraData.IsSea) return;
+		
 		_lowVegetationParticles.gameObject.SetActive(true);
 		_highVegetationParticles.gameObject.SetActive(true);
-		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, Mathf.RoundToInt(Data.ExtraData.LowVegetation * _maxLowVegetationParticles)));
-		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, Mathf.RoundToInt(Data.ExtraData.HighVegetation * _maxHighVegetationParticles)));
+		StartCoroutine(ParticleBurstAndFreeze(_lowVegetationParticles, 
+			Mathf.RoundToInt(Data.ExtraData.LowVegetation * _maxLowVegetationParticles),
+			true));
+		StartCoroutine(ParticleBurstAndFreeze(_highVegetationParticles, 
+			Mathf.RoundToInt(Data.ExtraData.HighVegetation * _maxHighVegetationParticles),
+			false));
 	}
 
 	public void DisableParticles()

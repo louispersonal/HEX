@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 92cc2eefb47863a42969fbae8c561bb5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5e9c15af9a28ee642a6c1e993b4ecc6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
   _lowVegetationParticles: {fileID: 2733037648368458089}
   _maxLowVegetationParticles: 30
   _highVegetationParticles: {fileID: 6327497776847421325}
-  _maxHighVegetationParticles: 10
+  _maxHighVegetationParticles: 20
   _elevationOverlayRenderer: {fileID: 39161749735106590}
   _geoFeatureRenderer: {fileID: 4037974670833896168}
   _lakeRenderer: {fileID: 8446218484288455361}
@@ -307,6 +307,68 @@ MonoBehaviour:
   _savannaSprite: {fileID: 21300000, guid: 627ab85757b642547ac5e5fcc5aea9d1, type: 3}
   _seaSprite: {fileID: 21300000, guid: 122f3d0b327b4734487fd335c987cc25, type: 3}
   _riverOverlay: {fileID: 5148182516556960666}
+  DesertLowSprites:
+  - {fileID: 21300000, guid: 684bcc83d44b3ed409cc8b883f866835, type: 3}
+  - {fileID: 21300000, guid: 31eb1df7a2ce76c44b30a01c8ebcc33d, type: 3}
+  - {fileID: 21300000, guid: 39c7a123e186dd642b8a374b41af859e, type: 3}
+  DesertHighSprites:
+  - {fileID: 21300000, guid: 221326a536cb03243ab8e6ab87f9ac28, type: 3}
+  - {fileID: 21300000, guid: 17ac0113a08c7dc458545de1385cac02, type: 3}
+  TundraLowSprites:
+  - {fileID: 21300000, guid: 21aa55c3719171b4ca9f681133ed75c3, type: 3}
+  - {fileID: 21300000, guid: 97424aa39f84a844b93cead73455bad2, type: 3}
+  - {fileID: 21300000, guid: eb8ef8c42942a824dbb69bcdac1cb9f5, type: 3}
+  TundraHighSprites:
+  - {fileID: 21300000, guid: 6186497337eb2f14ca0ace434e3d8943, type: 3}
+  - {fileID: 21300000, guid: 8c7584adaa943204cbaee53b718b8d5f, type: 3}
+  - {fileID: 21300000, guid: 9f280493b74dd5d4aa06563e68ca7e81, type: 3}
+  TaigaLowSprites:
+  - {fileID: 21300000, guid: 45f4c403a1d3d4b4a8d9fc7b800d9a52, type: 3}
+  - {fileID: 21300000, guid: 66b2dd7a28ff5fa4fa25e744f7c2381f, type: 3}
+  - {fileID: 21300000, guid: 82ec1b76c2c963848971eb1754a7fc8b, type: 3}
+  TaigaHighSprites:
+  - {fileID: 21300000, guid: 762888dd798b8f143be512b857c141bc, type: 3}
+  - {fileID: 21300000, guid: 8413bd52c7b1e504cbbe916aa76d9c80, type: 3}
+  - {fileID: 21300000, guid: e329ae80c2255e14489b671363c3b09c, type: 3}
+  TropicalLowSprites:
+  - {fileID: 21300000, guid: ecd81b9e5d90ae34e8b9e9c1bffc0fc4, type: 3}
+  - {fileID: 21300000, guid: cba7b95561fc6684ca3e66089abd15b8, type: 3}
+  - {fileID: 21300000, guid: 7c9f3671e4462694594f60fd668cbaa6, type: 3}
+  - {fileID: 21300000, guid: f42dae57f440a6f4d895518b31305fec, type: 3}
+  TropicalHighSprites:
+  - {fileID: 21300000, guid: 48af492be8ddf394884da07dcc84f3b0, type: 3}
+  - {fileID: 21300000, guid: a284e575940e4594da4282f9543ff737, type: 3}
+  - {fileID: 21300000, guid: b31b2b59a7a5c2e40b8ae84e7ff0a53f, type: 3}
+  SavannaLowSprites:
+  - {fileID: 21300000, guid: 9bb603a50116112428923c433e1a18f1, type: 3}
+  - {fileID: 21300000, guid: d1aacb1f0a9745b4c96493c001b49bb3, type: 3}
+  - {fileID: 21300000, guid: 4582c0e7a9655164f9cd3a0bbaa09e80, type: 3}
+  SavannaHighSprites:
+  - {fileID: 21300000, guid: 1f8548eb1bb2e834b9ede066c8f9b8ae, type: 3}
+  - {fileID: 21300000, guid: 29c39b8882cdb9e4280a7d1c7d0bc0d4, type: 3}
+  - {fileID: 21300000, guid: b5d5bec5c5f277944ba300074a4218b1, type: 3}
+  - {fileID: 21300000, guid: ef09c19cab72b124ba257b8ad5be2d63, type: 3}
+  - {fileID: 21300000, guid: a920ca67a358de04fa4cc1d1051719ff, type: 3}
+  TemperateLowSprites:
+  - {fileID: 21300000, guid: 3d4a875e9c19e6542b0643d0503ef80a, type: 3}
+  - {fileID: 21300000, guid: 77b4f392f152f024288ffd87d650c666, type: 3}
+  - {fileID: 21300000, guid: 9c31bfa2824e84c40b6859f6d9605412, type: 3}
+  - {fileID: 21300000, guid: 0a77254d7e2b7f54bacd2c116640ed91, type: 3}
+  - {fileID: 21300000, guid: 7b67393ec15a95842bb15ccc6218688a, type: 3}
+  - {fileID: 21300000, guid: cadb0fadcbdfa19418c2149c705bea7d, type: 3}
+  - {fileID: 21300000, guid: ad22faff6f0186e4da9a5cba1e3f494a, type: 3}
+  TemperateHighSprites:
+  - {fileID: 21300000, guid: d2379b5f9a7208242b1e681c1cea4a08, type: 3}
+  - {fileID: 21300000, guid: 36f8b8ccc8ad3b449a8cf481534aa4ea, type: 3}
+  - {fileID: 21300000, guid: ed971b11105dafb4ea13601d32534d98, type: 3}
+  SteppeLowSprites:
+  - {fileID: 21300000, guid: 0f30f7c565ed16a43ae86fced9e70da1, type: 3}
+  - {fileID: 21300000, guid: 5808763233b398148bac199b8096d0ae, type: 3}
+  - {fileID: 21300000, guid: 19665dbacd63ff4418ad22844efb1556, type: 3}
+  - {fileID: 21300000, guid: 6479b05138d6f934f85226e602134ce7, type: 3}
+  SteppeHighSprites:
+  - {fileID: 21300000, guid: 3517acfd3302e474aa688ff865eb7c42, type: 3}
+  - {fileID: 21300000, guid: d69c73754b9f6d1449bc39298d4a6e8d, type: 3}
 --- !u!1 &2846276562634507280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +1076,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.22
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2095,14 +2157,14 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 0.9999
+      minMaxState: 0
+      scalar: 0
       minScalar: 0.9999
       maxCurve:
         serializedVersion: 2
@@ -2154,8 +2216,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startFrame:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 0.9999
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2214,7 +2276,9 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: 684bcc83d44b3ed409cc8b883f866835, type: 3}
+    - sprite: {fileID: 21300000, guid: 31eb1df7a2ce76c44b30a01c8ebcc33d, type: 3}
+    - sprite: {fileID: 21300000, guid: 39c7a123e186dd642b8a374b41af859e, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -5504,7 +5568,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b635a5dc4751254dbc7cc590e3df85d, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5524,10 +5588,10 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_RenderMode: 0
   m_MeshDistribution: 0
-  m_SortMode: 0
+  m_SortMode: 1
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -5928,7 +5992,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.22
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7009,14 +7073,14 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 0.9999
+      minMaxState: 0
+      scalar: 0
       minScalar: 0.9999
       maxCurve:
         serializedVersion: 2
@@ -7068,8 +7132,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startFrame:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 0.9999
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7128,7 +7192,8 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 21300000, guid: 221326a536cb03243ab8e6ab87f9ac28, type: 3}
+    - sprite: {fileID: 21300000, guid: 17ac0113a08c7dc458545de1385cac02, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -10418,7 +10483,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1504d2d4bbfd9c943950a75436ce9b4d, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10441,7 +10506,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 3
   m_RenderMode: 0
   m_MeshDistribution: 0
-  m_SortMode: 0
+  m_SortMode: 1
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -10565,6 +10630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6811503744905680044}
   - component: {fileID: 4037974670833896168}
+  - component: {fileID: 4344557234724433489}
   m_Layer: 0
   m_Name: GeoFeature
   m_TagString: Untagged
@@ -10633,12 +10699,24 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.84, y: 2.11}
+  m_Size: {x: 6.4, y: 7.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4344557234724433489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8977941521646815377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610453151087aa7468526657f3a44fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9144569120729190552
 GameObject:
   m_ObjectHideFlags: 0

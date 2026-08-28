@@ -246,4 +246,19 @@ public class AxialGeometry
 
         return new AxialCoordMap(result, bottomLeftBound, usedTopRightBound, adjustedHexSize);
     }
+    
+    public static uint GetSeedFromAxial(AxialCoordinate coord, uint salt=0)
+    {
+        // 32-bit FNV-1a hash algorithm
+        unchecked
+        {
+            uint hash = 2166136261;
+
+            hash = (hash ^ (uint)coord.Q) * 16777619;
+            hash = (hash ^ (uint)coord.R) * 16777619;
+            hash = (hash ^ salt) * 16777619;
+
+            return hash;
+        }
+    }
 }
