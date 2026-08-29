@@ -10,6 +10,7 @@ public class PopPanel : Panel
     [SerializeField] private TextMeshProUGUI Faction;
     [SerializeField] private TextMeshProUGUI Culture;
     [SerializeField] private TextMeshProUGUI Religion;
+    [SerializeField] private PieChart AssignmentChart;
     [SerializeField] private TextMeshProUGUI Assignments;
     [SerializeField] private ResourceView ResourceView;
     
@@ -20,6 +21,20 @@ public class PopPanel : Panel
         Faction.text = $"{pop.Faction}";
         Culture.text = $"{pop.CultureID}";
         Religion.text = $"{pop.ReligionID}";
+
+        WedgeData[] pieChartData = new WedgeData[pop.Assignments.Count];
+        for (int i = 0; i < pop.Assignments.Count; i++)
+        {
+            WedgeData data = new WedgeData();
+            data.Color = pop.Assignments[i].Color;
+            data.Label = pop.Assignments[i].AssignmentName;
+            float value = pop.Assignments[i].Workers / (float)pop.Population;
+            data.Value = value;
+            pieChartData[i] = data;
+        }
+        
+        AssignmentChart.BuildChart(pieChartData);
+        
         Assignments.text = FormatAssignmentText(pop.Assignments);
         ResourceView.Populate(pop);
     }

@@ -1,6 +1,9 @@
+using UnityEngine;
+
 public abstract class Assignment
 {
     public abstract string AssignmentName { get; }
+    public abstract Color Color { get; }
     public int Workers { get; private set; }
     
     protected Assignment(int workerCount)

@@ -5,6 +5,8 @@ using UnityEngine;
 public class GatherAssignment : Assignment
 {
     public override string AssignmentName => "Gather";
+
+    public override Color Color => Color.green;
     
     private const float VEGETATION_ACCESSIBILITY = 0.1f;
     

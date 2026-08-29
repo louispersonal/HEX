@@ -1118,6 +1118,7 @@ MonoBehaviour:
   Faction: {fileID: 2259899356652653991}
   Culture: {fileID: 6268825999176925104}
   Religion: {fileID: 6013971424463634421}
+  AssignmentChart: {fileID: 6963527734856360708}
   Assignments: {fileID: 7269079096712964909}
   ResourceView: {fileID: 2120179069020921622}
 --- !u!1 &2950121780469321568
@@ -2718,6 +2719,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2809447962657811292}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6963527734856360708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5070562377034385496, guid: 9969d11b3e51eed409e37e9cfce93e43,
+    type: 3}
+  m_PrefabInstance: {fileID: 2809447962657811292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fead5156fa9644945894f85c1288c44e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7135651981807432253
 PrefabInstance:
   m_ObjectHideFlags: 0
