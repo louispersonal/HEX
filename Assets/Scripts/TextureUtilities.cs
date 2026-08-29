@@ -277,6 +277,10 @@ public class TextureUtilities
                 return new Color(0.573f, 0.741f, 0f);
             case GeoFeatureType.Cliff:
                 return new Color(0.631f, 0.467f, 0.741f);
+            case GeoFeatureType.Volcano:
+                return new Color(0.7f, 0f, 0f);
+            case GeoFeatureType.CaveSystem:
+                return new Color(0.5f, 0.2f, 0f);
         }
 
         return new Color(1f, 1f, 1f);
