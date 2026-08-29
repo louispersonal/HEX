@@ -15,7 +15,11 @@ public class Pop : Pawn
 
     public CultureID CultureID;
     
+    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures[CultureID];
+    
     public ReligionID ReligionID;
+    
+    public Religion Religion => GameController.Instance.SessionManager.GameData.Religions[ReligionID];
     
     public Dictionary<ResourceID, float> ResourceStockpile { get; private set; }
     

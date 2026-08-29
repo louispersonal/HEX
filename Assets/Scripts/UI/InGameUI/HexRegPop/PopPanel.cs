@@ -19,8 +19,8 @@ public class PopPanel : Panel
         Name.text = $"{pop.Name}";
         Population.text = $"{pop.Population}";
         Faction.text = $"{pop.Faction}";
-        Culture.text = $"{pop.CultureID}";
-        Religion.text = $"{pop.ReligionID}";
+        Culture.text = $"{pop.Culture.Name}";
+        Religion.text = $"{pop.Religion.Name}";
 
         WedgeData[] pieChartData = new WedgeData[pop.Assignments.Count];
         for (int i = 0; i < pop.Assignments.Count; i++)

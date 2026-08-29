@@ -18,11 +18,25 @@ public class SimulationMenuController : SubMenu
         GameController.Instance.SessionManager.NewGameData();
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
 
+        CultureID seedCultureID = new CultureID(0);
+        ReligionID seedReligionID = new ReligionID(0);
+
+        Culture seedCulture = new Culture();
+        seedCulture.Name = "Bogoma";
+        seedCulture.ID = seedCultureID;
+
+        Religion seedReligion = new Religion();
+        seedReligion.Name = "Harmana";
+        seedReligion.ID = seedReligionID;
+        
         Pop seedPop = new Pop("Bogoma",30, new CultureID(0), new ReligionID(0));
         PlaceSeedPop(seedPop);
         PopBrain seedPopBrain = new PopBrain(seedPop);
 
         GameController.Instance.SessionManager.GameData.Pops.Add(seedPop.Location, seedPop);
+        GameController.Instance.SessionManager.GameData.Cultures.Add(seedCultureID, seedCulture);
+        GameController.Instance.SessionManager.GameData.Religions.Add(seedReligionID, seedReligion);
+        
         GameController.Instance.SessionManager.GameData.Ticker.Register(seedPopBrain);
         GameController.Instance.SessionManager.GameData.Ticker.Register(seedPop);
         
