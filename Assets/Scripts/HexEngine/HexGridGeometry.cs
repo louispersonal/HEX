@@ -24,6 +24,16 @@ public class HexGridGeometry
         return grid.TryGetHex(SceneToAxial(p), out hexData);
     }
 
+    public static Vector2 GetRandomPointInHex(System.Random random, float buffer = 0)
+    {
+        float radius = HexView.InnerRadius - buffer;
+
+        float angle = (float)random.NextDouble() * Mathf.PI * 2f;
+        float distance = Mathf.Sqrt((float)random.NextDouble()) * radius;
+
+        return new Vector2(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
+    }
+    
     public static List<HexData> GenerateHexShapedGrid(int N)
     {
         int hexCount = 1 + 3 * N * (N + 1);

@@ -270,6 +270,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 477408ea43a0ee04a8062a37b588d67f, type: 2}
   - {fileID: 11400000, guid: 86251abbf881fd749a0f291d0ce3ab9c, type: 2}
   - {fileID: 11400000, guid: 9d9b8a9ece1259f449fa767c9311feac, type: 2}
+  - {fileID: 11400000, guid: df12b39f86d634647a5509e3524f580c, type: 2}
+  - {fileID: 11400000, guid: 367f0d3b6cff13d4c9a5765993babb97, type: 2}
   _fBMBaseLayer:
     LayerParams: {fileID: 11400000, guid: 63f6242e6e1f89848a82691537588bd7, type: 2}
     LayerWeight: 0.01

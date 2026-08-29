@@ -38,5 +38,6 @@ public enum GeoFeatureType
     Waterfall,
     Valley,
     Cliff,
-    Volcano
+    Volcano,
+    CaveSystem
 }

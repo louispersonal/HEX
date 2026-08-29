@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HexView : MonoBehaviour, ISelectable
 {
@@ -59,8 +60,14 @@ public class HexView : MonoBehaviour, ISelectable
 	[SerializeField] private Sprite[] SteppeLowSprites;
 	[SerializeField] private Sprite[] SteppeHighSprites;
 
-    public static float SceneSize = 3.695f; //1 unit in unity world space - compute from vertical hex size in pixels/200
+	[Header("DrawSpots")]
+	[SerializeField] private float _drawSpotRadius;
 
+	[Tooltip("Corner 0 between E and SE, counter-clockwise")]
+	[SerializeField] private Vector2[] _drawSpotCenters;
+	
+    public static float SceneSize = 3.695f; //1 unit in unity world space - compute from vertical hex size in pixels/200
+    public static float InnerRadius => 0.8660254f * SceneSize;
     public void Initialize(HexData data, bool enableParticles)
 	{
 		Data = data;
@@ -82,6 +89,7 @@ public class HexView : MonoBehaviour, ISelectable
 		{
 			int featureSpriteIndex = (int)feature.Type;
 			_geoFeatureRenderer.sprite = _geoFeatures[featureSpriteIndex];
+			_geoFeatureRenderer.gameObject.transform.localPosition = _drawSpotCenters[0];
 		}
 		else
 		{
@@ -109,21 +117,62 @@ public class HexView : MonoBehaviour, ISelectable
 
 	private IEnumerator ParticleBurstAndFreeze(ParticleSystem s, int numParticles, bool isLow)
 	{
-		s.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+	    s.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
-		s.useAutoRandomSeed = false;
-		s.randomSeed = AxialGeometry.GetSeedFromAxial(Data.Coord, isLow? (uint) 1 :  2);
-		Sprite[] sprites = isLow ? GetBiomeLowVegetationSprites() : GetBiomeHighVegetationSprites();
-		SwitchParticleTextures(s, sprites);
-		
-		s.Play();
-		s.Emit(numParticles);
+	    uint seed = AxialGeometry.GetSeedFromAxial(Data.Coord, isLow ? 1u : 2u);
 
-		yield return null;
+	    s.useAutoRandomSeed = false;
+	    s.randomSeed = seed;
 
-		s.Pause();
+	    Sprite[] sprites = isLow ? GetBiomeLowVegetationSprites() : GetBiomeHighVegetationSprites();
+
+	    SwitchParticleTextures(s, sprites);
+
+	    var random = new System.Random((int)seed);
+
+	    int clusterCount = isLow ? 4 : 3;
+	    float clusterRadius = isLow ? 0.45f : 0.65f;
+
+	    Vector3[] clusters = GenerateClusterCenters(random, clusterCount);
+
+	    s.Play();
+
+	    for (int i = 0; i < numParticles; i++)
+	    {
+	        Vector3 position = GetClusteredPosition(random, clusters, clusterRadius);
+
+	        var emit = new ParticleSystem.EmitParams();
+	        emit.position = position;
+
+	        s.Emit(emit, 1);
+	    }
+
+	    yield return null;
+	    s.Pause();
 	}
 
+	private Vector3[] GenerateClusterCenters(System.Random random, int count)
+	{
+		Vector3[] centers = new Vector3[count];
+
+		for (int i = 0; i < count; i++)
+		{
+			centers[i] = HexGridGeometry.GetRandomPointInHex(random);
+		}
+
+		return centers;
+	}
+	
+	private Vector3 GetClusteredPosition(System.Random random, Vector3[] clusterCenters, float clusterRadius)
+	{
+		Vector3 center = clusterCenters[random.Next(clusterCenters.Length)];
+
+		float angle = (float)(random.NextDouble() * Mathf.PI * 2f);
+		float radius = Mathf.Sqrt((float)random.NextDouble()) * clusterRadius;
+
+		return center + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0f);
+	}
+	
 	private void SwitchParticleTextures(ParticleSystem s, Sprite[] sprites)
 	{
 		var textureSheet = s.textureSheetAnimation;
