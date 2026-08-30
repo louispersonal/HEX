@@ -10,6 +10,8 @@ public struct ResourceID : IEquatable<ResourceID>
         Value = value;
     }
 
+    public ResourceDefinition Definition => GameController.Instance.StaticDatabases.ResourceDatabase.Get(this);
+    
     public bool Equals(ResourceID other) => Value == other.Value;
 
     public override bool Equals(object obj) => obj is ResourceID other && Equals(other);

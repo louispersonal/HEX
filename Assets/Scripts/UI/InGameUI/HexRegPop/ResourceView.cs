@@ -12,14 +12,14 @@ public class ResourceView : MonoBehaviour
     
     private List<ResourcePill> _activePills = new();
     
-    public void Populate(Pop pop)
+    public void Populate(ResourceBundle resourceBundle)
     {
         ClearAll();
-        foreach (KeyValuePair<ResourceID, float> resource in pop.ResourceStockpile)
+        foreach (ResourceID resource in resourceBundle.GetAllResourceIDs())
         {
             var pill = Instantiate(_resourcePillPrefab, _content.transform);
             _activePills.Add(pill);
-            pill.Initialize(resource.Key, resource.Value);
+            pill.Initialize(resource, resource.Value);
         }
     }
 

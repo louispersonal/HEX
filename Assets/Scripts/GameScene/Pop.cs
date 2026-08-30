@@ -30,12 +30,15 @@ public class Pop : Pawn
     
     public List<Assignment> Assignments => _assignments;
 
+    public ResourceBundle Stockpile {get; private set;}
+    
     public Pop(string name, int startingPopulation, CultureID culure, ReligionID religion)
     {
         Name = name;
         Population = startingPopulation;
         CultureID = culure;
         ReligionID = religion;
+        Stockpile = new ResourceBundle(BundleType.Stockpile);
     }
     
     public override void Tick(TickInfo tickInfo)

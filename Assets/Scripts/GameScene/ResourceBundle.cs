@@ -1,14 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS;
 using UnityEngine;
 
 [Serializable]
 public class ResourceBundle
 {
-    [SerializeField] private Dictionary<ResourceID, float> _resources = new();
+    [SerializeField] private Dictionary<ResourceID, float> _resources;
+    
+    public BundleType Type { get; }
     
     public bool IsEmpty => _resources.Count == 0;
+
+    public ResourceBundle(BundleType type)
+    {
+        Type = type;
+        _resources =  new Dictionary<ResourceID, float>();
+    }
     
     public float Get(ResourceID resource)
     {
@@ -57,4 +66,12 @@ public class ResourceBundle
             Deposit(resource, other.Get(resource));
         }
     }
+}
+
+public enum BundleType
+{
+    Preview,
+    Transaction,
+    Request,
+    Stockpile
 }

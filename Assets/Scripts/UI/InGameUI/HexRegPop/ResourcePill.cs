@@ -12,10 +12,8 @@ public class ResourcePill : MonoBehaviour
     
     public void Initialize(ResourceID resource, float quantity)
     {
-        ResourceDefinition def = GameController.Instance.StaticDatabases.ResourceDatabase.Get(resource);
-        
-        _thumbnail.sprite = def.Thumbnail;
-        _name.text = def.DisplayName;
+        _thumbnail.sprite = resource.Definition.Thumbnail;
+        _name.text = resource.Definition.DisplayName;
         _quantity.text = quantity.ToString("0.#");
     }
 }

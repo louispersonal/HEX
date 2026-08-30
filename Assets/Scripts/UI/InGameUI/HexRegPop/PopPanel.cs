@@ -36,7 +36,7 @@ public class PopPanel : Panel
         AssignmentChart.BuildChart(pieChartData);
         
         Assignments.text = FormatAssignmentText(pop.Assignments);
-        ResourceView.Populate(pop);
+        ResourceView.Populate(pop.Stockpile);
     }
 
     private string FormatAssignmentText(List<Assignment> assignments)

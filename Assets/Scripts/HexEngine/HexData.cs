@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class HexData : BaseHexData
+public class HexData : BaseHexData , IResourceSource
 {
     [SerializeField] private HexExtraData _extraData;
 
@@ -28,6 +28,26 @@ public class HexData : BaseHexData
             if (WorldData.Rivers.ContainsAt(Coord)) return float.PositiveInfinity;
             return 0f;
         }
+    }
+
+    // Resource Source
+    
+    public int Capacity { get; }
+    
+    public int Count { get; }
+    public ResourceBundle PreviewAvailableResources()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public ResourceBundle Extract(ResourceBundle request)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void RegenerateSource()
+    {
+        throw new System.NotImplementedException();
     }
 }
 
