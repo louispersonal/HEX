@@ -65,60 +65,6 @@ public class RegionGen
     {
         if (!world.Grid.TryGetHex(region.SeedCoord, out HexData seedHex)) return;
         var biomeVegetationProfile = VegetationProfiles.Profiles[region.Biome];
-        
-        Dictionary<ResourceID, float> regionResourceYields = new Dictionary<ResourceID, float>();
-        
-        foreach (ResourceDailyYield yield in biomeVegetationProfile.LowVegetationProfile.DailyYields)
-        {
-            float quantity = yield.MaximumDailyYield * region.TotalLowVegetation;
-            regionResourceYields.TryGetValue(yield.ResourceId, out float existing);
-            regionResourceYields[yield.ResourceId] = existing + quantity;
-        }
-        
-        foreach (ResourceDailyYield yield in biomeVegetationProfile.HighVegetationProfile.DailyYields)
-        {
-            float quantity = yield.MaximumDailyYield * region.TotalHighVegetation;
-            regionResourceYields.TryGetValue(yield.ResourceId, out float existing);
-            regionResourceYields[yield.ResourceId] = existing + quantity;
-        }
-        
-        // herbivores first
-        foreach (SpeciesDefinition species in databases.SpeciesDatabase.Items)
-        {
-            if (!species.Biomes.Contains(region.Biome)) continue;
-            
-            AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
-            float totalAvailableNutrition = 0f;
-            foreach (ResourceID resource in archetype.Diet)
-            {
-                if (resource != ResourceIDMap.Meat)
-                {
-                    totalAvailableNutrition += regionResourceYields[resource] * archetype.ForagingAbility;
-                }
-            }
-
-            float largestPossiblePopulation = totalAvailableNutrition / archetype.NutritionRequired;
-            if (largestPossiblePopulation > 0) region.Animals[species.Id] = Mathf.RoundToInt(largestPossiblePopulation);
-        }
-        
-        // then predators
-        foreach (SpeciesDefinition species in databases.SpeciesDatabase.Items)
-        {
-            if (!species.Biomes.Contains(region.Biome)) continue;
-            
-            AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get(species.ArchetypeId);
-            float totalAvailableNutrition = 0f;
-            foreach (ResourceID resource in archetype.Diet)
-            {
-                if (resource == ResourceIDMap.Meat)
-                {
-                    totalAvailableNutrition += GetAvailablePreyMeat(region.Animals, databases, region.Biome, archetype.Size) * archetype.ForagingAbility;
-                }
-            }
-
-            float largestPossiblePopulation = totalAvailableNutrition / archetype.NutritionRequired;
-            if (largestPossiblePopulation > 0) region.Animals[species.Id] = Mathf.RoundToInt(largestPossiblePopulation);
-        }
     }
 
     private static float GetAvailablePreyMeat(Dictionary<SpeciesID, int> animals, StaticDatabases databases, Biome biome, int predatorSize)

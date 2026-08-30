@@ -30,46 +30,6 @@ public class WorldData
         _pathFinder = new Pathfinder(_grid);
     }
 
-    public void GetAvailableResources(AxialCoordinate coord, Dictionary<ResourceID, float> resourceBuffer)
-    {
-        resourceBuffer.Clear();
-
-        if (_resourcesByHex.TryGetValue(coord, out HexResources resources))
-        {
-            foreach (AvailableResource resource in resources.Resources)
-            {
-                AddResource(resourceBuffer, resource.ResourceId, resource.Quantity);
-            }
-        }
-
-        if (!Grid.TryGetHex(coord, out HexData hex) || hex.ExtraData.IsSea)
-        {
-            return;
-        }
-
-        BiomeVegetationProfile profile = VegetationProfiles.Profiles[hex.ExtraData.Biome];
-
-        foreach (ResourceDailyYield yield in profile.LowVegetationProfile.DailyYields)
-        {
-            float quantity = yield.MaximumDailyYield * hex.ExtraData.LowVegetation;
-
-            AddResource(resourceBuffer, yield.ResourceId, quantity);
-        }
-        
-        foreach (ResourceDailyYield yield in profile.HighVegetationProfile.DailyYields)
-        {
-            float quantity = yield.MaximumDailyYield * hex.ExtraData.HighVegetation;
-
-            AddResource(resourceBuffer, yield.ResourceId, quantity);
-        }
-    }
-    
-    private static void AddResource(Dictionary<ResourceID, float> resources, ResourceID resourceId, float quantity)
-    {
-        resources.TryGetValue(resourceId, out float existing);
-        resources[resourceId] = existing + quantity;
-    }
-
     public Region GetRegion(int regionId)
     {
         foreach (Region region in Regions)

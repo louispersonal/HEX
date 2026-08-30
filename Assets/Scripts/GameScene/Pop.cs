@@ -21,8 +21,6 @@ public class Pop : Pawn
     
     public Religion Religion => GameController.Instance.SessionManager.GameData.Religions[ReligionID];
     
-    public Dictionary<ResourceID, float> ResourceStockpile { get; private set; }
-    
     public AxialCoordinate Location;
 
     public HexData CurrentHex =>
@@ -38,7 +36,6 @@ public class Pop : Pawn
         Population = startingPopulation;
         CultureID = culure;
         ReligionID = religion;
-        ResourceStockpile = new Dictionary<ResourceID, float>();
     }
     
     public override void Tick(TickInfo tickInfo)
@@ -77,21 +74,6 @@ public class Pop : Pawn
 
     private void EatUpkeep()
     {
-        float nutritionRequired = Population * 1f;
-        foreach (ResourceID resourceId in ResourceStockpile.Keys)
-        {
-            var resourceDefinition = GameController.Instance.StaticDatabases.ResourceDatabase.Get(resourceId);
-            if (resourceDefinition.HasTag(ResourceTag.Edible))
-            {
-                float nutritionAvailable = ResourceStockpile[resourceId];
-                float nutritionConsumed = Mathf.Min(nutritionRequired, nutritionAvailable);
 
-                ResourceStockpile[resourceId] -= nutritionConsumed;
-                nutritionRequired -= nutritionConsumed;
-
-                if (nutritionRequired <= 0f) break;
-            }
-        }
-        if (nutritionRequired > 0f) Debug.Log("The people are starving!");
     }
 }
