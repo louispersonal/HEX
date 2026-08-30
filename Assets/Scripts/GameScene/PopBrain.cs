@@ -33,7 +33,7 @@ public class PopBrain : Brain
     private void DecideMove()
     {
         var grid = GameController.Instance.SessionManager.WorldData.Grid;
-        List<HexData> neighborData = new List<HexData>();
+        List<Hex> neighborData = new List<Hex>();
         foreach (AxialCoordinate direction in AxialDirections.Directions)
         {
             if (grid.TryGetHex(Pop.CurrentHex.Coord + direction, out var neighbor))
@@ -47,7 +47,7 @@ public class PopBrain : Brain
         if (AssessHex(sortedNeighbors[0]) > currentHexValue) CreateMoveJob(sortedNeighbors[0].Coord);
     }
 
-    private float AssessHex(HexData hexData)
+    private float AssessHex(Hex hex)
     {
         // get attracttiveness value of hex
         return 0f;

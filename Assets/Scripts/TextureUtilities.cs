@@ -100,7 +100,7 @@ public class TextureUtilities
         
         foreach (AxialCoordinate axial in coords.Map.Keys)
         {
-            if (grid.TryGetHex(axial, out HexData data))
+            if (grid.TryGetHex(axial, out Hex data))
             {
                 Vector2 pixelCoord = coords.Map[axial];
                 DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), GetBiomeColor(data));
@@ -146,7 +146,7 @@ public class TextureUtilities
 
         foreach (AxialCoordinate axial in coords.Map.Keys)
         {
-            if (grid.TryGetHex(axial, out HexData data))
+            if (grid.TryGetHex(axial, out Hex data))
             {
                 Vector2 pixelCoord = coords.Map[axial];
 
@@ -214,7 +214,7 @@ public class TextureUtilities
 
         foreach (AxialCoordinate axial in coords.Map.Keys)
         {
-            if (grid.TryGetHex(axial, out HexData data) && world.GeoFeatures.ContainsAt(axial))
+            if (grid.TryGetHex(axial, out Hex data) && world.GeoFeatures.ContainsAt(axial))
             {
                 Vector2 pixelCoord = coords.Map[axial];
 
@@ -244,7 +244,7 @@ public class TextureUtilities
 
         foreach (AxialCoordinate axial in coords.Map.Keys)
         {
-            if (grid.TryGetHex(axial, out HexData data))
+            if (grid.TryGetHex(axial, out Hex data))
             {
                 Vector2 pixelCoord = coords.Map[axial];
 
@@ -286,7 +286,7 @@ public class TextureUtilities
         return new Color(1f, 1f, 1f);
     }
 
-    public static Color GetBiomeColor(HexData data)
+    public static Color GetBiomeColor(Hex data)
     {
         switch (data.ExtraData.Biome)
         {

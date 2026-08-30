@@ -10,14 +10,14 @@ public class GeoFeatureGen
 {
     public static void AddGeoFeatures(WorldData world, List<GeoFeatureSpawnParameters> parameters)
     {
-        Dictionary<GeoFeatureType, List<HexData>> candidateHexes = new Dictionary<GeoFeatureType, List<HexData>>();
+        Dictionary<GeoFeatureType, List<Hex>> candidateHexes = new Dictionary<GeoFeatureType, List<Hex>>();
 
         foreach (GeoFeatureSpawnParameters sp in parameters)
         {
-            candidateHexes[sp.FeatureType] = new List<HexData>();
+            candidateHexes[sp.FeatureType] = new List<Hex>();
         }
 
-        foreach (HexData data in world.Grid.GetValidHexes())
+        foreach (Hex data in world.Grid.GetValidHexes())
         {
             if (data.ExtraData.IsSea) continue;
 
@@ -38,7 +38,7 @@ public class GeoFeatureGen
             int numCandidates = candidateHexes[sp.FeatureType].Count;
             float chance = sp.TargetNumber / numCandidates;
             
-            foreach (HexData data in candidateHexes[sp.FeatureType])
+            foreach (Hex data in candidateHexes[sp.FeatureType])
             {
                 if (Random.Range(0f, 1f) < chance)
                 {
@@ -51,7 +51,7 @@ public class GeoFeatureGen
         }
     }
 
-    private static bool CheckSpawnable(WorldData world, HexData hex, GeoFeatureSpawnParameters parameter)
+    private static bool CheckSpawnable(WorldData world, Hex hex, GeoFeatureSpawnParameters parameter)
     {
         if (parameter.SeaAdjacentRequirement != Requirement.Any)
         {

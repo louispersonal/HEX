@@ -8,12 +8,12 @@ public class PrecipitationGen
     {
         Dictionary<AxialCoordinate, float> basePrecs = new Dictionary<AxialCoordinate, float>();
         
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             if (data.ExtraData.IsSea) continue;
 
             int numHexesUpwindFromSea = 1;
-            HexData currentHex = data;
+            Hex currentHex = data;
             int maxHexesFromSea = Mathf.RoundToInt(parameters.MaxPrecipitationDistanceFromSea * grid.Width);
 
             while (numHexesUpwindFromSea < maxHexesFromSea)
@@ -22,7 +22,7 @@ public class PrecipitationGen
                 Vector2 upWindDirection = -windDirection;
                 AxialCoordinate neighborCoord = currentHex.Coord + AxialGeometry.ConvertVectorToAxialDirection(upWindDirection);
 
-                if (grid.TryGetHex(neighborCoord, out HexData neighborHex))
+                if (grid.TryGetHex(neighborCoord, out Hex neighborHex))
                 {
                     if (neighborHex.ExtraData.IsSea) break;
 
@@ -36,7 +36,7 @@ public class PrecipitationGen
             basePrecs[data.Coord] = (maxHexesFromSea - numHexesUpwindFromSea) / (float)maxHexesFromSea;
         }
 
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             if (!data.ExtraData.IsSea) data.ExtraData.SetPrecipitation(basePrecs[data.Coord]);
         }

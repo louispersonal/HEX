@@ -24,7 +24,7 @@ public class WorldData
 
     private Dictionary<AxialCoordinate, HexResources> _resourcesByHex = new();
     
-    public WorldData(List<HexData> hexDataList)
+    public WorldData(List<Hex> hexDataList)
     {
         _grid = new HexGrid(hexDataList);
         _pathFinder = new Pathfinder(_grid);
@@ -50,13 +50,13 @@ public class WorldData
 public class WorldSaveData
 {
     public string WorldName;
-    public List<HexData> Hexes;
+    public List<Hex> Hexes;
     public List<River> Rivers;
     public List<Lake> Lakes;
     public List<GeoFeature> GeoFeatures;
     public Region[] Regions;
 
-    public WorldSaveData(string name, List<HexData> hexes, List<River> rivers, List<Lake> lakes, List<GeoFeature> geoFeatures, Region[] regions)
+    public WorldSaveData(string name, List<Hex> hexes, List<River> rivers, List<Lake> lakes, List<GeoFeature> geoFeatures, Region[] regions)
     {
         WorldName = name;
         Hexes = hexes;

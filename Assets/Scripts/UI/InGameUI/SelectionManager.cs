@@ -48,7 +48,7 @@ public class SelectionManager : MonoBehaviour
         HexGrid grid = GameController.Instance.SessionManager.WorldData.Grid;
 
         if (!HexGridGeometry.TryGetHexAtScenePoint( grid, HexGridView.MouseToPlane(Camera.main, 0f),
-                out HexData target))
+                out Hex target))
         {
             return false;
         }

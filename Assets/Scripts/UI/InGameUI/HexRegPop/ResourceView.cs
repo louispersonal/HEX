@@ -12,10 +12,10 @@ public class ResourceView : MonoBehaviour
     
     private List<ResourcePill> _activePills = new();
     
-    public void Populate(ResourceBundle resourceBundle)
+    public void Populate(ResourcePreview resourcePreview)
     {
         ClearAll();
-        foreach (ResourceID resource in resourceBundle.GetAllResourceIDs())
+        foreach (ResourceID resource in resourcePreview.Contents.GetAllResourceIDs())
         {
             var pill = Instantiate(_resourcePillPrefab, _content.transform);
             _activePills.Add(pill);

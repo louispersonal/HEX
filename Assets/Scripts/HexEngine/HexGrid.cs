@@ -10,7 +10,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class HexGrid
 {
-    public HexData[] Grid { get; private set; }
+    public Hex[] Grid { get; private set; }
 
 
 
@@ -24,18 +24,18 @@ public class HexGrid
     public int Width => ColBounds.max - ColBounds.min + 1;
     public int Height => RowBounds.max - RowBounds.min + 1;
 
-    public HexGrid(List<HexData> hexDataList)
+    public HexGrid(List<Hex> hexDataList)
     {
-        Grid = new HexData[hexDataList.Count];
+        Grid = new Hex[hexDataList.Count];
 
         SetBounds(hexDataList);
 
-        foreach (HexData hexData in hexDataList)
+        foreach (Hex hexData in hexDataList)
         {
             Grid[GetArrayIndex(hexData.Coord)] = hexData;
         }
     }
-    public bool TryGetHex(AxialCoordinate coord, out HexData hex)
+    public bool TryGetHex(AxialCoordinate coord, out Hex hex)
     {
         hex = null;
         if (!CheckIsInBounds(coord)) return false;
@@ -46,7 +46,7 @@ public class HexGrid
         return true;
     }
 
-    public HexData GetHex(AxialCoordinate coord)
+    public Hex GetHex(AxialCoordinate coord)
     {
         return Grid[GetArrayIndex(coord)];
     }
@@ -63,12 +63,12 @@ public class HexGrid
         return oddR.row >= RowBounds.min && oddR.row <= RowBounds.max && oddR.col >= ColBounds.min && oddR.col <= ColBounds.max;
     }
 
-    public List<HexData> GetHexData()
+    public List<Hex> GetHexData()
     { 
         return Grid.ToList();
     }
 
-    public IEnumerable<HexData> GetValidHexes()
+    public IEnumerable<Hex> GetValidHexes()
     {
         foreach (var data in Grid)
         {
@@ -80,7 +80,7 @@ public class HexGrid
     {
         List <AxialCoordinate> coordList = new List<AxialCoordinate>();
 
-        foreach (HexData hexData in GetValidHexes())
+        foreach (Hex hexData in GetValidHexes())
         {
             coordList.Add(hexData.Coord);
         }
@@ -88,7 +88,7 @@ public class HexGrid
         return coordList;
     }
 
-    private void SetBounds(List<HexData> hexDataList)
+    private void SetBounds(List<Hex> hexDataList)
     {
         // Find odd-r bounds
         var first = AxialGeometry.AxialToOddR(hexDataList[0].Coord);
@@ -97,7 +97,7 @@ public class HexGrid
         ColBounds.min = first.col;
         ColBounds.max = first.col;
 
-        foreach (HexData hexData in hexDataList)
+        foreach (Hex hexData in hexDataList)
         {
             var o = AxialGeometry.AxialToOddR(hexData.Coord);
             if (o.row < RowBounds.min) RowBounds.min = o.row;
@@ -144,14 +144,14 @@ public class HexGrid
         return CartesianGeometry.GetPerpendicularVector(new Vector2(dfdx, dfdy));
     }
 
-    public int NumHexesFromSea(HexData data, int maxNumber, out HexData seaHex)
+    public int NumHexesFromSea(Hex data, int maxNumber, out Hex seaHex)
     {
         seaHex = null;
         if (data.ExtraData.IsSea) return 0;
         for (int n = 1; n < maxNumber; n++)
         {
-            List<HexData> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(this, data, n);
-            foreach (HexData hex in hexes)
+            List<Hex> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(this, data, n);
+            foreach (Hex hex in hexes)
             {
                 if (hex.ExtraData.IsSea)
                 {
@@ -163,13 +163,13 @@ public class HexGrid
         return maxNumber;
     }
 
-    public int NumHexesFromFreshWater(HexData data)
+    public int NumHexesFromFreshWater(Hex data)
     {
         int maxNumber = 8;
         for (int n = 1; n < maxNumber; n++)
         {
-            List<HexData> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(this, data, n);
-            foreach (HexData hex in hexes)
+            List<Hex> hexes = HexGridGeometry.HexesInRingOfRadiusOfHex(this, data, n);
+            foreach (Hex hex in hexes)
             {
 
             }

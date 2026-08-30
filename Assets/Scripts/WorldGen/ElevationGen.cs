@@ -24,7 +24,7 @@ public class ElevationGen
             float minElevation = float.MaxValue;
             float maxElevation = float.MinValue;
             
-            foreach (HexData data in grid.GetValidHexes())
+            foreach (Hex data in grid.GetValidHexes())
             {
                 layer.ElevationMap[data.Coord] = FractalBrownianMotion.FBM(layer.CoordMap.Map[data.Coord], layer.LayerParams);
                 if (layer.ElevationMap[data.Coord] > maxElevation) maxElevation = layer.ElevationMap[data.Coord];
@@ -34,14 +34,14 @@ public class ElevationGen
             NormalizeElevationMap(layer.ElevationMap, minElevation, maxElevation);
         }
 
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             float elevation = FractalBrownianMotion.FBM(baseLayer.CoordMap.Map[data.Coord], baseLayer.LayerParams);
             elevation = elevation > 0.5f ? baseLayer.LayerWeight : 0f;
             baseLayer.ElevationMap[data.Coord] = elevation;
         }
 
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             float layerSum = baseLayer.ElevationMap[data.Coord];
             foreach (var layer in detailLayers)
@@ -75,7 +75,7 @@ public class ElevationGen
     
     public static void NormalizeMap(HexGrid grid, float highestElevation)
     {
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             data.ExtraData.SetElevation(data.ExtraData.Elevation / highestElevation);
         }

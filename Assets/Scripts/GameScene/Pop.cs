@@ -23,14 +23,14 @@ public class Pop : Pawn
     
     public AxialCoordinate Location;
 
-    public HexData CurrentHex =>
+    public Hex CurrentHex =>
         GameController.Instance.SessionManager.WorldData.Grid.GetHex(Location);
     
     private List<Assignment> _assignments = new();
     
     public List<Assignment> Assignments => _assignments;
 
-    public ResourceBundle Stockpile {get; private set;}
+    public ResourceStockpile Stockpile {get; private set;}
     
     public Pop(string name, int startingPopulation, CultureID culure, ReligionID religion)
     {
@@ -38,7 +38,7 @@ public class Pop : Pawn
         Population = startingPopulation;
         CultureID = culure;
         ReligionID = religion;
-        Stockpile = new ResourceBundle(BundleType.Stockpile);
+        Stockpile = new ResourceStockpile(new ResourceCollection(), this);
     }
     
     public override void Tick(TickInfo tickInfo)

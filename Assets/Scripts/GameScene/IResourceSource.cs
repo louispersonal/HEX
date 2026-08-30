@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IResourceSource
+public interface IResourceSource : ITickable
 {
-    public int Capacity { get; }
-    public int Count { get; }
-    public ResourceBundle PreviewAvailableResources();
-    public ResourceBundle Extract(ResourceBundle request);
+    public ResourcePreview PreviewAvailableResources();
+    public void AddExtractRequest(ResourceRequest request);
+    public void SpawnSource();
     public void RegenerateSource();
+    public void ResolveRequests();
 }

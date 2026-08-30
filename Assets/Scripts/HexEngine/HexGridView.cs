@@ -167,7 +167,7 @@ public class HexGridView : MonoBehaviour
 
 	void SpawnCoord(AxialCoordinate c)
 	{
-		if (_liveCoords.Contains(c) || !HexGrid.TryGetHex(c, out HexData data)) return;
+		if (_liveCoords.Contains(c) || !HexGrid.TryGetHex(c, out Hex data)) return;
 
 		if (_liveCoords.Count >= _maxVisibleHexes)
 		{

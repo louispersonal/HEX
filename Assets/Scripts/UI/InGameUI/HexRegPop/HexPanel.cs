@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HexPanel : Panel
 {
-    public void Populate(HexData hexData)
+    public void Populate(Hex hex)
     {
         
     }

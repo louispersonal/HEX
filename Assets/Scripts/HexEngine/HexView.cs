@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class HexView : MonoBehaviour, ISelectable
 {
-	public HexData Data { get; private set; }
+	public Hex Data { get; private set; }
 
     public WorldData WorldData { get { return Data.WorldData; } }
     public GameData GameData { get { return GameController.Instance.SessionManager.GameData; } }
@@ -68,7 +68,7 @@ public class HexView : MonoBehaviour, ISelectable
 	
     public static float SceneSize = 3.695f; //1 unit in unity world space - compute from vertical hex size in pixels/200
     public static float InnerRadius => 0.8660254f * SceneSize;
-    public void Initialize(HexData data, bool enableParticles)
+    public void Initialize(Hex data, bool enableParticles)
 	{
 		Data = data;
 		gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Coord);

@@ -11,21 +11,21 @@ public class RiverGen
         int riverIndex = 0;
         int lakeIndex = 0;
 
-        List<HexData> candidateHexes = new List<HexData>();
+        List<Hex> candidateHexes = new List<Hex>();
 
-        foreach (HexData data in world.Grid.GetValidHexes())
+        foreach (Hex data in world.Grid.GetValidHexes())
         {
             if (RiverOriginViability(data, parameters)) candidateHexes.Add(data);
         }
 
-        ListExtensions.Shuffle<HexData>(candidateHexes);
+        ListExtensions.Shuffle<Hex>(candidateHexes);
 
         for (int c = 0; c < parameters.TargetNumberRivers && c < candidateHexes.Count; c++)
         {
             RiverID newID = new RiverID(riverIndex);
             River newRiver = new River(newID, candidateHexes[c].Coord);
 
-            BuildRiver(newRiver, world, parameters, out HexData lakeHex);
+            BuildRiver(newRiver, world, parameters, out Hex lakeHex);
             newRiver.PopulateRiverConnections();
             
             world.Rivers.Add(newID, newRiver, newRiver.Coords);
@@ -41,7 +41,7 @@ public class RiverGen
         }
     }
 
-    private static bool RiverOriginViability(HexData hex, WorldGenParameters parameters)
+    private static bool RiverOriginViability(Hex hex, WorldGenParameters parameters)
     {
         return (hex.ExtraData.Elevation > parameters.MinimumElevationRiverSource
             || hex.ExtraData.Precipitation > parameters.MinimumPrecipitationRiverSource);
@@ -51,7 +51,7 @@ public class RiverGen
         River newRiver,
         WorldData world,
         WorldGenParameters parameters,
-        out HexData lakeHex)
+        out Hex lakeHex)
     {
         int riverLength = 1;
         AxialCoordinate currentCoord = newRiver.Source;
@@ -66,17 +66,17 @@ public class RiverGen
             if (CheckAdjacentSea(currentCoord, world))
                 break;
 
-            if (!world.Grid.TryGetHex(currentCoord, out HexData currentHex))
+            if (!world.Grid.TryGetHex(currentCoord, out Hex currentHex))
                 break;
 
-            HexData bestDownhill = null;
-            HexData bestTolerated = null;
+            Hex bestDownhill = null;
+            Hex bestTolerated = null;
 
             float currentElevation = currentHex.ExtraData.Elevation;
             float lowestDownhillElevation = currentElevation;
             float lowestToleratedElevation = currentElevation + uphillTolerance;
 
-            foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, currentHex, 1))
+            foreach (Hex neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, currentHex, 1))
             {
                 if (neighbor == null) continue;
                 if (world.Rivers.ContainsAt(neighbor.Coord)) continue;
@@ -98,7 +98,7 @@ public class RiverGen
                 }
             }
 
-            HexData nextHex = null;
+            Hex nextHex = null;
 
             if (bestDownhill != null)
             {
@@ -125,8 +125,8 @@ public class RiverGen
 
     private static bool CheckAdjacentSea(AxialCoordinate coord, WorldData world)
     {
-        world.Grid.TryGetHex(coord, out HexData currentHex);
-        foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, currentHex, 1))
+        world.Grid.TryGetHex(coord, out Hex currentHex);
+        foreach (Hex neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, currentHex, 1))
         {
             if (neighbor.ExtraData.IsSea) return true;
         }

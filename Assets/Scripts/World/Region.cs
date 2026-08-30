@@ -91,24 +91,24 @@ public class Region
         return _riverLength;
     }
 
-    public List<HexData> GetHexesInRegion(WorldData world)
+    public List<Hex> GetHexesInRegion(WorldData world)
     {
-        List<HexData> result = new();
-        Stack<HexData> stack = new();
+        List<Hex> result = new();
+        Stack<Hex> stack = new();
 
-        world.Grid.TryGetHex(SeedCoord, out HexData seedHex);
+        world.Grid.TryGetHex(SeedCoord, out Hex seedHex);
         stack.Push(seedHex);
         
         while (stack.Count > 0)
         {
-            HexData hex = stack.Pop();
+            Hex hex = stack.Pop();
 
             if (hex == null) continue;
             if (hex.ExtraData.RegionId != ID) continue;
 
             result.Add(hex);
 
-            foreach (HexData neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, hex, 1))
+            foreach (Hex neighbor in HexGridGeometry.HexesInRingOfRadiusOfHex(world.Grid, hex, 1))
             {
                 if (neighbor != null && neighbor.ExtraData.RegionId == ID && !result.Contains(neighbor))
                 {

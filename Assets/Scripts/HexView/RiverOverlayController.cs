@@ -6,12 +6,12 @@ public class RiverOverlayController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer[] _riverOverlays;
 
-    public void InitializeOverlays(HexData hexData)
+    public void InitializeOverlays(Hex hex)
     {
         DisableAll();
-        if (!hexData.WorldData.Rivers.TryGetObjectAt(hexData.Coord, out River river)) return;
+        if (!hex.WorldData.Rivers.TryGetObjectAt(hex.Coord, out River river)) return;
         
-        foreach (AxialCardinalDirections direction in river.GetConnections(hexData.Coord))
+        foreach (AxialCardinalDirections direction in river.GetConnections(hex.Coord))
         {
             _riverOverlays[(int)direction].gameObject.SetActive(true);
         }

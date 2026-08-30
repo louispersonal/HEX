@@ -24,7 +24,7 @@ public class UiView : MonoBehaviour
         
     }
 
-    public void OpenFlyOut(HexData hex, Region region, Pop pop)
+    public void OpenFlyOut(Hex hex, Region region, Pop pop)
     {
         _hrpflyout.OpenFlyOut();
         _hrpflyout.SetSelection(hex, region, pop);

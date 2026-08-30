@@ -8,15 +8,15 @@ public class TemperatureGen
     {
         Dictionary<AxialCoordinate, float> baseTemps = new Dictionary<AxialCoordinate, float>();
         Dictionary<AxialCoordinate, float> windAdjustedTemps = new Dictionary<AxialCoordinate, float>();
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             float latitude = grid.GetLatitude01(data.Coord);
             baseTemps[data.Coord] = ComputeBaseTemperature(latitude, data.ExtraData.Elevation, data.Coord, grid.Width);
         }
 
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
-            float coastalDistance = grid.NumHexesFromSea(data, 8, out HexData seaHex);
+            float coastalDistance = grid.NumHexesFromSea(data, 8, out Hex seaHex);
             if (coastalDistance > 0 && seaHex != null)
             {
                 float coastalFactor = 1f / (1f + (coastalDistance / (grid.Width / parameters.CoastalDenominator)));
@@ -26,7 +26,7 @@ public class TemperatureGen
 
         for (int windPasses = 0; windPasses < 4; windPasses++)
         {
-            foreach (HexData data in grid.GetValidHexes())
+            foreach (Hex data in grid.GetValidHexes())
             {
                 Vector2 windDirection = grid.GetWindDirection(data.Coord);
                 Vector2 upWindDirection = -windDirection;
@@ -38,7 +38,7 @@ public class TemperatureGen
                 }
             } 
 
-            foreach (HexData data in grid.GetValidHexes())
+            foreach (Hex data in grid.GetValidHexes())
             {
                 if (windAdjustedTemps.TryGetValue(data.Coord, out float windAdjustedTemp))
                 {
@@ -47,7 +47,7 @@ public class TemperatureGen
             }
         }
 
-        foreach (HexData data in grid.GetValidHexes())
+        foreach (Hex data in grid.GetValidHexes())
         {
             data.ExtraData.SetTemperature(baseTemps[data.Coord]);
         }

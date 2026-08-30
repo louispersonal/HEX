@@ -68,7 +68,7 @@ public class SimulationMenuController : SubMenu
     {
         float optimumTemp = 0.7f;
         float optimumPrec = 0.5f;
-        (float meanError, HexData hex) optimumHex = (float.MaxValue, null);
+        (float meanError, Hex hex) optimumHex = (float.MaxValue, null);
         foreach (var hexData in GameController.Instance.SessionManager.WorldData.Grid.GetValidHexes())
         {
             float tempError = hexData.ExtraData.Temperature - optimumTemp;

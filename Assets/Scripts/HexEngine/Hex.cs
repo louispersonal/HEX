@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class HexData : BaseHexData , IResourceSource
+public class Hex : BaseHexData
 {
     [SerializeField] private HexExtraData _extraData;
 
@@ -11,12 +11,14 @@ public class HexData : BaseHexData , IResourceSource
 
     public ref HexExtraData ExtraData => ref _extraData;
 
-    public HexData(AxialCoordinate a) : base(a)
+    public HexVegetationSource VegetationSource;
+    
+    public Hex(AxialCoordinate a) : base(a)
     {
         _extraData = new HexExtraData();
     }
 
-    public HexData(int q, int r) : base(q, r)
+    public Hex(int q, int r) : base(q, r)
     {
         _extraData = new HexExtraData();
     }
@@ -30,24 +32,11 @@ public class HexData : BaseHexData , IResourceSource
         }
     }
 
-    // Resource Source
-    
-    public int Capacity { get; }
-    
-    public int Count { get; }
-    public ResourceBundle PreviewAvailableResources()
+    public ResourcePreview SeeAllAvailableResources()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public ResourceBundle Extract(ResourceBundle request)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void RegenerateSource()
-    {
-        throw new System.NotImplementedException();
+        List<ResourcePreview> allPreviews = new List<ResourcePreview>();
+        allPreviews.Add(VegetationSource.PreviewAvailableResources());
+        return  new ResourcePreview(allPreviews);
     }
 }
 

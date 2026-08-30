@@ -12,7 +12,7 @@ public class RegionGen
         List<Region> regions = new List<Region>();
         int worldSize = world.Grid.Width * world.Grid.Height;
         int maxRegionSize = Mathf.RoundToInt(parameters.MaxRegionSizeRatio * worldSize);
-        foreach (HexData data in world.Grid.GetValidHexes())
+        foreach (Hex data in world.Grid.GetValidHexes())
         {
             if (data.ExtraData.RegionId == 0 && !data.ExtraData.IsSea) // this hex does not belong to a region yet
             {
@@ -31,25 +31,25 @@ public class RegionGen
         return regions.ToArray();
     }
 
-    private static void FillRegion(WorldData world, HexData startHex, Region newRegion, int maxRegionSize)
+    private static void FillRegion(WorldData world, Hex startHex, Region newRegion, int maxRegionSize)
     {
         Biome targetBiome = startHex.ExtraData.Biome;
         newRegion.Biome = targetBiome;
 
-        Stack<HexData> stack = new Stack<HexData>();
+        Stack<Hex> stack = new Stack<Hex>();
         startHex.ExtraData.SetRegionID(newRegion.ID);
         stack.Push(startHex);
 
         while (stack.Count > 0 && newRegion.Size < maxRegionSize)
         {
-            HexData hex = stack.Pop();
+            Hex hex = stack.Pop();
             newRegion.Size++;
             newRegion.TotalLowVegetation += hex.ExtraData.LowVegetation;
             newRegion.TotalHighVegetation += hex.ExtraData.HighVegetation;
 
             foreach (AxialCoordinate dir in AxialDirections.Directions)
             {
-                HexData neighbor = world.Grid.TryGetHex(hex.Coord + dir, out var outHex)? outHex : null;
+                Hex neighbor = world.Grid.TryGetHex(hex.Coord + dir, out var outHex)? outHex : null;
 
                 if (neighbor == null) continue;
                 if (neighbor.ExtraData.RegionId != 0) continue;
@@ -63,7 +63,7 @@ public class RegionGen
 
     public static void PopulateRegion(WorldData world, StaticDatabases databases, Region region)
     {
-        if (!world.Grid.TryGetHex(region.SeedCoord, out HexData seedHex)) return;
+        if (!world.Grid.TryGetHex(region.SeedCoord, out Hex seedHex)) return;
         var biomeVegetationProfile = VegetationProfiles.Profiles[region.Biome];
     }
 

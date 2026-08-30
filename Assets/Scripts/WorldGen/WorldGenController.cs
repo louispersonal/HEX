@@ -31,7 +31,7 @@ public class WorldGenController : MonoBehaviour
         _currentStatus = "Starting";
         _amountDone = 0f;
         
-        List<HexData> newHexData = HexGridGeometry.GenerateRectangularGrid(worldWidthInHexes, Mathf.RoundToInt(worldWidthInHexes / WIDTH_HEIGHT_RATIO));
+        List<Hex> newHexData = HexGridGeometry.GenerateRectangularGrid(worldWidthInHexes, Mathf.RoundToInt(worldWidthInHexes / WIDTH_HEIGHT_RATIO));
 
         _newWorld = new WorldData(newHexData);
 
@@ -101,7 +101,7 @@ public class WorldGenController : MonoBehaviour
         float highestPrecipitation = 0f;
         float strongestWind = 0f;
 
-        foreach (HexData data in world.Grid.GetValidHexes())
+        foreach (Hex data in world.Grid.GetValidHexes())
         {
             if (data.ExtraData.Elevation > highestElevation) highestElevation = data.ExtraData.Elevation;
             if (data.ExtraData.Temperature > highestTemperature) highestTemperature = data.ExtraData.Temperature;

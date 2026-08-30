@@ -10,7 +10,7 @@ public class VegetationGen : MonoBehaviour
 
     public static void GenerateVegetation(WorldData world, WorldGenParameters parameters)
     {
-        foreach (HexData data in world.Grid.GetValidHexes())
+        foreach (Hex data in world.Grid.GetValidHexes())
         {
             if (data.ExtraData.IsSea) continue;
             float availableWater = world.Rivers.ContainsAt(data.Coord) ? Mathf.Max(RIVER_BONUS, data.ExtraData.Precipitation) : data.ExtraData.Precipitation;
