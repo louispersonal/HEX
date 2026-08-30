@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEditor.iOS;
 using UnityEngine;
 
@@ -19,12 +20,12 @@ public class ResourceBundle
         _resources =  new Dictionary<ResourceID, float>();
     }
     
-    public float Get(ResourceID resource)
+    private float Get(ResourceID resource)
     {
         return _resources.GetValueOrDefault(resource, 0f);
     }
 
-    public void Deposit(ResourceID resource, float amount)
+    private void Deposit(ResourceID resource, float amount)
     {
         if (amount <= 0f) return;
 
@@ -36,7 +37,7 @@ public class ResourceBundle
         else _resources[resource] = amount;
     }
 
-    public float Remove(ResourceID resource, float amount)
+    private float Remove(ResourceID resource, float amount)
     {
         if (!_resources.TryGetValue(resource, out float existing)) return 0f;
         
@@ -61,17 +62,28 @@ public class ResourceBundle
     
     public void Add(ResourceBundle other)
     {
+        Debug.Assert((other.Type != BundleType.Deposit));
+        
         foreach (ResourceID resource in other.GetAllResourceIDs())
         {
             Deposit(resource, other.Get(resource));
+        }
+    }
+
+    public void Remove(ResourceBundle other)
+    {
+        Debug.Assert((other.Type != BundleType.Request));
+        
+        foreach (ResourceID resource in other.GetAllResourceIDs())
+        {
+            Remove(resource, other.Get(resource));
         }
     }
 }
 
 public enum BundleType
 {
-    Preview,
-    Transaction,
-    Request,
-    Stockpile
+    Request, // How much I want you to give
+    Deposit, // How much I'm giving you
+    Stockpile // How much I have
 }
