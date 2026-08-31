@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ITickable
 {
-    public TickableType TickableType { get; }
+    public int Order { get; }
     public void Tick(TickInfo tickInfo);
 }

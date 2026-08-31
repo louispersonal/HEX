@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ResourceNode : IResourceSource
 {
-    public TickableType TickableType { get; }
+    public int Order => 2;
+    
     public void Tick(TickInfo tickInfo)
     {
         throw new System.NotImplementedException();

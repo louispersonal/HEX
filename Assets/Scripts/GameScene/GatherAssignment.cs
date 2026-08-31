@@ -38,6 +38,6 @@ public class GatherAssignment : Assignment
 
     private float CalculateMaximumGatherable(ResourceID id, Pop pop)
     {
-        return pop.Culture.GatheringProficiency[id];
+        return pop.Culture.GatheringProficiency[id] * Workers;
     }
 }

@@ -14,6 +14,19 @@ public class Culture
     public int Depth;
     
     public Dictionary<ResourceID, float> GatheringProficiency { get; private set; }
+
+    public Culture(CultureID culture)
+    {
+        GatheringProficiency = new Dictionary<ResourceID, float>()
+        {
+            { ResourceIDMap.Greens, 0.2f },
+            { ResourceIDMap.Fruit, 0.2f },
+            { ResourceIDMap.Fungus, 0.2f },
+            { ResourceIDMap.Seeds, 0.2f },
+            { ResourceIDMap.Roots, 0.2f },
+            { ResourceIDMap.Grubs, 0.2f }
+        };
+    }
 }
 
 public readonly struct CultureID : IEquatable<CultureID>

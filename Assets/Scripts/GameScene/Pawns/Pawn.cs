@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Pawn : ITickable
 {
-    public TickableType TickableType => TickableType.Simulator;
-
+    public int Order => 1;
+    
     public virtual void Tick(TickInfo tickInfo)
     {
         Upkeep(tickInfo);

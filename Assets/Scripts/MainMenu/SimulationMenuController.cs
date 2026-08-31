@@ -21,9 +21,8 @@ public class SimulationMenuController : SubMenu
         CultureID seedCultureID = new CultureID(0);
         ReligionID seedReligionID = new ReligionID(0);
 
-        Culture seedCulture = new Culture();
+        Culture seedCulture = new Culture(seedCultureID);
         seedCulture.Name = "Bogoma";
-        seedCulture.ID = seedCultureID;
 
         Religion seedReligion = new Religion();
         seedReligion.Name = "Harmana";

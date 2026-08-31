@@ -16,11 +16,13 @@ public class Hex : BaseHexData
     public Hex(AxialCoordinate a) : base(a)
     {
         _extraData = new HexExtraData();
+        VegetationSource = new HexVegetationSource(this);
     }
 
     public Hex(int q, int r) : base(q, r)
     {
         _extraData = new HexExtraData();
+        VegetationSource = new HexVegetationSource(this);
     }
 
     public float FreshWater

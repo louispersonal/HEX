@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceCollection
 {
-    [SerializeField] private Dictionary<ResourceID, float> _resources;
+    [SerializeField] private Dictionary<ResourceID, float> _resources = new();
 
     public bool IsEmpty => _resources.Count == 0;
     

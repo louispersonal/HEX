@@ -11,7 +11,7 @@ public class ResourceDelivery
     
     public ResourceDelivery(ResourceCollection contents, Pop sender)
     {
-        Contents = new ResourceCollection();
+        Contents = contents;
     }
     
     public void Destroy()

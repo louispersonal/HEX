@@ -6,8 +6,8 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class HexVegetationSource : IResourceSource
 {
-    public TickableType TickableType => TickableType.Simulator;
-
+    public int Order => 2;
+    
     public AxialCoordinate Coord {get; private set;}
     
     public Hex AssociatedHex => GameController.Instance.SessionManager.WorldData.Grid.GetHex(Coord);
@@ -53,6 +53,8 @@ public class HexVegetationSource : IResourceSource
 
     public void AddExtractRequest(ResourceRequest request)
     {
+        GameController.Instance.SessionManager.GameData.Ticker.Register(this);
+        
         _pendingRequests.Add(request);
     }
     
@@ -88,6 +90,8 @@ public class HexVegetationSource : IResourceSource
         }
         
         _pendingRequests.Clear();
+        
+        GameController.Instance.SessionManager.GameData.Ticker.Remove(this);
     }
 
     public void Tick(TickInfo tickInfo)

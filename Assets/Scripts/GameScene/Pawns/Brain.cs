@@ -2,8 +2,8 @@ using System.Collections.Generic;
 
 public class Brain : ITickable
 {
-    public TickableType TickableType => TickableType.Brain;
-
+    public int Order => 0;
+    
     private readonly Pawn _pawn;
     public Pawn Pawn => _pawn;
 

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Ticker
 {
+    /*
+     * Might be worth considering changing the tick frequency for the upkeep and simulation steps
+     * Only gather / eat / take update stockpiles once a month
+     */
     public TickInfo TickInfo { get;  private set; }
 
-    private readonly List<ITickable> _brains;
-    private readonly List<ITickable> _simulators;
+    private List<List<ITickable>> _tickables;
     
     private readonly List<ITickable> _pendingRegistration;
     private readonly List<ITickable> _pendingRemoval;
@@ -17,8 +20,10 @@ public class Ticker
     public Ticker(TickInfo tickInfo)
     {
         TickInfo = tickInfo;
-        _brains = new List<ITickable>();
-        _simulators = new List<ITickable>();
+        _tickables = new List<List<ITickable>>();
+        _tickables.Add(new List<ITickable>());
+        _tickables.Add(new List<ITickable>());
+        _tickables.Add(new List<ITickable>());
         
         _pendingRegistration = new List<ITickable>();
         _pendingRemoval = new List<ITickable>();
@@ -33,37 +38,41 @@ public class Ticker
         }
     }
 
+    public void Remove(ITickable tickable)
+    {
+        if (!_isTicking) InstantRemove(tickable);
+        else
+        {
+            _pendingRemoval.Add(tickable);
+        }
+    }
+    
     private void InstantRegister(ITickable tickable)
     {
-        switch (tickable.TickableType)
-        {
-            case TickableType.Brain:
-                _brains.Add(tickable);
-                break;
-            case TickableType.Simulator:
-                _simulators.Add(tickable);
-                break;
-        }
+        if (!_tickables[tickable.Order].Contains(tickable))
+            _tickables[tickable.Order].Add(tickable);
+    }
+
+    private void InstantRemove(ITickable tickable)
+    {
+        if  (_tickables[tickable.Order].Contains(tickable))
+            _tickables[tickable.Order].Remove(tickable);
     }
 
     public void ProgressTick()
     {
-        _isTicking = true;
-        
         TickInfo.Increment();
-        
-        foreach (ITickable brain in _brains)
+
+        foreach (List<ITickable> TickPhase in _tickables)
         {
-            brain.Tick(TickInfo);
+            _isTicking = true;
+            foreach (ITickable tickable in TickPhase)
+            {
+                tickable.Tick(TickInfo);
+            }
+            _isTicking = false;
+            SyncPending();
         }
-        
-        foreach (ITickable simulator in _simulators)
-        {
-            simulator.Tick(TickInfo);
-        }
-        
-        _isTicking = false;
-        SyncPending();
     }
 
     private void SyncPending()
@@ -72,11 +81,13 @@ public class Ticker
         {
             InstantRegister(pending);
         }
-    }
-}
 
-public enum TickableType
-{
-    Brain,
-    Simulator
+        foreach (ITickable registration in _pendingRemoval)
+        {
+            InstantRemove(registration);
+        }
+        
+        _pendingRegistration.Clear();
+        _pendingRemoval.Clear();
+    }
 }
