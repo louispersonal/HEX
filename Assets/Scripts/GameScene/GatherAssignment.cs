@@ -18,11 +18,26 @@ public class GatherAssignment : Assignment
     public override void Tick(Pop pop)
     {
         Gather(pop);
-        
     }
 
     private void Gather(Pop pop)
     {
+        ResourceCollection gatherBill = new  ResourceCollection();
+        var preview = pop.CurrentHex.SeeAllAvailableResources();
+        foreach (var id in preview.Contents.GetAllResourceIDs())
+        {
+            if (id.Definition.HasTag(ResourceTag.Edible))
+            {
+                float amountCanBeGathered = CalculateMaximumGatherable(id);
+                gatherBill.Deposit(id,  amountCanBeGathered);
+            }
+        }
+        ResourceRequest request = new ResourceRequest(gatherBill, pop);
+        pop.CurrentHex.VegetationSource.AddExtractRequest(request);
+    }
 
+    private float CalculateMaximumGatherable(ResourceID id)
+    {
+        return 0f;
     }
 }
