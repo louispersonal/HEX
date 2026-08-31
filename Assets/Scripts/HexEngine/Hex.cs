@@ -36,7 +36,7 @@ public class Hex : BaseHexData
     {
         List<ResourcePreview> allPreviews = new List<ResourcePreview>();
         allPreviews.Add(VegetationSource.PreviewAvailableResources());
-        return  new ResourcePreview(allPreviews);
+        return new ResourcePreview(allPreviews);
     }
 }
 
