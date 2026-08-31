@@ -55,11 +55,6 @@ public class HexVegetationSource : IResourceSource
     {
         _pendingRequests.Add(request);
     }
-
-    public void SpawnSource()
-    {
-        
-    }
     
     public void RegenerateSource()
     {
