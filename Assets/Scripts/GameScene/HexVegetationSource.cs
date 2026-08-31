@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class HexVegetationSource : IResourceSource
 {
@@ -53,10 +54,32 @@ public class HexVegetationSource : IResourceSource
     {
         
     }
-
+    
     public void ResolveRequests()
     {
+        ResourceCollection productionSnapshot = PreviewAvailableResources().Contents;
+        _pendingRequests.Shuffle();
+        foreach (var request in _pendingRequests)
+        {
+            var deliveryContents = new ResourceCollection();
+            
+            bool completeFulfilment = true;
+            foreach (ResourceID resource in request.Contents.GetAllResourceIDs())
+            {
+                completeFulfilment &= productionSnapshot.Withdraw(resource,
+            request.Contents.Get(resource), out var amountRemoved);
+                
+                deliveryContents.Deposit(resource, amountRemoved);
+            }
         
+            request.Destroy();
+        
+            var delivery = new ResourceDelivery(deliveryContents, null);
+            
+            request.Sender.Stockpile.ReceiveDelivery(delivery);
+
+            if (!completeFulfilment) break;
+        }
     }
 
     public void Tick(TickInfo tickInfo)

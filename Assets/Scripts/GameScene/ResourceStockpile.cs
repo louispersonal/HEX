@@ -14,7 +14,7 @@ public class ResourceStockpile
         Owner = owner;
     }
     
-    public void ReceiveResources(ResourceDelivery delivery)
+    public void ReceiveDelivery(ResourceDelivery delivery)
     {
         foreach (ResourceID resource in delivery.Contents.GetAllResourceIDs())
         {
@@ -24,7 +24,7 @@ public class ResourceStockpile
         delivery.Destroy();
     }
     
-    public bool SendDelivery(ResourceRequest request, out ResourceDelivery delivery)
+    public bool RequestDelivery(ResourceRequest request, out ResourceDelivery delivery)
     {
         var deliveryContents = new ResourceCollection();
         bool completeFulfilment = true;
