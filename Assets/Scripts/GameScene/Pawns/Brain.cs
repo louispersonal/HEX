@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class Brain : ITickable
+public class Brain : IDecisionTick
 {
     public int Order => 0;
     
@@ -13,8 +13,8 @@ public class Brain : ITickable
     {
         _pawn = pawn;
     }
-
-    public virtual void Tick(TickInfo tickInfo)
+    
+    public virtual void DecisionTick(TickInfo tickInfo)
     {
         ProgressJobs(tickInfo);
     }

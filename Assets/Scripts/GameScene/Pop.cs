@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Pop : Pawn
 {
-    public float GatheringEfficiency = 1f;
-
     public string Name;
     
     public int Population { get; private set; }
@@ -41,14 +39,14 @@ public class Pop : Pawn
         Stockpile = new ResourceStockpile(new ResourceCollection(), this);
     }
     
-    public override void Tick(TickInfo tickInfo)
+    public override void AssignmentTick(TickInfo tickInfo)
     {
         foreach (var assignment in _assignments)
         {
             assignment.Tick(this);
         }
         
-        base.Tick(tickInfo);
+        base.AssignmentTick(tickInfo);
     }
 
     public int CheckAssignmentNumbers()
@@ -69,10 +67,10 @@ public class Pop : Pawn
         _assignments.Add(gather);
     }
 
-    protected override void Upkeep(TickInfo tickInfo)
+    public override void UpkeepTick(TickInfo tickInfo)
     {
         EatUpkeep();
-        base.Upkeep(tickInfo);
+        base.UpkeepTick(tickInfo);
     }
 
     private void EatUpkeep()

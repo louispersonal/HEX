@@ -12,10 +12,10 @@ public class PopBrain : Brain
         
     }
     
-    public override void Tick(TickInfo tickInfo)
+    public override void DecisionTick(TickInfo tickInfo)
     {
         ManageAssignments();
-        base.Tick(tickInfo);
+        base.DecisionTick(tickInfo);
     }
 
     private void ManageAssignments()

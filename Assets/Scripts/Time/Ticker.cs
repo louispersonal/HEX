@@ -10,7 +10,10 @@ public class Ticker
      */
     public TickInfo TickInfo { get;  private set; }
 
-    private List<List<ITickable>> _tickables;
+    private List<IDecisionTick> _decisionTickables = new();
+    private List<IAssignmentTick> _assignmentTickables = new();
+    private List<IResolutionTick> _resolutionTickables = new();
+    private List<IUpkeepTick> _upkeepTickables = new();
     
     private readonly List<ITickable> _pendingRegistration;
     private readonly List<ITickable> _pendingRemoval;
@@ -20,10 +23,6 @@ public class Ticker
     public Ticker(TickInfo tickInfo)
     {
         TickInfo = tickInfo;
-        _tickables = new List<List<ITickable>>();
-        _tickables.Add(new List<ITickable>());
-        _tickables.Add(new List<ITickable>());
-        _tickables.Add(new List<ITickable>());
         
         _pendingRegistration = new List<ITickable>();
         _pendingRemoval = new List<ITickable>();
@@ -49,30 +48,85 @@ public class Ticker
     
     private void InstantRegister(ITickable tickable)
     {
-        if (!_tickables[tickable.Order].Contains(tickable))
-            _tickables[tickable.Order].Add(tickable);
+        if (tickable is IDecisionTick decision)
+        {
+            _decisionTickables.Add(decision);
+        }
+        
+        if (tickable is IAssignmentTick assignment)
+        {
+            _assignmentTickables.Add(assignment);
+        }
+        
+        if (tickable is IResolutionTick resolution)
+        {
+            _resolutionTickables.Add(resolution);
+        }
+        
+        if (tickable is IUpkeepTick upkeepTick)
+        {
+            _upkeepTickables.Add(upkeepTick);
+        }
     }
 
     private void InstantRemove(ITickable tickable)
     {
-        if  (_tickables[tickable.Order].Contains(tickable))
-            _tickables[tickable.Order].Remove(tickable);
+        if (tickable is IDecisionTick decision)
+        {
+            _decisionTickables.Remove(decision);
+        }
+        
+        if (tickable is IAssignmentTick assignment)
+        {
+            _assignmentTickables.Remove(assignment);
+        }
+        
+        if (tickable is IResolutionTick resolution)
+        {
+            _resolutionTickables.Remove(resolution);
+        }
+        
+        if (tickable is IUpkeepTick upkeepTick)
+        {
+            _upkeepTickables.Remove(upkeepTick);
+        }
     }
 
     public void ProgressTick()
     {
         TickInfo.Increment();
-
-        foreach (List<ITickable> TickPhase in _tickables)
+        
+        _isTicking = true;
+        foreach (IDecisionTick decisionTick in _decisionTickables)
         {
-            _isTicking = true;
-            foreach (ITickable tickable in TickPhase)
-            {
-                tickable.Tick(TickInfo);
-            }
-            _isTicking = false;
-            SyncPending();
+            decisionTick.DecisionTick(TickInfo);
         }
+        _isTicking = false;
+        SyncPending();
+        
+        _isTicking = true;
+        foreach (IAssignmentTick assignmentTick in _assignmentTickables)
+        {
+            assignmentTick.AssignmentTick(TickInfo);
+        }
+        _isTicking = false;
+        SyncPending();
+        
+        _isTicking = true;
+        foreach (IResolutionTick resolutionTick in _resolutionTickables)
+        {
+            resolutionTick.ResolutionTick(TickInfo);
+        }
+        _isTicking = false;
+        SyncPending();
+        
+        _isTicking = true;
+        foreach (IUpkeepTick upkeepTick in _upkeepTickables)
+        {
+            upkeepTick.UpkeepTick(TickInfo);
+        }
+        _isTicking = false;
+        SyncPending();
     }
 
     private void SyncPending()

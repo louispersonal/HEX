@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public interface IResourceSource : ITickable
+public interface IResourceSource : IResolutionTick
 {
     public ResourcePreview PreviewAvailableResources();
     public void AddExtractRequest(ResourceRequest request);
