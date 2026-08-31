@@ -85,8 +85,6 @@ public class HexVegetationSource : IResourceSource
             var delivery = new ResourceDelivery(deliveryContents, null);
             
             request.Sender.Stockpile.ReceiveDelivery(delivery);
-
-            if (!completeFulfilment) break;
         }
         
         _pendingRequests.Clear();

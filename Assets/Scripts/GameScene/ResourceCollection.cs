@@ -30,18 +30,15 @@ public class ResourceCollection
         removed = 0f;
         if (!_resources.TryGetValue(resource, out float existing)) return false;
         
-         removed = Mathf.Min(existing, amount);
+        bool completeFulfilment = existing >= amount;
+        removed = Mathf.Min(existing, amount);
         float remaining = existing - removed;
 
         if (remaining == 0f) _resources.Remove(resource);
-        else if (remaining < 0f)
-        {
-            _resources.Remove(resource);
-            return false;
-        }
+
         else _resources[resource] = remaining;
 
-        return true;
+        return completeFulfilment;
     }
     
     public float Get(ResourceID resource)
