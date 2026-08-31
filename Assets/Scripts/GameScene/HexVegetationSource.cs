@@ -84,6 +84,7 @@ public class HexVegetationSource : IResourceSource
 
     public void Tick(TickInfo tickInfo)
     {
+        ResolveRequests();
         RegenerateSource();
     }
 }
