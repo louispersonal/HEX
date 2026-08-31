@@ -15,7 +15,7 @@ public class HexVegetationSource : IResourceSource
     private List<ResourceRequest> _pendingRequests = new List<ResourceRequest>();
     
     public float HighVegetation => AssociatedHex.ExtraData.HighVegetation;
-    public float LoqVegetation => AssociatedHex.ExtraData.LowVegetation;
+    public float LowVegetation => AssociatedHex.ExtraData.LowVegetation;
 
     public HexVegetationSource(Hex hex)
     {
@@ -25,18 +25,29 @@ public class HexVegetationSource : IResourceSource
     // Resource Source
     public ResourcePreview PreviewAvailableResources()
     {
-        var abundances = VegetationProfiles.Profiles[AssociatedHex.ExtraData.Biome]
+        var highVegAbundances = VegetationProfiles.Profiles[AssociatedHex.ExtraData.Biome]
             .HighVegetationProfile.Abundances;
 
-        float abundanceConversionFactor = 1;
+        float highVegAbundanceConversionFactor = 1 * HighVegetation;
 
         var availableContents = new ResourceCollection();
-        foreach (var abundance in abundances)
+        foreach (var abundance in highVegAbundances)
         {
             availableContents.Deposit(abundance.ResourceId,
-                abundance.RelativeAbundance * abundanceConversionFactor);
+                abundance.RelativeAbundance * highVegAbundanceConversionFactor);
         }
 
+        var lowVegAbundances = VegetationProfiles.Profiles[AssociatedHex.ExtraData.Biome]
+            .LowVegetationProfile.Abundances;
+
+        float lowVegAbundanceConversionFactor = 1 * LowVegetation;
+
+        foreach (var abundance in lowVegAbundances)
+        {
+            availableContents.Deposit(abundance.ResourceId,
+                abundance.RelativeAbundance * lowVegAbundanceConversionFactor);
+        }
+        
         return new ResourcePreview(availableContents);
     }
 
@@ -52,7 +63,7 @@ public class HexVegetationSource : IResourceSource
     
     public void RegenerateSource()
     {
-        
+        // vegetation isn't stockpiled
     }
     
     public void ResolveRequests()
@@ -80,6 +91,8 @@ public class HexVegetationSource : IResourceSource
 
             if (!completeFulfilment) break;
         }
+        
+        _pendingRequests.Clear();
     }
 
     public void Tick(TickInfo tickInfo)
