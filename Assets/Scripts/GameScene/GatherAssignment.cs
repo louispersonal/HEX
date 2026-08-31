@@ -28,7 +28,7 @@ public class GatherAssignment : Assignment
         {
             if (id.Definition.HasTag(ResourceTag.Edible))
             {
-                float amountCanBeGathered = CalculateMaximumGatherable(id);
+                float amountCanBeGathered = CalculateMaximumGatherable(id, pop);
                 gatherBill.Deposit(id,  amountCanBeGathered);
             }
         }
@@ -36,8 +36,8 @@ public class GatherAssignment : Assignment
         pop.CurrentHex.VegetationSource.AddExtractRequest(request);
     }
 
-    private float CalculateMaximumGatherable(ResourceID id)
+    private float CalculateMaximumGatherable(ResourceID id, Pop pop)
     {
-        return 0f;
+        return pop.Culture.GatheringProficiency[id];
     }
 }

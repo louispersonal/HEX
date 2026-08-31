@@ -12,12 +12,16 @@ public class Culture
     public List<CultureID> Children;
 
     public int Depth;
+    
+    public Dictionary<ResourceID, float> GatheringProficiency { get; private set; }
 }
 
 public readonly struct CultureID : IEquatable<CultureID>
 {
     public readonly int Value;
     public CultureID(int value) => Value = value;
+
+    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures[this];
 
     public bool Equals(CultureID other)
     {
