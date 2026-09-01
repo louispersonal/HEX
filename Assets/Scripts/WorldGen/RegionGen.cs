@@ -63,20 +63,29 @@ public class RegionGen
 
     public static void PopulateRegion(WorldData world, StaticDatabases databases, Region region)
     {
-        if (!world.Grid.TryGetHex(region.SeedCoord, out Hex seedHex)) return;
-        var biomeVegetationProfile = VegetationProfiles.Profiles[region.Biome];
-    }
-
-    private static float GetAvailablePreyMeat(Dictionary<SpeciesID, int> animals, StaticDatabases databases, Biome biome, int predatorSize)
-    {
-        float meatAvailable = 0f;
-        foreach (var animal in animals.Keys)
+        ResourceCollection regionSnapshot = region.PreviewAvailableResources();
+        ResourceStockpile regionVirtualStockpile = new ResourceStockpile(regionSnapshot, null);
+        
+        List<ResourceRequest> requests = new List<ResourceRequest>();
+        List<SpeciesDefinition> speciesCandidates = new List<SpeciesDefinition>();
+        foreach (SpeciesDefinition species in GameController.Instance.StaticDatabases.SpeciesDatabase.Items)
         {
-            AnimalArchetypeDefinition archetype = databases.AnimalArchetypeDatabase.Get
-                (databases.SpeciesDatabase.Get(animal).ArchetypeId);
-            if (archetype.Size <= predatorSize) meatAvailable += archetype.NutritionProvided * animals[animal];
+            if (species.Biomes.Contains(region.Biome))
+            {
+                speciesCandidates.Add(species);
+            }
         }
 
-        return meatAvailable;
+        speciesCandidates.Shuffle();
+        int numberOfSpecies = Random.Range(8, 12);
+        if (numberOfSpecies < speciesCandidates.Count)
+        {
+            for (int n = speciesCandidates.Count; n > numberOfSpecies; n--)
+            {
+                speciesCandidates.RemoveAt(n);
+            }
+        }
+        
+        
     }
 }

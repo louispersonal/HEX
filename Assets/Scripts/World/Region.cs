@@ -14,6 +14,8 @@ public class Region
     public float TotalHighVegetation;
 
     public AxialCoordinate SeedCoord;
+    
+    public Hex SeedHex => GameController.Instance.SessionManager.WorldData.Grid.GetHex(SeedCoord);
 
     public Dictionary<SpeciesID, int> Animals = new();
 
@@ -118,5 +120,33 @@ public class Region
         }
 
         return result;
+    }
+    
+    public ResourceCollection PreviewAvailableResources()
+    {
+        var highVegAbundances = VegetationProfiles.Profiles[SeedHex.ExtraData.Biome]
+            .HighVegetationProfile.Abundances;
+
+        float highVegAbundanceConversionFactor = 100 * TotalHighVegetation;
+
+        var availableContents = new ResourceCollection();
+        foreach (var abundance in highVegAbundances)
+        {
+            availableContents.Deposit(abundance.ResourceId,
+                abundance.RelativeAbundance * highVegAbundanceConversionFactor);
+        }
+
+        var lowVegAbundances = VegetationProfiles.Profiles[SeedHex.ExtraData.Biome]
+            .LowVegetationProfile.Abundances;
+
+        float lowVegAbundanceConversionFactor = 100 * TotalLowVegetation;
+
+        foreach (var abundance in lowVegAbundances)
+        {
+            availableContents.Deposit(abundance.ResourceId,
+                abundance.RelativeAbundance * lowVegAbundanceConversionFactor);
+        }
+        
+        return availableContents;
     }
 }
