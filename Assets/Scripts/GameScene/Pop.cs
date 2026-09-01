@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Pop : Pawn
+public class Pop : Pawn, IAssignmentTick
 {
     public string Name;
     
@@ -46,14 +46,12 @@ public class Pop : Pawn
         PersonsOfInterest.Add(leader);
     }
     
-    public override void AssignmentTick(TickInfo tickInfo)
+    public void AssignmentTick(TickInfo tickInfo)
     {
         foreach (var assignment in _assignments)
         {
             assignment.Tick(this);
         }
-        
-        base.AssignmentTick(tickInfo);
     }
 
     public int CheckAssignmentNumbers()

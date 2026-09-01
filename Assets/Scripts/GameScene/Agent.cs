@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pawn : IUpkeepTick
+public class Agent : Pawn
 {
-    public virtual void UpkeepTick(TickInfo tickInfo)
+    public override void UpkeepTick(TickInfo tickInfo)
     {
         
     }
