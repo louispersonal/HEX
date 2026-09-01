@@ -22,7 +22,7 @@ public class PopBrain : Brain
     {
         if (Pop.Assignments.Count == 0)
         {
-            Pop.CreateGatherAssignment(Pop.Population);
+            Pop.CreateGatherAssignment(Pop.WorkingPopulation);
         }
         
         int workerSurplus = Pop.CheckAssignmentNumbers();

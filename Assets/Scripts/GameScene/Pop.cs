@@ -7,7 +7,11 @@ public class Pop : Pawn
 {
     public string Name;
     
-    public int Population { get; private set; }
+    public int Population => WorkingPopulation + PersonsOfInterest.Count;
+    
+    public int WorkingPopulation { get; private set; }
+    
+    public List<PersonOfInterest> PersonsOfInterest { get; private set; }
 
     public string Faction;
 
@@ -30,13 +34,16 @@ public class Pop : Pawn
 
     public ResourceStockpile Stockpile {get; private set;}
     
-    public Pop(string name, int startingPopulation, CultureID culure, ReligionID religion)
+    public Pop(string name, int startingPopulation, CultureID culture, ReligionID religion)
     {
         Name = name;
-        Population = startingPopulation;
-        CultureID = culure;
+        WorkingPopulation = startingPopulation - 1; //subtract leader
+        CultureID = culture;
         ReligionID = religion;
         Stockpile = new ResourceStockpile(new ResourceCollection(), this);
+        PersonsOfInterest = new List<PersonOfInterest>();
+        PersonOfInterest leader = new PersonOfInterest("Kiko", PersonOfInterestRole.Leader);
+        PersonsOfInterest.Add(leader);
     }
     
     public override void AssignmentTick(TickInfo tickInfo)
@@ -58,7 +65,7 @@ public class Pop : Pawn
             assignedWorkers += assignment.Workers;
         }
         
-        return Population - assignedWorkers;
+        return WorkingPopulation - assignedWorkers;
     }
 
     public void CreateGatherAssignment(int workers)
