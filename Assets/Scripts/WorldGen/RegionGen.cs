@@ -106,7 +106,7 @@ public class RegionGen
             .Where(species => IsMeatOnly(species, databases))
             .ToList();
 
-        ResourceCollection regionalFood = region.PreviewAvailableResources();
+        ResourceCollection regionalFood = region.PreviewAvailableResources(world.Grid);
 
         PopulatePrimaryConsumers(
             region,
