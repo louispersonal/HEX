@@ -10,6 +10,8 @@ public struct SpeciesID : IEquatable<SpeciesID>
         Value = value;
     }
 
+    public SpeciesDefinition Definition => GameController.Instance.StaticDatabases.SpeciesDatabase.Get(this);
+    
     public bool Equals(SpeciesID other) => Value == other.Value;
 
     public override bool Equals(object obj) => obj is SpeciesID other && Equals(other);

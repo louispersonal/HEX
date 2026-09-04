@@ -30,7 +30,7 @@ public class WorldData
         _pathFinder = new Pathfinder(_grid);
     }
 
-    public Region GetRegion(int regionId)
+    public Region GetRegion(ushort regionId)
     {
         foreach (Region region in Regions)
         {

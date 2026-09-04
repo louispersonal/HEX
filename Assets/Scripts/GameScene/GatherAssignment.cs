@@ -7,8 +7,6 @@ public class GatherAssignment : Assignment
     public override string AssignmentName => "Gather";
 
     public override Color Color => Color.green;
-
-    private WorldData _worldData => GameController.Instance.SessionManager.WorldData;
     
     public GatherAssignment(int workerCount) : base(workerCount)
     {

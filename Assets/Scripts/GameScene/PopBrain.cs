@@ -20,14 +20,12 @@ public class PopBrain : Brain
 
     private void ManageAssignments()
     {
-        if (Pop.Assignments.Count == 0)
+        int workerSurplus = Pop.WorkerSurplus();
+        
+        if (workerSurplus > 0)
         {
             Pop.CreateGatherAssignment(Pop.WorkingPopulation);
         }
-        
-        int workerSurplus = Pop.CheckAssignmentNumbers();
-        if (workerSurplus > 0) Pop.Assignments.OfType<GatherAssignment>().First().AddWorkers(workerSurplus);
-        if (workerSurplus < 0) Pop.Assignments.OfType<GatherAssignment>().First().RemoveWorkers(-workerSurplus);
     }
 
     private void DecideMove()

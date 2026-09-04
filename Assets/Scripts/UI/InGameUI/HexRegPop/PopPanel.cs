@@ -39,7 +39,7 @@ public class PopPanel : Panel
         ResourceView.Populate(pop.Stockpile.GetPreview());
     }
 
-    private string FormatAssignmentText(List<Assignment> assignments)
+    private string FormatAssignmentText(IReadOnlyList<Assignment> assignments)
     {
         string text = "";
         for (int i = 0; i < assignments.Count; i++)

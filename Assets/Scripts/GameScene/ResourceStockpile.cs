@@ -41,6 +41,19 @@ public class ResourceStockpile
         return completeFulfilment;
     }
 
+    public bool Consume(ResourceRequest request)
+    {
+        bool completeFulfilment = true;
+        foreach (ResourceID resource in request.Contents.GetAllResourceIDs())
+        {
+            completeFulfilment &= Contents.Withdraw(resource,
+                request.Contents.Get(resource), out var amountRemoved);
+        }
+        
+        request.Destroy();
+        return completeFulfilment;
+    }
+
     public ResourcePreview GetPreview()
     {
         return new ResourcePreview(Contents);

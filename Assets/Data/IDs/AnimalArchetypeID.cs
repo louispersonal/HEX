@@ -10,6 +10,8 @@ public struct AnimalArchetypeID : IEquatable<AnimalArchetypeID>
         Value = value;
     }
 
+    public AnimalArchetypeDefinition Definition => GameController.Instance.StaticDatabases.AnimalArchetypeDatabase.Get(this);
+    
     public bool Equals(AnimalArchetypeID other) => Value == other.Value;
 
     public override bool Equals(object obj) => obj is AnimalArchetypeID other && Equals(other);

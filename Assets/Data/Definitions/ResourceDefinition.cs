@@ -13,6 +13,8 @@ public class ResourceDefinition : IDatabaseItem<ResourceID>
     [SerializeField] private ResourceTag _tags;
 
     public Sprite Thumbnail;
+
+    public bool IsEdible => HasTag(ResourceTag.Edible);
     
     public bool HasTag(ResourceTag tag)
     {

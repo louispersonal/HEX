@@ -25,20 +25,23 @@ public class Hex : BaseHexData
         VegetationSource = new HexVegetationSource(this);
     }
 
-    public float FreshWater
-    {
-        get
-        {
-            if (WorldData.Rivers.ContainsAt(Coord)) return float.PositiveInfinity;
-            return 0f;
-        }
-    }
-
     public ResourcePreview SeeAllAvailableResources()
     {
         List<ResourcePreview> allPreviews = new List<ResourcePreview>();
         allPreviews.Add(VegetationSource.PreviewAvailableResources());
         return new ResourcePreview(allPreviews);
+    }
+
+    public Dictionary<SpeciesID, int> Animals()
+    {
+        var region = WorldData.GetRegion(_extraData.RegionId);
+        Dictionary<SpeciesID, int> animals = new();
+        foreach (var a in region.Animals)
+        {
+            animals.Add(a.Key, a.Value/region.Size);
+        }
+
+        return animals;
     }
 }
 
