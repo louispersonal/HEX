@@ -14,6 +14,7 @@ public class Ticker
     private List<IAssignmentTick> _assignmentTickables = new();
     private List<IResolutionTick> _resolutionTickables = new();
     private List<IUpkeepTick> _upkeepTickables = new();
+    private List<IUITickable> _uiTickables = new();
     
     private readonly List<ITickable> _pendingRegistration;
     private readonly List<ITickable> _pendingRemoval;
@@ -67,6 +68,11 @@ public class Ticker
         {
             _upkeepTickables.Add(upkeepTick);
         }
+
+        if (tickable is IUITickable uiTick)
+        {
+            _uiTickables.Add(uiTick);
+        }
     }
 
     private void InstantRemove(ITickable tickable)
@@ -89,6 +95,11 @@ public class Ticker
         if (tickable is IUpkeepTick upkeepTick)
         {
             _upkeepTickables.Remove(upkeepTick);
+        }
+        
+        if (tickable is IUITickable uiTick)
+        {
+            _uiTickables.Remove(uiTick);
         }
     }
 
@@ -124,6 +135,14 @@ public class Ticker
         foreach (IUpkeepTick upkeepTick in _upkeepTickables)
         {
             upkeepTick.UpkeepTick(TickInfo);
+        }
+        _isTicking = false;
+        SyncPending();
+        
+        _isTicking = true;
+        foreach (IUITickable uiTick in _uiTickables)
+        {
+            uiTick.UITick(TickInfo);
         }
         _isTicking = false;
         SyncPending();

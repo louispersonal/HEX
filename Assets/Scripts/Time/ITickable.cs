@@ -23,3 +23,8 @@ public interface IUpkeepTick : ITickable
 {
     void UpkeepTick(TickInfo tickInfo);
 }
+
+public interface IUITickable : ITickable
+{
+    void UITick(TickInfo tickInfo);
+}
