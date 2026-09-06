@@ -6,13 +6,13 @@ public class Flyout : MonoBehaviour
 {
     [SerializeField] protected Panel[] _panels;
     
-    public void OpenFlyOut()
+    public virtual void OpenFlyOut()
     {
         _panels[0].BumpToFront();
         gameObject.SetActive(true);
     }
 
-    public void CloseFlyOut()
+    public virtual void CloseFlyOut()
     {
         gameObject.SetActive(false);
     }

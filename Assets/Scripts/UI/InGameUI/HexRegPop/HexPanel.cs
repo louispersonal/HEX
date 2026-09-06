@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class HexPanel : Panel
 {
-    public void Populate(Hex hex)
+    private Hex _hex;
+    public void Initialize(Hex hex)
+    {
+        _hex = hex;
+        Initialized = true;
+        UpdatePanel();
+    }
+
+    public void UpdatePanel()
     {
         
+    }
+
+    public void Terminate()
+    {
+        Initialized = false;
     }
 }

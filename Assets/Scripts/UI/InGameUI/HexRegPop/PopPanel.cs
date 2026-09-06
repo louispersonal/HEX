@@ -14,29 +14,38 @@ public class PopPanel : Panel
     [SerializeField] private TextMeshProUGUI Assignments;
     [SerializeField] private ResourceView ResourceView;
     
-    public void Populate(Pop pop)
+    private Pop _selectedPop;
+    
+    public void UpdatePanel()
     {
-        Name.text = $"{pop.Name}";
-        Population.text = $"{pop.Population}";
-        Faction.text = $"{pop.Faction}";
-        Culture.text = $"{pop.Culture.Name}";
-        Religion.text = $"{pop.Religion.Name}";
+        Name.text = $"{_selectedPop.Name}";
+        Population.text = $"{_selectedPop.Population}";
+        Faction.text = $"{_selectedPop.Faction}";
+        Culture.text = $"{_selectedPop.Culture.Name}";
+        Religion.text = $"{_selectedPop.Religion.Name}";
 
-        WedgeData[] pieChartData = new WedgeData[pop.Assignments.Count];
-        for (int i = 0; i < pop.Assignments.Count; i++)
+        WedgeData[] pieChartData = new WedgeData[_selectedPop.Assignments.Count];
+        for (int i = 0; i < _selectedPop.Assignments.Count; i++)
         {
             WedgeData data = new WedgeData();
-            data.Color = pop.Assignments[i].Color;
-            data.Label = pop.Assignments[i].AssignmentName;
-            float value = pop.Assignments[i].Workers / (float)pop.Population;
+            data.Color = _selectedPop.Assignments[i].Color;
+            data.Label = _selectedPop.Assignments[i].AssignmentName;
+            float value = _selectedPop.Assignments[i].Workers / (float)_selectedPop.Population;
             data.Value = value;
             pieChartData[i] = data;
         }
         
         AssignmentChart.BuildChart(pieChartData);
         
-        Assignments.text = FormatAssignmentText(pop.Assignments);
-        ResourceView.Populate(pop.Stockpile.GetPreview());
+        Assignments.text = FormatAssignmentText(_selectedPop.Assignments);
+        ResourceView.Populate(_selectedPop.Stockpile.GetPreview());
+    }
+
+    public void Initialize(Pop pop)
+    {
+        _selectedPop = pop;
+        Initialized = true;
+        UpdatePanel();
     }
 
     private string FormatAssignmentText(IReadOnlyList<Assignment> assignments)
@@ -49,5 +58,11 @@ public class PopPanel : Panel
         }
 
         return text;
+    }
+
+    public void Terminate()
+    {
+        
+        Initialized = false;
     }
 }

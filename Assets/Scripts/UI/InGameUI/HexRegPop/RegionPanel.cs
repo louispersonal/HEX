@@ -10,16 +10,14 @@ public class RegionPanel : Panel
     [SerializeField] private VerticalLayoutGroup _content;
 
     private List<AnimalPill> _activePills = new();
+
+    private Region _region;
     
-    public void Populate(Region region)
+    public void Initialize(Region region)
     {
-        ClearAll();
-        foreach (var species in region.Animals.Keys)
-        {
-            var pill = Instantiate(_animalPillPrefab, _content.transform);
-            _activePills.Add(pill);
-            pill.Initialize(region, species);
-        }
+        Initialized = true;
+        _region = region;
+        UpdatePanel();
     }
 
     private void ClearAll()
@@ -29,5 +27,21 @@ public class RegionPanel : Panel
             Destroy(_activePills[i].gameObject);
             _activePills.RemoveAt(i);
         }
+    }
+
+    public void UpdatePanel()
+    {
+        ClearAll();
+        foreach (var species in _region.Animals.Keys)
+        {
+            var pill = Instantiate(_animalPillPrefab, _content.transform);
+            _activePills.Add(pill);
+            pill.Initialize(_region, species);
+        }
+    }
+
+    public void Terminate()
+    {
+        Initialized = false;
     }
 }
