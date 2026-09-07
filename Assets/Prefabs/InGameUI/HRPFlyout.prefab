@@ -3951,6 +3951,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e79ba3992e48f47b46fab338d2a66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skyImage: {fileID: 7743514587342510300}
+  _groundImage: {fileID: 5505108139270024276}
+  _skySprites:
+  - {fileID: 21300000, guid: 1d0222162ec44ca4482a34a9772e7efa, type: 3}
+  - {fileID: 21300000, guid: 544a09d0b355cb9458dae43080f70fe6, type: 3}
+  - {fileID: 21300000, guid: 6c1acc607f457624f8639a0d3501fdca, type: 3}
+  _groundSprites:
+  - {fileID: 21300000, guid: cb30b9a99b0ce70468d82510a0a60588, type: 3}
+  - {fileID: 21300000, guid: 214d01d5a633a1d409b0cc7bd562ad85, type: 3}
+  - {fileID: 21300000, guid: cd3a825e844d14742bca49347921ba38, type: 3}
+  - {fileID: 21300000, guid: 2bbe2940b9cfd4d42a5e5f9efd1206d8, type: 3}
+  - {fileID: 21300000, guid: 0a17cdaffd1ffc74fa8d6487d0196400, type: 3}
+  - {fileID: 21300000, guid: cf681f58bd97f8d499076baa4f0c41e1, type: 3}
+  - {fileID: 21300000, guid: ec1ab997b8a74e44f97f08172a0b7faa, type: 3}
+  - {fileID: 21300000, guid: bc1433ea3be1594429fbf400225fc627, type: 3}
   _biomeText: {fileID: 4717481209305148254}
   _lowVegetationText: {fileID: 3736669748556659382}
   _highVegetationText: {fileID: 8647868684680621916}
