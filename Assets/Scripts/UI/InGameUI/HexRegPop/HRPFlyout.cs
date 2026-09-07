@@ -26,10 +26,12 @@ public class HRPFlyout : Flyout, IUITickable
     public void SetSelection(Hex hex, Region region, Pop pop)
     {
         HexPanel.Initialize(hex);
-        
+
         if (region != null) RegionPanel.Initialize(region);
-        
+        else RegionPanel.Terminate();
+
         if (pop != null) PopPanel.Initialize(pop);
+        else PopPanel.Terminate();
     }
 
     public void UITick(TickInfo tickInfo)

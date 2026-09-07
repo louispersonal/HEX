@@ -10,14 +10,14 @@ public class Ticker
      */
     public TickInfo TickInfo { get;  private set; }
 
-    private List<IDecisionTick> _decisionTickables = new();
-    private List<IAssignmentTick> _assignmentTickables = new();
-    private List<IResolutionTick> _resolutionTickables = new();
-    private List<IUpkeepTick> _upkeepTickables = new();
-    private List<IUITickable> _uiTickables = new();
+    private HashSet<IDecisionTick> _decisionTickables = new();
+    private HashSet<IAssignmentTick> _assignmentTickables = new();
+    private HashSet<IResolutionTick> _resolutionTickables = new();
+    private HashSet<IUpkeepTick> _upkeepTickables = new();
+    private HashSet<IUITickable> _uiTickables = new();
     
-    private readonly List<ITickable> _pendingRegistration;
-    private readonly List<ITickable> _pendingRemoval;
+    private readonly HashSet<ITickable> _pendingRegistration;
+    private readonly HashSet<ITickable> _pendingRemoval;
     
     private bool _isTicking;
     
@@ -25,8 +25,8 @@ public class Ticker
     {
         TickInfo = tickInfo;
         
-        _pendingRegistration = new List<ITickable>();
-        _pendingRemoval = new List<ITickable>();
+        _pendingRegistration = new HashSet<ITickable>();
+        _pendingRemoval = new HashSet<ITickable>();
     }
 
     public void Register(ITickable tickable)
