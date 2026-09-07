@@ -97,7 +97,7 @@ public struct HexExtraData
     {
         _regionID = regionId;
     }
-
+    
     public int GetElevationInMeters()
     {
         return (int)(Elevation * 9000f);
@@ -105,6 +105,11 @@ public struct HexExtraData
 
     public float GetTemperatureInDegrees()
     {
-        return (Temperature * 70f) - 35f;
+        return (Temperature * 45f) - 10f;
+    }
+
+    public float GetPrecipitationInMMs()
+    {
+        return Precipitation * 32f;
     }
 }
