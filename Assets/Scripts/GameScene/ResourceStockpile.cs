@@ -56,6 +56,6 @@ public class ResourceStockpile
 
     public ResourcePreview GetPreview()
     {
-        return new ResourcePreview(Contents);
+        return new ResourcePreview(Contents.Clone());
     }
 }

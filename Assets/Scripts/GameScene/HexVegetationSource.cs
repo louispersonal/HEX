@@ -26,7 +26,7 @@ public class HexVegetationSource : IResourceSource
         var highVegAbundances = VegetationProfiles.Profiles[AssociatedHex.ExtraData.Biome]
             .HighVegetationProfile.Abundances;
 
-        float highVegAbundanceConversionFactor = 1 * HighVegetation;
+        float highVegAbundanceConversionFactor = 100 * HighVegetation;
 
         var availableContents = new ResourceCollection();
         foreach (var abundance in highVegAbundances)
@@ -38,7 +38,7 @@ public class HexVegetationSource : IResourceSource
         var lowVegAbundances = VegetationProfiles.Profiles[AssociatedHex.ExtraData.Biome]
             .LowVegetationProfile.Abundances;
 
-        float lowVegAbundanceConversionFactor = 1 * LowVegetation;
+        float lowVegAbundanceConversionFactor = 100 * LowVegetation;
 
         foreach (var abundance in lowVegAbundances)
         {

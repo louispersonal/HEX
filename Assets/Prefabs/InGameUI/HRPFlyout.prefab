@@ -1521,7 +1521,6 @@ MonoBehaviour:
   Culture: {fileID: 820131424950874781}
   Religion: {fileID: 9085053044514212402}
   AssignmentChart: {fileID: 6963527734856360708}
-  Assignments: {fileID: 0}
   ResourceView: {fileID: 2120179069020921622}
 --- !u!1 &2738595942841735855
 GameObject:

@@ -12,6 +12,11 @@ public class ResourceCollection
     {
         _resources.Clear();
     }
+
+    public void SetAllResources(Dictionary<ResourceID, float> resources)
+    {
+        _resources = resources;
+    }
     
     public void Deposit(ResourceID resource, float amount)
     {
@@ -54,5 +59,12 @@ public class ResourceCollection
     public IEnumerable<ResourceID> GetAllResourceIDs()
     {
         return _resources.Keys;
+    }
+
+    public ResourceCollection Clone()
+    {
+        ResourceCollection clonedCollection = new();
+        clonedCollection.SetAllResources(new Dictionary<ResourceID, float>(_resources));
+        return clonedCollection;
     }
 }

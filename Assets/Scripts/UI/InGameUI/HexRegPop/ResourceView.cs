@@ -19,7 +19,7 @@ public class ResourceView : MonoBehaviour
         {
             var pill = Instantiate(_resourcePillPrefab, _content.transform);
             _activePills.Add(pill);
-            pill.Initialize(resource, resource.Value);
+            pill.Initialize(resource, resourcePreview.Contents.Get(resource));
         }
     }
 
