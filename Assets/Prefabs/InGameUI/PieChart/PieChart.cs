@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PieChart : MonoBehaviour
 {
     [SerializeField] private PieWedge _pieWedgePrefab;
+    [SerializeField] private Transform _chartTransform;
+    [SerializeField] private TextMeshProUGUI _legend;
 
     private WedgeData[] _data;
     
@@ -18,13 +22,15 @@ public class PieChart : MonoBehaviour
         float amountFilled = 0f;
         foreach (var wedge in _data)
         {
-            PieWedge currentWedge = Instantiate(_pieWedgePrefab, gameObject.transform);
+            PieWedge currentWedge = Instantiate(_pieWedgePrefab, _chartTransform);
             currentWedge.SetColor(wedge.Color);
             currentWedge.SetFill(wedge.Value);
-            currentWedge.SetAngle(360f * amountFilled);
+            currentWedge.SetAngle(-360f * amountFilled);
             _activeWedges.Add(currentWedge);
             amountFilled += wedge.Value;
         }
+        
+        SetLegend();
     }
     
     private void ClearActiveWedges()
@@ -34,6 +40,20 @@ public class PieChart : MonoBehaviour
             Destroy(wedge.gameObject);
         }
         _activeWedges.Clear();
+    }
+
+    private void SetLegend()
+    {
+        string block = "";
+        foreach (var wedge in _data)
+        {
+            ;
+            string line = $"<color=#{wedge.Color.ToHexString()}>■</color> - ";
+            line += wedge.Label;
+            line += "\n";
+            block += line;
+        }
+        _legend.text = block;
     }
 }
 

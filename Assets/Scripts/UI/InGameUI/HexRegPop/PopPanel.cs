@@ -11,7 +11,6 @@ public class PopPanel : Panel
     [SerializeField] private TextMeshProUGUI Culture;
     [SerializeField] private TextMeshProUGUI Religion;
     [SerializeField] private PieChart AssignmentChart;
-    [SerializeField] private TextMeshProUGUI Assignments;
     [SerializeField] private ResourceView ResourceView;
     
     private Pop _selectedPop;
@@ -24,20 +23,31 @@ public class PopPanel : Panel
         Culture.text = $"{_selectedPop.Culture.Name}";
         Religion.text = $"{_selectedPop.Religion.Name}";
 
-        WedgeData[] pieChartData = new WedgeData[_selectedPop.Assignments.Count];
-        for (int i = 0; i < _selectedPop.Assignments.Count; i++)
+        WedgeData[] pieChartData = new WedgeData[_selectedPop.Assignments.Count + 1];
+        for (int i = 0; i < _selectedPop.Assignments.Count + 1; i++)
         {
-            WedgeData data = new WedgeData();
-            data.Color = _selectedPop.Assignments[i].Color;
-            data.Label = _selectedPop.Assignments[i].AssignmentName;
-            float value = _selectedPop.Assignments[i].Workers / (float)_selectedPop.Population;
-            data.Value = value;
-            pieChartData[i] = data;
+            if (i < _selectedPop.Assignments.Count)
+            {
+                WedgeData data = new WedgeData();
+                data.Color = _selectedPop.Assignments[i].Color;
+                data.Label = _selectedPop.Assignments[i].AssignmentName;
+                float value = _selectedPop.Assignments[i].Workers / (float)_selectedPop.Population;
+                data.Value = value;
+                pieChartData[i] = data;
+            }
+            else
+            {
+                WedgeData data = new WedgeData();
+                data.Color = Color.grey;
+                data.Label = "Special";
+                float value = (_selectedPop.Population - _selectedPop.WorkingPopulation) / (float)_selectedPop.Population;
+                data.Value = value;
+                pieChartData[i] = data;
+            }
         }
         
         AssignmentChart.BuildChart(pieChartData);
         
-        Assignments.text = FormatAssignmentText(_selectedPop.Assignments);
         ResourceView.Populate(_selectedPop.Stockpile.GetPreview());
     }
 
@@ -46,18 +56,6 @@ public class PopPanel : Panel
         _selectedPop = pop;
         Initialized = true;
         UpdatePanel();
-    }
-
-    private string FormatAssignmentText(IReadOnlyList<Assignment> assignments)
-    {
-        string text = "";
-        for (int i = 0; i < assignments.Count; i++)
-        {
-            text += assignments[i].ToString();
-            if (i != assignments.Count - 1) text += "\n";
-        }
-
-        return text;
     }
 
     public void Terminate()
