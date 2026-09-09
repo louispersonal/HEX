@@ -104,15 +104,11 @@ public class HexView : MonoBehaviour, ISelectable
 		
 		_lakeRenderer.gameObject.SetActive(false);
 		if (WorldData.Lakes.ContainsAt(Data.Coord)) _lakeRenderer.gameObject.SetActive(true);
-
-		if (GameData.Pops.ContainsKey(Data.Coord)) 
-			GameSceneController.Instance.AllPopsView.SpawnPop(GameData.Pops[Data.Coord]);
     }
 
 	public void Terminate()
 	{
-		if (GameData.Pops.ContainsKey(Data.Coord)) 
-			GameSceneController.Instance.AllPopsView.DeSpawnPop(Data.Coord);
+
 	}
 
 	private IEnumerator ParticleBurstAndFreeze(ParticleSystem s, int numParticles, bool isLow)

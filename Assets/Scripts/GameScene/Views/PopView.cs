@@ -12,6 +12,11 @@ public class PopView : MonoBehaviour
         gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Location);
     }
 
+    public void MoveTo(AxialCoordinate newPosition)
+    {
+        gameObject.transform.position = HexGridGeometry.AxialToScene(newPosition);
+    }
+    
     public void Terminate()
     {
         

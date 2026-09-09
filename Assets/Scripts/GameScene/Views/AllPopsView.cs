@@ -8,14 +8,22 @@ public class AllPopsView : MonoBehaviour
 {
     [SerializeField] private PopView _popViewPrefab;
     
-    ObjectPool<PopView> _popPool;
+    private ObjectPool<PopView> _popPool;
 
-    private Dictionary<AxialCoordinate, PopView> _livePops;
+    private readonly Dictionary<PopID, PopView> _livePops = new();
 
+    private PopCollection Pops => GameController.Instance.SessionManager.GameData.Pops;
+    
     private void Awake()
     {
         _popPool = new ObjectPool<PopView>(CreatePop, OnTakeFromPool, OnReturnedToPool, OnDestroyPooledObject,  collectionCheck:false, defaultCapacity:100, maxSize:500);
-        _livePops = new Dictionary<AxialCoordinate, PopView>();
+    }
+
+    private void Start()
+    {
+        Pops.PopAdded += HandlePopAdded;
+        Pops.PopMoved += HandlePopMoved;
+        Pops.PopRemoved += HandlePopRemoved;
     }
 
     private PopView CreatePop()
@@ -40,17 +48,41 @@ public class AllPopsView : MonoBehaviour
         
     }
 
-    public void SpawnPop(Pop data)
+    private void HandlePopAdded(Pop pop)
     {
-        PopView pop = _popPool.Get();
-        pop.Initialize(data);
-        _livePops.Add(data.Location, pop);
+        SpawnPop(pop);
     }
 
-    public void DeSpawnPop(AxialCoordinate coord)
+    private void HandlePopMoved(
+        Pop pop,
+        AxialCoordinate origin,
+        AxialCoordinate destination)
     {
-        _livePops[coord].Terminate();
-        _popPool.Release(_livePops[coord]);
-        _livePops.Remove(coord);
+        if (_livePops.TryGetValue(pop.ID, out PopView view))
+        {
+            view.MoveTo(destination);
+        }
+    }
+
+    private void HandlePopRemoved(Pop pop)
+    {
+        DespawnPop(pop.ID);
+    }
+    
+    private void SpawnPop(Pop pop)
+    {
+        if (_livePops.ContainsKey(pop.ID)) return;
+
+        PopView view = _popPool.Get();
+        view.Initialize(pop);
+        _livePops.Add(pop.ID, view);
+    }
+
+    private void DespawnPop(PopID id)
+    {
+        if (!_livePops.Remove(id, out PopView view)) return;
+
+        view.Terminate();
+        _popPool.Release(view);
     }
 }
