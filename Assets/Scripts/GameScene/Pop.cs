@@ -131,7 +131,7 @@ public class Pop : Pawn, IAssignmentTick
     }
 
     // Should only be called from PopCollection
-    public void SetLocation(AxialCoordinate location)
+    internal void SetLocation(AxialCoordinate location)
     {
         Location = location;
     }

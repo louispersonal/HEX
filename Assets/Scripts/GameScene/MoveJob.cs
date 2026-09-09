@@ -26,6 +26,7 @@ public class MoveJob : Job
     public override void Progress(TickInfo tickInfo)
     {
         UpdateStep();
+        if (IsComplete) return;
         base.Progress(tickInfo);
     }
 
