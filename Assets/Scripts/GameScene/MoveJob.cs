@@ -31,7 +31,7 @@ public class MoveJob : Job
     
     protected override void Complete()
     {
-        _pop.Location = _destination;
+        _pop.TryMove(_destination);
         base.Complete();
     }
 
@@ -64,7 +64,7 @@ public class MoveJob : Job
             return;
         }
 
-        _pop.Location = currentStep.To;
+        _pop.TryMove(currentStep.To);
         _stepIndex++;
         _ticksOnCurrentStep = 0;
     }

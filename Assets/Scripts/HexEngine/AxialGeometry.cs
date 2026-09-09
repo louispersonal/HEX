@@ -107,6 +107,11 @@ public class AxialGeometry
         return (Mathf.Abs(diff.Q) + Mathf.Abs(diff.R) + Mathf.Abs(diff.Q + diff.R)) / 2f;
     }
 
+    public static bool AreAdjacent(AxialCoordinate a, AxialCoordinate b)
+    {
+        return Mathf.RoundToInt(DistanceBetweenCoords(a, b)) == 1;
+    }
+    
     public static List<AxialCoordinate> CoordsWithinRadiusOfCoord(AxialCoordinate a, int radius)
     {
         int count = 1 + 3 * radius * (radius + 1);

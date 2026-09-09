@@ -77,6 +77,6 @@ public class SimulationMenuController : SubMenu
             if (euclidean <= optimumHex.meanError) optimumHex = (euclidean, hexData);
         }
 
-        pop.Location = optimumHex.hex.Coord;
+        pop.Teleport(optimumHex.hex.Coord);
     }
 }

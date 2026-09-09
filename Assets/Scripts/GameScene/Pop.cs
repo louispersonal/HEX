@@ -24,10 +24,9 @@ public class Pop : Pawn, IAssignmentTick
     
     public Religion Religion => GameController.Instance.SessionManager.GameData.Religions[ReligionID];
     
-    public AxialCoordinate Location;
+    public AxialCoordinate Location { get; private set; }
 
-    public Hex CurrentHex =>
-        GameController.Instance.SessionManager.WorldData.Grid.GetHex(Location);
+    public Hex CurrentHex => GameController.Instance.SessionManager.WorldData.Grid.GetHex(Location);
     
     private List<Assignment> _assignments = new();
     
@@ -124,5 +123,30 @@ public class Pop : Pawn, IAssignmentTick
     private void PopGrowth()
     {
         if (_isStarving) return;
+    }
+
+    public bool TryMove(AxialCoordinate newLocation)
+    {
+        if (!AxialGeometry.AreAdjacent(Location, newLocation)) return false;
+        Teleport(newLocation);
+        return true;
+    }
+
+    public void Teleport(AxialCoordinate newLocation)
+    {
+        AxialCoordinate oldLocation = Location;
+        GameController.Instance.SessionManager.GameData.Pops.Remove(oldLocation);
+        
+        Location = newLocation;
+        GameController.Instance.SessionManager.GameData.Pops.Add(Location, this);
+        TryUpdateView(oldLocation);
+    }
+
+    private bool TryUpdateView(AxialCoordinate oldLocation)
+    {
+        if (GameSceneController.Instance == null) return false;
+        
+        GameSceneController.Instance.AllPopsView.DeSpawnPop(oldLocation);
+        GameSceneController.Instance.AllPopsView.SpawnPop(this);
     }
 }
