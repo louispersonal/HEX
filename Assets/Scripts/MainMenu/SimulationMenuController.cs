@@ -28,11 +28,13 @@ public class SimulationMenuController : SubMenu
         seedReligion.Name = "Harmana";
         seedReligion.ID = seedReligionID;
         
-        Pop seedPop = new Pop("Bogoma",30, new CultureID(0), new ReligionID(0));
-        PlaceSeedPop(seedPop);
+        AxialCoordinate seedLocation = FindSeedLocation();
+        GameController.Instance.SessionManager.GameData.Pops.TryCreateNewPop("Bogoma", 30,
+            seedLocation, seedCultureID, seedReligionID,
+            out Pop seedPop);
+        
         PopBrain seedPopBrain = new PopBrain(seedPop);
-
-        GameController.Instance.SessionManager.GameData.Pops.Add(seedPop.Location, seedPop);
+        
         GameController.Instance.SessionManager.GameData.Cultures.Add(seedCultureID, seedCulture);
         GameController.Instance.SessionManager.GameData.Religions.Add(seedReligionID, seedReligion);
         
@@ -63,7 +65,7 @@ public class SimulationMenuController : SubMenu
         }
     }
     
-    private void PlaceSeedPop(Pop pop)
+    private AxialCoordinate FindSeedLocation()
     {
         float optimumTemp = 0.7f;
         float optimumPrec = 0.5f;
@@ -77,6 +79,6 @@ public class SimulationMenuController : SubMenu
             if (euclidean <= optimumHex.meanError) optimumHex = (euclidean, hexData);
         }
 
-        pop.Teleport(optimumHex.hex.Coord);
+        return optimumHex.hex.Coord;
     }
 }

@@ -69,7 +69,11 @@ public class SelectionManager : MonoBehaviour
         if (_currentSelection is HexView hexView)
         {
             Region currentRegion = GameController.Instance.SessionManager.WorldData.GetRegion(hexView.Data.ExtraData.RegionId);
-            GameController.Instance.SessionManager.GameData.Pops.TryGetValue(hexView.Data.Coord, out Pop currentPop);
+            Pop currentPop = null;
+            foreach(var pop in GameController.Instance.SessionManager.GameData.Pops.GetAt(hexView.Data.Coord))
+            {
+                currentPop = pop;
+            }
             if (currentPop != null) SelectedPop =  currentPop;
             _uiView.OpenFlyOut(hexView.Data, currentRegion, currentPop);
         }

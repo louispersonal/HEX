@@ -8,6 +8,8 @@ public class Pop : Pawn, IAssignmentTick
 {
     public string Name;
     
+    public PopID ID { get; private set; }
+    
     public int Population => WorkingPopulation + PersonsOfInterest.Count;
     
     public int WorkingPopulation { get; private set; }
@@ -36,10 +38,12 @@ public class Pop : Pawn, IAssignmentTick
     
     private bool _isStarving = false;
     
-    public Pop(string name, int startingPopulation, CultureID culture, ReligionID religion)
+    public Pop(string name, int startingPopulation, AxialCoordinate startLocation, 
+                CultureID culture, ReligionID religion)
     {
         Name = name;
         WorkingPopulation = startingPopulation - 1; //subtract leader
+        Location =  startLocation;
         CultureID = culture;
         ReligionID = religion;
         Stockpile = new ResourceStockpile(new ResourceCollection(), this);
@@ -125,21 +129,10 @@ public class Pop : Pawn, IAssignmentTick
         if (_isStarving) return;
     }
 
-    public bool TryMove(AxialCoordinate newLocation)
+    // Should only be called from PopCollection
+    public void SetLocation(AxialCoordinate location)
     {
-        if (!AxialGeometry.AreAdjacent(Location, newLocation)) return false;
-        Teleport(newLocation);
-        return true;
-    }
-
-    public void Teleport(AxialCoordinate newLocation)
-    {
-        AxialCoordinate oldLocation = Location;
-        GameController.Instance.SessionManager.GameData.Pops.Remove(oldLocation);
-        
-        Location = newLocation;
-        GameController.Instance.SessionManager.GameData.Pops.Add(Location, this);
-        TryUpdateView(oldLocation);
+        Location = location;
     }
 
     private bool TryUpdateView(AxialCoordinate oldLocation)

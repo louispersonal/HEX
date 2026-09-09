@@ -57,12 +57,7 @@ public class SimulationMenuView : SubMenuView
 
     private void UpdatePreview()
     {
-        foreach (var pop in GameController.Instance.SessionManager.GameData.Pops.Values)
-        {
-            if (!_popIcons.ContainsKey(pop)) _popIcons.Add(pop, Instantiate(_popViewPrefab, transform));
-            _popIcons[pop].gameObject.SetActive(true);
-            _popIcons[pop].position = GetPopIconWorldPosition(pop.Location);
-        }
+
     }
     
     private Vector3 GetPopIconWorldPosition(AxialCoordinate popAxial)

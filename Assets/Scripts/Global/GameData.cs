@@ -6,7 +6,7 @@ public class GameData
 {
     public Ticker Ticker;
     
-    public Dictionary<AxialCoordinate, Pop> Pops = new Dictionary<AxialCoordinate, Pop>();
-    public Dictionary<CultureID,  Culture> Cultures = new Dictionary<CultureID, Culture>();
-    public Dictionary<ReligionID, Religion> Religions = new Dictionary<ReligionID, Religion>();
+    public PopCollection Pops { get; } = new();
+    public Dictionary<CultureID,  Culture> Cultures = new ();
+    public Dictionary<ReligionID, Religion> Religions = new ();
 }

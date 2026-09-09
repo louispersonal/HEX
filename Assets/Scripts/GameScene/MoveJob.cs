@@ -28,12 +28,6 @@ public class MoveJob : Job
         UpdateStep();
         base.Progress(tickInfo);
     }
-    
-    protected override void Complete()
-    {
-        _pop.TryMove(_destination);
-        base.Complete();
-    }
 
     protected override void SetTicksToComplete()
     {
@@ -64,7 +58,7 @@ public class MoveJob : Job
             return;
         }
 
-        _pop.TryMove(currentStep.To);
+        GameController.Instance.SessionManager.GameData.Pops.TryMove(_pop, currentStep.To);
         _stepIndex++;
         _ticksOnCurrentStep = 0;
     }
