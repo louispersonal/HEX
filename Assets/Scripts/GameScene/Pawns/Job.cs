@@ -13,14 +13,13 @@ public abstract class Job
         || Status == JobStatus.Failed
         || Status == JobStatus.Cancelled;
 
-    private int _ticksToComplete;
+    protected int _ticksToComplete;
     private int _currentTick;
     
     protected Pawn _pawn;
 
-    public Job(int ticksToComplete, Pawn pawn)
+    public Job(Pawn pawn)
     {
-        _ticksToComplete = ticksToComplete;
         _pawn = pawn;
         Status = JobStatus.NotStarted;
         _currentTick = 0;
@@ -29,6 +28,7 @@ public abstract class Job
     public virtual void Start()
     {
         Status = JobStatus.InProgress;
+        SetTicksToComplete();
     }
 
     public virtual void Progress(TickInfo tickInfo)
@@ -45,6 +45,11 @@ public abstract class Job
     protected virtual void Complete()
     {
         Status = JobStatus.Succeeded;
+    }
+
+    protected virtual void SetTicksToComplete()
+    {
+        _ticksToComplete = 0;
     }
 }
 

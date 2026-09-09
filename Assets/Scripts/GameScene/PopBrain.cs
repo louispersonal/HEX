@@ -27,32 +27,4 @@ public class PopBrain : Brain
             Pop.CreateGatherAssignment(Pop.WorkingPopulation);
         }
     }
-
-    private void DecideMove()
-    {
-        var grid = GameController.Instance.SessionManager.WorldData.Grid;
-        List<Hex> neighborData = new List<Hex>();
-        foreach (AxialCoordinate direction in AxialDirections.Directions)
-        {
-            if (grid.TryGetHex(Pop.CurrentHex.Coord + direction, out var neighbor))
-            {
-                neighborData.Add(neighbor);
-            }
-        }
-
-        float currentHexValue = AssessHex(Pop.CurrentHex);
-        var sortedNeighbors = neighborData.OrderByDescending(AssessHex).ToList();
-        if (AssessHex(sortedNeighbors[0]) > currentHexValue) CreateMoveJob(sortedNeighbors[0].Coord);
-    }
-
-    private float AssessHex(Hex hex)
-    {
-        // get attracttiveness value of hex
-        return 0f;
-    }
-    
-    private void CreateMoveJob(AxialCoordinate destination)
-    {
-        AddJob(new MoveJob(5, Pop,  destination));
-    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,8 @@ public class PopPanel : Panel
     [SerializeField] private TextMeshProUGUI Religion;
     [SerializeField] private PieChart AssignmentChart;
     [SerializeField] private ResourceView ResourceView;
+    [SerializeField] private GameObject ActionPanel;
+    [SerializeField] private GameObject ModifyAssignmentsButton;
     
     private Pop _selectedPop;
     
@@ -49,6 +52,13 @@ public class PopPanel : Panel
         AssignmentChart.BuildChart(pieChartData);
         
         ResourceView.Populate(_selectedPop.Stockpile.GetPreview());
+
+        HidePlayerView();
+        
+        if (_selectedPop.ControlType == ControlType.Player)
+        {
+            ShowPlayerView();
+        }
     }
 
     public void Initialize(Pop pop)
@@ -60,7 +70,18 @@ public class PopPanel : Panel
 
     public void Terminate()
     {
-        
         Initialized = false;
+    }
+
+    private void ShowPlayerView()
+    {
+        ActionPanel.SetActive(true);
+        ModifyAssignmentsButton.SetActive(true);
+    }
+
+    private void HidePlayerView()
+    {
+        ActionPanel.SetActive(false);
+        ModifyAssignmentsButton.SetActive(false);
     }
 }

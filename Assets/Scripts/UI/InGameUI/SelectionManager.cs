@@ -9,6 +9,8 @@ public class SelectionManager : MonoBehaviour
 
     private UiView _uiView => GameSceneController.Instance.UiView;
 
+    public Pop SelectedPop { get; private set; }
+    
     private void Update()
     {
         if (!Input.GetMouseButtonDown(0)) return;
@@ -68,6 +70,7 @@ public class SelectionManager : MonoBehaviour
         {
             Region currentRegion = GameController.Instance.SessionManager.WorldData.GetRegion(hexView.Data.ExtraData.RegionId);
             GameController.Instance.SessionManager.GameData.Pops.TryGetValue(hexView.Data.Coord, out Pop currentPop);
+            if (currentPop != null) SelectedPop =  currentPop;
             _uiView.OpenFlyOut(hexView.Data, currentRegion, currentPop);
         }
         else _uiView.CloseFlyOut();

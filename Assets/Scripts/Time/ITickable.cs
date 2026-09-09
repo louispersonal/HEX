@@ -28,3 +28,8 @@ public interface IUITickable : ITickable
 {
     void UITick(TickInfo tickInfo);
 }
+
+public interface IJobTickable : ITickable
+{
+    void JobTick(TickInfo tickInfo);
+}

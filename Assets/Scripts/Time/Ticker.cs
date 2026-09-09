@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Jobs;
 using UnityEngine;
 
 public class Ticker
@@ -11,6 +12,7 @@ public class Ticker
     public TickInfo TickInfo { get;  private set; }
 
     private HashSet<IDecisionTick> _decisionTickables = new();
+    private HashSet<IJobTickable> _jobTickables = new();
     private HashSet<IAssignmentTick> _assignmentTickables = new();
     private HashSet<IResolutionTick> _resolutionTickables = new();
     private HashSet<IUpkeepTick> _upkeepTickables = new();
@@ -53,6 +55,11 @@ public class Ticker
         {
             _decisionTickables.Add(decision);
         }
+
+        if (tickable is IJobTickable job)
+        {
+            _jobTickables.Add(job);
+        }
         
         if (tickable is IAssignmentTick assignment)
         {
@@ -80,6 +87,11 @@ public class Ticker
         if (tickable is IDecisionTick decision)
         {
             _decisionTickables.Remove(decision);
+        }
+        
+        if (tickable is IJobTickable job)
+        {
+            _jobTickables.Remove(job);
         }
         
         if (tickable is IAssignmentTick assignment)
@@ -111,6 +123,14 @@ public class Ticker
         foreach (IDecisionTick decisionTick in _decisionTickables)
         {
             decisionTick.DecisionTick(TickInfo);
+        }
+        _isTicking = false;
+        SyncPending();
+        
+        _isTicking = true;
+        foreach (IJobTickable jobTick in _jobTickables)
+        {
+            jobTick.JobTick(TickInfo);
         }
         _isTicking = false;
         SyncPending();

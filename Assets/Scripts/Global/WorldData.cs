@@ -14,7 +14,7 @@ public class WorldData
 
     private Pathfinder _pathFinder;
 
-    public Pathfinder PathFinder { get { return _pathFinder; } }
+    public Pathfinder Pathfinder { get { return _pathFinder; } }
 
     public SpatialLookup<RiverID, River> Rivers = new();
     public SpatialLookup<LakeID, Lake> Lakes = new();
