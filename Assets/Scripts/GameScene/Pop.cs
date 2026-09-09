@@ -148,5 +148,6 @@ public class Pop : Pawn, IAssignmentTick
         
         GameSceneController.Instance.AllPopsView.DeSpawnPop(oldLocation);
         GameSceneController.Instance.AllPopsView.SpawnPop(this);
+        return true;
     }
 }
