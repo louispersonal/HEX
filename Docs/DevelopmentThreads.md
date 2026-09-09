@@ -56,7 +56,17 @@ Status: Next
 
 
 
-\## Parked
+\### Pop view culling
+
+Status: Parked
+
+
+
+\- \[ ] Only instantiate/activate PopViews near the camera viewport
+
+\- \[ ] React when a pop enters or leaves the rendered area
+
+\- \[ ] Preserve PopID-based view ownership
 
 
 
