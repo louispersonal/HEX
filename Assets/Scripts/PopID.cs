@@ -1,8 +1,8 @@
 using System;
 
-public class PopID : IEquatable<PopID>
+public readonly struct PopID : IEquatable<PopID>
 {
-    public ushort Value;
+    public ushort Value { get; }
 
     public PopID(ushort value)
     {

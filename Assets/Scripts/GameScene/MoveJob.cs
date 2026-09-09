@@ -58,7 +58,12 @@ public class MoveJob : Job
             return;
         }
 
-        GameController.Instance.SessionManager.GameData.Pops.TryMove(_pop, currentStep.To);
+        bool moved = GameController.Instance.SessionManager.GameData.Pops.TryMove(_pop, currentStep.To);
+        if (!moved)
+        {
+            Status = JobStatus.Failed;
+            return;
+        }
         _stepIndex++;
         _ticksOnCurrentStep = 0;
     }

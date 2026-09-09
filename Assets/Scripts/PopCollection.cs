@@ -1,17 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class PopCollection : MonoBehaviour
+public class PopCollection
 {
     private readonly MultiObjectSpatialLookup<PopID, Pop> _spatial = new();
+
+    private ushort _nextID;
     
     public IReadOnlyDictionary<PopID, Pop> All => _spatial.Objects;
 
     public bool TryCreateNewPop(string name, int startingPopulation, AxialCoordinate startingCoordinate,
         CultureID culture, ReligionID religion, out Pop pop)
     {
-        pop = new Pop(name, startingPopulation, startingCoordinate, culture, religion);
+        PopID id = new(_nextID++);
+        pop = new Pop(name, id, startingPopulation, startingCoordinate, culture, religion);
         return TryAdd(pop);
     }
     

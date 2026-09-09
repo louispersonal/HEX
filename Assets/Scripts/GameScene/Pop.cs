@@ -38,10 +38,11 @@ public class Pop : Pawn, IAssignmentTick
     
     private bool _isStarving = false;
     
-    public Pop(string name, int startingPopulation, AxialCoordinate startLocation, 
+    public Pop(string name, PopID id, int startingPopulation, AxialCoordinate startLocation, 
                 CultureID culture, ReligionID religion)
     {
         Name = name;
+        ID = id;
         WorkingPopulation = startingPopulation - 1; //subtract leader
         Location =  startLocation;
         CultureID = culture;
@@ -133,14 +134,5 @@ public class Pop : Pawn, IAssignmentTick
     public void SetLocation(AxialCoordinate location)
     {
         Location = location;
-    }
-
-    private bool TryUpdateView(AxialCoordinate oldLocation)
-    {
-        if (GameSceneController.Instance == null) return false;
-        
-        GameSceneController.Instance.AllPopsView.DeSpawnPop(oldLocation);
-        GameSceneController.Instance.AllPopsView.SpawnPop(this);
-        return true;
     }
 }
