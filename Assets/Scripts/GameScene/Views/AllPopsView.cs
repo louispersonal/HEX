@@ -24,8 +24,20 @@ public class AllPopsView : MonoBehaviour
         Pops.PopAdded += HandlePopAdded;
         Pops.PopMoved += HandlePopMoved;
         Pops.PopRemoved += HandlePopRemoved;
+        
+        foreach (Pop pop in Pops.All.Values)
+        {
+            SpawnPop(pop);
+        }
     }
 
+    private void OnDestroy()
+    {
+        Pops.PopAdded -= HandlePopAdded;
+        Pops.PopMoved -= HandlePopMoved;
+        Pops.PopRemoved -= HandlePopRemoved;
+    }
+    
     private PopView CreatePop()
     {
         PopView popView = Instantiate(_popViewPrefab, transform);
@@ -45,7 +57,7 @@ public class AllPopsView : MonoBehaviour
 
     private void OnDestroyPooledObject(PopView pop)
     {
-        
+        Destroy(pop.gameObject);
     }
 
     private void HandlePopAdded(Pop pop)
