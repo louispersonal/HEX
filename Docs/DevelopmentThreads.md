@@ -6,26 +6,6 @@
 
 
 
-\### Pop movement architecture
-
-Status: In progress
-
-
-
-\- \[ ] Store pops by stable PopID
-
-\- \[ ] Add secondary spatial index
-
-\- \[ ] Require location in Pop constructor
-
-\- \[ ] Remove Teleport
-
-\- \[ ] Keep PopView alive while moving
-
-\- \[ ] Fail MoveJob when a step cannot execute
-
-
-
 \### Selection architecture
 
 Status: Next
@@ -85,4 +65,18 @@ Decision needed: integer tick costs or accumulated float progress?
 \- \[x] Add job tick phase
 
 \- \[x] Introduce movement cost providers
+
+\- \[x] Store pops by stable PopID
+
+\- \[x] Add secondary spatial index
+
+\- \[x] Require location in Pop constructor
+
+\- \[x] Remove Teleport
+
+\- \[x] Keep PopView alive while moving
+
+\- \[x] Fail MoveJob when a step cannot execute
+
+
 
