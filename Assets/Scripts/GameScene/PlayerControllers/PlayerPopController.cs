@@ -8,9 +8,15 @@ public class PlayerPopController : MonoBehaviour
     [SerializeField] private SelectionManager _selectionManager;
     
     private bool _selectingMigrationDestination = false;
+
+    private Pop _movingPop;
     
     public void OpenMigrationView()
     {
+        if (_selectionManager.PrimarySelection is not Pop pop)
+            return;
+
+        _movingPop = pop;
         _selectingMigrationDestination = true;
     }
 
@@ -26,13 +32,13 @@ public class PlayerPopController : MonoBehaviour
             {
                 return;
             }
-            //_selectionManager.LocationSelection.SelectedPop.AddJob(CreateMoveJob(target.Coord));
             _selectingMigrationDestination = false;
+            CreateMoveJob(target.Coord);
         }
     }
 
     private MoveJob CreateMoveJob(AxialCoordinate destination)
     {
-        return new MoveJob(_selectionManager.PrimarySelection as Pop, destination);
+        return new MoveJob(_movingPop, destination);
     }
 }
