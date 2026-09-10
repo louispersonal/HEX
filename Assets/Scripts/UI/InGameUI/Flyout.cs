@@ -37,4 +37,12 @@ public class Flyout : MonoBehaviour, IUITickable
     {
         
     }
+    
+    protected virtual void OnDestroy()
+    {
+        if (IsOpen)
+        {
+            GameController.Instance.SessionManager.GameData.Ticker.Remove(this);
+        }
+    }
 }

@@ -41,4 +41,15 @@ public class HRFlyout : Flyout
         RegionPanel.SetData(_locationSelection.SelectedRegion);
         RegionPanel.UpdatePanel();
     }
+    
+    protected override void OnDestroy()
+    {
+        SelectionManager.OnLocationSelectionChanged -=
+            OnLocationSelectionChanged;
+
+        SelectionManager.OnLocationDeselected -=
+            OnLocationDeselected;
+
+        base.OnDestroy();
+    }
 }

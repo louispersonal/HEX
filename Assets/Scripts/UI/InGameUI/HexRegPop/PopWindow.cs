@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PopWindow
+public class PopWindow : MonoBehaviour, IUITickable
 {
     [SerializeField] private TextMeshProUGUI Name;
     [SerializeField] private TextMeshProUGUI Population;
@@ -16,6 +16,8 @@ public class PopWindow
     [SerializeField] private GameObject ActionPanel;
     [SerializeField] private GameObject ModifyAssignmentsButton;
     [SerializeField] private GameObject _content;
+
+    public bool IsOpen;
     
     private Pop _popData;
 
@@ -97,4 +99,12 @@ public class PopWindow
         ResourceView.Clear();
         HidePlayerView();
     }
+
+    public void UITick(TickInfo tickInfo)
+    {
+        if (!IsOpen) return;
+        
+        UpdateWindow();
+    }
+    
 }
