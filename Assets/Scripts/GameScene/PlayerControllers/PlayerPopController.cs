@@ -26,13 +26,13 @@ public class PlayerPopController : MonoBehaviour
             {
                 return;
             }
-            _selectionManager.SelectedPop.AddJob(CreateMoveJob(target.Coord));
+            _selectionManager.LocationSelection.SelectedPop.AddJob(CreateMoveJob(target.Coord));
             _selectingMigrationDestination = false;
         }
     }
 
     private MoveJob CreateMoveJob(AxialCoordinate destination)
     {
-        return new MoveJob(_selectionManager.SelectedPop, destination);
+        return new MoveJob(_selectionManager.LocationSelection.SelectedPop, destination);
     }
 }

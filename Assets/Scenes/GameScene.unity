@@ -2618,11 +2618,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HRPFlyout
       objectReference: {fileID: 0}
-    - target: {fileID: 4022949516140498215, guid: e383ad36ef8b7434f971d5b08a885187,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

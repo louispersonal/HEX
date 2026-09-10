@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
+using System.Linq;
 
 public class SelectionManager : MonoBehaviour
 {
-    private ISelectable _currentSelection;
+    public LocationSelection LocationSelection { get; private set; }
 
-    private UiView _uiView => GameSceneController.Instance.UiView;
-
-    public Pop SelectedPop { get; private set; }
+    public event Action OnLocationDeselected;
+    public event Action<LocationSelection> OnLocationSelectionChanged;
+    
+    private HexView _selectedHexView;
     
     private void Update()
     {
@@ -17,36 +18,59 @@ public class SelectionManager : MonoBehaviour
         
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         
-        if (TryGetHexSelection(out ISelectable selectionAttempt) && selectionAttempt != null &&
-            selectionAttempt != _currentSelection)
+        if (TryGetHexSelection(out HexView hexView))
         {
-            Select(selectionAttempt);
+            if (LocationSelection?.SelectedHex != hexView.Data)
+            {
+                SelectHex(hexView);
+            }
+            else
+            {
+                ClearLocationSelection();
+            }
         }
-        else ClearSelection();
+        else
+        {
+            ClearLocationSelection();
+        }
     }
 
-    private void Select(ISelectable selectable)
+    private void SelectHex(HexView hexView)
     {
-        if (_currentSelection == selectable) return;
+        _selectedHexView?.SetDeselected();
+        
+        Hex hex = hexView.Data;
 
-        _currentSelection?.OnDeselected();
+        Region region = GameController.Instance.SessionManager.WorldData
+            .GetRegion(hex.ExtraData.RegionId);
 
-        _currentSelection = selectable;
-        _currentSelection.OnSelected();
+        Pop pop = GameController.Instance.SessionManager.GameData.Pops
+            .GetAt(hex.Coord)
+            .FirstOrDefault();
 
-        UpdateSelectionUI();
-    }
-
-    private void ClearSelection()
-    {
-        _currentSelection?.OnDeselected();
-        _currentSelection = null;
-        UpdateSelectionUI();
+        LocationSelection = new LocationSelection(hex, region, pop);
+        
+        _selectedHexView = hexView;
+        _selectedHexView.SetSelected();
+        
+        OnLocationSelectionChanged?.Invoke(LocationSelection);
     }
     
-    private bool TryGetHexSelection(out ISelectable selection)
+    private void ClearLocationSelection()
     {
-        selection = null;
+        if (LocationSelection == null)
+            return;
+        
+        _selectedHexView?.SetDeselected();
+        _selectedHexView = null;
+        
+        LocationSelection = null;
+        OnLocationDeselected?.Invoke();
+    }
+    
+    private bool TryGetHexSelection(out HexView hexView)
+    {
+        hexView = null;
         HexGrid grid = GameController.Instance.SessionManager.WorldData.Grid;
 
         if (!HexGridGeometry.TryGetHexAtScenePoint( grid, HexGridView.MouseToPlane(Camera.main, 0f),
@@ -55,28 +79,24 @@ public class SelectionManager : MonoBehaviour
             return false;
         }
 
-        if (!GameSceneController.Instance.HexGridView.TryGetLiveHex(target.Coord, out HexView hexView))
+        if (!GameSceneController.Instance.HexGridView.TryGetLiveHex(target.Coord, out hexView))
         {
             return false;
         }
-
-        selection = hexView;
         return true;
     }
+}
 
-    private void UpdateSelectionUI()
+public sealed class LocationSelection
+{
+    public Hex SelectedHex { get; }
+    public Region SelectedRegion { get; }
+    public Pop SelectedPop { get; }
+
+    public LocationSelection(Hex hex, Region region, Pop pop)
     {
-        if (_currentSelection is HexView hexView)
-        {
-            Region currentRegion = GameController.Instance.SessionManager.WorldData.GetRegion(hexView.Data.ExtraData.RegionId);
-            Pop currentPop = null;
-            foreach(var pop in GameController.Instance.SessionManager.GameData.Pops.GetAt(hexView.Data.Coord))
-            {
-                currentPop = pop;
-            }
-            if (currentPop != null) SelectedPop =  currentPop;
-            _uiView.OpenFlyOut(hexView.Data, currentRegion, currentPop);
-        }
-        else _uiView.CloseFlyOut();
+        SelectedHex = hex;
+        SelectedRegion = region;
+        SelectedPop = pop;
     }
 }

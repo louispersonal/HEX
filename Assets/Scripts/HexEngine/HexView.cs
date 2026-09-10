@@ -6,12 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HexView : MonoBehaviour, ISelectable
+public class HexView : MonoBehaviour
 {
 	public Hex Data { get; private set; }
 
     public WorldData WorldData { get { return Data.WorldData; } }
-    public GameData GameData { get { return GameController.Instance.SessionManager.GameData; } }
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -71,6 +70,11 @@ public class HexView : MonoBehaviour, ISelectable
     public void Initialize(Hex data, bool enableParticles)
 	{
 		Data = data;
+
+		bool isSelected = GameSceneController.Instance.SelectionManager.LocationSelection?.SelectedHex == Data;
+		if (isSelected) SetSelected();
+		else SetDeselected();
+		
 		gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Coord);
 		if (enableParticles)
 		{
@@ -108,7 +112,8 @@ public class HexView : MonoBehaviour, ISelectable
 
 	public void Terminate()
 	{
-
+		SetDeselected();
+		Data = null;
 	}
 
 	private IEnumerator ParticleBurstAndFreeze(ParticleSystem s, int numParticles, bool isLow)
@@ -282,14 +287,12 @@ public class HexView : MonoBehaviour, ISelectable
 		}
 	}
 	
-	//Selection interface members
-	
-	public void OnSelected()
+	public void SetSelected()
 	{
 		_outline.gameObject.SetActive(true);
 	}
 
-	public void OnDeselected()
+	public void SetDeselected()
 	{
 		_outline.gameObject.SetActive(false);
 	}

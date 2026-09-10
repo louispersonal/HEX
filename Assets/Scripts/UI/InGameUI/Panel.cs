@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Panel : MonoBehaviour
 {
-    public bool Initialized { get; protected set; } = false;
     public void BumpToFront()
     {
         transform.SetAsLastSibling();

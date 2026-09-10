@@ -1,43 +1,48 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HRPFlyout : Flyout, IUITickable
+public class HRPFlyout : Flyout
 {
     public HexPanel HexPanel => _panels[0] as HexPanel;
     public RegionPanel RegionPanel => _panels[1] as RegionPanel;
     public PopPanel PopPanel => _panels[2] as PopPanel;
+    
+    private SelectionManager SelectionManager => GameSceneController.Instance.SelectionManager;
+    
+    LocationSelection _locationSelection;
 
-    public override void OpenFlyOut()
+    private void Start()
     {
-        GameController.Instance.SessionManager.GameData.Ticker.Register(this);
-        base.OpenFlyOut();
+        SelectionManager.OnLocationSelectionChanged += OnLocationSelectionChanged;
+        SelectionManager.OnLocationDeselected += OnLocationDeselected;
     }
 
-    public override void CloseFlyOut()
+    private void OnLocationSelectionChanged(LocationSelection locationSelection)
     {
-        GameController.Instance.SessionManager.GameData.Ticker.Remove(this);
-        HexPanel.Terminate();
-        PopPanel.Terminate();
-        RegionPanel.Terminate();
+        _locationSelection = locationSelection;
+        
+        if (!IsOpen) OpenFlyOut();
+        
+        UpdateFlyout();
+    }
+
+    private void OnLocationDeselected()
+    {
+        _locationSelection = null;
         base.CloseFlyOut();
     }
-
-    public void SetSelection(Hex hex, Region region, Pop pop)
+    
+    protected override void UpdateFlyout()
     {
-        HexPanel.Initialize(hex);
-
-        if (region != null) RegionPanel.Initialize(region);
-        else RegionPanel.Terminate();
-
-        if (pop != null) PopPanel.Initialize(pop);
-        else PopPanel.Terminate();
-    }
-
-    public void UITick(TickInfo tickInfo)
-    {
-        if (HexPanel.Initialized) HexPanel.UpdatePanel();
-        if (RegionPanel.Initialized) RegionPanel.UpdatePanel();
-        if (PopPanel.Initialized) PopPanel.UpdatePanel();
+        HexPanel.SetData(_locationSelection.SelectedHex);
+        HexPanel.UpdatePanel();
+        
+        RegionPanel.SetData(_locationSelection.SelectedRegion);
+        RegionPanel.UpdatePanel();
+        
+        PopPanel.SetData(_locationSelection.SelectedPop);
+        PopPanel.UpdatePanel();
     }
 }

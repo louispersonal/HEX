@@ -16,7 +16,7 @@ public class PieChart : MonoBehaviour
     
     public void BuildChart(WedgeData[] data)
     {
-        ClearActiveWedges();
+        Clear();
         
         _data = data;
         float amountFilled = 0f;
@@ -31,6 +31,12 @@ public class PieChart : MonoBehaviour
         }
         
         SetLegend();
+    }
+
+    public void Clear()
+    {
+        ClearActiveWedges();
+        _legend.text = "";
     }
     
     private void ClearActiveWedges()

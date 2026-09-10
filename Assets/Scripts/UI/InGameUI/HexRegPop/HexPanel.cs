@@ -20,16 +20,19 @@ public class HexPanel : Panel
     [SerializeField] private TextMeshProUGUI _temperatureText;
     [SerializeField] private TextMeshProUGUI _precipitationText;
     [SerializeField] private TextMeshProUGUI _elevationText;
-    
-    public void Initialize(Hex hex)
+
+    public void SetData(Hex hex)
     {
         _hex = hex;
-        Initialized = true;
-        UpdatePanel();
     }
-
+    
     public void UpdatePanel()
     {
+        if (_hex == null)
+        {
+            return;
+        }
+        
         _skyImage.sprite = GetSkySprite();
         _groundImage.sprite = GetGroundSprite();
         
@@ -39,11 +42,6 @@ public class HexPanel : Panel
         _temperatureText.text = _hex.ExtraData.GetTemperatureInDegrees().ToString("0.#") + "°C";
         _precipitationText.text = _hex.ExtraData.GetPrecipitationInMMs().ToString("0.#") + "mm";
         _elevationText.text = _hex.ExtraData.GetElevationInMeters().ToString("0") + "m";
-    }
-
-    public void Terminate()
-    {
-        Initialized = false;
     }
 
     private string GetVegetationText(float vegetation)

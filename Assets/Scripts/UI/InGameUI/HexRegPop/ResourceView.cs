@@ -14,7 +14,7 @@ public class ResourceView : MonoBehaviour
     
     public void Populate(ResourcePreview resourcePreview)
     {
-        ClearAll();
+        Clear();
         foreach (ResourceID resource in resourcePreview.Contents.GetAllResourceIDs())
         {
             var pill = Instantiate(_resourcePillPrefab, _content.transform);
@@ -23,7 +23,7 @@ public class ResourceView : MonoBehaviour
         }
     }
 
-    private void ClearAll()
+    public void Clear()
     {
         for (int i = _activePills.Count - 1; i >= 0; i--)
         {
