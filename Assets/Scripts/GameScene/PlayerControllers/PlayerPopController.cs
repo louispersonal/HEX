@@ -33,7 +33,6 @@ public class PlayerPopController : MonoBehaviour
 
     private MoveJob CreateMoveJob(AxialCoordinate destination)
     {
-        //return new MoveJob(_selectionManager.LocationSelection.SelectedPop, destination);
-        return null;
+        return new MoveJob(_selectionManager.PrimarySelection as Pop, destination);
     }
 }

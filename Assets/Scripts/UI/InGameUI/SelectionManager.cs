@@ -12,11 +12,30 @@ public class SelectionManager : MonoBehaviour
     
     private HexView _selectedHexView;
     
+    public Pawn PrimarySelection { get; private set; }
+
+    public event Action OnPrimaryDeselected;
+    public event Action<Pawn, Pawn> OnPrimarySelectionChanged;
+    
     private void Update()
     {
         if (!Input.GetMouseButtonDown(0)) return;
         
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        
+        if (TryGetPawnSelection(out Pawn pawn))
+        {
+            if (PrimarySelection == null)
+            {
+                SetPrimarySelection(pawn);
+                SelectPawnLocation(pawn);
+            }
+            else
+            {
+                ClearPrimarySelection();
+            }
+            return;
+        }
         
         if (TryGetHexSelection(out HexView hexView))
         {
@@ -35,6 +54,20 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
+    private void SelectPawnLocation(Pawn pawn)
+    {
+        if (pawn is not Pop pop)
+            return;
+
+        Hex hex = pop.CurrentHex;
+
+        if (GameSceneController.Instance.HexGridView
+            .TryGetLiveHex(hex.Coord, out HexView hexView))
+        {
+            SelectHex(hexView);
+        }
+    }
+    
     private void SelectHex(HexView hexView)
     {
         _selectedHexView?.SetDeselected();
@@ -79,6 +112,44 @@ public class SelectionManager : MonoBehaviour
         {
             return false;
         }
+        return true;
+    }
+    
+    public void SetPrimarySelection(Pawn pawn)
+    {
+        if (ReferenceEquals(PrimarySelection, pawn))
+            return;
+
+        Pawn previous = PrimarySelection;
+        PrimarySelection = pawn;
+
+        OnPrimarySelectionChanged?.Invoke(previous, PrimarySelection);
+    }
+
+    public void ClearPrimarySelection()
+    {
+        SetPrimarySelection(null);
+        OnPrimaryDeselected?.Invoke();
+    }
+    
+    private bool TryGetPawnSelection(out Pawn pawn)
+    {
+        pawn = null;
+
+        Vector3 worldPoint =
+            HexGridView.MouseToPlane(Camera.main, 0f);
+
+        Collider2D hit = Physics2D.OverlapPoint(worldPoint);
+
+        if (hit == null)
+            return false;
+
+        PopView popView = hit.GetComponentInParent<PopView>();
+
+        if (popView == null || popView.Data == null)
+            return false;
+
+        pawn = popView.Data;
         return true;
     }
 }

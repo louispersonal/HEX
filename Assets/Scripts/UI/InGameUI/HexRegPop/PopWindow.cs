@@ -17,13 +17,44 @@ public class PopWindow : MonoBehaviour, IUITickable
     [SerializeField] private GameObject ModifyAssignmentsButton;
     [SerializeField] private GameObject _content;
 
+    private SelectionManager SelectionManager => GameSceneController.Instance.SelectionManager;
+    
     public bool IsOpen;
     
     private Pop _popData;
 
-    public void SetData(Pop popData)
+    public void Open()
     {
-        _popData = popData;
+        _content.SetActive(true);
+        IsOpen = true;
+    }
+
+    public void Close()
+    {
+        _content.SetActive(false);
+        IsOpen = false;
+    }
+    
+    private void Start()
+    {
+        SelectionManager.OnPrimarySelectionChanged += OnPrimarySelectionChanged;
+        SelectionManager.OnPrimaryDeselected += OnPrimaryDeselected;
+    }
+    
+    private void OnPrimarySelectionChanged(Pawn before, Pawn current)
+    {
+        if (!IsOpen) Open();
+
+        if ((current as Pop) != null)
+        {
+            _popData = (Pop) current;
+            UpdateWindow();
+        }
+    }
+
+    private void OnPrimaryDeselected()
+    {
+        Close();
     }
     
     public void UpdateWindow()
