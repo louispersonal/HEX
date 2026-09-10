@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -25,12 +22,18 @@ public class PopWindow : MonoBehaviour, IUITickable
 
     public void Open()
     {
+        if (IsOpen) return;
+
+        GameController.Instance.SessionManager.GameData.Ticker.Register(this);
         _content.SetActive(true);
         IsOpen = true;
     }
 
     public void Close()
     {
+        if (!IsOpen) return;
+
+        GameController.Instance.SessionManager.GameData.Ticker.Remove(this);
         _content.SetActive(false);
         IsOpen = false;
     }
@@ -38,7 +41,6 @@ public class PopWindow : MonoBehaviour, IUITickable
     private void Start()
     {
         SelectionManager.OnPrimarySelectionChanged += OnPrimarySelectionChanged;
-        SelectionManager.OnPrimaryDeselected += OnPrimaryDeselected;
     }
     
     private void OnPrimarySelectionChanged(Pawn before, Pawn current)
@@ -138,4 +140,13 @@ public class PopWindow : MonoBehaviour, IUITickable
         UpdateWindow();
     }
     
+    private void OnDestroy()
+    {
+        SelectionManager.OnPrimarySelectionChanged -= OnPrimarySelectionChanged;
+
+        if (IsOpen)
+        {
+            GameController.Instance.SessionManager.GameData.Ticker.Remove(this);
+        }
+    }
 }

@@ -13,8 +13,7 @@ public class SelectionManager : MonoBehaviour
     private HexView _selectedHexView;
     
     public Pawn PrimarySelection { get; private set; }
-
-    public event Action OnPrimaryDeselected;
+    
     public event Action<Pawn, Pawn> OnPrimarySelectionChanged;
     
     private void Update()
@@ -25,14 +24,14 @@ public class SelectionManager : MonoBehaviour
         
         if (TryGetPawnSelection(out Pawn pawn))
         {
-            if (PrimarySelection == null)
+            if (ReferenceEquals(PrimarySelection, pawn))
             {
-                SetPrimarySelection(pawn);
-                SelectPawnLocation(pawn);
+                ClearPrimarySelection();
             }
             else
             {
-                ClearPrimarySelection();
+                SetPrimarySelection(pawn);
+                SelectPawnLocation(pawn);
             }
             return;
         }
@@ -129,7 +128,6 @@ public class SelectionManager : MonoBehaviour
     public void ClearPrimarySelection()
     {
         SetPrimarySelection(null);
-        OnPrimaryDeselected?.Invoke();
     }
     
     private bool TryGetPawnSelection(out Pawn pawn)
