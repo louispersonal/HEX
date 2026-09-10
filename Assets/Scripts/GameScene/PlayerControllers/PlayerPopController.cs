@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerPopController : MonoBehaviour
 {
@@ -26,14 +24,21 @@ public class PlayerPopController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             HexGrid grid = GameController.Instance.SessionManager.WorldData.Grid;
             if (!HexGridGeometry.TryGetHexAtScenePoint(grid, HexGridView.MouseToPlane(Camera.main, 0f),
                     out Hex target))
             {
                 return;
             }
+            _movingPop.AddJob(CreateMoveJob(target.Coord));
+            _movingPop = null;
             _selectingMigrationDestination = false;
-            CreateMoveJob(target.Coord);
         }
     }
 

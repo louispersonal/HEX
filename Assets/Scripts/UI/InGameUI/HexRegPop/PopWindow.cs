@@ -45,15 +45,18 @@ public class PopWindow : MonoBehaviour, IUITickable
     
     private void OnPrimarySelectionChanged(Pawn before, Pawn current)
     {
-        if (!IsOpen) Open();
-
-        if ((current as Pop) != null)
+        if (current is not Pop pop)
         {
-            _popData = (Pop) current;
-            UpdateWindow();
+            _popData = null;
+            Close();
+            return;
         }
-    }
 
+        _popData = pop;
+        Open();
+        UpdateWindow();
+    }
+    
     private void OnPrimaryDeselected()
     {
         Close();
