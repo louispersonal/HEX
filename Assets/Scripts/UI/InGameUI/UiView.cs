@@ -7,7 +7,7 @@ public class UiView : MonoBehaviour
 {
     [SerializeField] MiniMap _miniMap;
     
-    [SerializeField] HRPFlyout _hrpflyout;
+    [SerializeField] HRFlyout _hrpflyout;
     
     // Start is called before the first frame update
     void Start()

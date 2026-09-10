@@ -44,11 +44,7 @@ public class SelectionManager : MonoBehaviour
         Region region = GameController.Instance.SessionManager.WorldData
             .GetRegion(hex.ExtraData.RegionId);
 
-        Pop pop = GameController.Instance.SessionManager.GameData.Pops
-            .GetAt(hex.Coord)
-            .FirstOrDefault();
-
-        LocationSelection = new LocationSelection(hex, region, pop);
+        LocationSelection = new LocationSelection(hex, region);
         
         _selectedHexView = hexView;
         _selectedHexView.SetSelected();
@@ -91,12 +87,10 @@ public sealed class LocationSelection
 {
     public Hex SelectedHex { get; }
     public Region SelectedRegion { get; }
-    public Pop SelectedPop { get; }
 
-    public LocationSelection(Hex hex, Region region, Pop pop)
+    public LocationSelection(Hex hex, Region region)
     {
         SelectedHex = hex;
         SelectedRegion = region;
-        SelectedPop = pop;
     }
 }

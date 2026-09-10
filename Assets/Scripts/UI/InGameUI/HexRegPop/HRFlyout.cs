@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HRPFlyout : Flyout
+public class HRFlyout : Flyout
 {
     public HexPanel HexPanel => _panels[0] as HexPanel;
     public RegionPanel RegionPanel => _panels[1] as RegionPanel;
-    public PopPanel PopPanel => _panels[2] as PopPanel;
     
     private SelectionManager SelectionManager => GameSceneController.Instance.SelectionManager;
     
@@ -41,8 +40,5 @@ public class HRPFlyout : Flyout
         
         RegionPanel.SetData(_locationSelection.SelectedRegion);
         RegionPanel.UpdatePanel();
-        
-        PopPanel.SetData(_locationSelection.SelectedPop);
-        PopPanel.UpdatePanel();
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PopPanel : Panel
+public class PopWindow
 {
     [SerializeField] private TextMeshProUGUI Name;
     [SerializeField] private TextMeshProUGUI Population;
@@ -15,6 +15,7 @@ public class PopPanel : Panel
     [SerializeField] private ResourceView ResourceView;
     [SerializeField] private GameObject ActionPanel;
     [SerializeField] private GameObject ModifyAssignmentsButton;
+    [SerializeField] private GameObject _content;
     
     private Pop _popData;
 
@@ -23,7 +24,7 @@ public class PopPanel : Panel
         _popData = popData;
     }
     
-    public void UpdatePanel()
+    public void UpdateWindow()
     {
         if (_popData == null)
         {
@@ -31,7 +32,7 @@ public class PopPanel : Panel
             return;
         }
 
-    Name.text = $"{_popData.Name}";
+        Name.text = $"{_popData.Name}";
         Population.text = $"{_popData.Population}";
         Faction.text = $"{_popData.Faction}";
         Culture.text = $"{_popData.Culture.Name}";
