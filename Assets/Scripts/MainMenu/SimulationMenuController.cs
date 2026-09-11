@@ -12,35 +12,11 @@ public class SimulationMenuController : SubMenu
 
     public void Simulate(int simulationLengthYears, LoadingPanel loadingPanel, Action updateView)
     {
+        InitializeWorld();
+        
+        SeedSimulation();
+        
         int simulationLength = simulationLengthYears * 365;
-        TickInfo newTickInfo =  new TickInfo();
-        Ticker newTicker = new Ticker(newTickInfo);
-        GameController.Instance.SessionManager.NewGameData();
-        GameController.Instance.SessionManager.GameData.Ticker = newTicker;
-
-        CultureID seedCultureID = new CultureID(0);
-        ReligionID seedReligionID = new ReligionID(0);
-
-        Culture seedCulture = new Culture(seedCultureID);
-        seedCulture.Name = "Bogoma";
-
-        Religion seedReligion = new Religion();
-        seedReligion.Name = "Harmana";
-        seedReligion.ID = seedReligionID;
-        
-        AxialCoordinate seedLocation = FindSeedLocation();
-        GameController.Instance.SessionManager.GameData.Pops.TryCreateNewPop("Bogoma", 30,
-            seedLocation, seedCultureID, seedReligionID,
-            out Pop seedPop);
-        
-        PopBrain seedPopBrain = new PopBrain(seedPop);
-        
-        GameController.Instance.SessionManager.GameData.Cultures.Add(seedCultureID, seedCulture);
-        GameController.Instance.SessionManager.GameData.Religions.Add(seedReligionID, seedReligion);
-        
-        GameController.Instance.SessionManager.GameData.Ticker.Register(seedPopBrain);
-        GameController.Instance.SessionManager.GameData.Ticker.Register(seedPop);
-        
         StartCoroutine(SimulationCoroutine(simulationLength, loadingPanel, updateView));
     }
 
@@ -63,6 +39,46 @@ public class SimulationMenuController : SubMenu
                 yield return null;
             }
         }
+    }
+
+    private void InitializeWorld()
+    {
+        TickInfo newTickInfo =  new TickInfo();
+        Ticker newTicker = new Ticker(newTickInfo);
+        GameController.Instance.SessionManager.NewGameData();
+        GameController.Instance.SessionManager.GameData.Ticker = newTicker;
+    }
+
+    private void SeedSimulation()
+    {
+        Pop seedPop = MakeSeedPop();
+        
+        //PopBrain seedPopBrain = new PopBrain(seedPop);
+        //GameController.Instance.SessionManager.GameData.Ticker.Register(seedPopBrain);
+        GameController.Instance.SessionManager.GameData.Ticker.Register(seedPop);
+    }
+    
+    private Pop MakeSeedPop()
+    {
+        CultureID seedCultureID = new CultureID(0);
+        ReligionID seedReligionID = new ReligionID(0);
+
+        Culture seedCulture = new Culture(seedCultureID);
+        seedCulture.Name = "Bogoma";
+
+        Religion seedReligion = new Religion();
+        seedReligion.Name = "Harmana";
+        seedReligion.ID = seedReligionID;
+        
+        GameController.Instance.SessionManager.GameData.Cultures.Add(seedCultureID, seedCulture);
+        GameController.Instance.SessionManager.GameData.Religions.Add(seedReligionID, seedReligion);
+        
+        AxialCoordinate seedLocation = FindSeedLocation();
+        GameController.Instance.SessionManager.GameData.Pops.TryCreateNewPop("Bogoma", 30,
+            seedLocation, seedCultureID, seedReligionID,
+            out Pop seedPop);
+
+        return seedPop;
     }
     
     private AxialCoordinate FindSeedLocation()

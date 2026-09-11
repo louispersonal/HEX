@@ -16,6 +16,8 @@ public class SelectionManager : MonoBehaviour
     
     public event Action<Pawn, Pawn> OnPrimarySelectionChanged;
     
+    [SerializeField] private LayerMask _pawnLayerMask;
+    
     private void Update()
     {
         if (!Input.GetMouseButtonDown(0)) return;
@@ -130,22 +132,21 @@ public class SelectionManager : MonoBehaviour
         SetPrimarySelection(null);
     }
     
+    // should return pawn view
     private bool TryGetPawnSelection(out Pawn pawn)
     {
         pawn = null;
 
-        Vector3 worldPoint =
-            HexGridView.MouseToPlane(Camera.main, 0f);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Collider2D hit = Physics2D.OverlapPoint(worldPoint);
-
-        if (hit == null)
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _pawnLayerMask))
+        {
             return false;
+        }
 
-        PopView popView = hit.GetComponentInParent<PopView>();
+        PopView popView = hit.collider.GetComponentInParent<PopView>();
 
-        if (popView == null || popView.Data == null)
-            return false;
+        if (popView == null || popView.Data == null) return false;
 
         pawn = popView.Data;
         return true;

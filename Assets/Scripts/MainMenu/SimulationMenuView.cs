@@ -14,7 +14,7 @@ public class SimulationMenuView : SubMenuView
     
     [SerializeField] private RectTransform _popViewPrefab;
     
-    private int _defaultSimulationLength = 10000;
+    private int _defaultSimulationLength = 1;
     private int _simulationLengthYears;
     private RectTransform _mapRect;
     private Dictionary<Pop, RectTransform> _popIcons = new();
