@@ -8,6 +8,11 @@ public class PawnView : MonoBehaviour, ISelectable
     
     public Pawn Data { get; private set; }
     
+    protected void InitializePawn(Pawn data)
+    {
+        Data = data;
+    }
+    
     public virtual void OnSelected()
     {
         _outline.SetActive(true);

@@ -45,7 +45,7 @@ public class PopWindow : MonoBehaviour, IUITickable
     
     private void OnPrimarySelectionChanged(PawnView before, PawnView current)
     {
-        if (current.Data is not Pop pop)
+        if (current?.Data is not Pop pop)
         {
             _popData = null;
             Close();

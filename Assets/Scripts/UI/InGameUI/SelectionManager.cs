@@ -118,20 +118,23 @@ public class SelectionManager : MonoBehaviour
     
     public void SetPrimarySelection(PawnView pawnView)
     {
-        if (ReferenceEquals(PrimarySelection, pawnView))
-            return;
+        if (ReferenceEquals(PrimarySelection, pawnView)) return;
 
         PawnView previous = PrimarySelection;
+
+        previous?.OnDeselected();
+
         PrimarySelection = pawnView;
 
+        PrimarySelection?.OnSelected();
+
         OnPrimarySelectionChanged?.Invoke(previous, PrimarySelection);
-        PrimarySelection.OnSelected();
     }
 
     public void ClearPrimarySelection()
     {
+        PrimarySelection?.OnDeselected();
         SetPrimarySelection(null);
-        PrimarySelection.OnDeselected();
     }
     
     private bool TryGetPawnSelection(out PawnView pawnView)
@@ -145,7 +148,7 @@ public class SelectionManager : MonoBehaviour
             return false;
         }
 
-        pawnView = hit.collider.GetComponentInParent<PopView>();
+        pawnView = hit.collider.GetComponentInParent<PawnView>();
 
         if (pawnView == null) return false;
         

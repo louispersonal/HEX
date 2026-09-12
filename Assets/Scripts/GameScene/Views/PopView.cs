@@ -6,11 +6,11 @@ public class PopView : PawnView
 {
     [SerializeField] private LineRenderer _pathRenderer;
     
-    public Pop Data;
+    public Pop Pop => (Pop)Data;
     
     public void Initialize(Pop data)
     {
-        Data = data;
+        InitializePawn(data);
         gameObject.transform.position = HexGridGeometry.AxialToScene(Data.Location);
     }
 
@@ -42,20 +42,28 @@ public class PopView : PawnView
 
     private void DrawPath()
     {
-        MoveJob moveJob = Data.CurrentJob as MoveJob;
-        if (moveJob == null) return;
-        
-        var path = moveJob.Path;
-        Vector3[] pathPoints = new Vector3[path.Steps.Count - moveJob.StepIndex];
-
-        int p = 0;
-        for (int s = moveJob.StepIndex; s < path.Steps.Count; s++)
+        if (Data.CurrentJob is not MoveJob moveJob || moveJob.Path == null)
         {
-            pathPoints[p] =  HexGridGeometry.AxialToScene(path.Steps[s].To);
-            p++;
+            _pathRenderer.gameObject.SetActive(false);
+            return;
         }
-        
-        _pathRenderer.positionCount = pathPoints.Length;
-        _pathRenderer.SetPositions(pathPoints);
+
+        var path = moveJob.Path;
+
+        int remainingSteps = path.Steps.Count - moveJob.StepIndex;
+
+        Vector3[] points = new Vector3[remainingSteps + 1];
+
+        points[0] = HexGridGeometry.AxialToScene(Data.Location);
+
+        for (int i = 0; i < remainingSteps; i++)
+        {
+            Vector3 zOffset = new Vector3(0, 0, -0.01f);
+            points[i + 1] = (Vector3)HexGridGeometry.AxialToScene(path.Steps[moveJob.StepIndex + i].To) + zOffset;
+        }
+
+        _pathRenderer.positionCount = points.Length;
+        _pathRenderer.SetPositions(points);
+        _pathRenderer.gameObject.SetActive(true);
     }
 }
