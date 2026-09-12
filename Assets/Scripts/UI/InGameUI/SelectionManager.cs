@@ -12,9 +12,9 @@ public class SelectionManager : MonoBehaviour
     
     private HexView _selectedHexView;
     
-    public Pawn PrimarySelection { get; private set; }
+    public PawnView PrimarySelection { get; private set; }
     
-    public event Action<Pawn, Pawn> OnPrimarySelectionChanged;
+    public event Action<PawnView, PawnView> OnPrimarySelectionChanged;
     
     [SerializeField] private LayerMask _pawnLayerMask;
     
@@ -24,16 +24,16 @@ public class SelectionManager : MonoBehaviour
         
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         
-        if (TryGetPawnSelection(out Pawn pawn))
+        if (TryGetPawnSelection(out PawnView pawnView))
         {
-            if (ReferenceEquals(PrimarySelection, pawn))
+            if (ReferenceEquals(PrimarySelection, pawnView))
             {
                 ClearPrimarySelection();
             }
             else
             {
-                SetPrimarySelection(pawn);
-                SelectPawnLocation(pawn);
+                SetPrimarySelection(pawnView);
+                SelectPawnLocation(pawnView);
             }
             return;
         }
@@ -55,12 +55,12 @@ public class SelectionManager : MonoBehaviour
         }
     }
 
-    private void SelectPawnLocation(Pawn pawn)
+    private void SelectPawnLocation(PawnView pawnView)
     {
-        if (pawn is not Pop pop)
+        if (pawnView.Data is not Pawn pawn)
             return;
 
-        Hex hex = pop.CurrentHex;
+        Hex hex = pawn.CurrentHex;
 
         if (GameSceneController.Instance.HexGridView
             .TryGetLiveHex(hex.Coord, out HexView hexView))
@@ -116,26 +116,27 @@ public class SelectionManager : MonoBehaviour
         return true;
     }
     
-    public void SetPrimarySelection(Pawn pawn)
+    public void SetPrimarySelection(PawnView pawnView)
     {
-        if (ReferenceEquals(PrimarySelection, pawn))
+        if (ReferenceEquals(PrimarySelection, pawnView))
             return;
 
-        Pawn previous = PrimarySelection;
-        PrimarySelection = pawn;
+        PawnView previous = PrimarySelection;
+        PrimarySelection = pawnView;
 
         OnPrimarySelectionChanged?.Invoke(previous, PrimarySelection);
+        PrimarySelection.OnSelected();
     }
 
     public void ClearPrimarySelection()
     {
         SetPrimarySelection(null);
+        PrimarySelection.OnDeselected();
     }
     
-    // should return pawn view
-    private bool TryGetPawnSelection(out Pawn pawn)
+    private bool TryGetPawnSelection(out PawnView pawnView)
     {
-        pawn = null;
+        pawnView = null;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -144,11 +145,10 @@ public class SelectionManager : MonoBehaviour
             return false;
         }
 
-        PopView popView = hit.collider.GetComponentInParent<PopView>();
+        pawnView = hit.collider.GetComponentInParent<PopView>();
 
-        if (popView == null || popView.Data == null) return false;
-
-        pawn = popView.Data;
+        if (pawnView == null) return false;
+        
         return true;
     }
 }

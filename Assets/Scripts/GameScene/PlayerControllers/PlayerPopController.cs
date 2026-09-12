@@ -11,7 +11,7 @@ public class PlayerPopController : MonoBehaviour
     
     public void OpenMigrationView()
     {
-        if (_selectionManager.PrimarySelection is not Pop pop)
+        if (_selectionManager.PrimarySelection.Data is not Pop pop)
             return;
 
         _movingPop = pop;

@@ -11,8 +11,12 @@ public class MoveJob : Job
     private Pathfinder Pathfinder => GameController.Instance.SessionManager.WorldData.Pathfinder;
 
     private AStarPath _path;
+    
+    public AStarPath Path => _path;
 
     private int _stepIndex;
+    
+    public  int StepIndex => _stepIndex;
 
     private int _ticksOnCurrentStep;
     

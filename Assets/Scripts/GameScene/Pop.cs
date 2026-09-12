@@ -26,10 +26,6 @@ public class Pop : Pawn, IAssignmentTick
     
     public Religion Religion => GameController.Instance.SessionManager.GameData.Religions[ReligionID];
     
-    public AxialCoordinate Location { get; private set; }
-
-    public Hex CurrentHex => GameController.Instance.SessionManager.WorldData.Grid.GetHex(Location);
-    
     private List<Assignment> _assignments = new();
     
     public IReadOnlyList<Assignment> Assignments => _assignments;

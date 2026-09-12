@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopView : MonoBehaviour, ISelectable
+public class PopView : PawnView
 {
-    [SerializeField] private GameObject _outline;
+    [SerializeField] private LineRenderer _pathRenderer;
     
     public Pop Data;
     
@@ -24,13 +24,38 @@ public class PopView : MonoBehaviour, ISelectable
         
     }
 
-    public void OnSelected()
+    public override void OnSelected()
     {
-        _outline.SetActive(true);
+        base.OnSelected();
+        if (Data.CurrentJob is MoveJob)
+        {
+            _pathRenderer.gameObject.SetActive(true);
+            DrawPath();
+        }
     }
 
-    public void OnDeselected()
+    public override void OnDeselected()
     {
-        _outline.SetActive(false);
+        base.OnDeselected();
+        _pathRenderer.gameObject.SetActive(false);
+    }
+
+    private void DrawPath()
+    {
+        MoveJob moveJob = Data.CurrentJob as MoveJob;
+        if (moveJob == null) return;
+        
+        var path = moveJob.Path;
+        Vector3[] pathPoints = new Vector3[path.Steps.Count - moveJob.StepIndex];
+
+        int p = 0;
+        for (int s = moveJob.StepIndex; s < path.Steps.Count; s++)
+        {
+            pathPoints[p] =  HexGridGeometry.AxialToScene(path.Steps[s].To);
+            p++;
+        }
+        
+        _pathRenderer.positionCount = pathPoints.Length;
+        _pathRenderer.SetPositions(pathPoints);
     }
 }

@@ -7,7 +7,11 @@ public class Pawn : IJobTickable, IUpkeepTick
     public Brain Brain { get; private set; }
 
     public ControlType ControlType { get; private set; } = ControlType.Player;
-
+    
+    public AxialCoordinate Location { get; protected set; }
+    
+    public Hex CurrentHex => GameController.Instance.SessionManager.WorldData.Grid.GetHex(Location);
+    
     public void SetBrain(Brain brain)
     {
         if (Brain != null)
@@ -19,6 +23,8 @@ public class Pawn : IJobTickable, IUpkeepTick
     }
     
     private List<Job> _jobs = new();
+    
+    public Job CurrentJob => _jobs.Count > 0 ? _jobs[0] : null;
     
     public void AddJob(Job job)
     {
