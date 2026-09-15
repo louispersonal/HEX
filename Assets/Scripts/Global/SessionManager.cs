@@ -15,8 +15,11 @@ public class SessionManager : MonoBehaviour
     public UiData UiData { get; set; }
 
     private string WorldsFolder =>
-    Path.Combine(Application.persistentDataPath, "Worlds");
+        Path.Combine(Application.persistentDataPath, "Worlds");
 
+    private string GamesFolder =>
+        Path.Combine(Application.persistentDataPath, "Games");
+    
     public List<string> GetWorldSaveFiles()
     {
         List<string> saveFiles = new List<string>();
@@ -86,6 +89,9 @@ public class SessionManager : MonoBehaviour
 
     public void SaveGameData()
     {
-
+        GameSaveData saveData = _gameData.ToSaveData();
+        string json = JsonUtility.ToJson(saveData, true);
+        string path = GamesFolder + "/" + saveData.GameName + ".json";
+        File.WriteAllText(path, json);
     }
 }

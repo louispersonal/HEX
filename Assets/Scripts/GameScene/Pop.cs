@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 
+[System.Serializable]
 public class Pop : Pawn, IAssignmentTick
 {
     public string Name;

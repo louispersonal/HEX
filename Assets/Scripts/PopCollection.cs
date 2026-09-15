@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class PopCollection
 {
@@ -55,5 +56,10 @@ public class PopCollection
     public IEnumerable<Pop> GetAt(AxialCoordinate coordinate)
     {
         return _spatial.GetObjectsAt(coordinate);
+    }
+
+    public Pop[] ToArray()
+    {
+        return _spatial.Objects.Values.ToArray();
     }
 }
