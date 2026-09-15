@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 
+[System.Serializable]
 public class Pop : Pawn, IAssignmentTick
 {
     public string Name;
@@ -33,6 +34,8 @@ public class Pop : Pawn, IAssignmentTick
     public ResourceStockpile Stockpile {get; private set;}
     
     private bool _isStarving = false;
+    
+    private Dictionary<AxialCoordinate, LocationKnowledge> _knownLocations = new();
     
     public Pop(string name, PopID id, int startingPopulation, AxialCoordinate startLocation, 
                 CultureID culture, ReligionID religion)
@@ -126,6 +129,16 @@ public class Pop : Pawn, IAssignmentTick
         if (_isStarving) return;
     }
 
+    public bool KnowsLocation(AxialCoordinate coord)
+    {
+        return _knownLocations.ContainsKey(coord);
+    }
+
+    public void ObserveLocation(AxialCoordinate coord, TickInfo lastSeen)
+    {
+        _knownLocations[coord] = new LocationKnowledge(lastSeen);
+    }
+    
     // Should only be called from PopCollection
     internal void SetLocation(AxialCoordinate location)
     {
