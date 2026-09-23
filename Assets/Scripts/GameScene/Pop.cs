@@ -94,7 +94,7 @@ public class Pop : Pawn, IAssignmentTick
         ResourceCollection requestCollection = new();
         
         List<ResourceID> availableFoods = stockPreview.Contents.GetAllResourceIDs().Where(resource =>
-                resource.Definition.IsEdible && stockPreview.Contents.Get(resource) > 0f).ToList();
+                stockPreview.Contents.Get(resource) > 0f).ToList(); // add edibility check TODO
 
         const float epsilon = 0.001f;
 

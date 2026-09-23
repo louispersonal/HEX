@@ -22,8 +22,6 @@ public class WorldData
 
     public Region[] Regions = new Region[0];  
 
-    private Dictionary<AxialCoordinate, HexResources> _resourcesByHex = new();
-    
     public WorldData(List<Hex> hexDataList)
     {
         _grid = new HexGrid(hexDataList);

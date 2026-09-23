@@ -24,7 +24,7 @@ public class GatherAssignment : Assignment
         var preview = pop.CurrentHex.SeeAllAvailableResources();
         foreach (var id in preview.Contents.GetAllResourceIDs())
         {
-            if (id.Definition.HasTag(ResourceTag.Edible))
+            if (true) // check if it's food TODO
             {
                 float amountCanBeGathered = CalculateMaximumGatherable(id, pop);
                 gatherBill.Deposit(id,  amountCanBeGathered);
