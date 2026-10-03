@@ -10,6 +10,6 @@ public class ResourceDefinition : IDatabaseItem<ResourceID>
     public string DisplayName;
     public Sprite Thumbnail;
     
-    public ResourceID? ParentID;
+    public ResourceID ParentID;
     public bool IsAbstract;
 }
