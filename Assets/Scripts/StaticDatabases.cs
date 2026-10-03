@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class StaticDatabases : MonoBehaviour
 {
-    [SerializeField] private Database<ResourceID, ResourceDefinition> _resourceDatabase;
+    [SerializeField] private ResourceDatabase _resourceDatabase;
     
-    public Database<ResourceID, ResourceDefinition> ResourceDatabase => _resourceDatabase;
+    public ResourceDatabase ResourceDatabase => _resourceDatabase;
     
     [SerializeField] private Database<AnimalArchetypeID, AnimalArchetypeDefinition> _animalArchetypeDatabase;
     

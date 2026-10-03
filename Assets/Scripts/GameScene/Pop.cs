@@ -37,6 +37,8 @@ public class Pop : Pawn, IAssignmentTick
     
     private Dictionary<AxialCoordinate, LocationKnowledge> _knownLocations = new();
     
+    public ResourceDatabase ResourceDatabase => GameController.Instance.StaticDatabases.ResourceDatabase;
+    
     public Pop(string name, PopID id, int startingPopulation, AxialCoordinate startLocation, 
                 CultureID culture, ReligionID religion)
     {
@@ -94,7 +96,8 @@ public class Pop : Pawn, IAssignmentTick
         ResourceCollection requestCollection = new();
         
         List<ResourceID> availableFoods = stockPreview.Contents.GetAllResourceIDs().Where(resource =>
-                stockPreview.Contents.Get(resource) > 0f).ToList(); // add edibility check TODO
+                stockPreview.Contents.Get(resource) > 0f 
+                && ResourceDatabase.IsA(resource, ResourceRefs.Food)).ToList();
 
         const float epsilon = 0.001f;
 
