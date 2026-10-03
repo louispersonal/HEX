@@ -109,7 +109,7 @@ public static class ResourceRefsGenerator
 
     private static ResourceDatabase FindDatabase(bool logErrors)
     {
-        string[] guids = AssetDatabase.FindAssets("t:Resources");
+        string[] guids = AssetDatabase.FindAssets("t:ResourceDatabase");
 
         if (guids.Length == 1)
             return AssetDatabase.LoadAssetAtPath<ResourceDatabase>(AssetDatabase.GUIDToAssetPath(guids[0]));

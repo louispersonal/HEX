@@ -191,7 +191,7 @@ public class RegionGen
 
         foreach (ResourceID resource in regionalFood.GetAllResourceIDs())
         {
-            if (resource == ResourceIDMap.Meat)
+            if (resource == ResourceRefs.Meat)
                 continue;
 
             Dictionary<SpeciesID, float> consumerWeights = new();
@@ -204,7 +204,7 @@ public class RegionGen
                         candidate.ArchetypeId);
 
                 int plantDietCount = archetype.Diet.Count(
-                    food => food != ResourceIDMap.Meat);
+                    food => food != ResourceRefs.Meat);
 
                 if (plantDietCount == 0 ||
                     !archetype.Diet.Contains(resource))
@@ -355,7 +355,7 @@ public class RegionGen
                 species.ArchetypeId);
 
         return archetype.Diet.Any(
-            resource => resource != ResourceIDMap.Meat);
+            resource => resource != ResourceRefs.Meat);
     }
 
     private static bool IsMeatOnly(
@@ -368,7 +368,7 @@ public class RegionGen
 
         return archetype.Diet.Length > 0 &&
                archetype.Diet.All(
-                   resource => resource == ResourceIDMap.Meat);
+                   resource => resource == ResourceRefs.Meat);
     }
 
     private static void Shuffle<T>(IList<T> list)

@@ -6,161 +6,161 @@ public static class VegetationProfiles
     public static readonly BiomeVegetationProfile DesertProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 6),
-            Abundance(ResourceIDMap.Seeds, 9),
-            Abundance(ResourceIDMap.Fruit, 2),
-            Abundance(ResourceIDMap.Roots, 8),
-            Abundance(ResourceIDMap.Wood, 3),
-            Abundance(ResourceIDMap.Grubs, 2),
-            Abundance(ResourceIDMap.Fungus, 1)
+            Abundance(ResourceRefs.Greens, 6),
+            Abundance(ResourceRefs.Seeds, 9),
+            Abundance(ResourceRefs.Fruit, 2),
+            Abundance(ResourceRefs.Roots, 8),
+            Abundance(ResourceRefs.Wood, 3),
+            Abundance(ResourceRefs.Grubs, 2),
+            Abundance(ResourceRefs.Fungus, 1)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 2),
-            Abundance(ResourceIDMap.Seeds, 2),
-            Abundance(ResourceIDMap.Fruit, 2),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 1),
-            Abundance(ResourceIDMap.Fungus, 1)
+            Abundance(ResourceRefs.Greens, 2),
+            Abundance(ResourceRefs.Seeds, 2),
+            Abundance(ResourceRefs.Fruit, 2),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 1),
+            Abundance(ResourceRefs.Fungus, 1)
         )
     };
 
     public static readonly BiomeVegetationProfile TundraProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 5),
-            Abundance(ResourceIDMap.Seeds, 1),
-            Abundance(ResourceIDMap.Fruit, 2),
-            Abundance(ResourceIDMap.Roots, 3),
-            Abundance(ResourceIDMap.Wood, 1),
-            Abundance(ResourceIDMap.Grubs, 1),
-            Abundance(ResourceIDMap.Fungus, 2)
+            Abundance(ResourceRefs.Greens, 5),
+            Abundance(ResourceRefs.Seeds, 1),
+            Abundance(ResourceRefs.Fruit, 2),
+            Abundance(ResourceRefs.Roots, 3),
+            Abundance(ResourceRefs.Wood, 1),
+            Abundance(ResourceRefs.Grubs, 1),
+            Abundance(ResourceRefs.Fungus, 2)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 2),
-            Abundance(ResourceIDMap.Seeds, 1),
-            Abundance(ResourceIDMap.Fruit, 2),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 1),
-            Abundance(ResourceIDMap.Fungus, 2)
+            Abundance(ResourceRefs.Greens, 2),
+            Abundance(ResourceRefs.Seeds, 1),
+            Abundance(ResourceRefs.Fruit, 2),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 1),
+            Abundance(ResourceRefs.Fungus, 2)
         )
     };
 
     public static readonly BiomeVegetationProfile TaigaProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 6),
-            Abundance(ResourceIDMap.Seeds, 2),
-            Abundance(ResourceIDMap.Fruit, 3),
-            Abundance(ResourceIDMap.Roots, 2),
-            Abundance(ResourceIDMap.Wood, 2),
-            Abundance(ResourceIDMap.Grubs, 4),
-            Abundance(ResourceIDMap.Fungus, 6)
+            Abundance(ResourceRefs.Greens, 6),
+            Abundance(ResourceRefs.Seeds, 2),
+            Abundance(ResourceRefs.Fruit, 3),
+            Abundance(ResourceRefs.Roots, 2),
+            Abundance(ResourceRefs.Wood, 2),
+            Abundance(ResourceRefs.Grubs, 4),
+            Abundance(ResourceRefs.Fungus, 6)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 2),
-            Abundance(ResourceIDMap.Seeds, 2),
-            Abundance(ResourceIDMap.Fruit, 1),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 1),
-            Abundance(ResourceIDMap.Fungus, 2)
+            Abundance(ResourceRefs.Greens, 2),
+            Abundance(ResourceRefs.Seeds, 2),
+            Abundance(ResourceRefs.Fruit, 1),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 1),
+            Abundance(ResourceRefs.Fungus, 2)
         )
     };
 
     public static readonly BiomeVegetationProfile TropicalProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 9),
-            Abundance(ResourceIDMap.Seeds, 3),
-            Abundance(ResourceIDMap.Fruit, 7),
-            Abundance(ResourceIDMap.Roots, 4),
-            Abundance(ResourceIDMap.Wood, 2),
-            Abundance(ResourceIDMap.Grubs, 8),
-            Abundance(ResourceIDMap.Fungus, 6)
+            Abundance(ResourceRefs.Greens, 9),
+            Abundance(ResourceRefs.Seeds, 3),
+            Abundance(ResourceRefs.Fruit, 7),
+            Abundance(ResourceRefs.Roots, 4),
+            Abundance(ResourceRefs.Wood, 2),
+            Abundance(ResourceRefs.Grubs, 8),
+            Abundance(ResourceRefs.Fungus, 6)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 4),
-            Abundance(ResourceIDMap.Seeds, 2),
-            Abundance(ResourceIDMap.Fruit, 10),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 5),
-            Abundance(ResourceIDMap.Fungus, 3)
+            Abundance(ResourceRefs.Greens, 4),
+            Abundance(ResourceRefs.Seeds, 2),
+            Abundance(ResourceRefs.Fruit, 10),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 5),
+            Abundance(ResourceRefs.Fungus, 3)
         )
     };
 
     public static readonly BiomeVegetationProfile SavannaProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 10),
-            Abundance(ResourceIDMap.Seeds, 5),
-            Abundance(ResourceIDMap.Fruit, 1),
-            Abundance(ResourceIDMap.Roots, 3),
-            Abundance(ResourceIDMap.Wood, 1),
-            Abundance(ResourceIDMap.Grubs, 3),
-            Abundance(ResourceIDMap.Fungus, 1)
+            Abundance(ResourceRefs.Greens, 10),
+            Abundance(ResourceRefs.Seeds, 5),
+            Abundance(ResourceRefs.Fruit, 1),
+            Abundance(ResourceRefs.Roots, 3),
+            Abundance(ResourceRefs.Wood, 1),
+            Abundance(ResourceRefs.Grubs, 3),
+            Abundance(ResourceRefs.Fungus, 1)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 2),
-            Abundance(ResourceIDMap.Seeds, 1),
-            Abundance(ResourceIDMap.Fruit, 2),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 1),
-            Abundance(ResourceIDMap.Fungus, 1)
+            Abundance(ResourceRefs.Greens, 2),
+            Abundance(ResourceRefs.Seeds, 1),
+            Abundance(ResourceRefs.Fruit, 2),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 1),
+            Abundance(ResourceRefs.Fungus, 1)
         )
     };
 
     public static readonly BiomeVegetationProfile TemperateProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 7),
-            Abundance(ResourceIDMap.Seeds, 3),
-            Abundance(ResourceIDMap.Fruit, 4),
-            Abundance(ResourceIDMap.Roots, 3),
-            Abundance(ResourceIDMap.Wood, 1),
-            Abundance(ResourceIDMap.Grubs, 4),
-            Abundance(ResourceIDMap.Fungus, 3)
+            Abundance(ResourceRefs.Greens, 7),
+            Abundance(ResourceRefs.Seeds, 3),
+            Abundance(ResourceRefs.Fruit, 4),
+            Abundance(ResourceRefs.Roots, 3),
+            Abundance(ResourceRefs.Wood, 1),
+            Abundance(ResourceRefs.Grubs, 4),
+            Abundance(ResourceRefs.Fungus, 3)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 2),
-            Abundance(ResourceIDMap.Seeds, 3),
-            Abundance(ResourceIDMap.Fruit, 4),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 2),
-            Abundance(ResourceIDMap.Fungus, 3)
+            Abundance(ResourceRefs.Greens, 2),
+            Abundance(ResourceRefs.Seeds, 3),
+            Abundance(ResourceRefs.Fruit, 4),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 2),
+            Abundance(ResourceRefs.Fungus, 3)
         )
     };
 
     public static readonly BiomeVegetationProfile SteppeProfile = new()
     {
         LowVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 9),
-            Abundance(ResourceIDMap.Seeds, 6),
-            Abundance(ResourceIDMap.Fruit, 1),
-            Abundance(ResourceIDMap.Roots, 3),
-            Abundance(ResourceIDMap.Wood, 1),
-            Abundance(ResourceIDMap.Grubs, 2),
-            Abundance(ResourceIDMap.Fungus, 1)
+            Abundance(ResourceRefs.Greens, 9),
+            Abundance(ResourceRefs.Seeds, 6),
+            Abundance(ResourceRefs.Fruit, 1),
+            Abundance(ResourceRefs.Roots, 3),
+            Abundance(ResourceRefs.Wood, 1),
+            Abundance(ResourceRefs.Grubs, 2),
+            Abundance(ResourceRefs.Fungus, 1)
         ),
 
         HighVegetationProfile = new VegetationAbundanceProfile(
-            Abundance(ResourceIDMap.Greens, 1),
-            Abundance(ResourceIDMap.Seeds, 2),
-            Abundance(ResourceIDMap.Fruit, 1),
-            Abundance(ResourceIDMap.Roots, 1),
-            Abundance(ResourceIDMap.Wood, 10),
-            Abundance(ResourceIDMap.Grubs, 1),
-            Abundance(ResourceIDMap.Fungus, 1)
+            Abundance(ResourceRefs.Greens, 1),
+            Abundance(ResourceRefs.Seeds, 2),
+            Abundance(ResourceRefs.Fruit, 1),
+            Abundance(ResourceRefs.Roots, 1),
+            Abundance(ResourceRefs.Wood, 10),
+            Abundance(ResourceRefs.Grubs, 1),
+            Abundance(ResourceRefs.Fungus, 1)
         )
     };
 

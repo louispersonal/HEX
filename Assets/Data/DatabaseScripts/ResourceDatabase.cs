@@ -14,7 +14,7 @@ public sealed class ResourceDatabase : Database<ResourceID, ResourceDefinition>
             if (current == parent)
                 return true;
 
-            if (definition.ParentID == null)
+            if (definition.ParentID == ResourceRefs.None)
                 return false;
 
             current = definition.ParentID;

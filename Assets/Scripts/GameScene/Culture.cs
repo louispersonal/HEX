@@ -20,12 +20,12 @@ public class Culture
     {
         GatheringProficiency = new Dictionary<ResourceID, float>()
         {
-            { ResourceIDMap.Greens, 0.2f },
-            { ResourceIDMap.Fruit, 0.2f },
-            { ResourceIDMap.Fungus, 0.2f },
-            { ResourceIDMap.Seeds, 0.2f },
-            { ResourceIDMap.Roots, 0.2f },
-            { ResourceIDMap.Grubs, 0.2f }
+            { ResourceRefs.Greens, 0.2f },
+            { ResourceRefs.Fruit, 0.2f },
+            { ResourceRefs.Fungus, 0.2f },
+            { ResourceRefs.Seeds, 0.2f },
+            { ResourceRefs.Roots, 0.2f },
+            { ResourceRefs.Grubs, 0.2f }
         };
     }
 }
