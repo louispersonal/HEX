@@ -3,6 +3,7 @@ public enum AnimalTags
     // Body
     Furry,
     Woolly,
+    HideBearing,
     Feathered,
     Scaled,
     Horned,

@@ -20,6 +20,10 @@ MonoBehaviour:
     ParentID:
       Value: 0
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 1
     DisplayName: Food
@@ -27,6 +31,10 @@ MonoBehaviour:
     ParentID:
       Value: 0
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 2
     DisplayName: Greens
@@ -34,6 +42,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 3
     DisplayName: Seeds
@@ -41,6 +53,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 4
     DisplayName: Fruit
@@ -48,6 +64,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 5
     DisplayName: Roots
@@ -55,6 +75,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 6
     DisplayName: Grubs
@@ -62,6 +86,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 7
     DisplayName: Fungus
@@ -69,6 +97,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 8
     DisplayName: Meat
@@ -76,6 +108,10 @@ MonoBehaviour:
     ParentID:
       Value: 1
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 9
     DisplayName: Material
@@ -83,6 +119,10 @@ MonoBehaviour:
     ParentID:
       Value: 0
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 10
     DisplayName: Wood
@@ -90,6 +130,10 @@ MonoBehaviour:
     ParentID:
       Value: 9
     IsAbstract: 0
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 11
     DisplayName: AnimalSkin
@@ -97,6 +141,10 @@ MonoBehaviour:
     ParentID:
       Value: 9
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 12
     DisplayName: Hide
@@ -104,6 +152,10 @@ MonoBehaviour:
     ParentID:
       Value: 11
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 13
     DisplayName: Pelt
@@ -111,6 +163,10 @@ MonoBehaviour:
     ParentID:
       Value: 11
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 14
     DisplayName: Fiber
@@ -118,6 +174,10 @@ MonoBehaviour:
     ParentID:
       Value: 9
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 15
     DisplayName: Wool
@@ -125,6 +185,10 @@ MonoBehaviour:
     ParentID:
       Value: 14
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 16
     DisplayName: Ivory
@@ -132,6 +196,10 @@ MonoBehaviour:
     ParentID:
       Value: 9
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
   - _id:
       Value: 17
     DisplayName: Antler
@@ -139,3 +207,1371 @@ MonoBehaviour:
     ParentID:
       Value: 9
     IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
+  - _id:
+      Value: 18
+    DisplayName: Fennec Fox Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 19
+    DisplayName: Red Fox Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 1
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 20
+    DisplayName: Culpeo Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 2
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 21
+    DisplayName: Bat-eared Fox Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 3
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 22
+    DisplayName: Scorpion Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 4
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 23
+    DisplayName: Viper Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 5
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 24
+    DisplayName: Dromedary Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 6
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 25
+    DisplayName: Savanna Elephant Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 7
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 26
+    DisplayName: Jungle Elephant Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 8
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 27
+    DisplayName: Jerboa Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 9
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 28
+    DisplayName: Baboon Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 10
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 29
+    DisplayName: Crocodile Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 11
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 30
+    DisplayName: Hyena Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 12
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 31
+    DisplayName: Oryx Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 13
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 32
+    DisplayName: Camel Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 14
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 33
+    DisplayName: Sand Cat Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 15
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 34
+    DisplayName: Caracal Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 16
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 35
+    DisplayName: Cobra Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 17
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 36
+    DisplayName: "Vicu\xF1a Meat"
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 18
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 37
+    DisplayName: Viscacha Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 19
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 38
+    DisplayName: Flamingo Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 20
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 39
+    DisplayName: Kangaroo Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 21
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 40
+    DisplayName: Dingo Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 22
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 41
+    DisplayName: Goanna Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 23
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 42
+    DisplayName: Frilled-Neck Lizard Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 24
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 43
+    DisplayName: Black Bear Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 25
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 44
+    DisplayName: Grizzly Bear Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 26
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 45
+    DisplayName: Polar Bear Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 27
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 46
+    DisplayName: Panda Bear Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 28
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 47
+    DisplayName: Sun Bear Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 29
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 48
+    DisplayName: Golden Eagle Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 30
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 49
+    DisplayName: Bald Eagle Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 31
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 50
+    DisplayName: Pallas Cat Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 32
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 51
+    DisplayName: Horse Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 33
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 52
+    DisplayName: Khulan Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 34
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 53
+    DisplayName: Wild Ass Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 35
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 54
+    DisplayName: Wolf Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 36
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 55
+    DisplayName: Deer Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 37
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 56
+    DisplayName: Moose Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 38
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 57
+    DisplayName: Elk Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 39
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 58
+    DisplayName: Bobcat Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 40
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 59
+    DisplayName: Cougar Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 41
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 60
+    DisplayName: Coyote Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 42
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 61
+    DisplayName: Raccoon Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 43
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 62
+    DisplayName: Opossum Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 44
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 63
+    DisplayName: Skunk Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 45
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 64
+    DisplayName: Chipmunk Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 46
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 65
+    DisplayName: Squirrel Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 47
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 66
+    DisplayName: Groundhog Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 48
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 67
+    DisplayName: Marmot Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 49
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 68
+    DisplayName: Prairie Dog Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 50
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 69
+    DisplayName: Porcupine Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 51
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 70
+    DisplayName: Salamander Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 52
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 71
+    DisplayName: Copperhead Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 53
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 72
+    DisplayName: Turtle Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 54
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 73
+    DisplayName: Rabbit Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 55
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 74
+    DisplayName: Hare Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 56
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 75
+    DisplayName: Badger Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 57
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 76
+    DisplayName: Boar Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 58
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 77
+    DisplayName: Stork Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 59
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 78
+    DisplayName: Swan Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 60
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 79
+    DisplayName: Goose Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 61
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 80
+    DisplayName: Beaver Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 62
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 81
+    DisplayName: Otter Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 63
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 82
+    DisplayName: Hedgehog Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 64
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 83
+    DisplayName: Ferret Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 65
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 84
+    DisplayName: Pudu Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 66
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 85
+    DisplayName: Monito del Monte Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 67
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 86
+    DisplayName: Kodkod Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 68
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 87
+    DisplayName: Woodpecker Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 69
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 88
+    DisplayName: Hummingbird Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 70
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 89
+    DisplayName: Bison Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 71
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 90
+    DisplayName: Pronghorn Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 72
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 91
+    DisplayName: Owl Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 73
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 92
+    DisplayName: Sheep Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 74
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 93
+    DisplayName: Goat Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 75
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 94
+    DisplayName: Tiger Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 76
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 95
+    DisplayName: Lynx Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 77
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 96
+    DisplayName: Leopard Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 78
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 97
+    DisplayName: Snow Leopard Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 79
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 98
+    DisplayName: Red Panda Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 80
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 99
+    DisplayName: Reindeer Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 81
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 100
+    DisplayName: Penguin Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 82
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 101
+    DisplayName: Howler Monkey Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 83
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 102
+    DisplayName: Capuchin Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 84
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 103
+    DisplayName: Anaconda Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 85
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 104
+    DisplayName: Boa Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 86
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 105
+    DisplayName: Kinkajou Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 87
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 106
+    DisplayName: Sloth Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 88
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 107
+    DisplayName: Coatimundi Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 89
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 108
+    DisplayName: Capybara Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 90
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 109
+    DisplayName: Toucan Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 91
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 110
+    DisplayName: Jaguar Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 92
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 111
+    DisplayName: Gorilla Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 93
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 112
+    DisplayName: Condor Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 94
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 113
+    DisplayName: Vulture Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 95
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 114
+    DisplayName: Lemur Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 96
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 115
+    DisplayName: Mandrill Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 97
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 116
+    DisplayName: Guereza Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 98
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 117
+    DisplayName: Aardvark Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 99
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 118
+    DisplayName: Anteater Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 100
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 119
+    DisplayName: Chameleon Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 101
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 120
+    DisplayName: Chimpanzee Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 102
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 121
+    DisplayName: Monitor Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 103
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 122
+    DisplayName: Orangutan Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 104
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 123
+    DisplayName: Proboscis Monkey Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 105
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 124
+    DisplayName: Dik-dik Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 106
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 125
+    DisplayName: Genet Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 107
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 126
+    DisplayName: Meerkat Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 108
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 127
+    DisplayName: Dwarf Mongoose Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 109
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 128
+    DisplayName: Lion Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 110
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 129
+    DisplayName: Wildebeest Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 111
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 130
+    DisplayName: Buffalo Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 112
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 131
+    DisplayName: Giraffe Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 113
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 132
+    DisplayName: Aurochs Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 114
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 133
+    DisplayName: Hippopotamus Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 115
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 134
+    DisplayName: Jackal Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 116
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 135
+    DisplayName: Gazelle Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 117
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 136
+    DisplayName: Mouse Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 118
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 137
+    DisplayName: Colorado River Toad Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 119
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 138
+    DisplayName: Rat Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 120
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 139
+    DisplayName: Shrew Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 121
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 140
+    DisplayName: Vole Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 122
+    SpeciesProductKey: Meat
+  - _id:
+      Value: 141
+    DisplayName: Weasel Meat
+    Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
+    ParentID:
+      Value: 8
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 123
+    SpeciesProductKey: Meat

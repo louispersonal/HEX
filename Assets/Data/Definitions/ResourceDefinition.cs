@@ -12,4 +12,8 @@ public class ResourceDefinition : IDatabaseItem<ResourceID>
     
     public ResourceID ParentID;
     public bool IsAbstract;
+    
+    public bool IsSpeciesResource;
+    public SpeciesID SourceSpeciesID;
+    public string SpeciesProductKey;
 }
