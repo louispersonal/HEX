@@ -75,7 +75,7 @@ MonoBehaviour:
     Thumbnail: {fileID: 21300000, guid: 96d42cf77a2b46b4bb7dc9fb7ff7d44d, type: 3}
     ParentID:
       Value: 1
-    IsAbstract: 0
+    IsAbstract: 1
   - _id:
       Value: 9
     DisplayName: Material
