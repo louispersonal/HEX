@@ -16,14 +16,14 @@ MonoBehaviour:
   - _id:
       Value: 0
     DisplayName: None
-    Thumbnail: {fileID: 21300000, guid: e67d3e985ec3cd9458921540cbf77273, type: 3}
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
     ParentID:
       Value: 0
     IsAbstract: 1
   - _id:
       Value: 1
     DisplayName: Food
-    Thumbnail: {fileID: 21300000, guid: e67d3e985ec3cd9458921540cbf77273, type: 3}
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
     ParentID:
       Value: 0
     IsAbstract: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
   - _id:
       Value: 9
     DisplayName: Material
-    Thumbnail: {fileID: 21300000, guid: ecafcaf831568264ca4eb9a635ce1186, type: 3}
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
     ParentID:
       Value: 0
     IsAbstract: 1
@@ -90,3 +90,52 @@ MonoBehaviour:
     ParentID:
       Value: 9
     IsAbstract: 0
+  - _id:
+      Value: 11
+    DisplayName: AnimalSkin
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 9
+    IsAbstract: 1
+  - _id:
+      Value: 12
+    DisplayName: Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 11
+    IsAbstract: 1
+  - _id:
+      Value: 13
+    DisplayName: Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 11
+    IsAbstract: 1
+  - _id:
+      Value: 14
+    DisplayName: Fiber
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 9
+    IsAbstract: 1
+  - _id:
+      Value: 15
+    DisplayName: Wool
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 14
+    IsAbstract: 1
+  - _id:
+      Value: 16
+    DisplayName: Ivory
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 9
+    IsAbstract: 1
+  - _id:
+      Value: 17
+    DisplayName: Antler
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 9
+    IsAbstract: 1
