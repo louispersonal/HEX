@@ -1575,3 +1575,1928 @@ MonoBehaviour:
     SourceSpeciesID:
       Value: 123
     SpeciesProductKey: Meat
+  - _id:
+      Value: 142
+    DisplayName: Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 9
+    IsAbstract: 1
+    IsSpeciesResource: 0
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: 
+  - _id:
+      Value: 143
+    DisplayName: Fennec Fox Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 0
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 144
+    DisplayName: Red Fox Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 1
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 145
+    DisplayName: Culpeo Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 2
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 146
+    DisplayName: Bat-eared Fox Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 3
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 147
+    DisplayName: Dromedary Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 6
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 148
+    DisplayName: Dromedary Wool
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 15
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 6
+    SpeciesProductKey: Wool
+  - _id:
+      Value: 149
+    DisplayName: Dromedary Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 6
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 150
+    DisplayName: Savanna Elephant Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 7
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 151
+    DisplayName: Savanna Elephant Tusks
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 7
+    SpeciesProductKey: Tusks
+  - _id:
+      Value: 152
+    DisplayName: Jungle Elephant Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 8
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 153
+    DisplayName: Jungle Elephant Tusks
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 8
+    SpeciesProductKey: Tusks
+  - _id:
+      Value: 154
+    DisplayName: Jerboa Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 9
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 155
+    DisplayName: Baboon Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 10
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 156
+    DisplayName: Crocodile Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 11
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 157
+    DisplayName: Hyena Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 12
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 158
+    DisplayName: Oryx Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 13
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 159
+    DisplayName: Oryx Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 13
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 160
+    DisplayName: Oryx Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 13
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 161
+    DisplayName: Camel Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 14
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 162
+    DisplayName: Camel Wool
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 15
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 14
+    SpeciesProductKey: Wool
+  - _id:
+      Value: 163
+    DisplayName: Camel Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 14
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 164
+    DisplayName: Sand Cat Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 15
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 165
+    DisplayName: Caracal Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 16
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 166
+    DisplayName: "Vicu\xF1a Pelt"
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 18
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 167
+    DisplayName: "Vicu\xF1a Wool"
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 15
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 18
+    SpeciesProductKey: Wool
+  - _id:
+      Value: 168
+    DisplayName: "Vicu\xF1a Hide"
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 18
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 169
+    DisplayName: Viscacha Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 19
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 170
+    DisplayName: Flamingo Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 20
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 171
+    DisplayName: Kangaroo Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 21
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 172
+    DisplayName: Kangaroo Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 21
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 173
+    DisplayName: Dingo Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 22
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 174
+    DisplayName: Goanna Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 23
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 175
+    DisplayName: Black Bear Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 25
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 176
+    DisplayName: Black Bear Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 25
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 177
+    DisplayName: Grizzly Bear Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 26
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 178
+    DisplayName: Grizzly Bear Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 26
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 179
+    DisplayName: Polar Bear Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 27
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 180
+    DisplayName: Polar Bear Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 27
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 181
+    DisplayName: Panda Bear Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 28
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 182
+    DisplayName: Panda Bear Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 28
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 183
+    DisplayName: Sun Bear Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 29
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 184
+    DisplayName: Sun Bear Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 29
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 185
+    DisplayName: Golden Eagle Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 30
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 186
+    DisplayName: Bald Eagle Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 31
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 187
+    DisplayName: Pallas Cat Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 32
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 188
+    DisplayName: Horse Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 33
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 189
+    DisplayName: Horse Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 33
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 190
+    DisplayName: Khulan Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 34
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 191
+    DisplayName: Khulan Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 34
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 192
+    DisplayName: Wild Ass Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 35
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 193
+    DisplayName: Wild Ass Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 35
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 194
+    DisplayName: Wolf Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 36
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 195
+    DisplayName: Wolf Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 36
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 196
+    DisplayName: Deer Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 37
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 197
+    DisplayName: Deer Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 37
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 198
+    DisplayName: Deer Antlers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 17
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 37
+    SpeciesProductKey: Antler
+  - _id:
+      Value: 199
+    DisplayName: Moose Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 38
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 200
+    DisplayName: Moose Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 38
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 201
+    DisplayName: Moose Antlers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 17
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 38
+    SpeciesProductKey: Antler
+  - _id:
+      Value: 202
+    DisplayName: Elk Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 39
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 203
+    DisplayName: Elk Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 39
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 204
+    DisplayName: Elk Antlers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 17
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 39
+    SpeciesProductKey: Antler
+  - _id:
+      Value: 205
+    DisplayName: Bobcat Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 40
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 206
+    DisplayName: Cougar Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 41
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 207
+    DisplayName: Cougar Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 41
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 208
+    DisplayName: Coyote Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 42
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 209
+    DisplayName: Raccoon Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 43
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 210
+    DisplayName: Opossum Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 44
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 211
+    DisplayName: Skunk Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 45
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 212
+    DisplayName: Chipmunk Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 46
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 213
+    DisplayName: Squirrel Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 47
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 214
+    DisplayName: Groundhog Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 48
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 215
+    DisplayName: Marmot Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 49
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 216
+    DisplayName: Prairie Dog Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 50
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 217
+    DisplayName: Porcupine Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 51
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 218
+    DisplayName: Rabbit Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 55
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 219
+    DisplayName: Hare Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 56
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 220
+    DisplayName: Badger Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 57
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 221
+    DisplayName: Boar Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 58
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 222
+    DisplayName: Boar Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 58
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 223
+    DisplayName: Boar Tusks
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 58
+    SpeciesProductKey: Tusks
+  - _id:
+      Value: 224
+    DisplayName: Stork Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 59
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 225
+    DisplayName: Swan Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 60
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 226
+    DisplayName: Goose Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 61
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 227
+    DisplayName: Beaver Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 62
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 228
+    DisplayName: Otter Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 63
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 229
+    DisplayName: Hedgehog Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 64
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 230
+    DisplayName: Ferret Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 65
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 231
+    DisplayName: Pudu Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 66
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 232
+    DisplayName: Pudu Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 66
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 233
+    DisplayName: Pudu Antlers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 17
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 66
+    SpeciesProductKey: Antler
+  - _id:
+      Value: 234
+    DisplayName: Monito del Monte Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 67
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 235
+    DisplayName: Kodkod Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 68
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 236
+    DisplayName: Woodpecker Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 69
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 237
+    DisplayName: Hummingbird Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 70
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 238
+    DisplayName: Bison Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 71
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 239
+    DisplayName: Bison Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 71
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 240
+    DisplayName: Bison Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 71
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 241
+    DisplayName: Pronghorn Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 72
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 242
+    DisplayName: Pronghorn Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 72
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 243
+    DisplayName: Pronghorn Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 72
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 244
+    DisplayName: Owl Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 73
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 245
+    DisplayName: Sheep Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 74
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 246
+    DisplayName: Sheep Wool
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 15
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 74
+    SpeciesProductKey: Wool
+  - _id:
+      Value: 247
+    DisplayName: Sheep Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 74
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 248
+    DisplayName: Sheep Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 74
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 249
+    DisplayName: Goat Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 75
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 250
+    DisplayName: Goat Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 75
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 251
+    DisplayName: Goat Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 75
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 252
+    DisplayName: Tiger Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 76
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 253
+    DisplayName: Tiger Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 76
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 254
+    DisplayName: Lynx Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 77
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 255
+    DisplayName: Leopard Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 78
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 256
+    DisplayName: Leopard Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 78
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 257
+    DisplayName: Snow Leopard Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 79
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 258
+    DisplayName: Snow Leopard Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 79
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 259
+    DisplayName: Red Panda Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 80
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 260
+    DisplayName: Reindeer Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 81
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 261
+    DisplayName: Reindeer Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 81
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 262
+    DisplayName: Reindeer Antlers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 17
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 81
+    SpeciesProductKey: Antler
+  - _id:
+      Value: 263
+    DisplayName: Penguin Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 82
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 264
+    DisplayName: Howler Monkey Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 83
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 265
+    DisplayName: Capuchin Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 84
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 266
+    DisplayName: Anaconda Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 85
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 267
+    DisplayName: Boa Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 86
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 268
+    DisplayName: Kinkajou Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 87
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 269
+    DisplayName: Sloth Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 88
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 270
+    DisplayName: Coatimundi Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 89
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 271
+    DisplayName: Capybara Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 90
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 272
+    DisplayName: Capybara Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 90
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 273
+    DisplayName: Toucan Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 91
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 274
+    DisplayName: Jaguar Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 92
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 275
+    DisplayName: Jaguar Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 92
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 276
+    DisplayName: Gorilla Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 93
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 277
+    DisplayName: Condor Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 94
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 278
+    DisplayName: Vulture Feathers
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 142
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 95
+    SpeciesProductKey: Feathers
+  - _id:
+      Value: 279
+    DisplayName: Lemur Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 96
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 280
+    DisplayName: Mandrill Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 97
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 281
+    DisplayName: Guereza Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 98
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 282
+    DisplayName: Aardvark Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 99
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 283
+    DisplayName: Anteater Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 100
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 284
+    DisplayName: Chimpanzee Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 102
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 285
+    DisplayName: Monitor Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 103
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 286
+    DisplayName: Orangutan Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 104
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 287
+    DisplayName: Proboscis Monkey Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 105
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 288
+    DisplayName: Dik-dik Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 106
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 289
+    DisplayName: Dik-dik Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 106
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 290
+    DisplayName: Genet Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 107
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 291
+    DisplayName: Meerkat Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 108
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 292
+    DisplayName: Dwarf Mongoose Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 109
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 293
+    DisplayName: Lion Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 110
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 294
+    DisplayName: Lion Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 110
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 295
+    DisplayName: Wildebeest Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 111
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 296
+    DisplayName: Wildebeest Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 111
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 297
+    DisplayName: Wildebeest Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 111
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 298
+    DisplayName: Buffalo Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 112
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 299
+    DisplayName: Buffalo Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 112
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 300
+    DisplayName: Buffalo Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 112
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 301
+    DisplayName: Giraffe Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 113
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 302
+    DisplayName: Giraffe Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 113
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 303
+    DisplayName: Aurochs Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 114
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 304
+    DisplayName: Aurochs Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 114
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 305
+    DisplayName: Aurochs Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 114
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 306
+    DisplayName: Hippopotamus Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 115
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 307
+    DisplayName: Hippopotamus Tusks
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 115
+    SpeciesProductKey: Tusks
+  - _id:
+      Value: 308
+    DisplayName: Jackal Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 116
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 309
+    DisplayName: Gazelle Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 117
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 310
+    DisplayName: Gazelle Hide
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 12
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 117
+    SpeciesProductKey: Hide
+  - _id:
+      Value: 311
+    DisplayName: Gazelle Horn
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 16
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 117
+    SpeciesProductKey: Horn
+  - _id:
+      Value: 312
+    DisplayName: Mouse Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 118
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 313
+    DisplayName: Rat Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 120
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 314
+    DisplayName: Shrew Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 121
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 315
+    DisplayName: Vole Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 122
+    SpeciesProductKey: Pelt
+  - _id:
+      Value: 316
+    DisplayName: Weasel Pelt
+    Thumbnail: {fileID: 21300000, guid: df98dfc67271aac469cd389d154cdd93, type: 3}
+    ParentID:
+      Value: 13
+    IsAbstract: 0
+    IsSpeciesResource: 1
+    SourceSpeciesID:
+      Value: 123
+    SpeciesProductKey: Pelt
