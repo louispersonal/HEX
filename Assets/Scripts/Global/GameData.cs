@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class GameData
 {
-    private string GameName = "test_game";
+    public string GameName = "test_game";
+
+    public string WorldName = "test_world";
     
     public Ticker Ticker;
     
@@ -15,7 +17,8 @@ public class GameData
 
     public GameSaveData ToSaveData()
     {
-        return new GameSaveData(GameName, Pops.ToArray(), Cultures.Values.ToArray(), Religions.Values.ToArray());
+        return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
+            Pops.ToArray(), Cultures.Values.ToArray(), Religions.Values.ToArray());
     }
 }
 
@@ -23,13 +26,18 @@ public class GameData
 public class GameSaveData
 {
     public string GameName;
+    public string WorldName;
+    public TickInfo TickInfo;
     public Pop[] Pops;
     public Culture[] Cultures;
     public Religion[] Religions;
 
-    public GameSaveData(string gameName, Pop[] pops, Culture[] cultures, Religion[] religions)
+    public GameSaveData(string gameName, string worldName, TickInfo tickInfo,
+        Pop[] pops, Culture[] cultures, Religion[] religions)
     {
         GameName = gameName;
+        WorldName = worldName;
+        TickInfo = tickInfo;
         Pops = pops;
         Cultures = cultures;
         Religions = religions;

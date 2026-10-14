@@ -84,7 +84,7 @@ public class NewGameMenuController : SubMenu
 
     public void LoadWorld(string worldName)
     {
-        GameController.Instance.SessionManager.LoadWorldData(worldName);
+        GameController.Instance.SessionManager.LoadWorldDataFromName(worldName);
 
         PreviewCurrentWorld();
     }

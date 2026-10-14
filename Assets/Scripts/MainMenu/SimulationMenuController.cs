@@ -47,6 +47,8 @@ public class SimulationMenuController : SubMenu
         Ticker newTicker = new Ticker(newTickInfo);
         GameController.Instance.SessionManager.NewGameData();
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
+        GameController.Instance.SessionManager.GameData.GameName = "Debug";
+        GameController.Instance.SessionManager.GameData.WorldName = GameController.Instance.SessionManager.WorldData.Name;
     }
 
     private void SeedSimulation()
@@ -75,8 +77,7 @@ public class SimulationMenuController : SubMenu
         
         AxialCoordinate seedLocation = FindSeedLocation();
         GameController.Instance.SessionManager.GameData.Pops.TryCreateNewPop("Bogoma", 30,
-            seedLocation, seedCultureID, seedReligionID,
-            out Pop seedPop);
+            seedLocation, seedCultureID, seedReligionID, out Pop seedPop);
 
         return seedPop;
     }

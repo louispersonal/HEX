@@ -62,4 +62,12 @@ public class PopCollection
     {
         return _spatial.Objects.Values.ToArray();
     }
+
+    public void LoadPops(Pop[] pops)
+    {
+        foreach (Pop pop in pops)
+        {
+            _spatial.TryAdd(pop.ID, pop, new[] { pop.Location });
+        }
+    }
 }

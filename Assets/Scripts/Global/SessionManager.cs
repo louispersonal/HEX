@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -19,7 +21,18 @@ public class SessionManager : MonoBehaviour
 
     private string GamesFolder =>
         Path.Combine(Application.persistentDataPath, "Games");
-    
+
+    [SerializeField] private string DebugDataName;
+
+    private void Start()
+    {
+        if (_gameData == null && _worldData == null)
+        {
+            Debug.Log("Using debug game data");
+            LoadGameDataFromName(DebugDataName);
+        }
+    }
+
     public List<string> GetWorldSaveFiles()
     {
         List<string> saveFiles = new List<string>();
@@ -50,10 +63,9 @@ public class SessionManager : MonoBehaviour
         File.WriteAllText(path, json);
     }
 
-    public void LoadWorldData(string worldName)
+    public void LoadWorldDataFromName(string worldName)
     {
-        string filename = Path.Combine(WorldsFolder, worldName + ".json");
-        string json = File.ReadAllText(filename);
+        string json = File.ReadAllText(GetWorldPathFromName(worldName));
         WorldSaveData saveData = JsonUtility.FromJson<WorldSaveData>(json);
         WorldData loadedWorld = new WorldData(saveData.Hexes);
         
@@ -82,6 +94,11 @@ public class SessionManager : MonoBehaviour
         GameController.Instance.SessionManager.UiData = new UiData(miniMapTexture);
     }
 
+    private string GetWorldPathFromName(string worldName)
+    {
+        return Path.Combine(WorldsFolder, worldName + ".json");
+    }
+    
     public void NewGameData()
     {
         _gameData = new GameData();
@@ -93,5 +110,33 @@ public class SessionManager : MonoBehaviour
         string json = JsonUtility.ToJson(saveData, true);
         string path = GamesFolder + "/" + saveData.GameName + ".json";
         File.WriteAllText(path, json);
+    }
+
+    public void LoadGameDataFromName(string gameName)
+    {
+        string json = File.ReadAllText(GetGamePathFromName(gameName));
+        GameSaveData saveData =  JsonUtility.FromJson<GameSaveData>(json);
+        
+        string worldName =  saveData.WorldName;
+        LoadWorldDataFromName(worldName);
+
+        NewGameData();
+        _gameData.Ticker = new Ticker(saveData.TickInfo);
+        _gameData.Pops.LoadPops(saveData.Pops);
+        
+        foreach(Religion religion in saveData.Religions)
+        {
+            _gameData.Religions.Add(religion.ID, religion);
+        }
+        
+        foreach(Religion religion in saveData.Religions)
+        {
+            _gameData.Religions.Add(religion.ID, religion);
+        }
+    }
+
+    private string GetGamePathFromName(string gameName)
+    {
+        return Path.Combine(GamesFolder, gameName + ".json");
     }
 }
