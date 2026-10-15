@@ -19,6 +19,11 @@ public class IndexedDictionary<TId, T>where T : IIndexedItem<TId>
         return _dictionary[key];
     }
 
+    public bool TryGetValue(TId key, out T value)
+    {
+        return _dictionary.TryGetValue(key, out value);
+    }
+    
     public bool TryAdd(T value)
     {
         return _dictionary.TryAdd(value.ID, value);

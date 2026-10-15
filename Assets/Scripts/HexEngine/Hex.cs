@@ -32,16 +32,18 @@ public class Hex : BaseHexData
         return new ResourcePreview(allPreviews);
     }
 
-    public Dictionary<SpeciesID, int> Animals()
+    public bool TryGetAnimals(out Dictionary<SpeciesID, int> animals)
     {
-        var region = WorldData.Regions.GetValue(_extraData.RegionId);
-        Dictionary<SpeciesID, int> animals = new();
+        animals = new();
+        
+        if (!WorldData.Regions.TryGetValue(_extraData.RegionId, out Region region)) return false;
+
         foreach (var a in region.Animals)
         {
             animals.Add(a.Key, a.Value/region.Size);
         }
 
-        return animals;
+        return true;
     }
 }
 

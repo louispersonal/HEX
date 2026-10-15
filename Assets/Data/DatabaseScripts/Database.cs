@@ -34,7 +34,7 @@ public abstract class Database<TKey, TItem> : ScriptableObject
 
         foreach (TItem item in _items)
         {
-            _lookup.Add(item.Id, item);
+            _lookup.Add(item.ID, item);
         }
     }
 }

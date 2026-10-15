@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
 public class Region : IIndexedItem<RegionID>
 {
-    private RegionID _id;
+    [SerializeField] private RegionID _id;
     public RegionID ID => _id;
 
     public int Size;
@@ -152,8 +154,8 @@ public class Region : IIndexedItem<RegionID>
     }
 }
 
-[System.Serializable]
-public struct RegionID
+[Serializable]
+public struct RegionID : IEquatable<RegionID>
 {
     public ushort Value;
 
@@ -161,8 +163,19 @@ public struct RegionID
     {
         Value = value;
     }
-    
-    public static bool operator ==(RegionID left, RegionID right) => left.Equals(right);
 
-    public static bool operator !=(RegionID left, RegionID right) => !left.Equals(right);
+    public bool Equals(RegionID other)
+        => Value == other.Value;
+
+    public override bool Equals(object obj)
+        => obj is RegionID other && Equals(other);
+
+    public override int GetHashCode()
+        => Value.GetHashCode();
+
+    public static bool operator ==(RegionID a, RegionID b)
+        => a.Equals(b);
+
+    public static bool operator !=(RegionID a, RegionID b)
+        => !a.Equals(b);
 }

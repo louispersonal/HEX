@@ -130,10 +130,10 @@ public static class SpeciesResourceGenerator
             throw new InvalidOperationException("Null species entry.");
 
         // Build and validate the complete plan before modifying any assets.
-        foreach (SpeciesDefinition species in speciesDatabase.Items.OrderBy(s => s.Id.Value))
+        foreach (SpeciesDefinition species in speciesDatabase.Items.OrderBy(s => s.ID.Value))
         {
             if (species == null) throw new InvalidOperationException("Null species entry.");
-            int speciesID = species.Id.Value;
+            int speciesID = species.ID.Value;
             if (!speciesIDs.Add(speciesID))
                 throw new InvalidOperationException("Duplicate species ID: " + speciesID);
             if (string.IsNullOrWhiteSpace(species.SpeciesName))

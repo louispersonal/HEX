@@ -8,7 +8,7 @@ public class SpeciesDefinition : IDatabaseItem<SpeciesID>
 {
     [SerializeField] private SpeciesID _id;
     
-    public SpeciesID Id => _id;
+    public SpeciesID ID => _id;
     
     public AnimalArchetypeID ArchetypeId;
     public string SpeciesName;

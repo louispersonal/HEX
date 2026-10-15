@@ -6,7 +6,7 @@ public class ResourceDefinition : IDatabaseItem<ResourceID>
 {
     [SerializeField] private ResourceID _id;
     
-    public ResourceID Id => _id;
+    public ResourceID ID => _id;
     public string DisplayName;
     public Sprite Thumbnail;
     

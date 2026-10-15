@@ -20,9 +20,10 @@ public class HuntAssignment : Assignment
 
     private void Hunt(Pop pop)
     {
-        foreach (var a in pop.CurrentHex.Animals())
+        if (!pop.CurrentHex.TryGetAnimals(out Dictionary<SpeciesID, int> animals)) return;
+        foreach (SpeciesID animal in animals.Keys)
         {
-            if (IsHuntable(a.Key.Definition))
+            if (IsHuntable(animal.Definition))
             {
                 
             }

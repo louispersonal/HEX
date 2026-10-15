@@ -164,7 +164,7 @@ public class RegionGen
                 continue;
 
             float allocatedFood = allocations.GetValueOrDefault(
-                candidate.Id,
+                candidate.ID,
                 0f);
 
             int population = Mathf.FloorToInt(
@@ -174,7 +174,7 @@ public class RegionGen
                     MaxPopulationVariance));
 
             if (population > 0)
-                region.Animals[candidate.Id] = population;
+                region.Animals[candidate.ID] = population;
         }
     }
 
@@ -186,7 +186,7 @@ public class RegionGen
         Dictionary<SpeciesID, float> allocations = new();
 
         foreach (SpeciesDefinition candidate in species)
-            allocations[candidate.Id] = 0f;
+            allocations[candidate.ID] = 0f;
 
         foreach (ResourceID resource in regionalFood.GetAllResourceIDs())
         {
@@ -220,7 +220,7 @@ public class RegionGen
                 if (weight <= 0f)
                     continue;
 
-                consumerWeights[candidate.Id] = weight;
+                consumerWeights[candidate.ID] = weight;
                 totalWeight += weight;
             }
 
@@ -279,7 +279,7 @@ public class RegionGen
             if (weight <= 0f)
                 continue;
 
-            predatorWeights[predator.Id] = weight;
+            predatorWeights[predator.ID] = weight;
             totalWeight += weight;
         }
 
@@ -292,7 +292,7 @@ public class RegionGen
         foreach (SpeciesDefinition predator in predators)
         {
             if (!predatorWeights.TryGetValue(
-                    predator.Id,
+                    predator.ID,
                     out float weight))
             {
                 continue;
@@ -315,7 +315,7 @@ public class RegionGen
                     MaxPopulationVariance));
 
             if (population > 0)
-                region.Animals[predator.Id] = population;
+                region.Animals[predator.ID] = population;
         }
     }
 

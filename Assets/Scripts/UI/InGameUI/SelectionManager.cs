@@ -18,6 +18,8 @@ public class SelectionManager : MonoBehaviour
     
     [SerializeField] private LayerMask _pawnLayerMask;
     
+    private WorldData WorldData => GameController.Instance.SessionManager.WorldData;
+    
     private void Update()
     {
         if (!Input.GetMouseButtonDown(0)) return;
@@ -75,8 +77,7 @@ public class SelectionManager : MonoBehaviour
         
         Hex hex = hexView.Data;
 
-        Region region = GameController.Instance.SessionManager.WorldData
-            .Regions.GetValue(hex.ExtraData.RegionId);
+        WorldData.Regions.TryGetValue(hex.ExtraData.RegionId, out Region region);
 
         LocationSelection = new LocationSelection(hex, region);
         
@@ -101,7 +102,7 @@ public class SelectionManager : MonoBehaviour
     private bool TryGetHexSelection(out HexView hexView)
     {
         hexView = null;
-        HexGrid grid = GameController.Instance.SessionManager.WorldData.Grid;
+        HexGrid grid = WorldData.Grid;
 
         if (!HexGridGeometry.TryGetHexAtScenePoint( grid, HexGridView.MouseToPlane(Camera.main, 0f),
                 out Hex target))
