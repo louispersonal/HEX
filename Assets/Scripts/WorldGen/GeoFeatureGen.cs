@@ -44,7 +44,7 @@ public class GeoFeatureGen
                 {
                     GeoID geoID = new GeoID(geoFeatureIndex);
                     GeoFeature newGeoFeature = new GeoFeature(geoID, new List<AxialCoordinate> { data.Coord }, sp.FeatureType);
-                    world.GeoFeatures.Add(geoID, newGeoFeature, new List<AxialCoordinate> { data.Coord });
+                    world.GeoFeatures.Add(newGeoFeature);
                     geoFeatureIndex++;
                 }
             }

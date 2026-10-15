@@ -28,14 +28,14 @@ public class RiverGen
             BuildRiver(newRiver, world, parameters, out Hex lakeHex);
             newRiver.PopulateRiverConnections();
             
-            world.Rivers.Add(newID, newRiver, newRiver.Coords);
+            world.Rivers.Add(newRiver);
             riverIndex++;
 
             if (lakeHex != null)
             {
                 LakeID newLakeId = new LakeID(lakeIndex);
                 Lake newLake = new Lake(newLakeId, new List<AxialCoordinate> { lakeHex.Coord });
-                world.Lakes.Add(newLakeId, newLake, new List<AxialCoordinate> { lakeHex.Coord });
+                world.Lakes.Add(newLake);
                 lakeIndex++;
             }
         }

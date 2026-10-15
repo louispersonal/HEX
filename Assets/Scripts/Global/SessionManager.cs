@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Security;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class SessionManager : MonoBehaviour
 {
@@ -22,15 +18,18 @@ public class SessionManager : MonoBehaviour
     private string GamesFolder =>
         Path.Combine(Application.persistentDataPath, "Games");
 
-    [SerializeField] private string DebugDataName;
+    [SerializeField] private bool _useDebugGameData;
+    [SerializeField] private string _debugDataName;
 
     private void Start()
     {
-        if (_gameData == null && _worldData == null)
-        {
-            Debug.Log("Using debug game data");
-            LoadGameDataFromName(DebugDataName);
-        }
+        #if UNITY_EDITOR
+            if (_useDebugGameData && _gameData == null)
+            {
+                Debug.Log("Loading debug game data");
+                LoadGameDataFromName(_debugDataName);
+            }
+        #endif
     }
 
     public List<string> GetWorldSaveFiles()
@@ -71,18 +70,12 @@ public class SessionManager : MonoBehaviour
         
         foreach (River river in saveData.Rivers)
         {
-            loadedWorld.Rivers.Add(river.ID, river, river.Coords);
+            river.PopulateRiverConnections();
         }
-
-        foreach (Lake lake in saveData.Lakes)
-        {
-            loadedWorld.Lakes.Add(lake.ID, lake, lake.Coords);
-        }
-
-        foreach (GeoFeature geoFeature in saveData.GeoFeatures)
-        {
-            loadedWorld.GeoFeatures.Add(geoFeature.ID, geoFeature, geoFeature.Coords);
-        }
+        
+        loadedWorld.Rivers = new SpatialLookup<RiverID, River>(saveData.Rivers);
+        loadedWorld.Lakes = new SpatialLookup<LakeID, Lake>(saveData.Lakes);
+        loadedWorld.GeoFeatures = new SpatialLookup<GeoID, GeoFeature>(saveData.GeoFeatures);
 
         loadedWorld.Regions = saveData.Regions;
 
@@ -121,6 +114,8 @@ public class SessionManager : MonoBehaviour
         LoadWorldDataFromName(worldName);
 
         NewGameData();
+        _gameData.GameName = saveData.GameName;
+        _gameData.WorldName = saveData.WorldName;
         _gameData.Ticker = new Ticker(saveData.TickInfo);
         _gameData.Pops.LoadPops(saveData.Pops);
         
@@ -129,9 +124,9 @@ public class SessionManager : MonoBehaviour
             _gameData.Religions.Add(religion.ID, religion);
         }
         
-        foreach(Religion religion in saveData.Religions)
+        foreach(Culture culture in saveData.Cultures)
         {
-            _gameData.Religions.Add(religion.ID, religion);
+            _gameData.Cultures.Add(culture.ID, culture);
         }
     }
 

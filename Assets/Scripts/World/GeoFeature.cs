@@ -4,16 +4,19 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class GeoFeature
+public class GeoFeature : ISpatialObject<GeoID>
 {
-    public GeoID ID;
-    public List<AxialCoordinate> Coords;
+    [SerializeField] private GeoID _id;
+    public GeoID ID => _id;
+    
+    [SerializeField] private List<AxialCoordinate> _coords;
+    public List<AxialCoordinate> Coords => _coords;
     public GeoFeatureType Type;
 
     public GeoFeature(GeoID iD, List<AxialCoordinate> coords, GeoFeatureType type)
     {
-        ID = iD;
-        Coords = coords;
+        _id = iD;
+        _coords = coords;
         Type = type;
     }
 }

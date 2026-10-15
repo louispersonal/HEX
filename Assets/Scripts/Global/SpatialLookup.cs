@@ -2,18 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpatialLookup<TId, TObject>
+public class SpatialLookup<TId, TObject> where TObject : ISpatialObject<TId>
 {
     public Dictionary<TId, TObject> Objects { get; } = new();
     public Dictionary<AxialCoordinate, TId> Lookup { get; } = new();
 
-    public void Add(TId id, TObject obj, IEnumerable<AxialCoordinate> coordinates)
+    public SpatialLookup() { }
+    
+    public SpatialLookup(TObject[] objects)
     {
-        Objects[id] = obj;
+        foreach (TObject obj in objects) Add(obj);
+    }
 
-        foreach (AxialCoordinate coord in coordinates)
+    public TObject[] ToArray()
+    {
+        TObject[] array = new TObject[Objects.Count];
+        Objects.Values.CopyTo(array, 0);
+        return array;
+    }
+    
+    public void Add(TObject obj)
+    {
+        Objects[obj.ID] = obj;
+
+        foreach (AxialCoordinate coord in obj.Coords)
         {
-            Lookup[coord] = id;
+            Lookup[coord] = obj.ID;
         }
     }
 
@@ -61,4 +75,10 @@ public class SpatialLookup<TId, TObject>
             Lookup.Remove(coord);
         }
     }
+}
+
+public interface ISpatialObject<TId>
+{
+    TId ID { get; }
+    List<AxialCoordinate> Coords { get; }
 }

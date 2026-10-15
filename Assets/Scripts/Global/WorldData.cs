@@ -40,7 +40,7 @@ public class WorldData
     
     public WorldSaveData ToSaveData()
     {
-        return new WorldSaveData(_name, Grid.GetHexData(), Rivers.Objects.Values.ToList(), Lakes.Objects.Values.ToList(), GeoFeatures.Objects.Values.ToList(), Regions);
+        return new WorldSaveData(_name, Grid.GetHexData(), Rivers.ToArray(), Lakes.ToArray(), GeoFeatures.ToArray(), Regions);
     }
 }
 
@@ -49,12 +49,12 @@ public class WorldSaveData
 {
     public string WorldName;
     public List<Hex> Hexes;
-    public List<River> Rivers;
-    public List<Lake> Lakes;
-    public List<GeoFeature> GeoFeatures;
+    public River[] Rivers;
+    public Lake[] Lakes;
+    public GeoFeature[] GeoFeatures;
     public Region[] Regions;
 
-    public WorldSaveData(string name, List<Hex> hexes, List<River> rivers, List<Lake> lakes, List<GeoFeature> geoFeatures, Region[] regions)
+    public WorldSaveData(string name, List<Hex> hexes, River[] rivers, Lake[] lakes, GeoFeature[] geoFeatures, Region[] regions)
     {
         WorldName = name;
         Hexes = hexes;

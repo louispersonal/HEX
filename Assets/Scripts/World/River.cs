@@ -3,34 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class River
+public class River : ISpatialObject<RiverID>
 {
-    public RiverID ID;
-    public List<AxialCoordinate> Coords;
+    [SerializeField] private RiverID id;
+    public RiverID ID => id;
+    
+    [SerializeField] private List<AxialCoordinate> coords;
+    public List<AxialCoordinate> Coords => coords;
+    
     public Dictionary<AxialCoordinate, byte> RiverConnections;
     public AxialCoordinate Source;
 
     public River (RiverID iD, AxialCoordinate source)
     {
         Source = source;
-        Coords = new List<AxialCoordinate>();
-        Coords.Add(source);
-        ID = iD;
+        coords = new List<AxialCoordinate>();
+        coords.Add(source);
+        id = iD;
     }
 
     public void PopulateRiverConnections()
     {
-        RiverConnections = new Dictionary<AxialCoordinate, byte>();
+        RiverConnections = new Dictionary<AxialCoordinate, byte>(coords.Count);
         
-        foreach (AxialCoordinate coord in Coords)
+        foreach (AxialCoordinate coord in coords)
         {
             RiverConnections[coord] = 0;
         }
         
-        for (int i = 0; i < Coords.Count - 1; i++)
+        for (int i = 0; i < coords.Count - 1; i++)
         {
-            AxialCoordinate current = Coords[i];
-            AxialCoordinate next = Coords[i + 1];
+            AxialCoordinate current = coords[i];
+            AxialCoordinate next = coords[i + 1];
 
             AxialCardinalDirections directionToNext = AxialGeometry.GetDirection(current, next);
 
