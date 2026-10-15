@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Region
+public class Region : IIndexedItem<RegionID>
 {
-    public ushort ID;
+    private RegionID _id;
+    public RegionID ID => _id;
 
     public int Size;
 
@@ -25,9 +26,9 @@ public class Region
 
     private int _riverLength = -1;
 
-    public Region(ushort iD, AxialCoordinate seedCoord)
+    public Region(RegionID id, AxialCoordinate seedCoord)
     {
-        ID = iD;
+        _id = id;
         SeedCoord = seedCoord;
     }
 
@@ -104,7 +105,7 @@ public class Region
             Hex hex = stack.Pop();
 
             if (hex == null) continue;
-            if (hex.ExtraData.RegionId != ID) continue;
+            if (hex.ExtraData.RegionId.Value != ID.Value) continue;
 
             result.Add(hex);
 
@@ -149,4 +150,19 @@ public class Region
         
         return availableContents;
     }
+}
+
+[System.Serializable]
+public struct RegionID
+{
+    public ushort Value;
+
+    public RegionID(ushort value)
+    {
+        Value = value;
+    }
+    
+    public static bool operator ==(RegionID left, RegionID right) => left.Equals(right);
+
+    public static bool operator !=(RegionID left, RegionID right) => !left.Equals(right);
 }

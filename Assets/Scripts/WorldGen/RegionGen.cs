@@ -15,7 +15,7 @@ public class RegionGen
 
     public static Region[] CreateRegions(WorldData world, WorldGenParameters parameters)
     {
-        ushort currentRegionId = 1;
+        ushort currentRegionIdValue = 1;
         List<Region> regions = new();
 
         int worldSize = world.Grid.Width * world.Grid.Height;
@@ -25,14 +25,13 @@ public class RegionGen
 
         foreach (Hex hex in world.Grid.GetValidHexes())
         {
-            if (hex.ExtraData.RegionId != 0 || hex.ExtraData.IsSea)
+            if (hex.ExtraData.RegionId.Value != 0 || hex.ExtraData.IsSea)
                 continue;
-
+            RegionID currentRegionId = new RegionID(currentRegionIdValue++);
             Region newRegion = new(currentRegionId, hex.Coord);
             FillRegion(world, hex, newRegion, maxRegionSize);
 
             regions.Add(newRegion);
-            currentRegionId++;
         }
 
         return regions.ToArray();
@@ -69,7 +68,7 @@ public class RegionGen
                 if (!world.Grid.TryGetHex(hex.Coord + direction, out Hex neighbor))
                     continue;
 
-                if (neighbor.ExtraData.RegionId != 0)
+                if (neighbor.ExtraData.RegionId.Value != 0)
                     continue;
 
                 if (neighbor.ExtraData.IsSea ||

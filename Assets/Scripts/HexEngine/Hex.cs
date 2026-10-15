@@ -34,7 +34,7 @@ public class Hex : BaseHexData
 
     public Dictionary<SpeciesID, int> Animals()
     {
-        var region = WorldData.GetRegion(_extraData.RegionId);
+        var region = WorldData.Regions.GetValue(_extraData.RegionId);
         Dictionary<SpeciesID, int> animals = new();
         foreach (var a in region.Animals)
         {
@@ -65,9 +65,9 @@ public struct HexExtraData
     [SerializeField] byte _precipitation;
     public float Precipitation { get { return _precipitation * ByteToFloat; } }
 
-    [SerializeField] ushort _regionID;
+    [SerializeField] RegionID _regionID;
 
-    public ushort RegionId { get { return _regionID; } }
+    public RegionID RegionId { get { return _regionID; } }
     public bool IsSea { get { return _elevation == 0; } }
 
     public Biome Biome { get { return Biomes.GetBiome(IsSea, Temperature, Precipitation); } }
@@ -93,7 +93,7 @@ public struct HexExtraData
         _highVegetation = (byte)(highVegetation * 255f);
     }
 
-    public void SetRegionID(ushort regionId)
+    public void SetRegionID(RegionID regionId)
     {
         _regionID = regionId;
     }

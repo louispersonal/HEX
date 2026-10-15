@@ -76,7 +76,7 @@ public class SelectionManager : MonoBehaviour
         Hex hex = hexView.Data;
 
         Region region = GameController.Instance.SessionManager.WorldData
-            .GetRegion(hex.ExtraData.RegionId);
+            .Regions.GetValue(hex.ExtraData.RegionId);
 
         LocationSelection = new LocationSelection(hex, region);
         

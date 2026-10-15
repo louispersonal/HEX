@@ -248,9 +248,9 @@ public class TextureUtilities
             {
                 Vector2 pixelCoord = coords.Map[axial];
 
-                if (data.ExtraData.RegionId > 0)
+                if (data.ExtraData.RegionId.Value != 0)
                 {
-                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), ColorFromUShort(data.ExtraData.RegionId));
+                    DrawFilledHex(pixelArray, horizontalPixels, pixelCoord, Mathf.RoundToInt(coords.HexSize), ColorFromUShort(data.ExtraData.RegionId.Value));
                 }
             }
         }

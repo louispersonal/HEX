@@ -77,7 +77,7 @@ public class SessionManager : MonoBehaviour
         loadedWorld.Lakes = new SpatialLookup<LakeID, Lake>(saveData.Lakes);
         loadedWorld.GeoFeatures = new SpatialLookup<GeoID, GeoFeature>(saveData.GeoFeatures);
 
-        loadedWorld.Regions = saveData.Regions;
+        loadedWorld.Regions = new IndexedDictionary<RegionID, Region>(saveData.Regions);
 
         SetWorldData(loadedWorld);
 

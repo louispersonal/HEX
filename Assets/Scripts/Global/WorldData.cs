@@ -20,27 +20,17 @@ public class WorldData
     public SpatialLookup<LakeID, Lake> Lakes = new();
     public SpatialLookup<GeoID, GeoFeature> GeoFeatures = new();
 
-    public Region[] Regions = new Region[0];  
+    public IndexedDictionary<RegionID, Region> Regions = new();  
 
     public WorldData(List<Hex> hexDataList)
     {
         _grid = new HexGrid(hexDataList);
         _pathFinder = new Pathfinder(_grid);
     }
-
-    public Region GetRegion(ushort regionId)
-    {
-        foreach (Region region in Regions)
-        {
-            if (region.ID == regionId) return  region;
-        }
-
-        return null;
-    }
     
     public WorldSaveData ToSaveData()
     {
-        return new WorldSaveData(_name, Grid.GetHexData(), Rivers.ToArray(), Lakes.ToArray(), GeoFeatures.ToArray(), Regions);
+        return new WorldSaveData(_name, Grid.GetHexData(), Rivers.ToArray(), Lakes.ToArray(), GeoFeatures.ToArray(), Regions.ToArray());
     }
 }
 

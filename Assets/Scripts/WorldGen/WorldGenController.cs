@@ -77,9 +77,9 @@ public class WorldGenController : MonoBehaviour
         _amountDone = 0.98f;
         yield return null;
         
-        _newWorld.Regions = RegionGen.CreateRegions(_newWorld, _worldParams);
+        _newWorld.Regions = new IndexedDictionary<RegionID, Region> (RegionGen.CreateRegions(_newWorld, _worldParams));
 
-        foreach (Region region in _newWorld.Regions)
+        foreach (Region region in _newWorld.Regions.Values())
         {
             RegionGen.PopulateRegion(_newWorld, GameController.Instance.StaticDatabases, region);
         }
