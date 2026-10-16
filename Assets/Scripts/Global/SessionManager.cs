@@ -9,11 +9,9 @@ public class SessionManager : MonoBehaviour
     public WorldData WorldData { get; private set; }
     public GameData GameData { get; private set; }
     
-    private bool _worldDataSet = false;
-    
-    private bool _gameDataSet = false;
-    
-    public bool SessionSet => _worldDataSet && _gameDataSet;
+    public bool WorldDataSet => WorldData != null;
+    public bool GameDataSet => GameData != null;
+    public bool SessionSet => WorldDataSet && GameDataSet;
     
     public SaveManager SaveManager { get; private set; }
     
@@ -21,19 +19,16 @@ public class SessionManager : MonoBehaviour
 
     [SerializeField] private bool _useDebugGameData;
     [SerializeField] private string _debugDataName;
-    
-    public void SetSession(WorldData world)
-    {
-        SetSession(world, null);
-        _worldDataSet = true;
-    }
 
-    public void SetSession(WorldData world, GameData game)
+    public void SetSession(WorldData world, GameData game = null)
     {
         WorldData = world;
         GameData = game;
-        RegisterTickables();
-        _gameDataSet = true;
+        
+        if (game?.Ticker != null)
+        {
+            RegisterTickables();
+        }
     }
 
     public void StartNewGame()
