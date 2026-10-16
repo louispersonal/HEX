@@ -43,9 +43,9 @@ public class SimulationMenuController : SubMenu
 
     private void InitializeWorld()
     {
+        GameController.Instance.SessionManager.StartNewGame();
         TickInfo newTickInfo =  new TickInfo();
         Ticker newTicker = new Ticker(newTickInfo);
-        GameController.Instance.SessionManager.NewGameData();
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
         GameController.Instance.SessionManager.GameData.GameName = "Debug";
         GameController.Instance.SessionManager.GameData.WorldName = GameController.Instance.SessionManager.WorldData.Name;

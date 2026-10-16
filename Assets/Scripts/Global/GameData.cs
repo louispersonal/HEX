@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class GameData
 {
-    public string GameName = "test_game";
-
-    public string WorldName = "test_world";
+    public string GameName;
+    public string WorldName;
     
     public Ticker Ticker;
     

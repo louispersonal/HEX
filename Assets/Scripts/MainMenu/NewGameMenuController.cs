@@ -69,22 +69,23 @@ public class NewGameMenuController : SubMenu
 
     private void SetWorldAsCurrent(WorldData worldData)
     {
-        GameController.Instance.SessionManager.SetWorldData(worldData);
+        GameController.Instance.SessionManager.SetSession(worldData);
     }
 
     public void SaveCurrentWorld()
     {
-        GameController.Instance.SessionManager.SaveWorldData();
+        GameController.Instance.SessionManager.SaveManager.SaveWorldData(GameController.Instance.SessionManager.WorldData);
     }
 
     public void UpdateSaveFileNames()
     {
-        WorldSaveFilenames = GameController.Instance.SessionManager.GetWorldSaveFiles();
+        WorldSaveFilenames = GameController.Instance.SessionManager.SaveManager.GetWorldSaveFiles();
     }
 
     public void LoadWorld(string worldName)
     {
-        GameController.Instance.SessionManager.LoadWorldDataFromName(worldName);
+        WorldData worldData = GameController.Instance.SessionManager.SaveManager.LoadWorldData(worldName);
+        GameController.Instance.SessionManager.SetSession(worldData);
 
         PreviewCurrentWorld();
     }
