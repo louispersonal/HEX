@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
@@ -8,9 +9,11 @@ public class SessionManager : MonoBehaviour
     public WorldData WorldData { get; private set; }
     public GameData GameData { get; private set; }
     
-    private bool _sessionSet = false;
+    private bool _worldDataSet = false;
     
-    public bool SessionSet => _sessionSet;
+    private bool _gameDataSet = false;
+    
+    public bool SessionSet => _worldDataSet && _gameDataSet;
     
     public SaveManager SaveManager { get; private set; }
     
@@ -22,26 +25,39 @@ public class SessionManager : MonoBehaviour
     public void SetSession(WorldData world)
     {
         SetSession(world, null);
-        _sessionSet = true;
+        _worldDataSet = true;
     }
 
     public void SetSession(WorldData world, GameData game)
     {
         WorldData = world;
         GameData = game;
-        _sessionSet = true;
+        RegisterTickables();
+        _gameDataSet = true;
     }
 
     public void StartNewGame()
     {
         GameData = new GameData();
     }
+
+    private void RegisterTickables()
+    {
+        foreach (ITickable tickable in GameData.GetTickables())
+        {
+            GameData.Ticker.Register(tickable);
+        }
+    }
     
-    private void Start()
+    private void Awake()
     {
         SaveManager = new SaveManager(this);
+    }
+
+    private void Start()
+    {
         #if UNITY_EDITOR
-            if (_useDebugGameData && GameData == null)
+            if (_useDebugGameData && !SessionSet)
             {
                 // ask save manager to load debug data
             }

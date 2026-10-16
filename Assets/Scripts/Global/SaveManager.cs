@@ -36,7 +36,7 @@ public class SaveManager
     public List<string> GetGameSaveFiles()
     {
         List<string> saveFiles = new List<string>();
-        if (Directory.Exists(WorldsFolder))
+        if (Directory.Exists(GamesFolder))
         {
             string[] files = Directory.GetFiles(GamesFolder, "*.json");
 
@@ -52,6 +52,8 @@ public class SaveManager
     
     public void SaveWorldData(WorldData worldData)
     {
+        Directory.CreateDirectory(WorldsFolder);
+        
         WorldSaveData saveData = worldData.ToSaveData();
         string json = JsonUtility.ToJson(saveData, true);
         string path = WorldsFolder + "/" + saveData.WorldName + ".json";
@@ -85,6 +87,8 @@ public class SaveManager
 
     private void SaveGameData(GameData gameData)
     {
+        Directory.CreateDirectory(GamesFolder);
+        
         GameSaveData saveData = gameData.ToSaveData();
         string json = JsonUtility.ToJson(saveData, true);
         string path = GamesFolder + "/" + saveData.GameName + ".json";

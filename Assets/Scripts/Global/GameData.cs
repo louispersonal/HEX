@@ -19,6 +19,11 @@ public class GameData
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
             Pops.ToArray(), Cultures.Values.ToArray(), Religions.Values.ToArray());
     }
+
+    public IEnumerable<ITickable> GetTickables()
+    {
+        return Pops.Pops;
+    }
 }
 
 [System.Serializable]

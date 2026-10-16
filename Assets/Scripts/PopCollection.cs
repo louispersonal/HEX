@@ -14,6 +14,8 @@ public class PopCollection
     public event Action<Pop, AxialCoordinate, AxialCoordinate> PopMoved;
     public event Action<Pop> PopRemoved;
 
+    public IEnumerable<Pop> Pops => _spatial.Objects.Values;
+    
     public bool TryCreateNewPop(string name, int startingPopulation, AxialCoordinate startingCoordinate,
         CultureID culture, ReligionID religion, out Pop pop)
     {
