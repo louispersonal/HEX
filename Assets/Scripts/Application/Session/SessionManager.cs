@@ -29,14 +29,13 @@ public class SessionManager : MonoBehaviour
         }
     }
 
-    public void StartNewGame()
+    public void StartNewGame(string gameName)
     {
-        GameData = new GameData();
+        if (!WorldDataSet) Debug.LogError("No WorldData to start new game!");
+        GameData = new GameData(gameName, WorldData.Name);
         TickInfo newTickInfo =  new TickInfo();
         Ticker newTicker = new Ticker(newTickInfo);
         GameController.Instance.SessionManager.GameData.Ticker = newTicker;
-        GameController.Instance.SessionManager.GameData.GameName = "Debug";
-        GameController.Instance.SessionManager.GameData.WorldName = GameController.Instance.SessionManager.WorldData.Name;
     }
 
     private void RegisterTickables()

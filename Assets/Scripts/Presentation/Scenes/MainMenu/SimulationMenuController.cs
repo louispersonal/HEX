@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimulationMenuController : SubMenu
@@ -12,7 +11,7 @@ public class SimulationMenuController : SubMenu
 
     public void Simulate(int simulationLengthYears, LoadingPanel loadingPanel, Action updateView)
     {
-        GameController.Instance.SessionManager.StartNewGame();
+        GameController.Instance.SessionManager.StartNewGame("debug");
         
         SeedSimulation();
         

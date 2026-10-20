@@ -5,16 +5,13 @@ using UnityEngine;
 
 public class WorldData
 {
-    private string _name = "TestWorld";
-    public string Name { get { return _name; } set { _name = value; } }
+    public string Name { get; }
 
     private HexGrid _grid;
 
-    public HexGrid Grid { get { return _grid; } }
+    public HexGrid Grid => _grid;
 
-    private Pathfinder _pathFinder;
-
-    public Pathfinder Pathfinder { get { return _pathFinder; } }
+    public Pathfinder Pathfinder { get; }
 
     public SpatialLookup<RiverID, River> Rivers = new();
     public SpatialLookup<LakeID, Lake> Lakes = new();
@@ -24,15 +21,41 @@ public class WorldData
 
     public MapTexture MiniMap { get; private set; }
     
-    public WorldData(List<Hex> hexDataList)
+    public WorldData(string worldName, List<Hex> hexDataList)
     {
+        Name = worldName;
         _grid = new HexGrid(hexDataList);
-        _pathFinder = new Pathfinder(_grid);
+        Pathfinder = new Pathfinder(_grid);
+    }
+
+    public WorldData(WorldSaveData saveData)
+    {
+        WorldData loadedWorld = new WorldData(saveData.WorldName, saveData.Hexes);
+        
+        foreach (River river in saveData.Rivers)
+        {
+            river.PopulateRiverConnections();
+        }
+        
+        loadedWorld.Rivers = new SpatialLookup<RiverID, River>(saveData.Rivers);
+        loadedWorld.Lakes = new SpatialLookup<LakeID, Lake>(saveData.Lakes);
+        loadedWorld.GeoFeatures = new SpatialLookup<GeoID, GeoFeature>(saveData.GeoFeatures);
+
+        loadedWorld.Regions = new IndexedDictionary<RegionID, Region>(saveData.Regions);
+        
+        GenerateMiniMap();
+    }
+
+    public void GenerateMiniMap()
+    {
+        MiniMap = TextureUtilities.GetMapTextureFromWorldData(this, 
+            GameConfigurations.MiniMapResolution.w, 
+            GameConfigurations.MiniMapResolution.h);
     }
     
     public WorldSaveData ToSaveData()
     {
-        return new WorldSaveData(_name, Grid.GetHexData(), Rivers.ToArray(), Lakes.ToArray(), GeoFeatures.ToArray(), Regions.ToArray());
+        return new WorldSaveData(Name, Grid.GetHexData(), Rivers.ToArray(), Lakes.ToArray(), GeoFeatures.ToArray(), Regions.ToArray());
     }
 }
 

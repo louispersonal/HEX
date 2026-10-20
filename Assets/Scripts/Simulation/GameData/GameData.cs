@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class GameData
 {
-    public string GameName;
-    public string WorldName;
+    public string GameName { get; }
+    public string WorldName { get; }
     
     public Ticker Ticker;
     
@@ -14,6 +14,30 @@ public class GameData
     public Dictionary<CultureID,  Culture> Cultures = new ();
     public Dictionary<ReligionID, Religion> Religions = new ();
 
+    public GameData(string gameName, string worldName)
+    {
+        GameName = gameName;
+        WorldName = worldName;
+    }
+
+    public GameData(GameSaveData saveData)
+    {
+        GameName = saveData.GameName;
+        WorldName = saveData.WorldName;
+        Ticker = new Ticker(saveData.TickInfo);
+        Pops.LoadPops(saveData.Pops);
+        
+        foreach(Religion religion in saveData.Religions)
+        {
+            Religions.Add(religion.ID, religion);
+        }
+        
+        foreach(Culture culture in saveData.Cultures)
+        {
+            Cultures.Add(culture.ID, culture);
+        }
+    }
+    
     public GameSaveData ToSaveData()
     {
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,

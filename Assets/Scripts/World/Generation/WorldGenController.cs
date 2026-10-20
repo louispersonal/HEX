@@ -33,9 +33,7 @@ public class WorldGenController : MonoBehaviour
         
         List<Hex> newHexData = HexGridGeometry.GenerateRectangularGrid(worldWidthInHexes, Mathf.RoundToInt(worldWidthInHexes / WIDTH_HEIGHT_RATIO));
 
-        _newWorld = new WorldData(newHexData);
-
-        _newWorld.Name = name;
+        _newWorld = new WorldData(name, newHexData);
 
         _currentStatus = "Generating Heightmap";
         _amountDone = 0.14f;

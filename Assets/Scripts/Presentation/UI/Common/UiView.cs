@@ -12,9 +12,9 @@ public class UiView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameController.Instance.SessionManager.WorldData.MiniMap != null)
-        {
-            _miniMap.SetTexture(GameController.Instance.SessionManager.WorldData.MiniMap);
-        }
+        if (GameController.Instance.SessionManager.WorldData.MiniMap == null)
+            GameController.Instance.SessionManager.WorldData.GenerateMiniMap();
+        
+        _miniMap.SetTexture(GameController.Instance.SessionManager.WorldData.MiniMap);
     }
 }

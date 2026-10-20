@@ -64,18 +64,7 @@ public class SaveManager
     {
         string json = File.ReadAllText(GetWorldPathFromName(worldName));
         WorldSaveData saveData = JsonUtility.FromJson<WorldSaveData>(json);
-        WorldData loadedWorld = new WorldData(saveData.Hexes);
-        
-        foreach (River river in saveData.Rivers)
-        {
-            river.PopulateRiverConnections();
-        }
-        
-        loadedWorld.Rivers = new SpatialLookup<RiverID, River>(saveData.Rivers);
-        loadedWorld.Lakes = new SpatialLookup<LakeID, Lake>(saveData.Lakes);
-        loadedWorld.GeoFeatures = new SpatialLookup<GeoID, GeoFeature>(saveData.GeoFeatures);
-
-        loadedWorld.Regions = new IndexedDictionary<RegionID, Region>(saveData.Regions);
+        WorldData loadedWorld = new WorldData(saveData);
         
         return loadedWorld;
     }
@@ -100,21 +89,7 @@ public class SaveManager
         string json = File.ReadAllText(GetGamePathFromName(gameName));
         GameSaveData saveData =  JsonUtility.FromJson<GameSaveData>(json);
 
-        GameData gameData = new GameData();
-        gameData.GameName = saveData.GameName;
-        gameData.WorldName = saveData.WorldName;
-        gameData.Ticker = new Ticker(saveData.TickInfo);
-        gameData.Pops.LoadPops(saveData.Pops);
-        
-        foreach(Religion religion in saveData.Religions)
-        {
-            gameData.Religions.Add(religion.ID, religion);
-        }
-        
-        foreach(Culture culture in saveData.Cultures)
-        {
-            gameData.Cultures.Add(culture.ID, culture);
-        }
+        GameData gameData = new GameData(saveData);
 
         return gameData;
     }
