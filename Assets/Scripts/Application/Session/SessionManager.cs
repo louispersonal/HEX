@@ -34,7 +34,6 @@ public class SessionManager : MonoBehaviour
         if (!WorldDataSet) throw new InvalidOperationException("Cannot start a game without WorldData.");
 
         GameData = new GameData(gameName, WorldData.Name);
-        GameData.Ticker = new Ticker(new TickInfo());
 
         RegisterTickables();
     }
