@@ -31,11 +31,12 @@ public class SessionManager : MonoBehaviour
 
     public void StartNewGame(string gameName)
     {
-        if (!WorldDataSet) Debug.LogError("No WorldData to start new game!");
+        if (!WorldDataSet) throw new InvalidOperationException("Cannot start a game without WorldData.");
+
         GameData = new GameData(gameName, WorldData.Name);
-        TickInfo newTickInfo =  new TickInfo();
-        Ticker newTicker = new Ticker(newTickInfo);
-        GameController.Instance.SessionManager.GameData.Ticker = newTicker;
+        GameData.Ticker = new Ticker(new TickInfo());
+
+        RegisterTickables();
     }
 
     private void RegisterTickables()

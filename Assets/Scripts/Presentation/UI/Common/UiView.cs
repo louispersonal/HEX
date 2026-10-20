@@ -9,12 +9,13 @@ public class UiView : MonoBehaviour
     
     [SerializeField] HRFlyout _hrpflyout;
     
+    public MapTexture MiniMap { get; private set; }
+    
     // Start is called before the first frame update
     void Start()
     {
-        if (GameController.Instance.SessionManager.WorldData.MiniMap == null)
-            GameController.Instance.SessionManager.WorldData.GenerateMiniMap();
+        if (MiniMap == null) MiniMap = GameController.Instance.SessionManager.WorldData.GenerateMiniMap();
         
-        _miniMap.SetTexture(GameController.Instance.SessionManager.WorldData.MiniMap);
+        _miniMap.SetTexture(MiniMap);
     }
 }

@@ -18,24 +18,18 @@ public class GameData
     {
         GameName = gameName;
         WorldName = worldName;
+        Ticker = new Ticker(new TickInfo());
     }
 
-    public GameData(GameSaveData saveData)
+    public GameData(GameSaveData saveData) : this(saveData.GameName, saveData.WorldName)
     {
-        GameName = saveData.GameName;
-        WorldName = saveData.WorldName;
         Ticker = new Ticker(saveData.TickInfo);
+
         Pops.LoadPops(saveData.Pops);
-        
-        foreach(Religion religion in saveData.Religions)
-        {
-            Religions.Add(religion.ID, religion);
-        }
-        
-        foreach(Culture culture in saveData.Cultures)
-        {
-            Cultures.Add(culture.ID, culture);
-        }
+
+        foreach (Religion religion in saveData.Religions) Religions.Add(religion.ID, religion);
+
+        foreach (Culture culture in saveData.Cultures) Cultures.Add(culture.ID, culture);
     }
     
     public GameSaveData ToSaveData()

@@ -52,32 +52,12 @@ public class SimulationMenuView : SubMenuView
     private void InitializePreview()
     {
         _previewName.text = GameController.Instance.SessionManager.WorldData.Name;
-        _previewImage.texture = GameController.Instance.SessionManager.WorldData.MiniMap.Texture;
+        _previewImage.texture = TextureUtilities.GetMapTextureFromWorldData
+            (GameController.Instance.SessionManager.WorldData,1200, 695).Texture;
     }
 
     private void UpdatePreview()
     {
 
-    }
-    
-    private Vector3 GetPopIconWorldPosition(AxialCoordinate popAxial)
-    {
-        Vector2 mapPixelPosition = AxialGeometry.AxialToCartesian(
-            popAxial,
-            GameController.Instance.SessionManager.WorldData.MiniMap.HexSizePixels);
-
-        float uiScaleX = _mapRect.rect.width 
-                         / GameController.Instance.SessionManager.WorldData.MiniMap.Texture.width;
-        float uiScaleY = _mapRect.rect.height 
-                         / GameController.Instance.SessionManager.WorldData.MiniMap.Texture.height;
-
-        Vector2 localPosition = new Vector2(
-            mapPixelPosition.x * uiScaleX,
-            mapPixelPosition.y * uiScaleY);
-
-        Vector3[] corners = new Vector3[4];
-        _mapRect.GetWorldCorners(corners);
-
-        return corners[1] + (Vector3)localPosition;
     }
 }

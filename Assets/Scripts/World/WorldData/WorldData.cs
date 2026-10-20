@@ -18,8 +18,6 @@ public class WorldData
     public SpatialLookup<GeoID, GeoFeature> GeoFeatures = new();
 
     public IndexedDictionary<RegionID, Region> Regions = new();  
-
-    public MapTexture MiniMap { get; private set; }
     
     public WorldData(string worldName, List<Hex> hexDataList)
     {
@@ -28,27 +26,22 @@ public class WorldData
         Pathfinder = new Pathfinder(_grid);
     }
 
-    public WorldData(WorldSaveData saveData)
+    public WorldData(WorldSaveData saveData) : this(saveData.WorldName, saveData.Hexes)
     {
-        WorldData loadedWorld = new WorldData(saveData.WorldName, saveData.Hexes);
-        
         foreach (River river in saveData.Rivers)
         {
             river.PopulateRiverConnections();
         }
-        
-        loadedWorld.Rivers = new SpatialLookup<RiverID, River>(saveData.Rivers);
-        loadedWorld.Lakes = new SpatialLookup<LakeID, Lake>(saveData.Lakes);
-        loadedWorld.GeoFeatures = new SpatialLookup<GeoID, GeoFeature>(saveData.GeoFeatures);
 
-        loadedWorld.Regions = new IndexedDictionary<RegionID, Region>(saveData.Regions);
-        
-        GenerateMiniMap();
+        Rivers = new SpatialLookup<RiverID, River>(saveData.Rivers);
+        Lakes = new SpatialLookup<LakeID, Lake>(saveData.Lakes);
+        GeoFeatures = new SpatialLookup<GeoID, GeoFeature>(saveData.GeoFeatures);
+        Regions = new IndexedDictionary<RegionID, Region>(saveData.Regions);
     }
 
-    public void GenerateMiniMap()
+    public MapTexture GenerateMiniMap()
     {
-        MiniMap = TextureUtilities.GetMapTextureFromWorldData(this, 
+        return TextureUtilities.GetMapTextureFromWorldData(this, 
             GameConfigurations.MiniMapResolution.w, 
             GameConfigurations.MiniMapResolution.h);
     }
