@@ -60,15 +60,12 @@ public class SimulationMenuController : SubMenu
         CultureID seedCultureID = new CultureID(0);
         ReligionID seedReligionID = new ReligionID(0);
 
-        Culture seedCulture = new Culture(seedCultureID);
-        seedCulture.Name = "Bogoma";
+        Culture seedCulture = new Culture(seedCultureID, "Bogoma");
 
-        Religion seedReligion = new Religion();
-        seedReligion.Name = "Harmana";
-        seedReligion.ID = seedReligionID;
+        Religion seedReligion = new Religion(seedReligionID, "Harmana");
         
-        GameController.Instance.SessionManager.GameData.Cultures.Add(seedCultureID, seedCulture);
-        GameController.Instance.SessionManager.GameData.Religions.Add(seedReligionID, seedReligion);
+        GameController.Instance.SessionManager.GameData.Cultures.TryAdd(seedCulture);
+        GameController.Instance.SessionManager.GameData.Religions.TryAdd(seedReligion);
         
         AxialCoordinate seedLocation = FindSeedLocation();
         GameController.Instance.SessionManager.GameData.Pops.TryCreateNewPop("Bogoma", 30,

@@ -4,15 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Religion
+public class Religion : IIndexedItem<ReligionID>
 {
-    public ReligionID ID;
+    private ReligionID _id;
+    public ReligionID ID => _id;
     public string Name;
 
     public ReligionID? ParentID;
     public List<ReligionID> Children;
 
     public int Depth;
+
+    public Religion(ReligionID id, string name)
+    {
+        _id = id;
+        Name = name;
+    }
 }
 
 public readonly struct ReligionID : IEquatable<ReligionID>

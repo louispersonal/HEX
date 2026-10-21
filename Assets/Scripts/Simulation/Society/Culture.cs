@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Culture
+public class Culture : IIndexedItem<CultureID>
 {
-    public CultureID ID;
+    private CultureID _id;
+    public CultureID ID => _id;
     public string Name;
 
     public CultureID? ParentID;
@@ -16,8 +17,10 @@ public class Culture
     
     public Dictionary<ResourceID, float> GatheringProficiency { get; private set; }
 
-    public Culture(CultureID culture)
+    public Culture(CultureID id, string name)
     {
+        _id = id;
+        Name = name;
         GatheringProficiency = new Dictionary<ResourceID, float>()
         {
             { ResourceRefs.Greens, 0.2f },
@@ -35,7 +38,7 @@ public readonly struct CultureID : IEquatable<CultureID>
     public readonly int Value;
     public CultureID(int value) => Value = value;
 
-    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures[this];
+    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures.GetValue(this);
 
     public bool Equals(CultureID other)
     {

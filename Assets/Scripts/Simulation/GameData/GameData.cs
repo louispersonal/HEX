@@ -11,8 +11,8 @@ public class GameData
     public Ticker Ticker;
     
     public PopCollection Pops { get; } = new();
-    public Dictionary<CultureID,  Culture> Cultures = new ();
-    public Dictionary<ReligionID, Religion> Religions = new ();
+    public IndexedDictionary<CultureID,  Culture> Cultures = new ();
+    public IndexedDictionary<ReligionID, Religion> Religions = new ();
 
     public GameData(string gameName, string worldName)
     {
@@ -27,15 +27,15 @@ public class GameData
 
         Pops.LoadPops(saveData.Pops);
 
-        foreach (Religion religion in saveData.Religions) Religions.Add(religion.ID, religion);
+        foreach (Religion religion in saveData.Religions) Religions.TryAdd(religion);
 
-        foreach (Culture culture in saveData.Cultures) Cultures.Add(culture.ID, culture);
+        foreach (Culture culture in saveData.Cultures) Cultures.TryAdd(culture);
     }
     
     public GameSaveData ToSaveData()
     {
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
-            Pops.ToArray(), Cultures.Values.ToArray(), Religions.Values.ToArray());
+            Pops.ToArray(), Cultures.ToArray(), Religions.ToArray());
     }
 
     public IEnumerable<ITickable> GetTickables()

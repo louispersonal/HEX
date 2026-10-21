@@ -21,11 +21,11 @@ public class Pop : Pawn, IAssignmentTick
 
     public CultureID CultureID;
     
-    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures[CultureID];
+    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures.GetValue(CultureID);
     
     public ReligionID ReligionID;
     
-    public Religion Religion => GameController.Instance.SessionManager.GameData.Religions[ReligionID];
+    public Religion Religion => GameController.Instance.SessionManager.GameData.Religions.GetValue(ReligionID);
     
     private List<Assignment> _assignments = new();
     
