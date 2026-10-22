@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Religion : IIndexedItem<ReligionID>
 {
-    private ReligionID _id;
+    [SerializeField] private ReligionID _id;
     public ReligionID ID => _id;
     public string Name;
 
@@ -22,9 +22,10 @@ public class Religion : IIndexedItem<ReligionID>
     }
 }
 
-public readonly struct ReligionID : IEquatable<ReligionID>
+[Serializable]
+public struct ReligionID : IEquatable<ReligionID>
 {
-    public readonly int Value;
+    public int Value;
     public ReligionID(int value) => Value = value;
 
     public bool Equals(ReligionID other)

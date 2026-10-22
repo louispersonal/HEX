@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Culture : IIndexedItem<CultureID>
 {
-    private CultureID _id;
+    [SerializeField] private CultureID _id;
     public CultureID ID => _id;
     public string Name;
 
@@ -33,9 +33,10 @@ public class Culture : IIndexedItem<CultureID>
     }
 }
 
-public readonly struct CultureID : IEquatable<CultureID>
+[Serializable]
+public struct CultureID : IEquatable<CultureID>
 {
-    public readonly int Value;
+    public int Value;
     public CultureID(int value) => Value = value;
 
     public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures.GetValue(this);

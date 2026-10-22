@@ -1,7 +1,5 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 public class GameData
 {
@@ -27,9 +25,17 @@ public class GameData
 
         Pops.LoadPops(saveData.Pops);
 
-        foreach (Religion religion in saveData.Religions) Religions.TryAdd(religion);
+        foreach (Religion religion in saveData.Religions)
+        {
+            if (!Religions.TryAdd(religion))
+                throw new InvalidOperationException($"Duplicate Religion ID: {religion.ID.Value}");
+        }
 
-        foreach (Culture culture in saveData.Cultures) Cultures.TryAdd(culture);
+        foreach (Culture culture in saveData.Cultures)
+        {
+            if (!Cultures.TryAdd(culture))
+                throw new  InvalidOperationException($"Duplicate Culture ID: {culture.ID.Value}");
+        }
     }
     
     public GameSaveData ToSaveData()
