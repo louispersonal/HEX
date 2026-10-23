@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 [System.Serializable]
-public class Pop : Pawn, IAssignmentTick
+public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
 {
     public string Name;
     
@@ -147,4 +147,15 @@ public class Pop : Pawn, IAssignmentTick
     {
         Location = location;
     }
+
+    public PopSaveData ToSaveData()
+    {
+        return new PopSaveData();
+    }
+}
+
+
+public class PopSaveData
+{
+    
 }
