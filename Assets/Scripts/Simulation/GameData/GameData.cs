@@ -37,12 +37,18 @@ public class GameData
             if (!Cultures.TryAdd(culture))
                 throw new  InvalidOperationException($"Duplicate Culture ID: {culture.ID.Value}");
         }
+
+        foreach (Faction faction in saveData.Factions)
+        {
+            if (!Factions.TryAdd(faction))
+                throw new  InvalidOperationException($"Duplicate Faction ID: {faction.ID.Value}");
+        }
     }
     
     public GameSaveData ToSaveData()
     {
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
-            Pops.ToArray(), Cultures.ToArray(), Religions.ToArray(), Factions.ToArray());
+            Pops.ToSaveDataArray(), Cultures.ToArray(), Religions.ToArray(), Factions.ToArray());
     }
 
     public IEnumerable<ITickable> GetTickables()
@@ -57,13 +63,13 @@ public class GameSaveData
     public string GameName;
     public string WorldName;
     public TickInfo TickInfo;
-    public Pop[] Pops;
+    public PopSaveData[] Pops;
     public Culture[] Cultures;
     public Religion[] Religions;
     public Faction[] Factions;
 
     public GameSaveData(string gameName, string worldName, TickInfo tickInfo,
-        Pop[] pops, Culture[] cultures, Religion[] religions, Faction[] factions)
+        PopSaveData[] pops, Culture[] cultures, Religion[] religions, Faction[] factions)
     {
         GameName = gameName;
         WorldName = worldName;

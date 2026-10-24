@@ -1,10 +1,13 @@
+using UnityEngine;
+
 [System.Serializable]
-public readonly struct LocationKnowledge
+public struct LocationKnowledge
 {
-    public TickInfo LastSeen { get; }
+    [SerializeField] private TickInfo _lastSeen;
+    public TickInfo LastSeen => _lastSeen;
     
     public LocationKnowledge(TickInfo lastSeen)
     {
-        LastSeen = lastSeen;
+        _lastSeen = lastSeen;
     }
 }

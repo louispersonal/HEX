@@ -60,15 +60,23 @@ public class PopCollection
         return _spatial.GetObjectsAt(coordinate);
     }
 
-    public Pop[] ToArray()
+    public PopSaveData[] ToSaveDataArray()
     {
-        return _spatial.Objects.Values.ToArray();
+        PopSaveData[] saveData = new PopSaveData[_spatial.Objects.Count];
+        int p = 0;
+        foreach (Pop pop in Pops)
+        {
+            saveData[p] = pop.ToSaveData();
+            p++;
+        }
+        return saveData;
     }
 
-    public void LoadPops(Pop[] pops)
+    public void LoadPops(PopSaveData[] pops)
     {
-        foreach (Pop pop in pops)
+        foreach (PopSaveData popData in pops)
         {
+            Pop pop = new Pop(popData);
             _spatial.TryAdd(pop.ID, pop, new[] { pop.Location });
         }
     }

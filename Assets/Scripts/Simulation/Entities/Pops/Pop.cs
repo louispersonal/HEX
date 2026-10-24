@@ -15,10 +15,10 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
     public CultureID CultureID;
     public ReligionID ReligionID;
     public FactionID FactionID;
-    private List<Assignment> _assignments;
+    private List<Assignment> _assignments = new();
     public ResourceStockpile Stockpile {get; private set;}
     private bool _isStarving = false;
-    private SerializableDictionary<AxialCoordinate, LocationKnowledge> _knownLocations;
+    private SerializableDictionary<AxialCoordinate, LocationKnowledge> _knownLocations = new();
 
     // public accessors
     public int Population => WorkingPopulation + PersonsOfInterest.Count;

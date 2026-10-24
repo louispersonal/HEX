@@ -1,15 +1,18 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class PersonOfInterest
 {
-    public string Name { get; private set; }
-    public PersonOfInterestRole Role  { get; private set; }
+    [SerializeField] private string _name;
+    public string Name => _name;
+    [SerializeField] private PersonOfInterestRole _role;
+    public PersonOfInterestRole Role => _role;
 
     public PersonOfInterest(string name, PersonOfInterestRole role)
     {
-        Name = name;
-        Role = role;
+        _name = name;
+        _role = role;
     }
 }
 
