@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.iOS;
 using UnityEngine;
 
 public class ResourceCollection
 {
-    [SerializeField] private Dictionary<ResourceID, float> _resources = new();
+    private SerializableDictionary<ResourceID, float> _resources;
 
+    public SerializableDictionary<ResourceID, float> Resources => _resources;
+    
     public bool IsEmpty => _resources.Count == 0;
     
     public void ClearAll()
@@ -13,9 +17,19 @@ public class ResourceCollection
         _resources.Clear();
     }
 
-    public void SetAllResources(Dictionary<ResourceID, float> resources)
+    public ResourceCollection()
     {
-        _resources = resources;
+        _resources = new SerializableDictionary<ResourceID, float>();
+    }
+
+    private ResourceCollection(ResourceCollection original)
+    {
+        _resources = new SerializableDictionary<ResourceID, float>(original.Resources);
+    }
+
+    public ResourceCollection(SerializableDictionarySaveData<ResourceID, float> saveData)
+    {
+        _resources = new SerializableDictionary<ResourceID, float>(saveData);
     }
     
     public void Deposit(ResourceID resource, float amount)
@@ -63,8 +77,7 @@ public class ResourceCollection
 
     public ResourceCollection Clone()
     {
-        ResourceCollection clonedCollection = new();
-        clonedCollection.SetAllResources(new Dictionary<ResourceID, float>(_resources));
+        ResourceCollection clonedCollection = new(this);
         return clonedCollection;
     }
 }

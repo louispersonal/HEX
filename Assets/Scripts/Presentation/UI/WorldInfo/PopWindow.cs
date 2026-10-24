@@ -72,7 +72,7 @@ public class PopWindow : MonoBehaviour, IUITickable
 
         Name.text = $"{_popData.Name}";
         Population.text = $"{_popData.Population}";
-        Faction.text = $"{_popData.Faction}";
+        Faction.text = $"{_popData.Faction.Name}";
         Culture.text = $"{_popData.Culture.Name}";
         Religion.text = $"{_popData.Religion.Name}";
 

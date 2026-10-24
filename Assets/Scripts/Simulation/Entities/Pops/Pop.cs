@@ -7,36 +7,25 @@ using System.Linq;
 [System.Serializable]
 public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
 {
+    // Serializable Data
     public string Name;
-    
     public PopID ID { get; private set; }
-    
-    public int Population => WorkingPopulation + PersonsOfInterest.Count;
-    
     public int WorkingPopulation { get; private set; }
-    
     public List<PersonOfInterest> PersonsOfInterest { get; private set; }
-
-    public string Faction;
-
     public CultureID CultureID;
-    
-    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures.GetValue(CultureID);
-    
     public ReligionID ReligionID;
-    
-    public Religion Religion => GameController.Instance.SessionManager.GameData.Religions.GetValue(ReligionID);
-    
-    private List<Assignment> _assignments = new();
-    
-    public IReadOnlyList<Assignment> Assignments => _assignments;
-
+    public FactionID FactionID;
+    private List<Assignment> _assignments;
     public ResourceStockpile Stockpile {get; private set;}
-    
     private bool _isStarving = false;
-    
-    private Dictionary<AxialCoordinate, LocationKnowledge> _knownLocations = new();
-    
+    private SerializableDictionary<AxialCoordinate, LocationKnowledge> _knownLocations;
+
+    // public accessors
+    public int Population => WorkingPopulation + PersonsOfInterest.Count;
+    public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures.GetValue(CultureID);
+    public Religion Religion => GameController.Instance.SessionManager.GameData.Religions.GetValue(ReligionID);
+    public Faction Faction => GameController.Instance.SessionManager.GameData.Factions.GetValue(FactionID);
+    public IReadOnlyList<Assignment> Assignments => _assignments;
     public ResourceDatabase ResourceDatabase => GameController.Instance.StaticDatabases.ResourceDatabase;
     
     public Pop(string name, PopID id, int startingPopulation, AxialCoordinate startLocation, 
@@ -49,9 +38,25 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
         CultureID = culture;
         ReligionID = religion;
         Stockpile = new ResourceStockpile(new ResourceCollection(), this);
+        
         PersonsOfInterest = new List<PersonOfInterest>();
-        PersonOfInterest leader = new PersonOfInterest("Kiko", PersonOfInterestRole.Leader);
+        PersonOfInterest leader = new PersonOfInterest("GenericLeader", PersonOfInterestRole.Leader);
         PersonsOfInterest.Add(leader);
+    }
+
+    public Pop(PopSaveData saveData)
+    {
+        Name =  saveData.Name;
+        ID = saveData.ID;
+        WorkingPopulation = saveData.WorkingPopulation;
+        PersonsOfInterest = saveData.PersonsOfInterest;
+        CultureID = saveData.CultureID;
+        ReligionID = saveData.ReligionID;
+        FactionID = saveData.FactionID;
+        _assignments = saveData.Assignments;
+        Stockpile = new ResourceStockpile(new ResourceCollection(saveData.Stockpile), this);
+        _isStarving = saveData.IsStarving;
+        _knownLocations = new SerializableDictionary<AxialCoordinate, LocationKnowledge>(saveData.KnownLocations);
     }
     
     public void AssignmentTick(TickInfo tickInfo)
@@ -150,12 +155,43 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
 
     public PopSaveData ToSaveData()
     {
-        return new PopSaveData();
+        return new PopSaveData(Name, ID,  WorkingPopulation, PersonsOfInterest, CultureID, ReligionID, FactionID, 
+            _assignments, Stockpile.Contents.Resources.ToSaveData(), _isStarving, _knownLocations.ToSaveData());
     }
 }
 
-
+[System.Serializable]
 public class PopSaveData
 {
-    
+    public string Name;
+    public PopID ID;
+    public int WorkingPopulation;
+    public List<PersonOfInterest> PersonsOfInterest;
+    public CultureID CultureID;
+    public ReligionID ReligionID;
+    public FactionID FactionID;
+    public List<Assignment> Assignments;
+    public SerializableDictionarySaveData<ResourceID, float> Stockpile;
+    public bool IsStarving;
+    public SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> KnownLocations;
+
+    public PopSaveData(string name, PopID id, int workingPopulation, List<PersonOfInterest> personsOfInterest,
+        CultureID cultureID, ReligionID religionID,
+        FactionID factionID, List<Assignment> assignments,
+        SerializableDictionarySaveData<ResourceID, float> stockpile,
+        bool isStarving,
+        SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> knownLocations)
+    {
+        Name = name;
+        ID = id;
+        WorkingPopulation = workingPopulation;
+        PersonsOfInterest = personsOfInterest;
+        CultureID = cultureID;
+        ReligionID = religionID;
+        FactionID = factionID;
+        Assignments = assignments;
+        Stockpile = stockpile;
+        IsStarving = isStarving;
+        KnownLocations = knownLocations;
+    }
 }

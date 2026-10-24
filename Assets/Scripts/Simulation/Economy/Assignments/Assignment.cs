@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Assignment
 {
     public abstract string AssignmentName { get; }

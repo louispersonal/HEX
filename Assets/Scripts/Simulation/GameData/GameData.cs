@@ -11,6 +11,7 @@ public class GameData
     public PopCollection Pops { get; } = new();
     public IndexedDictionary<CultureID,  Culture> Cultures = new ();
     public IndexedDictionary<ReligionID, Religion> Religions = new ();
+    public IndexedDictionary<FactionID, Faction> Factions = new();
 
     public GameData(string gameName, string worldName)
     {
@@ -41,7 +42,7 @@ public class GameData
     public GameSaveData ToSaveData()
     {
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
-            Pops.ToArray(), Cultures.ToArray(), Religions.ToArray());
+            Pops.ToArray(), Cultures.ToArray(), Religions.ToArray(), Factions.ToArray());
     }
 
     public IEnumerable<ITickable> GetTickables()
@@ -59,9 +60,10 @@ public class GameSaveData
     public Pop[] Pops;
     public Culture[] Cultures;
     public Religion[] Religions;
+    public Faction[] Factions;
 
     public GameSaveData(string gameName, string worldName, TickInfo tickInfo,
-        Pop[] pops, Culture[] cultures, Religion[] religions)
+        Pop[] pops, Culture[] cultures, Religion[] religions, Faction[] factions)
     {
         GameName = gameName;
         WorldName = worldName;
@@ -69,5 +71,6 @@ public class GameSaveData
         Pops = pops;
         Cultures = cultures;
         Religions = religions;
+        Factions = factions;
     }
   }

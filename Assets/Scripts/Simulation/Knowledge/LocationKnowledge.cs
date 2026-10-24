@@ -1,3 +1,4 @@
+[System.Serializable]
 public readonly struct LocationKnowledge
 {
     public TickInfo LastSeen { get; }
