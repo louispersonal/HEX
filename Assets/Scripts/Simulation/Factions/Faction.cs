@@ -8,6 +8,8 @@ public class Faction : IIndexedItem<FactionID>
     public FactionID ID => _id;
     
     public string Name;
+
+    public ControlType ControlType;
 }
 
 [Serializable]
@@ -32,4 +34,10 @@ public struct FactionID : IEquatable<FactionID>
     {
         return Value;
     }
+}
+
+public enum ControlType
+{
+    Player,
+    AI
 }

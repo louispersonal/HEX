@@ -17,7 +17,7 @@ public class GameData
     {
         GameName = gameName;
         WorldName = worldName;
-        Ticker = new Ticker(new TickInfo());
+        Ticker = new Ticker();
     }
 
     public GameData(GameSaveData saveData) : this(saveData.GameName, saveData.WorldName)

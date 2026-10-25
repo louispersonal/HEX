@@ -6,11 +6,15 @@ public class Pawn : IJobTickable, IUpkeepTick
 {
     public Brain Brain { get; private set; }
 
-    public ControlType ControlType { get; private set; } = ControlType.Player;
+    public FactionID FactionID;
     
     public AxialCoordinate Location { get; protected set; }
     
     public Hex CurrentHex => GameController.Instance.SessionManager.WorldData.Grid.GetHex(Location);
+    
+    public Faction Faction => GameController.Instance.SessionManager.GameData.Factions.GetValue(FactionID);
+
+    public ControlType ControlType => Faction.ControlType;
     
     public void SetBrain(Brain brain)
     {
@@ -18,7 +22,6 @@ public class Pawn : IJobTickable, IUpkeepTick
         {
             throw new System.InvalidOperationException("Pawn already has a brain.");
         }
-        ControlType = ControlType.AI;
         Brain = brain;
     }
     
@@ -72,8 +75,15 @@ public class Pawn : IJobTickable, IUpkeepTick
     }
 }
 
-public enum ControlType
+
+
+public class PawnSaveData
 {
-    Player,
-    AI
+    public AxialCoordinate Location;
+    public FactionID FactionID;
+    
+    public PawnSaveData (FactionID factionID)
+    {
+        FactionID = factionID;
+    }
 }

@@ -9,7 +9,7 @@ public class Ticker
      * Might be worth considering changing the tick frequency for the upkeep and simulation steps
      * Only gather / eat / take update stockpiles once a month
      */
-    public TickInfo TickInfo { get;  private set; }
+    public TickInfo TickInfo { get; }
 
     private HashSet<IDecisionTick> _decisionTickables = new();
     private HashSet<IJobTickable> _jobTickables = new();
@@ -22,6 +22,11 @@ public class Ticker
     private readonly HashSet<ITickable> _pendingRemoval;
     
     private bool _isTicking;
+
+    public Ticker()
+    {
+        TickInfo = new TickInfo();
+    }
     
     public Ticker(TickInfo tickInfo)
     {
