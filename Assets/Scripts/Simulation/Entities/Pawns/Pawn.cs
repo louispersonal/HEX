@@ -75,15 +75,15 @@ public class Pawn : IJobTickable, IUpkeepTick
     }
 }
 
-
-
+[System.Serializable]
 public class PawnSaveData
 {
     public AxialCoordinate Location;
     public FactionID FactionID;
     
-    public PawnSaveData (FactionID factionID)
+    public PawnSaveData (AxialCoordinate location, FactionID factionID)
     {
+        Location = location;
         FactionID = factionID;
     }
 }

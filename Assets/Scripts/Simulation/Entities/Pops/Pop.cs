@@ -154,8 +154,8 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
     public PopSaveData ToSaveData()
     {
         return new PopSaveData(Name, ID,  WorkingPopulation, PersonsOfInterest, CultureID, ReligionID, 
-            _assignments, Stockpile.Contents.Resources.ToSaveData(), _isStarving, FactionID,
-            _knownLocations.ToSaveData());
+            _assignments, Stockpile.Contents.Resources.ToSaveData(), _isStarving, Location,
+            FactionID, _knownLocations.ToSaveData());
     }
 }
 
@@ -176,8 +176,8 @@ public class PopSaveData : PawnSaveData
     public PopSaveData(string name, PopID id, int workingPopulation, List<PersonOfInterest> personsOfInterest,
         CultureID cultureID, ReligionID religionID,List<Assignment> assignments,
         SerializableDictionarySaveData<ResourceID, float> stockpile,
-        bool isStarving, FactionID factionID,
-        SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> knownLocations) : base(factionID)
+        bool isStarving, AxialCoordinate location, FactionID factionID,
+        SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> knownLocations) : base(location, factionID)
     {
         Name = name;
         ID = id;

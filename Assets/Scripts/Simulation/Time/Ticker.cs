@@ -18,8 +18,8 @@ public class Ticker
     private HashSet<IUpkeepTick> _upkeepTickables = new();
     private HashSet<IUITickable> _uiTickables = new();
     
-    private readonly HashSet<ITickable> _pendingRegistration;
-    private readonly HashSet<ITickable> _pendingRemoval;
+    private readonly HashSet<ITickable> _pendingRegistration = new();
+    private readonly HashSet<ITickable> _pendingRemoval = new();
     
     private bool _isTicking;
 
@@ -31,9 +31,6 @@ public class Ticker
     public Ticker(TickInfo tickInfo)
     {
         TickInfo = tickInfo;
-        
-        _pendingRegistration = new HashSet<ITickable>();
-        _pendingRemoval = new HashSet<ITickable>();
     }
 
     public void Register(ITickable tickable)
