@@ -15,7 +15,8 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
     public ResourceStockpile Stockpile {get; private set;}
     private bool _isStarving = false;
     private SerializableDictionary<AxialCoordinate, LocationKnowledge> _knownLocations = new();
-
+    private SerializableDictionary<TechnologyID, float> _knownTechnologies = new();
+    
     // Runtime fields
     private List<Assignment> _assignments = new();
     
@@ -56,6 +57,7 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
         Stockpile = new ResourceStockpile(new ResourceCollection(saveData.Stockpile), this);
         _isStarving = saveData.IsStarving;
         _knownLocations = new SerializableDictionary<AxialCoordinate, LocationKnowledge>(saveData.KnownLocations);
+        _knownTechnologies = new SerializableDictionary<TechnologyID, float>(saveData.KnownTechnologies);
     }
     
     public void AssignmentTick(TickInfo tickInfo)
@@ -156,7 +158,7 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
     {
         return new PopSaveData(Name, ID,  WorkingPopulation, PersonsOfInterest, CultureID, ReligionID, 
             SaveAssignmentData(_assignments), Stockpile.Contents.Resources.ToSaveData(), _isStarving, Location,
-            FactionID, _knownLocations.ToSaveData());
+            FactionID, _knownLocations.ToSaveData(), _knownTechnologies.ToSaveData());
     }
 
     public List<Assignment> LoadAssignmentData(List<AssignmentData> data)
@@ -195,12 +197,14 @@ public class PopSaveData : PawnSaveData
     public SerializableDictionarySaveData<ResourceID, float> Stockpile;
     public bool IsStarving;
     public SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> KnownLocations;
+    public SerializableDictionarySaveData<TechnologyID, float> KnownTechnologies;
 
     public PopSaveData(string name, PopID id, int workingPopulation, List<PersonOfInterest> personsOfInterest,
         CultureID cultureID, ReligionID religionID,List<AssignmentData> assignments,
         SerializableDictionarySaveData<ResourceID, float> stockpile,
         bool isStarving, AxialCoordinate location, FactionID factionID,
-        SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> knownLocations) : base(location, factionID)
+        SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> knownLocations,
+        SerializableDictionarySaveData<TechnologyID, float> knownTechnologies) : base(location, factionID)
     {
         Name = name;
         ID = id;
@@ -212,5 +216,6 @@ public class PopSaveData : PawnSaveData
         Stockpile = stockpile;
         IsStarving = isStarving;
         KnownLocations = knownLocations;
+        KnownTechnologies = knownTechnologies;
     }
 }
