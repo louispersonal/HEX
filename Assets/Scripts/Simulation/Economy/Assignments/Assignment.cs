@@ -11,11 +11,13 @@ public abstract class Assignment : ISavable<AssignmentData>
 
     protected Assignment(AssignmentData assignmentData)
     {
+        AssignmentID = assignmentData.ID;
         Workers = assignmentData.Workers;
     }
     
     protected Assignment(AssignmentID assignmentID, int workerCount)
     {
+        AssignmentID = assignmentID;
         Workers = workerCount;
     }
 
