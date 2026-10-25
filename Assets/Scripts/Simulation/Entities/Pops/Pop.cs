@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Linq;
+using System.Reflection;
+using UnityEditor.Rendering;
 
 [System.Serializable]
 public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
@@ -14,11 +16,13 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
     public List<PersonOfInterest> PersonsOfInterest { get; private set; }
     public CultureID CultureID;
     public ReligionID ReligionID;
-    private List<Assignment> _assignments = new();
     public ResourceStockpile Stockpile {get; private set;}
     private bool _isStarving = false;
     private SerializableDictionary<AxialCoordinate, LocationKnowledge> _knownLocations = new();
 
+    // Runtime fields
+    private List<Assignment> _assignments = new();
+    
     // public accessors
     public int Population => WorkingPopulation + PersonsOfInterest.Count;
     public Culture Culture => GameController.Instance.SessionManager.GameData.Cultures.GetValue(CultureID);
@@ -50,8 +54,9 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
         PersonsOfInterest = saveData.PersonsOfInterest;
         CultureID = saveData.CultureID;
         ReligionID = saveData.ReligionID;
+        Location = saveData.Location;
         FactionID = saveData.FactionID;
-        _assignments = saveData.Assignments;
+        _assignments = LoadAssignmentData(saveData.Assignments);
         Stockpile = new ResourceStockpile(new ResourceCollection(saveData.Stockpile), this);
         _isStarving = saveData.IsStarving;
         _knownLocations = new SerializableDictionary<AxialCoordinate, LocationKnowledge>(saveData.KnownLocations);
@@ -154,8 +159,30 @@ public class Pop : Pawn, IAssignmentTick, ISavable<PopSaveData>
     public PopSaveData ToSaveData()
     {
         return new PopSaveData(Name, ID,  WorkingPopulation, PersonsOfInterest, CultureID, ReligionID, 
-            _assignments, Stockpile.Contents.Resources.ToSaveData(), _isStarving, Location,
+            SaveAssignmentData(_assignments), Stockpile.Contents.Resources.ToSaveData(), _isStarving, Location,
             FactionID, _knownLocations.ToSaveData());
+    }
+
+    public List<Assignment> LoadAssignmentData(List<AssignmentData> data)
+    {
+        List<Assignment> assignments = new();
+        foreach (AssignmentData datum in data)
+        {
+            assignments.Add(AssignmentCreator.CreateAssignment(datum.Workers, datum.ID));
+        }
+
+        return assignments;
+    }
+    
+    public List<AssignmentData> SaveAssignmentData(List<Assignment> assignments)
+    {
+        List<AssignmentData> assignmentData = new();
+        foreach (Assignment assignment in assignments)
+        {
+            assignmentData.Add(new AssignmentData(assignment));
+        }
+
+        return assignmentData;
     }
 }
 
@@ -168,13 +195,13 @@ public class PopSaveData : PawnSaveData
     public List<PersonOfInterest> PersonsOfInterest;
     public CultureID CultureID;
     public ReligionID ReligionID;
-    public List<Assignment> Assignments;
+    public List<AssignmentData > Assignments;
     public SerializableDictionarySaveData<ResourceID, float> Stockpile;
     public bool IsStarving;
     public SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> KnownLocations;
 
     public PopSaveData(string name, PopID id, int workingPopulation, List<PersonOfInterest> personsOfInterest,
-        CultureID cultureID, ReligionID religionID,List<Assignment> assignments,
+        CultureID cultureID, ReligionID religionID,List<AssignmentData> assignments,
         SerializableDictionarySaveData<ResourceID, float> stockpile,
         bool isStarving, AxialCoordinate location, FactionID factionID,
         SerializableDictionarySaveData<AxialCoordinate, LocationKnowledge> knownLocations) : base(location, factionID)
