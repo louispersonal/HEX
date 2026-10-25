@@ -8,7 +8,7 @@ public class GatherAssignment : Assignment
 
     public override Color Color => Color.green;
     
-    public GatherAssignment(int workerCount) : base(workerCount)
+    public GatherAssignment(int workerCount) : base(new AssignmentID((int)AssignmentTypes.Gather), workerCount)
     {
         
     }

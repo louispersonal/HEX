@@ -14,7 +14,7 @@ public abstract class Assignment : ISavable<AssignmentData>
         Workers = assignmentData.Workers;
     }
     
-    protected Assignment(int workerCount)
+    protected Assignment(AssignmentID assignmentID, int workerCount)
     {
         Workers = workerCount;
     }
@@ -36,7 +36,7 @@ public abstract class Assignment : ISavable<AssignmentData>
 
     public AssignmentData ToSaveData()
     {
-        throw new System.NotImplementedException();
+        return new AssignmentData(this);
     }
 
     public override string ToString()
@@ -45,6 +45,7 @@ public abstract class Assignment : ISavable<AssignmentData>
     }
 }
 
+[Serializable]
 public class AssignmentData
 {
     public AssignmentID ID;
@@ -59,7 +60,7 @@ public class AssignmentData
 [Serializable]
 public class AssignmentID : IEquatable<AssignmentID>
 {
-    public readonly int Value;
+    public int Value;
     public AssignmentID(int value) =>  Value = value;
 
     public bool Equals(AssignmentID other)

@@ -8,7 +8,7 @@ public class HuntAssignment : Assignment
 
     public override Color Color => Color.red;
     
-    public HuntAssignment(int workerCount) : base(workerCount)
+    public HuntAssignment(int workerCount) : base(new AssignmentID((int)AssignmentTypes.Hunt), workerCount)
     {
         
     }
