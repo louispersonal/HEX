@@ -22,10 +22,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>,
 
     public SerializableDictionarySaveData<TKey, TValue> ToSaveData()
     {
-        return new SerializableDictionarySaveData<TKey, TValue>(
-            Keys.ToArray(),
-            Values.ToArray()
-        );
+        return new SerializableDictionarySaveData<TKey, TValue>(this);
     }
 }
 
@@ -35,9 +32,9 @@ public class SerializableDictionarySaveData<TKey, TValue>
     public TKey[] Keys;
     public TValue[] Values;
 
-    public SerializableDictionarySaveData(TKey[] keys, TValue[] values)
+    public SerializableDictionarySaveData(SerializableDictionary<TKey, TValue> dictionary)
     {
-        Keys = keys;
-        Values = values;
+        Keys = dictionary.Keys.ToArray();
+        Values = dictionary.Values.ToArray();
     }
 }

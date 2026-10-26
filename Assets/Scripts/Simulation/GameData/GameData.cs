@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameData
 {
@@ -12,7 +13,8 @@ public class GameData
     public IndexedDictionary<CultureID,  Culture> Cultures = new ();
     public IndexedDictionary<ReligionID, Religion> Religions = new ();
     public IndexedDictionary<FactionID, Faction> Factions = new();
-
+    public TradeManager Trades { get; } = new();
+    
     public GameData(string gameName, string worldName)
     {
         GameName = gameName;
@@ -43,12 +45,15 @@ public class GameData
             if (!Factions.TryAdd(faction))
                 throw new  InvalidOperationException($"Duplicate Faction ID: {faction.ID.Value}");
         }
+        
+        Trades= new TradeManager(saveData.Trades); 
     }
     
     public GameSaveData ToSaveData()
     {
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
-            Pops.ToSaveDataArray(), Cultures.ToArray(), Religions.ToArray(), Factions.ToArray());
+            Pops.ToSaveDataArray(), Cultures.ToArray(), Religions.ToArray(), Factions.ToArray(),
+            Trades.ToSaveData().ToArray());
     }
 
     public IEnumerable<ITickable> GetTickables()
@@ -67,9 +72,11 @@ public class GameSaveData
     public Culture[] Cultures;
     public Religion[] Religions;
     public Faction[] Factions;
-
+    public TradeAgreementSaveData[] Trades;
+    
     public GameSaveData(string gameName, string worldName, TickInfo tickInfo,
-        PopSaveData[] pops, Culture[] cultures, Religion[] religions, Faction[] factions)
+        PopSaveData[] pops, Culture[] cultures, Religion[] religions, Faction[] factions,
+        TradeAgreementSaveData[] trades)
     {
         GameName = gameName;
         WorldName = worldName;
@@ -78,5 +85,6 @@ public class GameSaveData
         Cultures = cultures;
         Religions = religions;
         Factions = factions;
+        Trades = trades;
     }
   }
