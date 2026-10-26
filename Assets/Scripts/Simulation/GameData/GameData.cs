@@ -53,7 +53,7 @@ public class GameData
     {
         return new GameSaveData(GameName, WorldName, Ticker.TickInfo,
             Pops.ToSaveDataArray(), Cultures.ToArray(), Religions.ToArray(), Factions.ToArray(),
-            Trades.ToSaveData().ToArray());
+            Trades.ToSaveData());
     }
 
     public IEnumerable<ITickable> GetTickables()

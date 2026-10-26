@@ -1,12 +1,16 @@
 using System;
+using UnityEngine;
 
-public readonly struct PopID : IEquatable<PopID>
+[Serializable]
+public struct PopID : IEquatable<PopID>
 {
-    public ushort Value { get; }
+    [SerializeField] private ushort _value;
+
+    public ushort Value => _value;
 
     public PopID(ushort value)
     {
-        Value = value;
+        _value = value;
     }
     
     public bool Equals(PopID other) => Value == other.Value;

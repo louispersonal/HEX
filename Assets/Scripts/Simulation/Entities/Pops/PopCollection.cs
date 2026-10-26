@@ -74,10 +74,14 @@ public class PopCollection
 
     public void LoadPops(PopSaveData[] pops)
     {
+        ushort largestID = 0;
         foreach (PopSaveData popData in pops)
         {
             Pop pop = new Pop(popData);
-            _spatial.TryAdd(pop.ID, pop, new[] { pop.Location });
+            if (_spatial.TryAdd(pop.ID, pop, new[] { pop.Location }))
+            {
+                largestID = pop.ID.Value > largestID ? pop.ID.Value : largestID;
+            }
         }
     }
 }
