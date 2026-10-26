@@ -75,13 +75,19 @@ public class PopCollection
     public void LoadPops(PopSaveData[] pops)
     {
         ushort largestID = 0;
+        bool hasPops = false;
+
         foreach (PopSaveData popData in pops)
         {
             Pop pop = new Pop(popData);
-            if (_spatial.TryAdd(pop.ID, pop, new[] { pop.Location }))
-            {
-                largestID = pop.ID.Value > largestID ? pop.ID.Value : largestID;
-            }
+
+            if (!_spatial.TryAdd(pop.ID, pop, new[] { pop.Location })) 
+                throw new InvalidOperationException($"Failed to load Pop with ID {pop.ID.Value}");
+
+            largestID = Math.Max(largestID, pop.ID.Value);
+            hasPops = true;
         }
+
+        _nextID = hasPops ? checked((ushort)(largestID + 1)) : (ushort)0;
     }
 }
