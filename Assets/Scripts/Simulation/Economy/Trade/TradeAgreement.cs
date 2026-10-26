@@ -14,6 +14,12 @@ public class TradeAgreement : ISavable<TradeAgreementSaveData>
     private SerializableDictionary<ResourceID, float> _resourceFlux;
     public SerializableDictionary<ResourceID, float> ResourceFlux => _resourceFlux;
 
+    public TradeAgreement(PopID partyA, PopID partyB)
+    {
+        _partyA = partyA;
+        _partyB = partyB;
+    }
+    
     public TradeAgreement(TradeAgreementSaveData tradeAgreementSaveData)
     {
         _partyA = tradeAgreementSaveData.PartyA;
@@ -21,9 +27,34 @@ public class TradeAgreement : ISavable<TradeAgreementSaveData>
         _resourceFlux = new SerializableDictionary<ResourceID, float>(tradeAgreementSaveData.ResourceFlux);
     }
 
-public TradeAgreementSaveData ToSaveData()
+    public TradeAgreementSaveData ToSaveData()
     {
         return new TradeAgreementSaveData(this);
+    }
+
+    public void AddResource(ResourceID resourceID, float amount)
+    {
+        if(!_resourceFlux.TryAdd(resourceID, amount))
+            throw new ArgumentException($"Resource {resourceID} has already been added");
+    }
+
+    public void RemoveResource(ResourceID resourceID)
+    {
+        if(!_resourceFlux.Remove(resourceID))
+            throw new ArgumentException($"Resource {resourceID} is not here");
+    }
+
+    public bool ModifyOrAddAmount(ResourceID resourceID, float newAmount)
+    {
+        // returns true if amount was modified, false if added
+        if (_resourceFlux.ContainsKey(resourceID))
+        {
+            _resourceFlux[resourceID] = newAmount;
+            return true;
+        }
+        
+        _resourceFlux[resourceID] = newAmount;
+        return false;
     }
 }
 
