@@ -85,18 +85,24 @@ public class TextureUtilities
         }
     }
 
-    public static MapTexture GetMapTextureFromWorldData(WorldData world, int horizontalPixels, int verticalPixels)
+    public static MapTexture GetMapTextureFromWorldData(WorldData world, int desiredHorizontalPixels,
+        int desiredVerticalPixels)
     {
         HexGrid grid = world.Grid;
+        
+        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), 
+            Vector2.zero, new Vector2(desiredHorizontalPixels, desiredVerticalPixels));
+        
+        int horizontalPixels = Mathf.CeilToInt(coords.TopRightBound.x - coords.BottomLeftBound.x);
 
+        int verticalPixels = Mathf.CeilToInt(coords.TopRightBound.y - coords.BottomLeftBound.y);
+        
         Color[] pixelArray = new Color[horizontalPixels * verticalPixels];
 
         for (int p = 0; p < horizontalPixels * verticalPixels; p++)
         {
             pixelArray[p] = Color.blue;
         }
-
-        var coords = AxialGeometry.ConvertAxialSetToBoundedCartesian(grid.GetAllAxialCoords(), Vector2.zero, new Vector2(horizontalPixels, verticalPixels));
         
         foreach (AxialCoordinate axial in coords.Map.Keys)
         {

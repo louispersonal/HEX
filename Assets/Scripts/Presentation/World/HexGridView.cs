@@ -30,6 +30,7 @@ public class HexGridView : MonoBehaviour
 	private int _maxVisibleHexes = 500;
 	[SerializeField] HexView _hexViewPrefab;
 	[SerializeField] GameCamera _gameCamera;
+	[SerializeField] FullView _fullView;
 
 	private bool _enableParticles = false;
 	
@@ -62,6 +63,8 @@ public class HexGridView : MonoBehaviour
 		FindWorldCorners();
 		ChangeLOD(_gameCamera.CurrentZoomLevel);
 		_gameCamera.OnZoomChanged += ChangeLOD;
+		
+		_fullView.Initialize(this);
 	}
 
 	private void FindWorldCorners()
@@ -71,11 +74,17 @@ public class HexGridView : MonoBehaviour
 		AxialCoordinate tr = AxialGeometry.OddRToAxial((HexGrid.RowBounds.min, HexGrid.ColBounds.max));
 		AxialCoordinate br = AxialGeometry.OddRToAxial((HexGrid.RowBounds.max, HexGrid.ColBounds.max));
 		
+		float halfWidth = HexView.InnerRadius;
+		float halfHeight = HexView.SceneSize;
+		
+		// because of ODD R offset, we need to add an extra halfwidth in the horizontal
+		// TODO should probably be more scientific than this. Bandaid fix
+		
 		WorldCorners = new Vector2[4];
-		WorldCorners[0] = HexGridGeometry.AxialToScene(bl);
-		WorldCorners[1] = HexGridGeometry.AxialToScene(tl);
-		WorldCorners[2] = HexGridGeometry.AxialToScene(tr);
-		WorldCorners[3] = HexGridGeometry.AxialToScene(br);
+		WorldCorners[0] = HexGridGeometry.AxialToScene(bl) + new Vector2(-halfWidth * 2, -halfHeight);
+		WorldCorners[1] = HexGridGeometry.AxialToScene(tl) + new Vector2(-halfWidth * 2, halfHeight);
+		WorldCorners[2] = HexGridGeometry.AxialToScene(tr) + new Vector2(halfWidth, halfHeight);
+		WorldCorners[3] = HexGridGeometry.AxialToScene(br) + new Vector2(halfWidth, -halfHeight);
 	}
 	
 	private HexView CreateHex()
